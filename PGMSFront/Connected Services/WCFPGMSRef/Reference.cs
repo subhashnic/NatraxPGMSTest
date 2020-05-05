@@ -3850,6 +3850,9 @@ namespace PGMSFront.WCFPGMSRef {
         private string VehicleNoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ZZCategoryIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ZZDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3857,6 +3860,9 @@ namespace PGMSFront.WCFPGMSRef {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ZZSlotField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ZZTrackGroupIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ZZUOMField;
@@ -4327,6 +4333,19 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ZZCategoryId {
+            get {
+                return this.ZZCategoryIdField;
+            }
+            set {
+                if ((this.ZZCategoryIdField.Equals(value) != true)) {
+                    this.ZZCategoryIdField = value;
+                    this.RaisePropertyChanged("ZZCategoryId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string ZZDate {
             get {
                 return this.ZZDateField;
@@ -4361,6 +4380,19 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((object.ReferenceEquals(this.ZZSlotField, value) != true)) {
                     this.ZZSlotField = value;
                     this.RaisePropertyChanged("ZZSlot");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ZZTrackGroupId {
+            get {
+                return this.ZZTrackGroupIdField;
+            }
+            set {
+                if ((this.ZZTrackGroupIdField.Equals(value) != true)) {
+                    this.ZZTrackGroupIdField = value;
+                    this.RaisePropertyChanged("ZZTrackGroupId");
                 }
             }
         }
