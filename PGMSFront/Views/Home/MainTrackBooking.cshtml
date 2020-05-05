@@ -424,9 +424,9 @@
                     gridData = gridData + "<td class='text-center'><label id='txtBookingSlot'>" + NullHandle(varBookingSlot) + "</label></td>";//Booking Slot
                     gridData = gridData + "<td class='text-center'> <label id='txtBookingConfirmSlot'>" + NullHandle(varBookingConfirmSlot) + "</label></td>";//Booking Confirmed Slot
                     gridData = gridData + "<td class='text-center'><label id='txtRoundHrs'>" + NullHandle(varRoundHrs) + "</label></td>";//Round Hrs
-                    gridData = gridData + "<td class='text-center'><label id='txtBillHrs'>" + NullHandle(varBillingHrs) + "</label></td>";// Billing Hrs
+                   // gridData = gridData + "<td class='text-center'><label id='txtBillHrs'>" + NullHandle(varBillingHrs) + "</label></td>";// Billing Hrs
                     //gridData = gridData + "<td class='text-right'><label id='txtAmount'>" + NullHandle(varAmount) + "</label></td>"; //Amount
-                    // gridData = gridData + "<td style='display:none'><input type='hidden' id='hdnServiceId' value=" + NullHandle(data[i].ServiceId) + " /> </td>";
+                    gridData = gridData + "<td style='display:none'><input type='hidden' id='hdnServiceId' value=" + NullHandle(data[i].ServiceId) + " /><input type='hidden' id='hdnBillingHrs' value=" + NullHandle(varBillingHrs) + " /> </td>";
 
 
                     gridData = gridData + "</tr>";
@@ -551,8 +551,8 @@
                                 $(this).find("[id='txtBookingConfirmSlot']").each(function () {
                                     $(this).text(NullHandle(varBookingConfirmSlot));
                                 });
-                                $(this).find("[id='txtBillHrs']").each(function () {
-                                    $(this).text(NullHandle(varBillingHrs));
+                                $(this).find("input[type='hidden'][id='hdnBillingHrs']").each(function () {
+                                    $(this).val(varBillingHrs);
                                 });
                             }
                         });
@@ -605,7 +605,7 @@
                 TimeDtls.ZZTrackGroupId = $("#TrackGroupId").val();
 
                 var varHrs = '';
-                var varMin = '';
+                var varMin = '';              
 
                 $(this).find("input[type='hidden'][id='hdnServiceId']").each(function () {
                     TimeDtls.ServiceId = $(this).val().trim();
@@ -617,6 +617,9 @@
 
                 $(this).find("input[type='text'][id='txtUsageMin']").each(function () {
                     varMin = $(this).val().trim();
+                });
+                $(this).find("input[type='hidden'][id='hdnBillingHrs']").each(function () {
+                    TimeDtls.BillingHrs = $(this).val().trim();
                 });
 
                 if ((varHrs != undefined && varHrs != '' && parseInt(varHrs) > 0) || (varMin != undefined && varMin != '' && parseInt(varMin) >0)) {
@@ -830,9 +833,10 @@
             var varAmount = 0;
 
 
-            $(rowId).find("[id='txtRate']").each(function () {
-                varRate = $(this).text().trim();
-            });
+            //$(rowId).find("[id='txtRate']").each(function () {
+            //    varRate = $(this).text().trim();
+            //});
+
             $(rowId).find("input[type='text'][id='txtUsageHrs']").each(function () {
                 varUsageHrs = $(this).val().trim();
             });
@@ -858,12 +862,12 @@
                 varUsageHrsRounded = parseInt(varUsageHrsRounded) + 1;
             }
            
-            if (parseInt(varMinBilling) > parseInt(varUsageHrsRounded) && parseInt(varUsageHrsRounded)>0) {
-                varAmount = parseInt(varMinBilling) * parseFloat(varRate)
-            }
-            else {
-                varAmount = parseInt(varUsageHrsRounded) * parseFloat(varRate)
-            }
+            //if (parseInt(varMinBilling) > parseInt(varUsageHrsRounded) && parseInt(varUsageHrsRounded)>0) {
+            //    varAmount = parseInt(varMinBilling) * parseFloat(varRate)
+            //}
+            //else {
+            //    varAmount = parseInt(varUsageHrsRounded) * parseFloat(varRate)
+            //}
 
 
             $(rowId).find("[id='txtRoundHrs']").each(function () {

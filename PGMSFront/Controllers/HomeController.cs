@@ -1008,10 +1008,13 @@ namespace PGMSFront.Controllers
                             intRoundOffMin=0;
                         }
 
-
-
                         itm.RoundOffHrs = intRoundOffHrs;
                         itm.RoundOffMin = intRoundOffMin;
+
+                        if(intRoundOffHrs>itm.BillingHrs)
+                        {
+                            itm.BillingHrs = intRoundOffHrs;
+                        }
 
                     }                       
                 
