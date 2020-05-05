@@ -37,7 +37,7 @@
         <div class="sidebar" data-color="rose" data-background-color="black" data-image="~/Templates/assets/img/sidebar-1.jpg">
             <div class="logo"> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-mini"> </a> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-normal"> NATRAX </a> </div>
             <div class="sidebar-wrapper">
-                <div class="user">
+                @*<div class="user">
                     <div class="photo">
                         <img src="~/Templates/assets/img/faces/marc.jpg" />
                     </div>
@@ -48,8 +48,14 @@
                             </span>
                         </a>
                     </div>
-                </div>
+                </div>*@
                 <ul class="nav" id="nav-item">
+                    <li class="nav-item">
+                        <a class="nav-link" id="BasicLI" href="@Url.Action("Dashboard", "Home")">
+                            <i class="material-icons">dashboard</i>
+                            <p> Dashboard </p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" id="BasicLI" href="@Url.Action("Basic", "Home")">
                             <i class="material-icons">info</i>
@@ -127,30 +133,30 @@
                                     </a>
                                 </li>
                                 @*<li class="nav-item">
-                                        <a class="nav-link collapsed" data-toggle="collapse" href="#FatigueTrack" aria-expanded="false">
-                                            <i class="material-icons">data_usage</i>
-                                            <p>
-                                                Fatigue Track
-                                                <b class="caret"></b>
-                                            </p>
-                                        </a>
-                                        <div class="collapse" id="FatigueTrack" style="">
-                                            <ul class="nav">
-                                                <li class="nav-item ">
-                                                    <a class="nav-link" href="@Url.Action("FatigueSurface", "Home")">
-                                                        <i class="material-icons">&nbsp;</i>
-                                                        <p> Fatigue Surface </p>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item ">
-                                                    <a class="nav-link" href="@Url.Action("FatigueStructure", "Home")">
-                                                        <i class="material-icons">&nbsp;</i>
-                                                        <p> Fatigue Structure </p>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>*@
+                        <a class="nav-link collapsed" data-toggle="collapse" href="#FatigueTrack" aria-expanded="false">
+                            <i class="material-icons">data_usage</i>
+                            <p>
+                                Fatigue Track
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse" id="FatigueTrack" style="">
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Action("FatigueSurface", "Home")">
+                                        <i class="material-icons">&nbsp;</i>
+                                        <p> Fatigue Surface </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Action("FatigueStructure", "Home")">
+                                        <i class="material-icons">&nbsp;</i>
+                                        <p> Fatigue Structure </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>*@
                                 <li class="nav-item">
                                     <a class="nav-link" href="@Url.Action("GravelandOffRoad", "Home")">
                                         <i class="material-icons">data_usage</i>
@@ -220,17 +226,17 @@
                         <div class="collapse" id="Labs" style="">
                             <ul class="nav">
                                 @*<li class="nav-item">
-                                        <a class="nav-link" href="javascript:void(0)">
-                                            <i class="material-icons">data_usage</i>
-                                            <p> Instrumentation Lab </p>
-                                        </a>
-                                    </li>*@
+                        <a class="nav-link" href="javascript:void(0)">
+                            <i class="material-icons">data_usage</i>
+                            <p> Instrumentation Lab </p>
+                        </a>
+                    </li>*@
                                 @*<li class="nav-item">
-                                        <a class="nav-link" href="javascript:void(0)">
-                                            <i class="material-icons">data_usage</i>
-                                            <p> Vehicle Dynamics Lab </p>
-                                        </a>
-                                    </li>*@
+                        <a class="nav-link" href="javascript:void(0)">
+                            <i class="material-icons">data_usage</i>
+                            <p> Vehicle Dynamics Lab </p>
+                        </a>
+                    </li>*@
                                 <li class="nav-item">
                                     <a class="nav-link collapsed" data-toggle="collapse" href="#InstrumentationLab" aria-expanded="false">
                                         <i class="material-icons">data_usage</i>
@@ -305,24 +311,24 @@
                     </li>
 
                     @*<li class="nav-item ">
-                            <a class="nav-link collapsed" data-toggle="collapse" href="#Workshops" aria-expanded="false">
-                                <i class="material-icons">apartment</i>
-                                <p>
-                                    Workshops
-                                    <b class="caret"></b>
-                                </p>
-                            </a>
-                            <div class="collapse" id="Workshops" style="">
-                                <ul class="nav">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="javascript:void(0)">
-                                            <i class="material-icons">data_usage</i>
-                                            <p> Client workshop </p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>*@
+            <a class="nav-link collapsed" data-toggle="collapse" href="#Workshops" aria-expanded="false">
+                <i class="material-icons">apartment</i>
+                <p>
+                    Workshops
+                    <b class="caret"></b>
+                </p>
+            </a>
+            <div class="collapse" id="Workshops" style="">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)">
+                            <i class="material-icons">data_usage</i>
+                            <p> Client workshop </p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>*@
 
                     <li class="nav-item ">
                         <a class="nav-link collapsed" data-toggle="collapse" href="#Storage" aria-expanded="false">
@@ -368,26 +374,23 @@
         </div>
         <div class="main-panel">
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+            @*<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
-                        @*<div class="navbar-minimize">
-                                <button id="minimizeSidebar" class="btn btn-just-icon btn-white btn-fab btn-round"> <i class="material-icons text_align-center visible-on-sidebar-regular">more_vert</i> <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i> </button>
-                            </div>*@
                         @{ var actionName = this.ViewContext.RouteData.Values["action"].ToString(); }
                         <a class="navbar-brand" href="#pablo">@ViewBag.Title</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="navbar-toggler-icon icon-bar"></span> <span class="navbar-toggler-icon icon-bar"></span> <span class="navbar-toggler-icon icon-bar"></span> </button>
                     <div class="collapse navbar-collapse justify-content-end">
-                        @*<form class="navbar-form">
-                                <div class="input-group no-border">
-                                    <input type="text" value="" class="form-control" placeholder="Search...">
-                                    <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                        <i class="material-icons">search</i>
-                                        <div class="ripple-container"></div>
-                                    </button>
-                                </div>
-                            </form>*@
+                        <form class="navbar-form">
+                            <div class="input-group no-border">
+                                <input type="text" value="" class="form-control" placeholder="Search...">
+                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                    <i class="material-icons">search</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                            </div>
+                        </form>
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -410,10 +413,10 @@
                         </ul>
                     </div>
                 </div>
-            </nav>
+            </nav>*@
             <!-- End Navbar -->
             @RenderBody()
-            <footer class="footer">
+            @*<footer class="footer">
                 <div class="container-fluid">
                     <nav class="float-left">
                         <ul>
@@ -425,7 +428,7 @@
                     </nav>
                     <div class="copyright float-right"> Copyright © 2020 All rights reserved   </div>
                 </div>
-            </footer>
+            </footer>*@
         </div>
     </div>
 
@@ -480,9 +483,9 @@
     <script src="~/Templates/assets/DateTimePicker/jquery.datetimepicker.js"></script>
     <script src="~/Templates/assets/DateTimePicker/jquery.maskedinput-1.3.1.min.js"></script>
     <link href="~/Templates/Alert/jquery-confirm.min.css" rel="stylesheet" />
-   
+
     @Scripts.Render("~/bundles/MyScripts")
-   
+
     <script>
         $(document).ready(function () {
             $().ready(function () {

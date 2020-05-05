@@ -1,11 +1,59 @@
 ﻿@{
     ViewBag.Title = "Booking";
-    Layout = "~/Views/Shared/_LayoutTrack.cshtml";
+    Layout = "~/Views/Shared/_LayoutBooking.cshtml";
 }
+    <style>
+        .table > tbody > tr > td {
+            padding: 2px 8px !important;
+            cursor: pointer !important;
+        }
 
+        .card {
+            margin-bottom: 0px !important;
+            margin-top: 10px !important;
+        }
+
+        .bootstrap-select {
+            margin-top: 16px !important;
+        }
+    </style>
 <div class="content">
     <div class="container-fluid">
-        <h1>Booking</h1>
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">assignment</i>
+                    </div>
+                    <h6 class="card-title" style="margin-top: 5px;">
+                        Date: 05/05/2020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Document Type: BOOK123&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Document No.: BOOK123
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="arrow-steps clearfix">
+                        <div class="step current"><span>Booking</span></div>
+                        <div class="step"><span>PI</span></div>
+                        <div class="step"><span>Approve</span></div>
+                        <div class="step"><span>PO</span></div>
+                        <div class="step"><span>PO Verification</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">
+                        Track Booking
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <h6>Fresh Booking on Standard Rates</h6>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -1,4 +1,4 @@
-.tim-row {
+﻿.tim-row {
     margin-bottom: 20px;
 }
 
@@ -114,7 +114,8 @@
 }
 
 .main-panel > .content {
-    margin-top: 30px !important;
+    /*margin-top: 30px !important;*/
+    margin-top: 12px !important;
 }
 
 .card .card-header.card-header-image img {
@@ -249,7 +250,8 @@ tr.highlighted td {
 }
 
 .btn.btn-sm, .btn-group-sm > .btn, .btn-group-sm .btn {
-    padding: 4px 4px 3px 4px !important;
+    /*padding: 4px 4px 3px 4px !important;*/
+    padding: 8px 10px 5px 10px !important
 }
 
 .navbar.navbar-absolute {
@@ -261,3 +263,103 @@ tr.highlighted td {
     line-height: 30px;
     padding: 0px 0px 0px 0px;
 }
+
+.nav {
+    margin-top: 40px;
+}
+
+.pull-right {
+    float: right;
+}
+
+a, a:active {
+    color: #333;
+    text-decoration: none;
+}
+
+    a:hover {
+        color: #999;
+    }
+
+/* Breadcrups CSS */
+
+.arrow-steps .step {
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    color: #000;
+    cursor: default;
+    margin: 0 3px;
+    padding: 7px 10px 10px 30px;
+    min-width: 180px;
+    float: left;
+    position: relative;
+    background-color: #eee;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: background-color 0.2s ease;
+    height: 36px;
+}
+
+    .arrow-steps .step:after,
+    .arrow-steps .step:before {
+        content: " ";
+        position: absolute;
+        top: 0;
+        right: -17px;
+        width: 0;
+        height: 0;
+        border-top: 19px solid transparent;
+        border-bottom: 17px solid transparent;
+        border-left: 17px solid #eee;
+        z-index: 2;
+        transition: border-color 0.2s ease;
+    }
+
+    .arrow-steps .step:before {
+        right: auto;
+        left: 0;
+        border-left: 17px solid #fff;
+        z-index: 0;
+    }
+
+    .arrow-steps .step:first-child:before {
+        border: none;
+    }
+
+    .arrow-steps .step:first-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+
+    .arrow-steps .step span {
+        position: relative;
+    }
+
+        .arrow-steps .step span:before {
+            opacity: 0;
+            content: "✔";
+            position: absolute;
+            top: -2px;
+            left: -20px;
+        }
+
+    .arrow-steps .step.done span:before {
+        opacity: 1;
+        -webkit-transition: opacity 0.3s ease 0.5s;
+        -moz-transition: opacity 0.3s ease 0.5s;
+        -ms-transition: opacity 0.3s ease 0.5s;
+        transition: opacity 0.3s ease 0.5s;
+    }
+
+    .arrow-steps .step.current {
+        color: #fff;
+        background-color: #ec407a;
+        height: 36px;
+    }
+
+        .arrow-steps .step.current:after {
+            border-left: 17px solid #ec407a;
+        }

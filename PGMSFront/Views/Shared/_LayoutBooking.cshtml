@@ -23,6 +23,10 @@
         .nav-link {
             padding: 0px 0px 0px 0px !important;
         }
+
+        .main-panel > .content {
+            padding: 0px 15px !important;
+        }
     </style>
 </head>
 
@@ -31,7 +35,7 @@
         <div class="sidebar" data-color="rose" data-background-color="black" data-image="~/Templates/assets/img/sidebar-1.jpg">
             <div class="logo"> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-mini"> </a> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-normal"> NATRAX </a> </div>
             <div class="sidebar-wrapper">
-                <div class="user">
+                @*<div class="user">
                     <div class="photo">
                         <img src="~/Templates/assets/img/faces/marc.jpg" />
                     </div>
@@ -42,30 +46,24 @@
                             </span>
                         </a>
                     </div>
-                </div>
+                </div>*@
                 <ul class="nav" id="nav-item">
                     <li class="nav-item">
-                        <a class="nav-link" id="TrackLI" href="javascript:void(0)">
+                        <a class="nav-link" id="BasicLI" href="@Url.Action("Dashboard", "Home")">
+                            <i class="material-icons">dashboard</i>
+                            <p> Dashboard </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="TrackLI" href="@Url.Action("NewBooking", "Home")">
                             <i class="material-icons">policy</i>
-                            <p> Booking In Progress </p>
+                            <p> New Booking / RFQ </p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="LabLI" href="@Url.Action("Basic", "Home")">
-                            <i class="material-icons">colorize</i>
-                            <p> New Booking </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="WorkshopLI" href="javascript:void(0)">
+                        <a class="nav-link" id="LabLI" href="@Url.Action("Booking", "Home")">
                             <i class="material-icons">house</i>
                             <p> Booking History </p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" id="StorageLI" href="javascript:void(0)">
-                            <i class="material-icons">block</i>
-                            <p> Canceled Booking </p>
                         </a>
                     </li>
                 </ul>
@@ -73,18 +71,15 @@
         </div>
         <div class="main-panel">
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+            @*<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
-                        @*<div class="navbar-minimize">
-                            <button id="minimizeSidebar" class="btn btn-just-icon btn-white btn-fab btn-round"> <i class="material-icons text_align-center visible-on-sidebar-regular">more_vert</i> <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i> </button>
-                        </div>*@
                         @{ var actionName = this.ViewContext.RouteData.Values["action"].ToString(); }
                     <a class="navbar-brand" href="#pablo">@ViewBag.Title</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="navbar-toggler-icon icon-bar"></span> <span class="navbar-toggler-icon icon-bar"></span> <span class="navbar-toggler-icon icon-bar"></span> </button>
                     <div class="collapse navbar-collapse justify-content-end">
-                        @*<form class="navbar-form">
+                        <form class="navbar-form">
                             <div class="input-group no-border">
                                 <input type="text" value="" class="form-control" placeholder="Search...">
                                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
@@ -92,7 +87,7 @@
                                     <div class="ripple-container"></div>
                                 </button>
                             </div>
-                        </form>*@
+                        </form>
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -115,10 +110,10 @@
                         </ul>
                     </div>
                 </div>
-            </nav>
+            </nav>*@
             <!-- End Navbar -->
             @RenderBody()
-            <footer class="footer">
+            @*<footer class="footer">
                 <div class="container-fluid">
                     <nav class="float-left">
                         <ul>
@@ -130,7 +125,7 @@
                     </nav>
                     <div class="copyright float-right"> Copyright © 2020 All rights reserved   </div>
                 </div>
-            </footer>
+            </footer>*@
         </div>
     </div>
     <!--   Core JS Files   -->

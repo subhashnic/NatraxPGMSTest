@@ -18,91 +18,130 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">@Model.UserName</h4>
+            <div class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">assignment</i>
+                    </div>
+                    <h6 class="card-title" style="margin-top: 5px;">
+                        Date: 05/05/2020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Document Type: BOOK123&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Document No.: BOOK123
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="arrow-steps clearfix">
+                        <div class="step current"><span>Booking</span></div>
+                        <div class="step"><span>PI</span></div>
+                        <div class="step"><span>Approve</span></div>
+                        <div class="step"><span>PO</span></div>
+                        <div class="step"><span>PO Verification</span></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
+        @using (Html.BeginForm(new { @class = "form-horizontal" }))
+        {
+            <div class="row">
                 <div class="card">
-                    <div class="card-body">
-                        @using (Html.BeginForm(new { @class = "form-horizontal" }))
-                        {
-                            <div class="row">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleEmail" class="bmd-label-floating">Booking Creation Date</label>
-                                        @*<input type="text" class="form-control datetimepicker" id="BookingDate">*@
-                                        <input type="text" disabled="disabled" id="BookingDate">
-                                    </div>
-                                    <div class="form-group" style="height: 70px;">
-                                        <label for="exampleEmail" class="bmd-label-floating">Department *</label>
-                                        <select class="form-control" id="DepartmentId" style="margin-top: 34px;">
-                                            @*<option>-Select-</option>*@
-                                            @foreach (var itm in ViewBag.CompanyDepartment)
-                                            {
-                                                <option value='@itm.Value'>@itm.Text</option>
-                                            }
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleEmail" class="bmd-label-floating">Project *</label>
-                                        <input type="text" class="form-control" id="Project">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleEmail" class="bmd-label-floating">Project Manager *</label>
-                                        <input type="text" class="form-control" id="ProjectManager">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleEmail" class="bmd-label-floating">Project Manager Email *</label>
-                                        <input type="text" class="form-control" id="PMEmailId">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleEmail" class="bmd-label-floating">Project Manager Mobile No. *</label>
-                                        <input type="text" class="form-control" maxlength="10" id="PMMobileNo">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleEmail" class="bmd-label-floating">Booking No.</label>
-                                        <input type="text" disabled="disabled" class="form-control" id="BookingNo">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleEmail" class="bmd-label-floating">Contact Person *</label>
-                                        <input type="text" class="form-control" id="ContactPerson">
-                                    </div>
-                                    <div class="form-group" style="margin-top: 13px;">
-                                        <label for="exampleEmail" class="bmd-label-floating">Email *</label>
-                                        <input type="text" class="form-control" id="EmailId">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleEmail" class="bmd-label-floating">Mobile No. *</label>
-                                        <input type="text" class="form-control" maxlength="10" id="MobileNo">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleEmail" class="bmd-label-floating">Remark *</label>
-                                        <textarea class="form-control" id="Remark" style="height: 99px !important;"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        @*<button type="button" class="btn btn-fill btn-rose pull-right" id="btnSubmit">Cancel</button>*@
-                                        <button type="button" class="btn btn-fill btn-rose pull-right" id="btnSubmit" onclick="return BookingSave()">Save</button>
-                                    </div>
+                    <div class="card-body" style="padding-bottom: 0px;">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group" style="height: 70px;">
+                                    <label for="exampleEmail" class="bmd-label-floating">Department *</label>
+                                    <select class="form-control" id="DepartmentId" style="margin-top: 34px;">
+                                        @*<option>-Select-</option>*@
+                                        @foreach (var itm in ViewBag.CompanyDepartment)
+                                        {
+                                            <option value='@itm.Value'>@itm.Text</option>
+                                        }
+                                    </select>
                                 </div>
                             </div>
-                            @Html.HiddenFor(m => m.UserId, new { id = "UserId", style = "width:0px;" })
-                            @Html.HiddenFor(m => m.UserTypePropId, new { id = "UserTypePropId", style = "width:0px;" })
-                            @Html.HiddenFor(m => m.ZZCompanyId, new { id = "ZZCompanyId", style = "width:0px;" })
-                        }
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleEmail" class="bmd-label-floating">Project *</label>
+                                    <input type="text" class="form-control" id="Project">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group" style="height: 70px;">
+                                    <label for="exampleEmail" class="bmd-label-floating">Created By *</label>
+                                    <input type="text" class="form-control" id="CreatedBy">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <div class="row">
+                <div class="card">
+                    <div class="card-body" style="padding-bottom: 0px;">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleEmail" class="bmd-label-floating">Project Manager *</label>
+                                    <input type="text" class="form-control" id="ProjectManager">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleEmail" class="bmd-label-floating">Project Manager Email *</label>
+                                    <input type="text" class="form-control" id="PMEmailId">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleEmail" class="bmd-label-floating">Project Manager Mobile No. *</label>
+                                    <input type="text" class="form-control" maxlength="10" id="PMMobileNo">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleEmail" class="bmd-label-floating">Contact Person *</label>
+                                    <input type="text" class="form-control" id="ContactPerson">
+                                </div>
+                                <div class="form-group" style="margin-top: 8px;">
+                                    <label for="exampleEmail" class="bmd-label-floating">Contact Person Email *</label>
+                                    <input type="text" class="form-control" id="EmailId">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleEmail" class="bmd-label-floating">Contact Person Mobile No. *</label>
+                                    <input type="text" class="form-control" maxlength="10" id="MobileNo">
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="exampleEmail" class="bmd-label-floating">Remark *</label>
+                                    <textarea class="form-control" id="Remark" style="height: 80px !important;"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @*<button type="button" class="btn btn-fill btn-rose btn-sm pull-right" id="btnSubmit">Cancel</button>*@
+                                    <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" id="btnSubmit" onclick="return BookingSave()">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @Html.HiddenFor(m => m.UserId, new { id = "UserId", style = "width:0px;" })
+            @Html.HiddenFor(m => m.UserTypePropId, new { id = "UserTypePropId", style = "width:0px;" })
+            @Html.HiddenFor(m => m.ZZCompanyId, new { id = "ZZCompanyId", style = "width:0px;" })
+        }
     </div>
 </div>
 <script>
@@ -140,15 +179,16 @@
             //  return false;
         }
     }
-   
+
     ///////////////////////////// Booking Save  //////////////////////////////////////////////////////
     function BookingSave() {
         try {
             var strMSG = '';
 
-            if ($("#BookingDate").val().trim() == "") {
-                strMSG = strMSG + 'Booking Date \n</br>'
-            }
+            //if ($("#BookingDate").val().trim() == "") {
+            //    strMSG = strMSG + 'Booking Date \n</br>'
+            //}
+            debugger;
             if ($("#DepartmentId").val().trim() == "") {
                 strMSG = strMSG + 'Department Name \n</br>'
             }
@@ -176,7 +216,7 @@
             if ($("#Remark").val().trim() == "") {
                 strMSG = strMSG + 'Remark \n</br>'
             }
-            
+
             if (strMSG != '') {
                 alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
                 return false;
@@ -191,7 +231,7 @@
                     model.BookingId = -1;
                     model.StatusPropId = 40;
                 }
-                               
+
                 model.ZZBookingDate = $("#BookingDate").val().trim();
                 model.DepartmentId = $("#DepartmentId").val().trim();
                 model.Project = $("#Project").val().trim();
@@ -202,8 +242,8 @@
                 model.PMMobileNo = $("#PMMobileNo").val().trim();
                 model.MobileNo = $("#MobileNo").val().trim();
                 model.Remark = $("#Remark").val().trim();
-                
-               
+
+
                 $("#btnSubmit").hide();
                 //$("#ajax-progress-dialog").dialog("open");
                // LoaderShow();
@@ -302,7 +342,7 @@
             $("#EmailId").attr('disabled', blnStatus);
             $("#PMMobileNo").attr('disabled', blnStatus);
             $("#MobileNo").attr('disabled', blnStatus);
-            $("#Remark").attr('disabled', blnStatus); 
+            $("#Remark").attr('disabled', blnStatus);
         }
         catch (e) {
 
@@ -331,7 +371,7 @@
 
         }
     }
-       
+
 
     $(document).ready(function () {
         MaskControls();
