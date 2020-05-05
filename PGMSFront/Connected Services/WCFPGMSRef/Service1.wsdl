@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSHttpBinding_IService1_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost/WCFPGMSFront/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost/WCFPGMSFront/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/WCFPGMSFront/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront" />
+      <xsd:import schemaLocation="http://localhost/WCFPGMSFront/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate" />
+      <xsd:import schemaLocation="http://localhost/WCFPGMSFront/Service1.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService1_UserGetByLoginId_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserGetByLoginId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UserGetByLoginId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserGetByLoginIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_PropertiesGetAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:PropertiesGetAll" />
+  </wsdl:message>
+  <wsdl:message name="IService1_PropertiesGetAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PropertiesGetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingInsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:BookingInsert" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingInsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BookingInsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:BookingUpdate" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BookingUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingDeleteAllByBookingId_InputMessage">
+    <wsdl:part name="parameters" element="tns:BookingDeleteAllByBookingId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingDeleteAllByBookingId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BookingDeleteAllByBookingIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingViewGetByBookingId_InputMessage">
+    <wsdl:part name="parameters" element="tns:BookingViewGetByBookingId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingViewGetByBookingId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BookingViewGetByBookingIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingViewGetByCompanyIdStatusPropId_InputMessage">
+    <wsdl:part name="parameters" element="tns:BookingViewGetByCompanyIdStatusPropId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingViewGetByCompanyIdStatusPropId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BookingViewGetByCompanyIdStatusPropIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CompanyDepartmentGetByCustomerMasterId_InputMessage">
+    <wsdl:part name="parameters" element="tns:CompanyDepartmentGetByCustomerMasterId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CompanyDepartmentGetByCustomerMasterId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CompanyDepartmentGetByCustomerMasterIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingSearchViewGetByCompanyIdFromDateToDateFront_InputMessage">
+    <wsdl:part name="parameters" element="tns:BookingSearchViewGetByCompanyIdFromDateToDateFront" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingSearchViewGetByCompanyIdFromDateToDateFront_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BookingSearchViewGetByCompanyIdFromDateToDateFrontResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ListOfVehicleComponentInsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListOfVehicleComponentInsert" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ListOfVehicleComponentInsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListOfVehicleComponentInsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ListOfVehicleComponentUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListOfVehicleComponentUpdate" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ListOfVehicleComponentUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListOfVehicleComponentUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ListOfVehicleComponentDeleteByDocIdCompId_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListOfVehicleComponentDeleteByDocIdCompId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ListOfVehicleComponentDeleteByDocIdCompId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListOfVehicleComponentDeleteByDocIdCompIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ListOfVehicleComponentGetByDocId_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListOfVehicleComponentGetByDocId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ListOfVehicleComponentGetByDocId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListOfVehicleComponentGetByDocIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ServicesGetByBPId_InputMessage">
+    <wsdl:part name="parameters" element="tns:ServicesGetByBPId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ServicesGetByBPId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ServicesGetByBPIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_TrackBookingDetailGetByBookingIdTrackGroupId_InputMessage">
+    <wsdl:part name="parameters" element="tns:TrackBookingDetailGetByBookingIdTrackGroupId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_TrackBookingDetailGetByBookingIdTrackGroupId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TrackBookingDetailGetByBookingIdTrackGroupIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingStatusGetByServiceIdTimeSlotPropIdWEFDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:BookingStatusGetByServiceIdTimeSlotPropIdWEFDate" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingStatusGetByServiceIdTimeSlotPropIdWEFDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BookingStatusGetByServiceIdTimeSlotPropIdWEFDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_TrackBookingDetailInsertFront_InputMessage">
+    <wsdl:part name="parameters" element="tns:TrackBookingDetailInsertFront" />
+  </wsdl:message>
+  <wsdl:message name="IService1_TrackBookingDetailInsertFront_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TrackBookingDetailInsertFrontResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_TrackBookingTimeDetailDeleteFrontByServiceId_InputMessage">
+    <wsdl:part name="parameters" element="tns:TrackBookingTimeDetailDeleteFrontByServiceId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_TrackBookingTimeDetailDeleteFrontByServiceId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TrackBookingTimeDetailDeleteFrontByServiceIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService1">
+    <wsdl:operation name="UserGetByLoginId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UserGetByLoginId" message="tns:IService1_UserGetByLoginId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UserGetByLoginIdResponse" message="tns:IService1_UserGetByLoginId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PropertiesGetAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/PropertiesGetAll" message="tns:IService1_PropertiesGetAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/PropertiesGetAllResponse" message="tns:IService1_PropertiesGetAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BookingInsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/BookingInsert" message="tns:IService1_BookingInsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/BookingInsertResponse" message="tns:IService1_BookingInsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BookingUpdate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/BookingUpdate" message="tns:IService1_BookingUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/BookingUpdateResponse" message="tns:IService1_BookingUpdate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BookingDeleteAllByBookingId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/BookingDeleteAllByBookingId" message="tns:IService1_BookingDeleteAllByBookingId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/BookingDeleteAllByBookingIdResponse" message="tns:IService1_BookingDeleteAllByBookingId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BookingViewGetByBookingId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/BookingViewGetByBookingId" message="tns:IService1_BookingViewGetByBookingId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/BookingViewGetByBookingIdResponse" message="tns:IService1_BookingViewGetByBookingId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BookingViewGetByCompanyIdStatusPropId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/BookingViewGetByCompanyIdStatusPropId" message="tns:IService1_BookingViewGetByCompanyIdStatusPropId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/BookingViewGetByCompanyIdStatusPropIdResponse" message="tns:IService1_BookingViewGetByCompanyIdStatusPropId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CompanyDepartmentGetByCustomerMasterId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterId" message="tns:IService1_CompanyDepartmentGetByCustomerMasterId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterIdResponse" message="tns:IService1_CompanyDepartmentGetByCustomerMasterId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BookingSearchViewGetByCompanyIdFromDateToDateFront">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/BookingSearchViewGetByCompanyIdFromDateToDateFront" message="tns:IService1_BookingSearchViewGetByCompanyIdFromDateToDateFront_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/BookingSearchViewGetByCompanyIdFromDateToDateFrontResponse" message="tns:IService1_BookingSearchViewGetByCompanyIdFromDateToDateFront_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfVehicleComponentInsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/ListOfVehicleComponentInsert" message="tns:IService1_ListOfVehicleComponentInsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ListOfVehicleComponentInsertResponse" message="tns:IService1_ListOfVehicleComponentInsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfVehicleComponentUpdate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/ListOfVehicleComponentUpdate" message="tns:IService1_ListOfVehicleComponentUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ListOfVehicleComponentUpdateResponse" message="tns:IService1_ListOfVehicleComponentUpdate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfVehicleComponentDeleteByDocIdCompId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/ListOfVehicleComponentDeleteByDocIdCompId" message="tns:IService1_ListOfVehicleComponentDeleteByDocIdCompId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ListOfVehicleComponentDeleteByDocIdCompIdResponse" message="tns:IService1_ListOfVehicleComponentDeleteByDocIdCompId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfVehicleComponentGetByDocId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/ListOfVehicleComponentGetByDocId" message="tns:IService1_ListOfVehicleComponentGetByDocId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ListOfVehicleComponentGetByDocIdResponse" message="tns:IService1_ListOfVehicleComponentGetByDocId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ServicesGetByBPId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/ServicesGetByBPId" message="tns:IService1_ServicesGetByBPId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ServicesGetByBPIdResponse" message="tns:IService1_ServicesGetByBPId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TrackBookingDetailGetByBookingIdTrackGroupId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/TrackBookingDetailGetByBookingIdTrackGroupId" message="tns:IService1_TrackBookingDetailGetByBookingIdTrackGroupId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/TrackBookingDetailGetByBookingIdTrackGroupIdResponse" message="tns:IService1_TrackBookingDetailGetByBookingIdTrackGroupId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BookingStatusGetByServiceIdTimeSlotPropIdWEFDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/BookingStatusGetByServiceIdTimeSlotPropIdWEFDate" message="tns:IService1_BookingStatusGetByServiceIdTimeSlotPropIdWEFDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/BookingStatusGetByServiceIdTimeSlotPropIdWEFDateResponse" message="tns:IService1_BookingStatusGetByServiceIdTimeSlotPropIdWEFDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TrackBookingDetailInsertFront">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/TrackBookingDetailInsertFront" message="tns:IService1_TrackBookingDetailInsertFront_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/TrackBookingDetailInsertFrontResponse" message="tns:IService1_TrackBookingDetailInsertFront_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TrackBookingTimeDetailDeleteFrontByServiceId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/TrackBookingTimeDetailDeleteFrontByServiceId" message="tns:IService1_TrackBookingTimeDetailDeleteFrontByServiceId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/TrackBookingTimeDetailDeleteFrontByServiceIdResponse" message="tns:IService1_TrackBookingTimeDetailDeleteFrontByServiceId_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSHttpBinding_IService1" type="tns:IService1">
+    <wsp:PolicyReference URI="#WSHttpBinding_IService1_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UserGetByLoginId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/UserGetByLoginId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PropertiesGetAll">
+      <soap12:operation soapAction="http://tempuri.org/IService1/PropertiesGetAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookingInsert">
+      <soap12:operation soapAction="http://tempuri.org/IService1/BookingInsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookingUpdate">
+      <soap12:operation soapAction="http://tempuri.org/IService1/BookingUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookingDeleteAllByBookingId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/BookingDeleteAllByBookingId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookingViewGetByBookingId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/BookingViewGetByBookingId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookingViewGetByCompanyIdStatusPropId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/BookingViewGetByCompanyIdStatusPropId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CompanyDepartmentGetByCustomerMasterId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookingSearchViewGetByCompanyIdFromDateToDateFront">
+      <soap12:operation soapAction="http://tempuri.org/IService1/BookingSearchViewGetByCompanyIdFromDateToDateFront" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListOfVehicleComponentInsert">
+      <soap12:operation soapAction="http://tempuri.org/IService1/ListOfVehicleComponentInsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListOfVehicleComponentUpdate">
+      <soap12:operation soapAction="http://tempuri.org/IService1/ListOfVehicleComponentUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListOfVehicleComponentDeleteByDocIdCompId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/ListOfVehicleComponentDeleteByDocIdCompId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListOfVehicleComponentGetByDocId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/ListOfVehicleComponentGetByDocId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServicesGetByBPId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/ServicesGetByBPId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TrackBookingDetailGetByBookingIdTrackGroupId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/TrackBookingDetailGetByBookingIdTrackGroupId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookingStatusGetByServiceIdTimeSlotPropIdWEFDate">
+      <soap12:operation soapAction="http://tempuri.org/IService1/BookingStatusGetByServiceIdTimeSlotPropIdWEFDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TrackBookingDetailInsertFront">
+      <soap12:operation soapAction="http://tempuri.org/IService1/TrackBookingDetailInsertFront" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TrackBookingTimeDetailDeleteFrontByServiceId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/TrackBookingTimeDetailDeleteFrontByServiceId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="WSHttpBinding_IService1" binding="tns:WSHttpBinding_IService1">
+      <soap12:address location="http://localhost/WCFPGMSFront/Service1.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://localhost/WCFPGMSFront/Service1.svc</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

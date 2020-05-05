@@ -1,0 +1,384 @@
+﻿@model PGMSFront.Models.CommonModel
+@{
+    ViewBag.Title = "Vehicle";
+    Layout = "~/Views/Shared/_LayoutTrack.cshtml";
+}
+
+<style>
+    .card {
+        margin-bottom: 0px !important;
+        margin-top: 10px !important;
+    }
+</style>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            <label class="card-title">Testing Vehicle Count : </label> <label class="card-title" id="lblVehicleCount"></label>
+                            <button type="button" class="btn btn-fill btn-rose pull-right" onclick="AddMore()" id="btnAdd">Add More</button>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                            <tr>
+                                                <th width="8%">Sr. No.</th>
+                                                <th width="20%">Vehicle Registration No.</th>
+                                                <th width="20%">Vehicle Type</th>
+                                                <th width="20%">Axel</th>
+                                                <th width="20%">Weight</th>
+                                                <th width="12%" class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyVehicle">
+                                            <tr id="AddMoreTR" style="display: none;">
+                                                <td><input type="text" class="form-control" value="" disabled="disabled"></td>
+                                                <td><input type="text" class="form-control" value="" id="RegistrationNo"></td>
+                                                <td>
+                                                    @*<input type="text" class="form-control" value="" id="VehicleType">*@
+                                                    <select class="form-control" id="VehicleType">                                                      
+                                                        @foreach (var itm in ViewBag.VehicleType)
+                                                        {
+                                                            <option value='@itm.Value'>@itm.Text</option>
+                                                        }
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" class="form-control" value="" id="VehicleAxel"></td>
+                                                <td><input type="text" class="form-control" value="" id="VehicleWeight"></td>
+                                                <td class="text-center">
+                                                    <a href="#" class="btn btn-link btn-info btn-just-icon remove" onclick="return VehicleSave()" id="btnSave"><i class="material-icons">save</i></a>
+                                                    <a href="#" class="btn btn-link btn-danger btn-just-icon remove" onclick="AddMoreCancel()"><i class="material-icons">close</i></a>
+                                                </td>
+                                            </tr>                                         
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.UserId, new { id = "UserId", style = "width:0px;" })
+                    @Html.HiddenFor(m => m.UserTypePropId, new { id = "UserTypePropId", style = "width:0px;" })
+                    @Html.HiddenFor(m => m.ZZCompanyId, new { id = "ZZCompanyId", style = "width:0px;" })
+                    @Html.HiddenFor(m => m.StatusPropId, new { id = "StatusPropId", style = "width:0px;" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var VehCompId = 0;
+    var VehicleList = '';
+
+    function AddMore() {
+        VehCompId = 0;
+        $("#AddMoreTR").find("a[id='btnSave']").each(function () {
+            $(this).show();
+        });
+        $("#AddMoreTR").find("input[type='text'][id='RegistrationNo']").each(function () {
+            $(this).val("");           
+        });
+        //$("#AddMoreTR").find("select[id='VehicleType']").each(function () {
+        //    $(this).val("");
+        //});
+        $("#AddMoreTR").find("input[type='text'][id='VehicleAxel']").each(function () {
+            $(this).val("");
+        });
+        $("#AddMoreTR").find("input[type='text'][id='VehicleWeight']").each(function () {
+            $(this).val("");
+        });
+
+        $("#AddMoreTR").show();
+        MaskControls();
+        $("#RegistrationNo").focus();
+    }
+    function AddMoreCancel() {
+        $("#AddMoreTR").hide();
+    }
+
+    ///////////////////////////// Load Vehicle Info  //////////////////////////////////////////////////////
+    function LoadVehicleInfo() {
+        try {
+            // $("#ajax-progress-dialog").dialog("open");
+            $.ajax({
+                url: '@Url.Action("LoadVehicleInfo", "Home")',
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                data: {},
+                success: function (data) {
+
+                    //  $("#ajax-progress-dialog").dialog("close");
+                    if (data.StatusId != "99" && data.StatusId != "-99") {
+                        VehicleList = data.VehicleList;
+                        BindVehicleData(data.VehicleList);
+                    }
+                },
+                error: function (xhr) {
+
+                    // $("#ajax-progress-dialog").dialog("close");
+                    alert(xhr.responseText);
+                }
+            });
+        }
+        catch (e) {
+
+            // $("#ajax-progress-dialog").dialog("close");
+            alert(e.message);
+            //  return false;
+        }
+    }
+
+    //////////////////////// Vehicle Edit ////////////////////////////////////////////////////////////
+    function VehicleEdit(varVehCompId) {
+        try {
+            VehCompId = 0;
+            if (VehicleList.length > 0) {
+                var varVehicle = jQuery.grep(VehicleList, function (obj) {
+                    return obj.VehCompId == varVehCompId;
+                });
+
+                VehCompId = NullHandle(varVehicle[0].VehCompId);
+
+                $("#AddMoreTR").find("a[id='btnSave']").each(function () {
+                    $(this).show();
+                });
+                $("#AddMoreTR").find("input[type='text'][id='RegistrationNo']").each(function () {
+                    $(this).val(NullHandle(varVehicle[0].VorC));                   
+                });
+                $("#AddMoreTR").find("select[id='VehicleType']").each(function () {
+                    $(this).val(NullHandle(varVehicle[0].TypeId));
+                });
+                $("#AddMoreTR").find("input[type='text'][id='VehicleAxel']").each(function () {
+                    $(this).val(NullHandle(varVehicle[0].Description1));
+                });
+                $("#AddMoreTR").find("input[type='text'][id='VehicleWeight']").each(function () {
+                    $(this).val(NullHandle(varVehicle[0].Description2));
+                });
+
+                $("#AddMoreTR").show();
+                MaskControls();
+                $("#RegistrationNo").focus();
+            }
+        }
+        catch (e) {
+
+        }
+    }
+
+    ///////////////////////////// Vehicle Save  //////////////////////////////////////////////////////
+    function VehicleSave() {
+        try {
+            var model = {};
+            var strMSG = '';
+            var varVehicle = jQuery.grep(VehicleList, function (obj) {
+                return obj.VehCompId == VehCompId;
+            });
+            var btnSave = "";
+
+            if (parseInt(VehCompId) > 0 && varVehicle != undefined && varVehicle.length > 0) {
+                model = varVehicle[0];
+            }
+            else {
+                model.VehCompId = -1;
+            }
+
+            $("#AddMoreTR").find("a[id='btnSave']").each(function () {
+                btnSave = $(this);
+            });
+            $("#AddMoreTR").find("input[type='text'][id='RegistrationNo']").each(function () {
+                model.VorC = $(this).val().trim();
+                if ($(this).val().trim() == "") {
+                    strMSG = strMSG + 'Registration No. \n</br>'
+                }
+            });
+            $("#AddMoreTR").find("select[id='VehicleType']").each(function () {
+                model.TypeId = $(this).val().trim();
+                if ($(this).val().trim() == "") {
+                    strMSG = strMSG + 'Vehicle Type \n</br>'
+                }
+            });
+            $("#AddMoreTR").find("input[type='text'][id='VehicleAxel']").each(function () {
+                model.Description1 = $(this).val().trim();
+                if ($(this).val().trim() == "") {
+                    strMSG = strMSG + 'Vehicle Axel  \n</br>'
+                }
+            });
+            $("#AddMoreTR").find("input[type='text'][id='VehicleWeight']").each(function () {
+                model.Description2 = $(this).val().trim();
+                if ($(this).val().trim() == "") {
+                    strMSG = strMSG + 'Vehicle Weight  \n</br>'
+                }
+            });
+
+            if (strMSG != '') {
+                alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
+                return false;
+            }
+            else {
+
+                btnSave.hide();
+                //$("#ajax-progress-dialog").dialog("open");
+                $.ajax({
+                    url: '@Url.Action("VehicleSave", "Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    data: '{model: ' + JSON.stringify(model) + '}',
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+
+                        // $("#ajax-progress-dialog").dialog("close");
+                        if (data.StatusId != "99" && data.StatusId != "-99") {
+                            VehicleList = data.VehicleList;
+                            BindVehicleData(data.VehicleList);
+                        }
+                        btnSave.show();
+                        alert(data.Status);
+                    },
+                    error: function (xhr) {
+
+                        btnSave.show();
+                        // $("#ajax-progress-dialog").dialog("close");
+                        alert(xhr.responseText);
+                    }
+                });
+            }
+        }
+        catch (e) {
+
+            //$("#ajax-progress-dialog").dialog("close");
+            btnSave.show();
+            alert(e.message);
+            return false;
+        }
+    }
+
+    ///////////////////////////// Load Vehicle Info  //////////////////////////////////////////////////////
+    function VehicleDelete(varVehCompId) {
+        try {
+            // $("#ajax-progress-dialog").dialog("open");
+            $.ajax({
+                url: '@Url.Action("VehicleDelete", "Home")',
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                data: { 'intVehCompId': varVehCompId},
+                success: function (data) {
+
+                    //  $("#ajax-progress-dialog").dialog("close");
+                    if (data.StatusId != "99" && data.StatusId != "-99") {
+                        VehicleList = data.VehicleList;
+                        BindVehicleData(data.VehicleList);
+                    }
+                    alert(data.Status);
+                },
+                error: function (xhr) {
+
+                    // $("#ajax-progress-dialog").dialog("close");
+                    alert(xhr.responseText);
+                }
+            });
+        }
+        catch (e) {
+
+            // $("#ajax-progress-dialog").dialog("close");
+            alert(e.message);
+            //  return false;
+        }
+    }
+    ///////////////////////////// Bind Basic Info  //////////////////////////////////////////////////////
+    function BindVehicleData(data) {
+        try {           
+            var gridData = "";
+            var StatusPropId = $("#StatusPropId").val();
+            //var row = $('#tbodyVehicle').find('tr:eq(0)');
+
+            gridData = "<tr id='AddMoreTR' style='display: none;'>" + $("#AddMoreTR").html() + "</tr>";
+
+            $("#lblVehicleCount").text(NullHandle(data.length));
+
+            $("#tbodyVehicle").html("");
+
+            for (var i = 0; i < data.length; i++) {
+                gridData = gridData + "<tr >";
+
+                gridData = gridData + "<td>" + NullHandle(data[i].Sno) + "</td>";
+                gridData = gridData + "<td>" + NullHandle(data[i].VorC) + "</td>";
+                gridData = gridData + "<td>" + NullHandle(data[i].ZZType) + "</td>";
+                gridData = gridData + "<td>" + NullHandle(data[i].Description1) + "</td>";
+                gridData = gridData + "<td>" + NullHandle(data[i].Description2) + "</td>";
+
+                if (parseInt(StatusPropId)==40) {
+                    gridData = gridData + "<td class='text - center'>";
+                    gridData = gridData + "<a href='#' class='btn btn-link btn-info btn-just-icon remove' onclick = 'return VehicleEdit(" + NullHandle(data[i].VehCompId) + ")' > <i class='material-icons'>edit</i></a >";
+                    gridData = gridData + "<a href='#' class='btn btn-link btn-danger btn-just-icon remove' onclick='return VehicleDelete(" + NullHandle(data[i].VehCompId)+")'><i class='material-icons'>close</i></a>";
+                    gridData = gridData +"</td>";
+                }
+                else {
+                    gridData = gridData + "<td class='text - center'></td>";
+                }
+
+                gridData = gridData + "</tr>";
+            }
+
+            $("#tbodyVehicle").html(gridData);
+
+
+        }
+        catch (e) {
+
+        }
+    }
+
+    ///////////////////////////// Set Button Visibility  //////////////////////////////////////////////////////
+    function SetButtonVisibility() {
+        try {
+            if ($("#StatusPropId").val() != undefined && parseInt($("#StatusPropId").val()) == 40) {
+                $("#btnAdd").attr('disabled', false);
+            }
+            else {
+                $("#btnAdd").attr('disabled', true);
+            }
+        }
+        catch (e) {
+
+        }
+    }
+
+
+    ///////////////////////////// Masking  //////////////////////////////////////////////////////
+    function MaskControls() {
+        try {
+            (function ($) {
+                $(function () {
+                    //$("#AddMoreTR").find("input[type='text'][id='RegistrationNo']").each(function () {
+                    //    $(this).mask('aa-##-$$-9999');
+                    //});
+                    //$("#AddMoreTR").find("input[type='text'][id='VehicleType']").each(function () {
+                    //    $(this).attr('onkeypress', 'return CheckIsAlpha(event,this);');
+                    //});
+                    //$("#AddMoreTR").find("input[type='text'][id='VehicleWeight']").each(function () {
+                    //    $(this).attr('onkeypress', 'return CheckIsDecimal(event,this);');
+                    //});
+                });
+            })(jQuery);
+        }
+        catch (e) {
+
+        }
+    }
+
+    $(document).ready(function () {
+        MaskControls();
+        SetButtonVisibility();
+        LoadVehicleInfo();
+    });
+
+</script>

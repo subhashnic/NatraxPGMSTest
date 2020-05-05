@@ -1,0 +1,341 @@
+﻿@model PGMSFront.Models.CommonModel
+@{
+    ViewBag.Title = "Basic";
+    Layout = "~/Views/Shared/_LayoutTrack.cshtml";
+}
+<style>
+    .card {
+        margin-bottom: 0px !important;
+        margin-top: 10px !important;
+    }
+
+    .bootstrap-select {
+        margin-top: 16px !important;
+    }
+</style>
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">@Model.UserName</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        @using (Html.BeginForm(new { @class = "form-horizontal" }))
+                        {
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleEmail" class="bmd-label-floating">Booking Creation Date *</label>
+                                        <input type="text" class="form-control datetimepicker" id="BookingDate">
+                                    </div>
+                                    <div class="form-group" style="height: 70px;">
+                                        <label for="exampleEmail" class="bmd-label-floating">Department *</label>
+                                        <select class="form-control" id="DepartmentId" style="margin-top: 34px;">
+                                            @*<option>-Select-</option>*@
+                                            @foreach (var itm in ViewBag.CompanyDepartment)
+                                            {
+                                                <option value='@itm.Value'>@itm.Text</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleEmail" class="bmd-label-floating">Project *</label>
+                                        <input type="text" class="form-control" id="Project">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleEmail" class="bmd-label-floating">Project Manager *</label>
+                                        <input type="text" class="form-control" id="ProjectManager">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleEmail" class="bmd-label-floating">Project Manager Email *</label>
+                                        <input type="text" class="form-control" id="PMEmailId">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleEmail" class="bmd-label-floating">Project Manager Mobile No. *</label>
+                                        <input type="text" class="form-control" maxlength="10" id="PMMobileNo">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleEmail" class="bmd-label-floating">Booking No.</label>
+                                        <input type="text" disabled="disabled" class="form-control" id="BookingNo">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleEmail" class="bmd-label-floating">Contact Person *</label>
+                                        <input type="text" class="form-control" id="ContactPerson">
+                                    </div>
+                                    <div class="form-group" style="margin-top: 13px;">
+                                        <label for="exampleEmail" class="bmd-label-floating">Email *</label>
+                                        <input type="text" class="form-control" id="EmailId">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleEmail" class="bmd-label-floating">Mobile No. *</label>
+                                        <input type="text" class="form-control" maxlength="10" id="MobileNo">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleEmail" class="bmd-label-floating">Remark *</label>
+                                        <textarea class="form-control" id="Remark" style="height: 99px !important;"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        @*<button type="button" class="btn btn-fill btn-rose pull-right" id="btnSubmit">Cancel</button>*@
+                                        <button type="button" class="btn btn-fill btn-rose pull-right" id="btnSubmit" onclick="return BookingSave()">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                            @Html.HiddenFor(m => m.UserId, new { id = "UserId", style = "width:0px;" })
+                            @Html.HiddenFor(m => m.UserTypePropId, new { id = "UserTypePropId", style = "width:0px;" })
+                            @Html.HiddenFor(m => m.ZZCompanyId, new { id = "ZZCompanyId", style = "width:0px;" })
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var BookingList = '';
+
+    ///////////////////////////// Load Basic Info  //////////////////////////////////////////////////////
+    function LoadBasicInfo() {
+        try {
+            // $("#ajax-progress-dialog").dialog("open");
+            $.ajax({
+                url: '@Url.Action("LoadBasicInfo","Home")',
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                data: {},
+                success: function (data) {
+
+                    //  $("#ajax-progress-dialog").dialog("close");
+                    if (data.StatusId != "99" && data.StatusId != "-99") {
+                        BookingList = data.BookingList;
+                        BindBasicData(data.BookingList[0]);
+                    }
+                },
+                error: function (xhr) {
+
+                    // $("#ajax-progress-dialog").dialog("close");
+                    alert(xhr.responseText);
+                }
+            });
+        }
+        catch (e) {
+
+            // $("#ajax-progress-dialog").dialog("close");
+            alert(e.message);
+            //  return false;
+        }
+    }
+   
+    ///////////////////////////// Booking Save  //////////////////////////////////////////////////////
+    function BookingSave() {
+        try {
+            var strMSG = '';
+
+            if ($("#BookingDate").val().trim() == "") {
+                strMSG = strMSG + 'Booking Date \n</br>'
+            }
+            if ($("#DepartmentId").val().trim() == "") {
+                strMSG = strMSG + 'Department Name \n</br>'
+            }
+            if ($("#Project").val().trim() == "") {
+                strMSG = strMSG + 'Project \n</br>'
+            }
+            if ($("#ProjectManager").val().trim() == "") {
+                strMSG = strMSG + 'Project Manager \n</br>'
+            }
+            if ($("#PMEmailId").val().trim() == "") {
+                strMSG = strMSG + 'Project Manager EMailId \n</br>'
+            }
+            if ($("#PMMobileNo").val().trim() == "") {
+                strMSG = strMSG + 'Project Manager Mobile No. \n</br>'
+            }
+            if ($("#ContactPerson").val().trim() == "") {
+                strMSG = strMSG + 'Contact Person \n</br>'
+            }
+            if ($("#EmailId").val().trim() == "") {
+                strMSG = strMSG + 'Contact Person EmailId \n</br>'
+            }
+            if ($("#MobileNo").val().trim() == "") {
+                strMSG = strMSG + 'Contact Person Mobile No. \n</br>'
+            }
+            if ($("#Remark").val().trim() == "") {
+                strMSG = strMSG + 'Remark \n</br>'
+            }
+            
+            if (strMSG != '') {
+                alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
+                return false;
+            }
+            else {
+                var model = {};
+
+                if (BookingList.length > 0) {
+                    model = BookingList[0];
+                }
+                else {
+                    model.BookingId = -1;
+                    model.StatusPropId = 40;
+                }
+                               
+                model.ZZBookingDate = $("#BookingDate").val().trim();
+                model.DepartmentId = $("#DepartmentId").val().trim();
+                model.Project = $("#Project").val().trim();
+                model.ProjectManager = $("#ProjectManager").val().trim();
+                model.ContactPerson = $("#ContactPerson").val().trim();
+                model.PMEmailId = $("#PMEmailId").val().trim();
+                model.EmailId = $("#EmailId").val().trim();
+                model.PMMobileNo = $("#PMMobileNo").val().trim();
+                model.MobileNo = $("#MobileNo").val().trim();
+                model.Remark = $("#Remark").val().trim();
+                
+               
+                $("#btnSubmit").hide();
+                //$("#ajax-progress-dialog").dialog("open");
+               // LoaderShow();
+                $.ajax({
+                    url: '@Url.Action("BookingSave","Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    data: '{model: ' + JSON.stringify(model) + '}',
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                       //  $("#ajax-progress-dialog").dialog("close");
+                       // LoaderHide();
+                        if (data.StatusId != "99" && data.StatusId != "-99") {
+                            BookingList = data.BookingList;
+                            BindBasicData(data.BookingList[0]);
+                        }
+                        $("#btnSubmit").show();
+                        alert(data.Status);
+                    },
+                    error: function (xhr) {
+
+                        $("#btnSubmit").show();
+                        // $("#ajax-progress-dialog").dialog("close");
+                     //   LoaderHide();
+                        alert(xhr.responseText);
+                    }
+                });
+
+            }
+        }
+        catch (e) {
+
+            //$("#ajax-progress-dialog").dialog("close");
+           // LoaderHide();
+            $("#btnSubmit").show();
+            alert(e.message);
+            return false;
+        }
+    }
+
+    ///////////////////////////// Bind Basic Info  //////////////////////////////////////////////////////
+    function BindBasicData(data) {
+        try {
+            $("#BookingDate").val(NullHandle(data.ZZBookingDate));
+            $("#BookingNo").val(NullHandle(data.BookingNo));
+            $("#DepartmentId").val(NullHandle(data.DepartmentId));
+            $("#Project").val(NullHandle(data.Project));
+            $("#ProjectManager").val(NullHandle(data.ProjectManager));
+            $("#ContactPerson").val(NullHandle(data.ContactPerson));
+            $("#PMEmailId").val(NullHandle(data.PMEmailId));
+            $("#EmailId").val(NullHandle(data.EmailId));
+            $("#PMMobileNo").val(NullHandle(data.PMMobileNo));
+            $("#MobileNo").val(NullHandle(data.MobileNo));
+            $("#Remark").val(NullHandle(data.Remark));
+        }
+        catch (e) {
+
+        }
+
+        SetButtonVisibility();
+        DisableControls();
+    }
+
+    ///////////////////////////// Set Button Visibility  //////////////////////////////////////////////////////
+    function SetButtonVisibility() {
+        try {
+            if (BookingList.length > 0 && parseInt(BookingList[0].StatusPropId) == 40) {
+                $("#btnSubmit").attr('disabled', false);
+            }
+            else {
+                $("#btnSubmit").attr('disabled', true);
+            }
+        }
+        catch (e) {
+
+        }
+    }
+
+    ///////////////////////////// Disable Controls  //////////////////////////////////////////////////////
+    function DisableControls() {
+        try {
+            var blnStatus = false;
+            if (BookingList.length > 0 && parseInt(BookingList[0].StatusPropId) != 40) {
+                blnStatus = true;
+            }
+            //$("#PartCode").prop("readonly", blnStatus);
+
+            $("#BookingDate").attr('disabled', blnStatus);
+            $("#BookingNo").attr('disabled', true);
+            $("#DepartmentId").attr('disabled', blnStatus);
+            $("#Project").attr('disabled', blnStatus);
+            $("#ProjectManager").attr('disabled', blnStatus);
+            $("#ContactPerson").attr('disabled', blnStatus);
+            $("#PMEmailId").attr('disabled', blnStatus);
+            $("#EmailId").attr('disabled', blnStatus);
+            $("#PMMobileNo").attr('disabled', blnStatus);
+            $("#MobileNo").attr('disabled', blnStatus);
+            $("#Remark").attr('disabled', blnStatus); 
+        }
+        catch (e) {
+
+        }
+    }
+
+    ///////////////////////////// Masking  //////////////////////////////////////////////////////
+    function MaskControls() {
+        try {
+            (function ($) {
+                $(function () {
+                    $("#Project").attr('onkeypress', 'return CheckIsAlphaNumeric(event,this);');
+                    $("#ProjectManager").attr('onkeypress', 'return CheckIsAlpha(event,this);');
+                    $("#ContactPerson").attr('onkeypress', 'return CheckIsAlpha(event,this);');
+                    $("#PMEmailId").IsEmailOnly();
+                    $("#EmailId").IsEmailOnly();
+                    $("#PMMobileNo").attr('onkeypress', 'return CheckIsNumeric(event,this);');
+                   // $("#PMMobileNo").mask("9999999999");
+                    $("#MobileNo").attr('onkeypress', 'return CheckIsNumeric(event,this);');
+                   // $("#MobileNo").mask("9999999999");
+
+                });
+            })(jQuery);
+        }
+        catch (e) {
+
+        }
+    }
+       
+
+    $(document).ready(function () {
+        MaskControls();
+        LoadBasicInfo();
+        $("#BookingDate").focus();
+    });
+
+</script>

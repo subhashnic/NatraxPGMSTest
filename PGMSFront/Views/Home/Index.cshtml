@@ -1,0 +1,380 @@
+﻿@model PGMSFront.Models.LoginModel
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="~/Templates/img/favicon.png" type="image/png">
+    <title>PGMS</title>
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="~/Templates/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Templates/vendors/linericon/style.css">
+    <link rel="stylesheet" href="~/Templates/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Templates/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Templates/vendors/lightbox/simpleLightbox.css">
+    <link rel="stylesheet" href="~/Templates/vendors/nice-select/css/nice-select.css">
+    <link rel="stylesheet" href="~/Templates/vendors/animate-css/animate.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="~/Templates/css/style.css">
+    <link href="~/Templates/Alert/jquery-confirm.min.css" rel="stylesheet" />
+    <style>
+        /* Scroll bar css */
+        *::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        *::-webkit-scrollbar-track {
+            /*background: rgb(41,41,41);*/
+            /*background: #ECF0F5;*/
+        }
+
+        ::-webkit-scrollbar-thumb {
+            width: 8px;
+            height: 8px;
+            background: #555;
+        }
+        /* Scroll bar css */
+
+        .home_banner_area .login-box {
+            background: rgba(255, 255, 255, 0.50);
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!--================ Start Header Menu Area =================-->
+    <header class="header_area">
+        <div class="header-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-sm-6 col-4 header-top-left">
+                        <a href="tel:+9530123654896">
+                            <span class="lnr lnr-phone"></span>
+                            <span class="text">
+                                <span class="text">+ 91-11-49215555 </span>
+                            </span>
+                        </a>
+                        <a href="mailto:support@colorlib.com">
+                            <span class="lnr lnr-envelope"></span>
+                            <span class="text">
+                                <span class="text">team@natrip.in</span>
+                            </span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="main_menu">
+            <div class="search_input" id="search_input_box">
+                <div class="container">
+                    <form class="d-flex justify-content-between" method="" action="">
+                        <input type="text" class="form-control" id="search_input" placeholder="Search Here">
+                        <button type="submit" class="btn"></button>
+                        <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
+                    </form>
+                </div>
+            </div>
+
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <img src="~/Templates/Tracks/india.png" />
+                    <a class="navbar-brand logo_h" href="javascript:void(0)"><img src="~/Templates/img/logo.png" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav ml-auto">
+                            <li class="nav-item active"><a class="nav-link" href="@Url.Action("Index", "Home")">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="javascript:void(0)">About</a></li>
+                            <li class="nav-item submenu dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                   aria-expanded="false">Services</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="">Accomodation & Transportation</a></li>
+                            <li class="nav-item"><a class="nav-link" href="">Contact</a></li>
+                            @*<li class="nav-item">
+                                    <div class="">
+                                        <a class="nav-link blink" href=""><span>Ask For Quotation</span></a>
+                                    </div>
+                                </li>*@
+
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================ End Header Menu Area =================-->
+    <!--================ Start Home Banner Area =================-->
+    <section class="home_banner_area">
+        <div class="banner_inner">
+            <div class="container" style="margin-top: 55px;">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="banner_content">
+                            <div class="welcome-txt">
+                                <h2>Welcome to NATRiP</h2>
+                                <p>National Automotive Testing and R&D Infrastructure</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 ">
+                        <div class="banner_content">
+
+                            <div class="login-box">
+                                <h4>Customer Login</h4>
+                                @using (Html.BeginForm())
+                                {
+                                    <div class="form-group bmd-form-group is-filled">
+                                        <label for="exampleEmail" class="bmd-label-floating">User Name</label>
+                                        @*<input type="text" class="form-control" placeholder="Enter User Name" id="LoginId">*@
+                                        @Html.TextBoxFor(m => m.LoginId, new { @id = "LoginId", @class = "form-control", @PlaceHolder = "User Name" })
+                                    </div>
+                                    <div class="form-group bmd-form-group is-filled">
+                                        <label for="examplePass" class="bmd-label-floating">Password</label>
+                                        @*<input type="password" class="form-control" placeholder="Enter Password" id="Password">*@
+                                        @Html.TextBoxFor(m => m.Password, new { @id = "Password", @type = "password", @class = "form-control", @PlaceHolder = "Password" })
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" value=""> Remember Me
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                        <div class="pull-right"><label>Forgot Password</label></div>
+
+                                    </div>
+
+                                    <div class="form-group bmd-form-group">
+                                        @* <a href="@Url.Action("Dashboard", "Home")" id="myButton" class="btn btn-fill btn-rose">Login</a>*@
+                                        <input type="submit" id="myButton" value="Login" class="btn btn-fill btn-rose" onclick="return validate()" />
+                                    </div>
+
+                                    <div class="form-group bmd-form-group">
+                                        <div class="register">
+                                            Not a Member? <a href="@Url.Action("CompanyRegistration", "Home")">Company Register</a>
+                                        </div>
+                                    </div>
+
+                                }
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Home Banner Area =================-->
+    <!--================ Start Department Area =================-->
+    <div class="department_area section_gap">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="dpmt_courses">
+                        <div class="row">
+                            <!-- single course -->
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-12 text-center mt-100">
+                                <div class="single_department">
+                                    <div class="dpmt_icon">
+                                        <img src="~/Templates/img/dpmt/icon1.png" alt="">
+                                    </div>
+                                    <h4>Homologation Services</h4>
+                                </div>
+                            </div>
+                            <!-- single course -->
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-12 text-center">
+                                <div class="single_department">
+                                    <div class="dpmt_icon">
+                                        <img src="~/Templates/img/dpmt/icon2.png" alt="">
+                                    </div>
+                                    <h4>Homologation CVE</h4>
+                                </div>
+                            </div>
+                            <!-- single course -->
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-12 text-center mt-100">
+                                <div class="single_department">
+                                    <div class="dpmt_icon">
+                                        <img src="~/Templates/img/dpmt/icon3.png" alt="">
+                                    </div>
+                                    <h4>Proving Ground Services</h4>
+                                </div>
+                            </div>
+                            <!-- single course -->
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-12 text-center">
+                                <div class="single_department">
+                                    <div class="dpmt_icon">
+                                        <img src="~/Templates/img/dpmt/icon4.png" alt="">
+                                    </div>
+                                    <h4>Costing</h4>
+                                </div>
+                            </div>
+                            <!-- single course -->
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-12 text-center mt--100">
+                                <div class="single_department">
+                                    <div class="dpmt_icon">
+                                        <img src="~/Templates/img/dpmt/icon5.png" alt="">
+                                    </div>
+                                    <h4>Tracking</h4>
+                                </div>
+                            </div>
+                            <!-- single course -->
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-12 text-center">
+                                <div class="single_department">
+                                    <div class="dpmt_icon">
+                                        <img src="~/Templates/img/dpmt/icon6.png" alt="">
+                                    </div>
+                                    <h4>Test Facilities</h4>
+                                </div>
+                            </div>
+                            <!-- single course -->
+                            <div class="offset-lg-4 col-lg-4 col-md-4 col-sm-6 col-12 text-center mt--100">
+                                <div class="single_department">
+                                    <div class="dpmt_icon">
+                                        <img src="~/Templates/img/dpmt/icon7.png" alt="">
+                                    </div>
+                                    <h4>Logistical Support</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="offset-lg-1 col-lg-5">
+                    <div class="dpmt_right">
+                        <h1>About NATRAX</h1>
+                        <p>National Automotive Testing and R&D Infrastructure Project (NATRiP), is a fully Government of India funded project with a total project cost of Rs. 3727.30 crore. This is the largest and one of the most significant initiatives in Automotive sector so far. </p>
+                        <p>The project aims at creating core global competencies in automotive sector in India by facilitating seamless integration of Indian Automotive industry with the world, through setting up state-of-the-art, four green field automotive testing, homologation and R&D infrastructure facilities and up-gradation of two existing facilities with new technology and equipment. </p>
+                        <a href="#" class="primary-btn text-uppercase">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--================ End Department Area =================-->
+    <!--================ Start footer Area  =================-->
+    <footer class="footer-area section_gap">
+        <div class="container">
+            <div class="row footer-bottom d-flex justify-content-between">
+                <p class="col-lg-8 col-sm-12 footer-text m-0 text-white">Copyright &copy; 2020 All rights reserved </p>
+                <div class="col-lg-4 col-sm-12 footer-social">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-youtube"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--================ End footer Area  =================-->
+
+
+    <script type="text/javascript">
+        //document.getElementById("myButton").onclick = function () {
+        //    location.href = "http://reil.webappline.com/PGMS/dashboard/examples/dashboard.html";
+        //};
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/Templates/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Templates/js/popper.js"></script>
+    <script src="~/Templates/js/bootstrap.min.js"></script>
+    <script src="~/Templates/js/stellar.js"></script>
+    @*<script src="~/Templates/js/countdown.js"></script>*@
+    <script src="~/Templates/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="~/Templates/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/Templates/js/owl-carousel-thumb.min.js"></script>
+    <script src="~/Templates/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/Templates/vendors/counter-up/jquery.counterup.js"></script>
+    <script src="~/Templates/js/mail-script.js"></script>
+    <!--gmaps Js-->
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>*@
+    <script src="~/Templates/js/gmaps.min.js"></script>
+    <script src="~/Templates/js/theme.js"></script>
+
+    @Scripts.Render("~/bundles/MyScripts")
+    <script type="text/javascript" src="~/MyScripts/Browser.min.js"></script>
+    @*<script src="~/Templates/Alert/jquery-confirm.min.js"></script>*@
+    @*<script type="text/javascript" src="~/MyScripts/aes.js"></script>*@
+    @*<script type="text/javascript" src="~/MyScripts/MyFunctions.js"></script>*@
+    @*<script type="text/javascript" src="~/MyScripts/jquery.alerts.js"></script>*@
+
+    <script>
+        
+        function validate() {
+            try {
+                var strMSG = '';
+                //alert("Due to urgent data migration activity, portal boschrewards.in and boschserviceportal.com and all mobile applications will remain closed till further update.");
+                //return false;
+
+                if (document.getElementById("LoginId").value == "") {
+                    strMSG = strMSG + 'User Name \n</br>'
+                }
+                if (document.getElementById("Password").value == "") {
+                    strMSG = strMSG + 'Password \n</br>'
+                }
+
+                if (strMSG != '') {
+                    alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
+                    return false;
+                }
+
+                var key = CryptoJS.enc.Utf8.parse('A51f7e2h2j58r2d5');
+                var iv = CryptoJS.enc.Utf8.parse('A51f7e2h2j58r2d5');
+
+                var encryptedpassword = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse($('#Password').val().trim()), key,
+
+                    { keySize: 128 / 8, iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 });
+
+                $('#Password').val(encryptedpassword);
+
+
+                $("#myButton").hide();
+                return true;
+            }
+            catch (e) {
+                alert(e.message);
+                return false;
+            }
+        }
+    </script>
+
+
+    @if (!string.IsNullOrEmpty(ViewData["MSG"] + ""))
+    {
+        <div>
+            <script>
+                alert('@ViewData["MSG"]');
+            </script>
+        </div>
+    }
+
+    @*@if (Model != null && @Model.Message != null && @Model.Message.Trim() != "")
+    {
+        <script>
+         $(function () {
+                 alert(@Model.Message);
+            });
+        </script>
+    }*@
+
+
+</body>
+</html>

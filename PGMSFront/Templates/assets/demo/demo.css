@@ -1,0 +1,263 @@
+.tim-row {
+    margin-bottom: 20px;
+}
+
+.tim-white-buttons {
+    background-color: #777777;
+}
+
+.typography-line {
+    padding-left: 25%;
+    margin-bottom: 35px;
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+    .typography-line span {
+        bottom: 10px;
+        color: #c0c1c2;
+        display: block;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 13px;
+        left: 0;
+        position: absolute;
+        width: 260px;
+        text-transform: none;
+    }
+
+.tim-row {
+    padding-top: 60px;
+}
+
+    .tim-row h3 {
+        margin-top: 0;
+    }
+
+.tim-typo {
+    padding-left: 25%;
+    margin-bottom: 40px;
+    position: relative;
+    width: 100%;
+}
+
+    .tim-typo .tim-note {
+        bottom: 5px;
+        color: #c0c1c2;
+        display: block;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 15px;
+        left: 0;
+        margin-left: 20px;
+        position: absolute;
+        width: 260px;
+    }
+
+
+
+
+.blink {
+    width: 200px;
+    height: 50px;
+    background-color: #fc5f42;
+    text-align: center;
+}
+
+    .blink span {
+        font-size: 16px;
+        color: white;
+        animation: blink 1s linear infinite;
+    }
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: .5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.new-booking img {
+    width: 100%;
+}
+
+
+.facilities .choice .icon {
+    text-align: center;
+    vertical-align: middle;
+    height: auto !important;
+    /*width: 350px;*/
+    width: auto;
+    border-radius: 0%;
+    color: #999999;
+    margin: 0 auto 20px;
+    border: 2px solid #CCCCCC !important;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+}
+
+.facilities .choice {
+    text-align: center;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 10px;
+    background: #f1f1f1;
+}
+
+.main-panel > .content {
+    margin-top: 30px !important;
+}
+
+.card .card-header.card-header-image img {
+    width: 100%;
+    /*width: 210px !important;*/
+    height: 150px !important;
+}
+
+h3, .h3 {
+    margin: 20px 0 0px !important;
+}
+
+.fancybox-custom .fancybox-skin {
+    box-shadow: 0 0 50px #222;
+}
+
+.card .card-body + .card-footer .stats .material-icons, .card .card-footer .stats .material-icons {
+    top: 0px !important;
+}
+
+/*.card {
+    margin-bottom: 0px !important;
+    margin-top: 10px !important;
+}*/
+
+/*.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 0px 8px !important;
+}*/
+.bmd-form-group:not(.has-success):not(.has-danger) [class^='bmd-label'].bmd-label-floating, .bmd-form-group:not(.has-success):not(.has-danger) [class*=' bmd-label'].bmd-label-floating {
+    color: #3c4858 !important;
+}
+
+.table > thead > tr > th {
+    padding: 0 8px !important;
+    cursor: pointer !important;
+}
+
+.table > tbody > tr > td {
+    padding: 0 8px !important;
+    cursor: pointer !important;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 100%;
+}
+
+tr.highlighted td {
+    background-color: #e91e63 !important;
+    color: #FFF !important;
+}
+
+.table {
+    margin-bottom: 0 !important;
+}
+
+.table .form-check .form-check-sign {
+    top: 0px !important;
+}
+
+.form-control {
+    height: 26px !important;
+    padding: 0px 0px 2px 0px !important;
+}
+
+.table thead tr th {
+    font-weight: 400;
+}
+
+.table-info, .table-info > th, .table-info > td {
+    background-color: #e91e63 !important;
+    color: #FFF !important;
+}
+
+.suggestion {
+    background: #fff9c8;
+    width: 100px;
+    height: 100px;
+    /*border-radius: 50%;*/
+    color: #fff9c8;
+    /*border-top: 1px solid #9c27b0;*/
+}
+
+.xdsoft_datetimepicker .xdsoft_noselect .xdsoft_dark{
+    left: 370px !important;
+}
+
+/* Scroll bar css */
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    /*background: rgb(41,41,41);*/
+    /*background: #ECF0F5;*/
+}
+
+::-webkit-scrollbar-thumb {
+    width: 8px;
+    height: 8px;
+    background: #555;
+}
+/* Scroll bar css */
+
+.active {
+    background: #555;
+}
+
+.owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev, .owl-carousel button.owl-dot {
+    font-size: 30px !important;
+}
+
+.owl-dots{
+    display: none !important;
+}
+
+.owl-carousel .owl-item img {
+    height: 200px !important;
+    border: 1px solid #dee2e6 !important;
+}
+
+.item{
+   background: #FFF !important;
+}
+
+.owl-carousel .owl-dots, .owl-theme .owl-nav {
+    text-align: center !important;
+}
+
+.btn.btn-sm, .btn-group-sm > .btn, .btn-group-sm .btn {
+    padding: 4px 4px 3px 4px !important;
+}
+
+.navbar.navbar-absolute {
+    padding-top: 5px;
+}
+
+.navbar .navbar-brand {
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 0px 0px 0px;
+}
