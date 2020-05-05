@@ -301,7 +301,7 @@ namespace PGMSFront.Controllers
                 DateTime dtFromDate = objClassUserFunctions.ToDateTimeNotNull("01/01/2020");
                 DateTime dtToDate = DateTime.Now.Date;
                 int intBPId = 21;
-                int intStatusPropId = 0;
+                int intStatusPropId = 40;
 
                 objreturndbmlBookingSearchView = objServiceClient.BookingSearchViewGetByCompanyIdFromDateToDateFront(intCompanyId, dtFromDate, dtToDate, intBPId, intStatusPropId);
 
@@ -427,7 +427,7 @@ namespace PGMSFront.Controllers
 
             try
             {
-                model.BookingDate = objClassUserFunctions.ToDateTimeNotNull(model.ZZBookingDate);
+                model.BookingDate = DateTime.Now.Date;//objClassUserFunctions.ToDateTimeNotNull(model.ZZBookingDate);
                 model.BPId = 21;
                 model.CompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
                 model.CreateId = Convert.ToInt32(Session["UserId"]);

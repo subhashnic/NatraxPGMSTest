@@ -155,7 +155,7 @@
                                     <table class="table table-bordered table-striped">
                                         <thead class=" text-primary">
                                             <tr>
-                                                <th width="18%">Track</th>
+                                                <th width="36%">Track</th>
                                                 <th width="9%" class="text-right">Rate</th>
                                                 <th width="9%" class="text-center">Unit</th>
                                                 <th width="5%" class="text-center">Estimated Usage Hours</th>
@@ -164,8 +164,8 @@
                                                 <th width="9%" class="text-center">Booking Status in slot</th>
                                                 <th width="9%" class="text-center">Slot wise Confirmed</th>
                                                 <th width="9%" class="text-center">Round Hours</th>
-                                                <th width="9%" class="text-center">Bill Hours</th>
-                                                <th width="9%" class="text-right">Amount</th>
+                                                @*<th width="9%" class="text-center">Bill Hours</th>
+                                                <th width="9%" class="text-right">Amount</th>*@
                                             </tr>
                                         </thead>
                                         <tbody id="tbodyTrack"></tbody>
@@ -219,15 +219,20 @@
 </div>
 <script>
     var ServicesList = '';
-  //  var TimeSlotList = '';
-   // var ServiceCategoryList = '';
+    var TimeSlotList = '';
+    var ServiceCategoryList = '';
     var TrackBookingDetailList = '';
     var TrackBookingTimeDetailList = '';
     var VehicleId = 0;
     var ColourRowId = -1;
     var Holdid = '';
     var spanPrv = '';
-
+    try {
+        TimeSlotList = @Html.Raw(Json.Encode(ViewBag.TimeSlot));
+        ServiceCategoryList = @Html.Raw(Json.Encode(ViewBag.ServiveCategory));
+        }
+        catch (e) {
+        }
 
     function changeColorVehicle(id) {
         if (id != Holdid || Holdid == "") {
@@ -464,8 +469,8 @@
                             gridData = gridData + "<td class='text-center'>" + NullHandle(varBookingConfirmSlot) + "</td>";//Booking Confirmed
                             gridData = gridData + "<td class='text-center'><label id='txtRoundHrs'>" + NullHandle(varRoundHrs) + "</label></td>";//Round Hrs
                             gridData = gridData + "<td class='text-center'><label id='txtBillHrs'>" + NullHandle(varBillingHrs) + "</label></td>";// Billing Hrs
-                            gridData = gridData + "<td class='text-right'><label id='txtAmount'>" + NullHandle(varAmount) + "</label></td>"; //Amount
-                            gridData = gridData + "<td style='display:none'><input type='hidden' id='hdnServiceId' value=" + NullHandle(data[i].ServiceId) + " /> </td>";
+                            //gridData = gridData + "<td class='text-right'><label id='txtAmount'>" + NullHandle(varAmount) + "</label></td>"; //Amount
+                           // gridData = gridData + "<td style='display:none'><input type='hidden' id='hdnServiceId' value=" + NullHandle(data[i].ServiceId) + " /> </td>";
 
 
                             gridData = gridData + "</tr>";
@@ -682,7 +687,12 @@
 
     function ResetCategoryTimeSlot() {
         try {
-           // $("input[name='Category']:checked").prop('checked', false);
+            if (ServiceCategoryList.length > 1) {
+                $("input[name='Category']:checked").prop('checked', false);
+            }
+            else {
+                ///
+            }
             $("#lstTrackTimeSlot").val(0);
             $("#tbodyTrack").html("");
         }
@@ -691,15 +701,15 @@
         }
     }
 
-    function ResetTimeSlot() {
-        try {
-            $("#lstTrackTimeSlot").val(0);
-            $("#tbodyTrack").html("");
-        }
-        catch (e) {
+    //function ResetTimeSlot() {
+    //    try {
+    //        $("#lstTrackTimeSlot").val(0);
+    //        $("#tbodyTrack").html("");
+    //    }
+    //    catch (e) {
 
-        }
-    }
+    //    }
+    //}
 
     function ValidateHours(tx, rowId) {
         try {
@@ -730,12 +740,12 @@
     function CalculateAmount(rowId) {
         try {
 
-            var varRate = '';
-            var varUsageHrs = '';
-            var varUsageMin = '';
-            var varUsageHrsRounded = '';
-            var varMinBilling = '';
-            var varAmount = '';
+            var varRate = 0;
+            var varUsageHrs = 0;
+            var varUsageMin = 0;
+            var varUsageHrsRounded = 0;
+            var varMinBilling = 0;
+            var varAmount = 0;
 
 
             $(rowId).find("[id='txtRate']").each(function () {
@@ -747,9 +757,9 @@
             $(rowId).find("input[type='text'][id='txtUsageMin']").each(function () {
                 varUsageMin = $(this).val().trim();
             });
-            $(rowId).find("[id='txtBillHrs']").each(function () {
-                varMinBilling = $(this).text().trim();
-            });
+            //$(rowId).find("[id='txtBillHrs']").each(function () {
+            //    varMinBilling = $(this).text().trim();
+            //});
 
             if (varUsageHrs == undefined || varUsageHrs.trim()== "")
             {
@@ -778,9 +788,9 @@
             $(rowId).find("[id='txtRoundHrs']").each(function () {
                 $(this).text(varUsageHrsRounded);
             });
-            $(rowId).find("[id='txtAmount']").each(function () {
-                $(this).text(parseFloat(varAmount).toFixed(2));
-            });
+            //$(rowId).find("[id='txtAmount']").each(function () {
+            //    $(this).text(parseFloat(varAmount).toFixed(2));
+            //});
         }
         catch (e) {
 
