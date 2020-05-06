@@ -31,11 +31,47 @@
                 </div>
                 <div class="card-body">
                     <div class="arrow-steps clearfix">
-                        <div class="step current"><span>Booking</span></div>
-                        <div class="step"><span>PI</span></div>
-                        <div class="step"><span>Approve</span></div>
-                        <div class="step"><span>PO</span></div>
-                        <div class="step"><span>PO Verification</span></div>
+                        @if (@Model.WorkFlowId == 6)
+                        {
+                            <div id="WWF6" class="step current"><span>Booking</span></div>
+                        }
+                        else
+                        {
+                            <div id="WWF6" class="step"><span>Booking</span></div>
+                        }
+                        @if (@Model.WorkFlowId == 7)
+                        {
+                            <div id="WWF7" class="step current"><span>PI</span></div>
+                        }
+                        else
+                        {
+                            <div id="WWF7" class="step"><span>PI</span></div>
+                        }
+                        @if (@Model.WorkFlowId == 8)
+                        {
+                            <div id="WWF8" class="step current"><span>Approve</span></div>
+                        }
+                        else
+                        {
+                            <div id="WWF8" class="step"><span>Approve</span></div>
+                        }
+                        @if (@Model.WorkFlowId == 9)
+                        {
+                            <div id="WWF9" class="step current"><span>PO</span></div>
+                        }
+                        else
+                        {
+                            <div id="WWF9" class="step"><span>PO</span></div>
+                        }
+                        @if (@Model.WorkFlowId == 10)
+                        {
+                            <div id="WWF10" class="step current"><span>PO Verification</span></div>
+                        }
+                        else
+                        {
+                            <div id="WWF10" class="step"><span>PO Verification</span></div>
+                        }
+
                     </div>
                 </div>
             </div>

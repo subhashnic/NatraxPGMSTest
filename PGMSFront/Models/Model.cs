@@ -31,8 +31,8 @@ namespace PGMSFront.Models {
         public string DocDate { get; set; }
         public string DocType { get; set; }
         public string DocNo { get; set; }
-        public int WorkFlowId { get; set; }
-        public int WorkFlowStatusId { get; set; }
+        public int? WorkFlowId { get; set; }
+        public int? WorkFlowStatusId { get; set; }
 
     }
 }

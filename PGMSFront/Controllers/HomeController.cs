@@ -404,9 +404,16 @@ namespace PGMSFront.Controllers
                     GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
                     model.DocDate = objdbmlBooking.ZZBookingDate;
                     model.DocNo = objdbmlBooking.BookingNo;
-                    model.DocType = "Booking";
-                    model.WorkFlowId = 0;
-                    model.WorkFlowStatusId = 0;
+                    model.DocType = objdbmlBooking.ZZBookingType;
+                    model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
+                    model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+                }
+                else
+                {
+                    model.DocDate = "To be allotted";
+                    model.DocNo = "Booking";
+                    model.DocType = "To be allotted";
+                    model.WorkFlowId = 6;
                 }
                
             }
@@ -618,9 +625,9 @@ namespace PGMSFront.Controllers
                     model.StatusPropId = objdbmlBooking.StatusPropId;
                     model.DocDate = objdbmlBooking.ZZBookingDate;
                     model.DocNo = objdbmlBooking.BookingNo;
-                    model.DocType = "Booking";
-                    model.WorkFlowId = 0;
-                    model.WorkFlowStatusId = 0;
+                    model.DocType = objdbmlBooking.ZZBookingType;
+                    model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
+                    model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
                 }               
             }
             catch
@@ -867,9 +874,9 @@ namespace PGMSFront.Controllers
                     GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
                     model.DocDate = objdbmlBooking.ZZBookingDate;
                     model.DocNo = objdbmlBooking.BookingNo;
-                    model.DocType = "Booking";
-                    model.WorkFlowId = 0;
-                    model.WorkFlowStatusId = 0;
+                    model.DocType = objdbmlBooking.ZZBookingType;
+                    model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
+                    model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
                 }
             }
             catch
@@ -906,9 +913,9 @@ namespace PGMSFront.Controllers
                     GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
                     model.DocDate = objdbmlBooking.ZZBookingDate;
                     model.DocNo = objdbmlBooking.BookingNo;
-                    model.DocType = "Booking";
-                    model.WorkFlowId = 0;
-                    model.WorkFlowStatusId = 0;
+                    model.DocType = objdbmlBooking.ZZBookingType;
+                    model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
+                    model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
                 }
             }
             catch
@@ -954,9 +961,9 @@ namespace PGMSFront.Controllers
                     GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
                     model.DocDate = objdbmlBooking.ZZBookingDate;
                     model.DocNo = objdbmlBooking.BookingNo;
-                    model.DocType = "Booking";
-                    model.WorkFlowId = 0;
-                    model.WorkFlowStatusId = 0;
+                    model.DocType = objdbmlBooking.ZZBookingType;
+                    model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
+                    model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
                 }
 
             }
