@@ -868,7 +868,7 @@ namespace PGMSFront.Controllers
 
                 Session["TrackGroupId"] = model.TrackGroupId;
                 Session["TrackGroup"] = model.TrackGroup;
-
+                ViewBag.ServiveLookup = GetServiveLookup();
                 ViewBag.TimeSlot = GetTimeSlot();
                 ViewBag.ServiveCategory = GetServiveCategory(model.TrackGroupId);
 
@@ -916,6 +916,43 @@ namespace PGMSFront.Controllers
             return View("MainTrackBooking", model);
         }
 
+        public ActionResult MainTrackBooking()
+        {
+            CommonModel model = new CommonModel();
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                model.UserId = Convert.ToInt32(Session["UserId"]);
+                model.UserTypePropId = Convert.ToInt32(Session["UserTypePropId"]);
+                model.ZZCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
+                model.UserName = Convert.ToString(Session["UserName"]);
+                model.EmailId = Convert.ToString(Session["EmailId"]);
+                model.LoginId = Convert.ToString(Session["LoginId"]);
+                model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
+                model.UserCode = Convert.ToString(Session["UserCode"]);
+                //model.TrackGroupId = 5;
+                //model.TrackGroup = "T5a-Fatigue Surface Low Severity";
+                //model.ViewTitle = "T5a-Fatigue Surface Low Severity";
+
+                //Session["TrackGroupId"] = model.TrackGroupId;
+                //Session["TrackGroup"] = model.TrackGroup;
+
+                ViewBag.TimeSlot = GetTimeSlot();
+                ViewBag.ServiveLookup = GetServiveLookup();
+                // ViewBag.ServiveCategory = GetServiveCategory(model.TrackGroupId);
+
+            }
+            catch
+            {
+            }
+
+            return View("MainTrackBooking", model);
+        }
+
         public ActionResult LoadTrackInfo(int intTrackGroupId)
         {
             if (Session["UserId"] == null)
@@ -926,6 +963,8 @@ namespace PGMSFront.Controllers
             int intStatusId = 99;
             string strStatus = "Invalid";
             //int intTrackGroupId = Convert.ToInt32(Session["TrackGroupId"]);
+
+            List<SelectListItem> lstCategory = GetServiveCategory(intTrackGroupId);
 
             ObservableCollection<dbmlServicesView> objdbmlServicesView = new ObservableCollection<dbmlServicesView>();
             if (Session["Services"] != null)
@@ -953,8 +992,6 @@ namespace PGMSFront.Controllers
                     {
                         strStatus = objreturndbmlTrackBookingDetail.objdbmlStatus.Status;
                     }
-
-
                 }
                 else
                 {
@@ -965,7 +1002,7 @@ namespace PGMSFront.Controllers
             {
                 strStatus = ex.Message;
             }
-            return Json(new { Status = strStatus, StatusId = intStatusId, ServicesList = objdbmlServicesView, TrackBookingDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingDetail, TrackBookingTimeDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingTimeDetail }, JsonRequestBehavior.AllowGet);
+            return Json(new { Status = strStatus, StatusId = intStatusId, ServiceCategoryList = lstCategory, ServicesList = objdbmlServicesView, TrackBookingDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingDetail, TrackBookingTimeDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingTimeDetail }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult TrackBookingDetailSave(ObservableCollection<dbmlTrackBookingTimeDetail> model)
@@ -1188,6 +1225,45 @@ namespace PGMSFront.Controllers
                         if (Items.FirstOrDefault(Category => Convert.ToInt32(Category.Value) == itm.CategoryPropId) == null)
                         {
                             Items.Add(new SelectListItem { Text = itm.Category, Value = itm.CategoryPropId.ToString(), Selected = false });
+                        }
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            return Items;
+        }
+
+        public List<SelectListItem> GetServiveLookup()
+        {
+            List<SelectListItem> Items = new List<SelectListItem>();
+            try
+            {
+                ObservableCollection<dbmlServicesView> objdbmlServicesView = new ObservableCollection<dbmlServicesView>();
+                if (Session["Services"] != null)
+                {
+                    GeneralColl<dbmlServicesView>.CopyCollection(Session["Services"] as ObservableCollection<dbmlServicesView>, objdbmlServicesView);
+                }
+                else
+                {
+                    returndbmlServicesView objreturndbmlServicesView = objServiceClient.ServicesGetByBPId(12);
+                    if (objreturndbmlServicesView.objdbmlStatus.StatusId == 1 && objreturndbmlServicesView.objdbmlServicesView.Count > 0)
+                    {
+                        Session["Services"] = objreturndbmlServicesView.objdbmlServicesView;
+                        objdbmlServicesView = objreturndbmlServicesView.objdbmlServicesView;
+                    }
+                }
+
+                if (objdbmlServicesView != null && objdbmlServicesView.Count > 0)
+                {
+                    ObservableCollection<dbmlServicesView> objdbmlServicesViewList = new ObservableCollection<dbmlServicesView>(objdbmlServicesView.Where(itm => itm.TrackGroupId >0));
+                    foreach (var itm in objdbmlServicesViewList)
+                    {
+                        if (Items.FirstOrDefault(itmTrack => Convert.ToInt32(itmTrack.Value) == itm.TrackGroupId) == null)
+                        {
+                            Items.Add(new SelectListItem { Text = itm.ZZTrackGroup, Value = itm.TrackGroupId.ToString(), Selected = false });
                         }
                     }
                 }
