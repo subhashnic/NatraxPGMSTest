@@ -28,6 +28,7 @@
 </style>
 
 <div class="content">
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -197,17 +198,21 @@
             @Html.HiddenFor(m => m.ZZCompanyId, new { id = "ZZCompanyId", style = "width:0px;" })
             @Html.HiddenFor(m => m.StatusPropId, new { id = "StatusPropId", style = "width:0px;" })
             @Html.HiddenFor(m => m.TrackGroupId, new { id = "TrackGroupId", style = "width:0px;" })
-            <table Style="width:100%">
-                <tr>
-                    <td Style="width:50%;text-align:left">
-                        <button type="submit" name="btnPrevNext" class="btn btn-fill btn-rose btn-sm pull-right" id="btnPrev">Prev</button>
-                    </td>
-                    <td Style="width:50%;text-align:right">
-                        @*<button type="submit" name="btnPrevNext" style="display:none" class="btn btn-fill btn-rose btn-sm pull-right" id="btnNext">Next</button>*@
-                    </td>
-                </tr>
-            </table>
-        </div>
+           
+            @using (Html.BeginForm(new { @class = "form-horizontal" }))
+            {
+                <table Style="width:100%">
+                    <tr>
+                        <td Style="width:50%;text-align:left">
+                            <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
+                        </td>
+                        <td Style="width:50%;text-align:right">
+                          
+                        </td>
+                    </tr>
+                </table>
+            }
+            </div>
 
 
         @*Dynamic End*@
@@ -1056,6 +1061,7 @@
         MaskControls();
        // SetButtonVisibility();
        // LoadTrackInfo();
+        $("#TrackGroupId").focus();
     });
 
     ///////////////////////// Old Code ////////////////////////////////

@@ -398,6 +398,17 @@ namespace PGMSFront.Controllers
 
                 ViewBag.CompanyDepartment = CompanyDepartmentGetByCustomerMasterId(Convert.ToInt32(Session["ZZCompanyId"]));
 
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+                    model.DocDate = objdbmlBooking.ZZBookingDate;
+                    model.DocNo = objdbmlBooking.BookingNo;
+                    model.DocType = "Booking";
+                    model.WorkFlowId = 0;
+                    model.WorkFlowStatusId = 0;
+                }
+               
             }
             catch
             {
@@ -425,7 +436,7 @@ namespace PGMSFront.Controllers
             {
             }
 
-            return View(model);
+            return RedirectToAction("Basic", "Home");
         }
 
         public ActionResult LoadBasicInfo()
@@ -605,7 +616,12 @@ namespace PGMSFront.Controllers
                     dbmlBookingView objdbmlBooking = new dbmlBookingView();
                     GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
                     model.StatusPropId = objdbmlBooking.StatusPropId;
-                }
+                    model.DocDate = objdbmlBooking.ZZBookingDate;
+                    model.DocNo = objdbmlBooking.BookingNo;
+                    model.DocType = "Booking";
+                    model.WorkFlowId = 0;
+                    model.WorkFlowStatusId = 0;
+                }               
             }
             catch
             {
@@ -630,14 +646,14 @@ namespace PGMSFront.Controllers
                 }
                 if (btnPrevNext.ToLower() == "next")
                 {
-                    return RedirectToAction("DynamicPlatform", "Home");
+                    return RedirectToAction("MainTrackBooking", "Home");
                 }
             }
             catch
             {
             }
 
-            return View(model);
+            return RedirectToAction("Vehicle", "Home");
         }
 
         public ActionResult LoadVehicleInfo()
@@ -845,6 +861,16 @@ namespace PGMSFront.Controllers
                 model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
                 model.UserCode = Convert.ToString(Session["UserCode"]);
 
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+                    model.DocDate = objdbmlBooking.ZZBookingDate;
+                    model.DocNo = objdbmlBooking.BookingNo;
+                    model.DocType = "Booking";
+                    model.WorkFlowId = 0;
+                    model.WorkFlowStatusId = 0;
+                }
             }
             catch
             {
@@ -874,6 +900,16 @@ namespace PGMSFront.Controllers
                 model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
                 model.UserCode = Convert.ToString(Session["UserCode"]);
 
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+                    model.DocDate = objdbmlBooking.ZZBookingDate;
+                    model.DocNo = objdbmlBooking.BookingNo;
+                    model.DocType = "Booking";
+                    model.WorkFlowId = 0;
+                    model.WorkFlowStatusId = 0;
+                }
             }
             catch
             {
@@ -884,8 +920,55 @@ namespace PGMSFront.Controllers
         #endregion
 
         #region Tracks
+        public ActionResult MainTrackBooking()
+        {
+            CommonModel model = new CommonModel();
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                model.UserId = Convert.ToInt32(Session["UserId"]);
+                model.UserTypePropId = Convert.ToInt32(Session["UserTypePropId"]);
+                model.ZZCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
+                model.UserName = Convert.ToString(Session["UserName"]);
+                model.EmailId = Convert.ToString(Session["EmailId"]);
+                model.LoginId = Convert.ToString(Session["LoginId"]);
+                model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
+                model.UserCode = Convert.ToString(Session["UserCode"]);
+                model.TrackGroupId = 2;
+                model.TrackGroup = "T2-Dynamic Platform";
+                model.ViewTitle = "T2 Dynamic Platform";
+
+                Session["TrackGroupId"] = model.TrackGroupId;
+                Session["TrackGroup"] = model.TrackGroup;
+                ViewBag.ServiveLookup = GetServiveLookup();
+                ViewBag.TimeSlot = GetTimeSlot();
+                ViewBag.ServiveCategory = GetServiveCategory(model.TrackGroupId);
+
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+                    model.DocDate = objdbmlBooking.ZZBookingDate;
+                    model.DocNo = objdbmlBooking.BookingNo;
+                    model.DocType = "Booking";
+                    model.WorkFlowId = 0;
+                    model.WorkFlowStatusId = 0;
+                }
+
+            }
+            catch
+            {
+            }
+
+            return View("MainTrackBooking", model);
+        }
+
         [HttpPost]
-        public ActionResult DynamicPlatform(CommonModel model, string btnPrevNext)
+        public ActionResult MainTrackBooking(CommonModel model, string btnPrevNext)
         {
             try
             {
@@ -903,7 +986,7 @@ namespace PGMSFront.Controllers
             {
             }
 
-            return View(model);
+            return RedirectToAction("MainTrackBooking", "Home");
         }
 
         public ActionResult HighSpeedTrack()
@@ -1013,44 +1096,7 @@ namespace PGMSFront.Controllers
 
             return View("MainTrackBooking", model);
         }
-
-        public ActionResult MainTrackBooking()
-        {
-            CommonModel model = new CommonModel();
-            try
-            {
-                if (Session["UserId"] == null)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-
-                model.UserId = Convert.ToInt32(Session["UserId"]);
-                model.UserTypePropId = Convert.ToInt32(Session["UserTypePropId"]);
-                model.ZZCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
-                model.UserName = Convert.ToString(Session["UserName"]);
-                model.EmailId = Convert.ToString(Session["EmailId"]);
-                model.LoginId = Convert.ToString(Session["LoginId"]);
-                model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
-                model.UserCode = Convert.ToString(Session["UserCode"]);
-                //model.TrackGroupId = 5;
-                //model.TrackGroup = "T5a-Fatigue Surface Low Severity";
-                //model.ViewTitle = "T5a-Fatigue Surface Low Severity";
-
-                //Session["TrackGroupId"] = model.TrackGroupId;
-                //Session["TrackGroup"] = model.TrackGroup;
-
-                ViewBag.TimeSlot = GetTimeSlot();
-                ViewBag.ServiveLookup = GetServiveLookup();
-                // ViewBag.ServiveCategory = GetServiveCategory(model.TrackGroupId);
-
-            }
-            catch
-            {
-            }
-
-            return View("MainTrackBooking", model);
-        }
-
+        
         public ActionResult LoadTrackInfo(int intTrackGroupId)
         {
             if (Session["UserId"] == null)
