@@ -868,7 +868,7 @@ namespace PGMSFront.Controllers
 
                 Session["TrackGroupId"] = model.TrackGroupId;
                 Session["TrackGroup"] = model.TrackGroup;
-
+                ViewBag.ServiveLookup = GetServiveLookup();
                 ViewBag.TimeSlot = GetTimeSlot();
                 ViewBag.ServiveCategory = GetServiveCategory(model.TrackGroupId);
 
@@ -916,7 +916,44 @@ namespace PGMSFront.Controllers
             return View("MainTrackBooking", model);
         }
 
-        public ActionResult LoadTrackInfo()
+        public ActionResult MainTrackBooking()
+        {
+            CommonModel model = new CommonModel();
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                model.UserId = Convert.ToInt32(Session["UserId"]);
+                model.UserTypePropId = Convert.ToInt32(Session["UserTypePropId"]);
+                model.ZZCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
+                model.UserName = Convert.ToString(Session["UserName"]);
+                model.EmailId = Convert.ToString(Session["EmailId"]);
+                model.LoginId = Convert.ToString(Session["LoginId"]);
+                model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
+                model.UserCode = Convert.ToString(Session["UserCode"]);
+                //model.TrackGroupId = 5;
+                //model.TrackGroup = "T5a-Fatigue Surface Low Severity";
+                //model.ViewTitle = "T5a-Fatigue Surface Low Severity";
+
+                //Session["TrackGroupId"] = model.TrackGroupId;
+                //Session["TrackGroup"] = model.TrackGroup;
+
+                ViewBag.TimeSlot = GetTimeSlot();
+                ViewBag.ServiveLookup = GetServiveLookup();
+                // ViewBag.ServiveCategory = GetServiveCategory(model.TrackGroupId);
+
+            }
+            catch
+            {
+            }
+
+            return View("MainTrackBooking", model);
+        }
+
+        public ActionResult LoadTrackInfo(int intTrackGroupId)
         {
             if (Session["UserId"] == null)
             {
@@ -925,7 +962,9 @@ namespace PGMSFront.Controllers
 
             int intStatusId = 99;
             string strStatus = "Invalid";
-            int intTrackGroupId = Convert.ToInt32(Session["TrackGroupId"]);
+            //int intTrackGroupId = Convert.ToInt32(Session["TrackGroupId"]);
+
+            List<SelectListItem> lstCategory = GetServiveCategory(intTrackGroupId);
 
             ObservableCollection<dbmlServicesView> objdbmlServicesView = new ObservableCollection<dbmlServicesView>();
             if (Session["Services"] != null)
@@ -953,8 +992,6 @@ namespace PGMSFront.Controllers
                     {
                         strStatus = objreturndbmlTrackBookingDetail.objdbmlStatus.Status;
                     }
-
-
                 }
                 else
                 {
@@ -965,7 +1002,7 @@ namespace PGMSFront.Controllers
             {
                 strStatus = ex.Message;
             }
-            return Json(new { Status = strStatus, StatusId = intStatusId, ServicesList = objdbmlServicesView, TrackBookingDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingDetail, TrackBookingTimeDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingTimeDetail }, JsonRequestBehavior.AllowGet);
+            return Json(new { Status = strStatus, StatusId = intStatusId, ServiceCategoryList = lstCategory, ServicesList = objdbmlServicesView, TrackBookingDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingDetail, TrackBookingTimeDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingTimeDetail }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult TrackBookingDetailSave(ObservableCollection<dbmlTrackBookingTimeDetail> model)
@@ -977,12 +1014,11 @@ namespace PGMSFront.Controllers
 
             int intStatusId = 99;
             string strStatus = "Invalid";
-            int intTrackGroupId = Convert.ToInt32(Session["TrackGroupId"]);
+            //int intTrackGroupId = Convert.ToInt32(Session["TrackGroupId"]);
 
             returndbmlTrackBookingDetail objreturndbmlTrackBookingDetail = new returndbmlTrackBookingDetail();
             returndbmlTrackBookingDetail objreturndbmlTrackBookingDetailTemp = new returndbmlTrackBookingDetail();
-            dbmlTrackBookingDetail objdbmlTrackBookingDetail = new dbmlTrackBookingDetail();
-            ObservableCollection<dbmlTrackBookingDetail> objdbmlTrackBookingDetailList = new ObservableCollection<dbmlTrackBookingDetail>();
+           
             try
             {
                 if (Session["objdbmlBooking"] != null)
@@ -999,13 +1035,26 @@ namespace PGMSFront.Controllers
                         itm.CreateDate = DateTime.Now;
                         itm.UpdateId = Convert.ToInt32(Session["UserId"]);
                         itm.UpdateDate = DateTime.Now;
-                    }
 
-                    objdbmlTrackBookingDetail.BookingId = objdbmlBooking.BookingId;
-                    objdbmlTrackBookingDetail.TrackGroupId = intTrackGroupId;
+                        int intRoundOffHrs = Convert.ToInt32(itm.TotalHours);
+                        int intRoundOffMin = Convert.ToInt32(itm.TotalMinutes);
 
-                    objdbmlTrackBookingDetailList.Add(objdbmlTrackBookingDetail);
-                    objreturndbmlTrackBookingDetailTemp.objdbmlTrackBookingDetail = objdbmlTrackBookingDetailList;
+                        if((intRoundOffHrs>0 && intRoundOffMin>=30) || (intRoundOffHrs == 0 && intRoundOffMin >= 1))
+                        {
+                            intRoundOffHrs = intRoundOffHrs + 1;
+                            intRoundOffMin=0;
+                        }
+
+                        itm.RoundOffHrs = intRoundOffHrs;
+                        itm.RoundOffMin = intRoundOffMin;
+
+                        if(intRoundOffHrs>itm.BillingHrs)
+                        {
+                            itm.BillingHrs = intRoundOffHrs;
+                        }
+
+                    }                       
+                
                     objreturndbmlTrackBookingDetailTemp.objdbmlTrackBookingTimeDetail = model;
 
 
@@ -1067,7 +1116,7 @@ namespace PGMSFront.Controllers
             return Json(new { Status = strStatus, StatusId = intStatusId, BookingStatusList = objreturndbmlBookingStatusTimeSlotView.objdbmlBookingStatusTimeSlotView }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult TrackBookingDetailDelete(int intVehicleId, string strDate, int intServiceId, int intTimeSlotId)
+        public ActionResult TrackBookingDetailDelete(int intVehicleId, string strDate, int intServiceId, int intTimeSlotId,int intTrackGroupId)
         {
             if (Session["UserId"] == null)
             {
@@ -1086,7 +1135,7 @@ namespace PGMSFront.Controllers
                     dbmlBookingView objdbmlBooking = new dbmlBookingView();
                     GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
 
-                    int intTrackGroupId = Convert.ToInt32(Session["TrackGroupId"]);
+                    //int intTrackGroupId = Convert.ToInt32(Session["TrackGroupId"]);
                     DateTime dtDate = objClassUserFunctions.ToDateTimeNotNull(strDate);
 
                     objreturndbmlTrackBookingDetail = objServiceClient.TrackBookingTimeDetailDeleteFrontByServiceId(objdbmlBooking.BookingId, intTrackGroupId, intVehicleId, dtDate, intServiceId, intTimeSlotId);
@@ -1176,6 +1225,45 @@ namespace PGMSFront.Controllers
                         if (Items.FirstOrDefault(Category => Convert.ToInt32(Category.Value) == itm.CategoryPropId) == null)
                         {
                             Items.Add(new SelectListItem { Text = itm.Category, Value = itm.CategoryPropId.ToString(), Selected = false });
+                        }
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            return Items;
+        }
+
+        public List<SelectListItem> GetServiveLookup()
+        {
+            List<SelectListItem> Items = new List<SelectListItem>();
+            try
+            {
+                ObservableCollection<dbmlServicesView> objdbmlServicesView = new ObservableCollection<dbmlServicesView>();
+                if (Session["Services"] != null)
+                {
+                    GeneralColl<dbmlServicesView>.CopyCollection(Session["Services"] as ObservableCollection<dbmlServicesView>, objdbmlServicesView);
+                }
+                else
+                {
+                    returndbmlServicesView objreturndbmlServicesView = objServiceClient.ServicesGetByBPId(12);
+                    if (objreturndbmlServicesView.objdbmlStatus.StatusId == 1 && objreturndbmlServicesView.objdbmlServicesView.Count > 0)
+                    {
+                        Session["Services"] = objreturndbmlServicesView.objdbmlServicesView;
+                        objdbmlServicesView = objreturndbmlServicesView.objdbmlServicesView;
+                    }
+                }
+
+                if (objdbmlServicesView != null && objdbmlServicesView.Count > 0)
+                {
+                    ObservableCollection<dbmlServicesView> objdbmlServicesViewList = new ObservableCollection<dbmlServicesView>(objdbmlServicesView.Where(itm => itm.TrackGroupId >0));
+                    foreach (var itm in objdbmlServicesViewList)
+                    {
+                        if (Items.FirstOrDefault(itmTrack => Convert.ToInt32(itmTrack.Value) == itm.TrackGroupId) == null)
+                        {
+                            Items.Add(new SelectListItem { Text = itm.ZZTrackGroup, Value = itm.TrackGroupId.ToString(), Selected = false });
                         }
                     }
                 }

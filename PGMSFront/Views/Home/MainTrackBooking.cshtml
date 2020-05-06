@@ -35,11 +35,18 @@
                     <div class="card-header">
                         <h4 class="card-title">Vehicle wise Test Summary</h4>
                     </div>
+                    <select class="form-control" id="lstServiceLookup" onchange="LoadTrackInfo()">
+                        <option value="0">- Select Track -</option>
+                        @foreach (var itm in ViewBag.ServiveLookup)
+                        {
+                            <option value='@itm.Value'>@itm.Text</option>
+                        }
+                    </select>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-striped" >
+                                    <table class="table table-bordered table-striped">
                                         <thead class=" text-primary">
                                             <tr>
                                                 <th width="5%">#</th>
@@ -88,51 +95,26 @@
                                     <tr>
                                         @*<td width="4%"></td>*@
                                         <td width="4%" style="border-left: 1px solid #DDD;">Date</td>
-                                        <td width="10%"><input type="text" id="TrackDate" onchange="ResetCategoryTimeSlot()" class="form-control datetimepicker" placeholder="DD-MM-YYYY"></td>
+                                        <td width="10%"><input disabled="disabled" type="text" id="TrackDate" onchange="ResetCategoryTimeSlot()" class="form-control datetimepicker" placeholder="DD-MM-YYYY"></td>
+                                        <td width="4%" id="divCategoryTitle" style='display:none;border-left: 1px solid #DDD;'>Type</td>
+                                        <td width="12%" id="divCategoryValue" style='display:none'>
+                                            <div class="form-check" id="divCategory">
 
-
-                                        @if (@ViewBag.ServiveCategory.Count == 1)
-                                        {
-                                            <td width="4%" style="display:none;border-left: 1px solid #DDD;" >Type</td>
-                                            <td width="12%" style="display:none">
-                                                <div class="form-check" id="divCategory">
-
-                                                    @foreach (var itm in ViewBag.ServiveCategory)
+                                                @*@foreach (var itm in ViewBag.ServiveCategory)
                                                     {
                                                         <label class="form-check-label">
-                                                            <input class="form-check-input" type="radio" name="Category" checked="checked" value='@itm.Value' onclick="ResetTimeSlot()"> @itm.Text
+                                                            <input class="form-check-input" type="radio" name="Category"  value='@itm.Value' onclick="BindTrackService()"> @itm.Text
                                                             <span class="circle">
                                                                 <span class="check"></span>
                                                             </span>
                                                         </label>
-                                                    }
-                                                </div>
-                                            </td>
-                                        }
-                                        else
-                                        {
-                                            <td width="4%" style="border-left: 1px solid #DDD;">Type</td>
-                                            <td width="12%">
-                                                <div class="form-check" id="divCategory">
-
-                                                    @foreach (var itm in ViewBag.ServiveCategory)
-                                                    {
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="radio" name="Category" value='@itm.Value' onclick="ResetTimeSlot()"> @itm.Text
-                                                            <span class="circle">
-                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    }
-                                                </div>
-                                            </td>
-                                        }
-
-
+                                                    }*@
+                                            </div>
+                                        </td>
 
                                         <td width="14%" style="border-left: 1px solid #DDD;">Time slot for starting the Test</td>
                                         <td width="10%">
-                                            <select class="form-control" id="lstTrackTimeSlot" onchange="BindTrackService('-1','1')">
+                                            <select class="form-control" id="lstTrackTimeSlot" onchange="BindBookingStatus()">
                                                 <option value="0">- Select Time Slot -</option>
                                                 @foreach (var itm in ViewBag.TimeSlot)
                                                 {
@@ -141,14 +123,14 @@
                                             </select>
                                         </td>
                                         <td align="right" width="10%">
-                                            @*<button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="AddMore('DynamicTrack')">Add More</button>*@
+                                            <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="TrackDetailSave()"">Save</button>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="divCardBody" style="display:none">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">
@@ -165,12 +147,12 @@
                                                 <th width="9%" class="text-center">Slot wise Confirmed</th>
                                                 <th width="9%" class="text-center">Round Hours</th>
                                                 @*<th width="9%" class="text-center">Bill Hours</th>
-                                                <th width="9%" class="text-right">Amount</th>*@
+                                                    <th width="9%" class="text-right">Amount</th>*@
                                             </tr>
                                         </thead>
                                         <tbody id="tbodyTrack"></tbody>
                                     </table>
-                                    <button type="button" id="btnSave" style="cursor:pointer" class="btn btn-fill btn-rose pull-right" onclick="TrackDetailSave()">Save</button>
+                                    @*<button type="button" id="btnSave" style="cursor:pointer" class="btn btn-fill btn-rose pull-right" onclick="TrackDetailSave()">Save</button>*@
                                 </div>
                             </div>
                         </div>
@@ -210,6 +192,11 @@
                     </div>
                 </div>
             </div>
+            @Html.HiddenFor(m => m.UserId, new { id = "UserId", style = "width:0px;" })
+            @Html.HiddenFor(m => m.UserTypePropId, new { id = "UserTypePropId", style = "width:0px;" })
+            @Html.HiddenFor(m => m.ZZCompanyId, new { id = "ZZCompanyId", style = "width:0px;" })
+            @Html.HiddenFor(m => m.StatusPropId, new { id = "StatusPropId", style = "width:0px;" })
+            @Html.HiddenFor(m => m.TrackGroupId, new { id = "TrackGroupId", style = "width:0px;" })
         </div>
 
 
@@ -229,11 +216,11 @@
     var spanPrv = '';
     try {
         TimeSlotList = @Html.Raw(Json.Encode(ViewBag.TimeSlot));
-        ServiceCategoryList = @Html.Raw(Json.Encode(ViewBag.ServiveCategory));
         }
         catch (e) {
         }
 
+   
     function changeColorVehicle(id) {
         if (id != Holdid || Holdid == "") {
             $("#trVehicle_" + Holdid + "").removeClass('highlighted');
@@ -253,36 +240,57 @@
         }
     }
 
+    //////////////////////////// Track Selection Changed ///////////////////////////////////////////////////////////
     ///////////////////////////// Load Track/Vehicle Info  //////////////////////////////////////////////////////
     function LoadTrackInfo() {
         try {
-            // $("#ajax-progress-dialog").dialog("open");
-            $.ajax({
-                url: '@Url.Action("LoadTrackInfo", "Home")',
-                type: 'POST',
-                dataType: 'json',
-                async: true,
-                data: {},
-                success: function (data) {
+            $("#TrackDate").attr('disabled', true);
+            var varTrackGroupId = $("#lstServiceLookup").val();
 
-                    //  $("#ajax-progress-dialog").dialog("close");
-                    if (data.StatusId != "99" && data.StatusId != "-99") {
-                        ServicesList = data.ServicesList;
-                       // TimeSlotList = data.TimeSlotList;
-                       // ServiceCategoryList = data.ServiceCategoryList;
-                        TrackBookingDetailList = data.TrackBookingDetailList;
-                        TrackBookingTimeDetailList = data.TrackBookingTimeDetailList;
+            if (varTrackGroupId == undefined || parseInt(varTrackGroupId <= 0)) {
+                alert("Please Select Track");
+                return false;
+            }
+            else {
 
-                        BindVehicleData(data.TrackBookingDetailList);
-                        BindServiceTimeDetails(0);
-                    }
-                },
-                error: function (xhr) {
-
-                    // $("#ajax-progress-dialog").dialog("close");
-                    alert(xhr.responseText);
+                if (ServiceCategoryList.length > 1) {
+                    $("input[name='Category']:checked").prop('checked', false);
                 }
-            });
+                $("#tbodyVehicle").html("");
+                $("#TrackDate").val("");
+                $("#lstTrackTimeSlot").val(0);
+                $("#tbodyTrack").html("");
+                $("#divCardBody").hide();
+
+
+                // $("#ajax-progress-dialog").dialog("open");
+                $.ajax({
+                    url: '@Url.Action("LoadTrackInfo", "Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    data: { 'intTrackGroupId': varTrackGroupId },
+                    success: function (data) {
+
+                        //  $("#ajax-progress-dialog").dialog("close");
+                        if (data.StatusId != "99" && data.StatusId != "-99") {
+                            ServicesList = data.ServicesList;
+                            ServiceCategoryList = data.ServiceCategoryList;
+                            TrackBookingDetailList = data.TrackBookingDetailList;
+                            TrackBookingTimeDetailList = data.TrackBookingTimeDetailList;
+
+                            BindVehicleData(data.TrackBookingDetailList);
+                            BindServiceTimeDetails(0);
+                            BindServiceCategory(ServiceCategoryList);
+                        }
+                    },
+                    error: function (xhr) {
+
+                        // $("#ajax-progress-dialog").dialog("close");
+                        alert(xhr.responseText);
+                    }
+                });
+            }
         }
         catch (e) {
 
@@ -326,6 +334,43 @@
         }
     }
 
+    ///////////////////////////// Bind Servive Category  //////////////////////////////////////////////////////
+    function BindServiceCategory(data) {
+        try {
+           
+            var gridData = "";
+
+            $("#divCategory").html("");
+
+            var varchecked = "";
+            if (data.length == 1) {
+                varchecked = "checked='checked'";
+                $("#divCategoryTitle").hide();
+                $("#divCategoryValue").hide();
+            }
+            else {
+                $("#divCategoryTitle").show();
+                $("#divCategoryValue").show();
+            }
+
+            for (var i = 0; i < data.length; i++) {
+                gridData = gridData + "<label class='form-check-label'>";
+                gridData = gridData + "<input class='form-check-input' type='radio' name='Category' " + varchecked +" value='" + data[i].Value + "' onclick='BindTrackService()'>" + data[i].Text+"";
+                gridData = gridData + "<span class='circle'>";
+                gridData = gridData + "<span class='check'></span>";
+                gridData = gridData + "</span>";
+                gridData = gridData + "</label>";
+            }
+
+            $("#divCategory").html(gridData);
+
+
+        }
+        catch (e) {
+
+        }
+    }
+
     function ToDate(strdate) {
         var parts = strdate.split("-");
         if (parts.length < 3) {
@@ -334,23 +379,686 @@
         return new Date(parts[2], parts[1] - 1, parts[0])
     }
 
+
+    //////////////////////// Category Type Selection Changed /////////////////////////////////////////////
     //////////////////////// Bind Track Service Grid ////////////////////////////////////////////////////////
-    function BindTrackService(varCategorySlotId, varCategorySlotFlag ) {
+    function BindTrackService() {
+        try {
+            debugger;
+            var gridData = "";
+            var varDate = $("#TrackDate").val();
+            var varCategoryId = 0;
+            var varTimeSlotId = 0;
+            varCategoryId = $("input[name='Category']:checked").val();
+            varTimeSlotId = $("#lstTrackTimeSlot").val();
+
+            $("#lstTrackTimeSlot").val(0);
+
+            var strMSG = "";
+            if (parseInt($("#lstServiceLookup").val()) == 0) {
+                strMSG = strMSG + 'Select Track  \n</br>'
+                if (ServiceCategoryList.length > 1) {
+                    $("input[name='Category']:checked").prop('checked', false);
+                }
+                $("#lstTrackTimeSlot").val(0);
+            }
+            if (parseInt(VehicleId) == 0) {
+                strMSG = strMSG + 'Select Vehicle Row  \n</br>'
+                if (ServiceCategoryList.length > 1) {
+                    $("input[name='Category']:checked").prop('checked', false);
+                }
+               $("#lstTrackTimeSlot").val(0);
+            }
+            if (varDate.trim() == "") {
+                strMSG = strMSG + 'Date  \n</br>'
+                if (ServiceCategoryList.length > 1) {
+                    $("input[name='Category']:checked").prop('checked', false);
+                }
+               $("#lstTrackTimeSlot").val(0);
+            }
+
+            if (strMSG != '') {
+                alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
+                return false;
+            }
+            else {
+
+                var data = '';
+
+                if (ServicesList.length > 0) {
+                    data = jQuery.grep(ServicesList, function (obj) {
+                        return obj.CategoryPropId == varCategoryId;
+                    });
+                }
+
+                $("#divCardBody").show();
+                $("#tbodyTrack").html("");
+
+                for (var i = 0; i < data.length; i++) {
+                    var varServiceId = NullHandle(data[i].ServiceId);
+                    var varRate = '';
+                    var varUsageHrs = '';
+                    var varUsageMin = '';
+                    var varUnit = "";
+                    var varBookingDay = '';
+                    var varBookingSlot = '';
+                    var varBookingConfirmSlot ='';
+                    var varRoundHrs = 0;
+                    var varBillingHrs = '';
+                    var varAmount = 0;
+
+                    /////////////////////// Bind Data From Track Booking Time Details ///////////////////////////////
+                    var BookingTimeDtls = '';
+
+                    if (TrackBookingTimeDetailList.length > 0) {
+                        BookingTimeDtls = jQuery.grep(TrackBookingTimeDetailList, function (obj) {
+                            return obj.ServiceId == varServiceId && obj.VehicleId == VehicleId
+                                //&& obj.SlotPropId == parseInt(varTimeSlotId)
+                                && ToDate(obj.ZZDate).getTime() == ToDate(varDate).getTime();
+                        });
+
+                        if (BookingTimeDtls.length > 0) {
+                            varUsageHrs = NullHandle(BookingTimeDtls[0].TotalHours);
+                            varUsageMin = NullHandle(BookingTimeDtls[0].TotalMinutes);
+                            varRoundHrs = NullHandle(BookingTimeDtls[0].RoundOffHrs);
+                            varAmount = NullHandle(BookingTimeDtls[0].Amount);
+                        }
+                    }
+
+                    var rowId = "trTrackDtls" + i.toString();
+                    gridData = gridData + "<tr class='TypeBDynamic' id='" + rowId + "'>";
+                    gridData = gridData + "<td>" + NullHandle(data[i].ServiceSpecification) + "</td>";
+                    gridData = gridData + "<td class='text-right'><label id='txtRate'>" + NullHandle(varRate) + "</label></td>";//Rate
+                    gridData = gridData + "<td class='text-center'><label id='txtUnit'>" + NullHandle(varUnit) + "</label></td>";//Unit
+                    gridData = gridData + "<td class='text-right table-warning'><input id='txtUsageHrs' onchange='ValidateHours(this," + rowId + ");' onkeypress='return CheckIsNumeric(event,this);'  maxlength='2' type='text' value='" + varUsageHrs + "' class='form-control timepicker text-left' placeholder='HH'></td>";//UsageHrs
+                    gridData = gridData + "<td class='text-right table-warning'><input id='txtUsageMin' onchange='ValidateMinutes(this," + rowId + ");' onkeypress='return CheckIsNumeric(event,this);' maxlength='2' type='text' value='" + varUsageMin + "' class='form-control timepicker text-left' placeholder='MM'></td>";//UsageMin
+                    gridData = gridData + "<td class='text-center'> <label id='txtBookingDay'>" + NullHandle(varBookingDay) + "</label></td>";//Booking Day
+                    gridData = gridData + "<td class='text-center'><label id='txtBookingSlot'>" + NullHandle(varBookingSlot) + "</label></td>";//Booking Slot
+                    gridData = gridData + "<td class='text-center'> <label id='txtBookingConfirmSlot'>" + NullHandle(varBookingConfirmSlot) + "</label></td>";//Booking Confirmed Slot
+                    gridData = gridData + "<td class='text-center'><label id='txtRoundHrs'>" + NullHandle(varRoundHrs) + "</label></td>";//Round Hrs
+                   // gridData = gridData + "<td class='text-center'><label id='txtBillHrs'>" + NullHandle(varBillingHrs) + "</label></td>";// Billing Hrs
+                    //gridData = gridData + "<td class='text-right'><label id='txtAmount'>" + NullHandle(varAmount) + "</label></td>"; //Amount
+                    gridData = gridData + "<td style='display:none'><input type='hidden' id='hdnServiceId' value=" + NullHandle(data[i].ServiceId) + " /><input type='hidden' id='hdnBillingHrs' value=" + NullHandle(varBillingHrs) + " /> </td>";
+
+
+                    gridData = gridData + "</tr>";
+                }
+
+                $("#tbodyTrack").html(gridData);
+            }
+        }
+        catch (e) {
+
+        }
+
+    }
+
+
+    ////////////////// Time Slot Selection Changed /////////////////////////////////////////////////
+    //////////////////////// BindBookingStatus ////////////////////////////////////////////////////////
+    function BindBookingStatus() {
+        try {
+            debugger;
+            var gridData = "";
+            var varDate = $("#TrackDate").val();
+            var varCategoryId = $("input[name='Category']:checked").val();
+            var varTimeSlotId = $("#lstTrackTimeSlot").val();
+
+            var strMSG = "";
+            if (parseInt($("#lstServiceLookup").val()) == 0) {
+                strMSG = strMSG + 'Select Track  \n</br>'
+                if (ServiceCategoryList.length > 1) {
+                    $("input[name='Category']:checked").prop('checked', false);
+                }
+                $("#lstTrackTimeSlot").val(0);
+            }
+            if (parseInt(VehicleId) == 0) {
+                strMSG = strMSG + 'Select Vehicle Row  \n</br>'
+                if (ServiceCategoryList.length > 1) {
+                    $("input[name='Category']:checked").prop('checked', false);
+                }
+                $("#lstTrackTimeSlot").val(0);
+            }
+            if (varDate.trim() == "") {
+                strMSG = strMSG + 'Date  \n</br>'
+                if (ServiceCategoryList.length > 1) {
+                    $("input[name='Category']:checked").prop('checked', false);
+                }
+                $("#lstTrackTimeSlot").val(0);
+            }
+            if (varCategoryId==undefined || parseInt(varCategoryId) == 0) {
+                strMSG = strMSG + 'Service Category  \n</br>'
+                $("#lstTrackTimeSlot").val(0);
+            }
+            if (varTimeSlotId == undefined || parseInt(varTimeSlotId) == 0) {
+                strMSG = strMSG + 'Time Slot  \n</br>'
+            }
+
+            if (strMSG != '') {
+                alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
+                return false;
+            }
+            else {
+
+                var data = '';
+                var varServiceList = [];
+
+                if (ServicesList.length > 0) {
+                    data = jQuery.grep(ServicesList, function (obj) {
+                        return obj.CategoryPropId == varCategoryId;
+                    });
+                }
+                for (var i = 0; i < data.length; i++) {
+                    varServiceList[i]=NullHandle(data[i].ServiceId);
+                }
+
+
+            // $("#ajax-progress-dialog").dialog("open");
+            $.ajax({
+                url: '@Url.Action("BookingStatusGetByServiceIdTimeSlotPropIdWEFDate", "Home")',
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                data: {'intlstServiceId':varServiceList , 'intTimeSlotId':  parseInt(varTimeSlotId),  'strWED': varDate},
+               // contentType: "application/json; charset=utf-8",
+                success: function (dataBokkingStatus) {
+
+                    //  $("#ajax-progress-dialog").dialog("close");
+                    if (dataBokkingStatus.StatusId != "99" && dataBokkingStatus.StatusId != "-99") {
+                        var varBookingStatusList = dataBokkingStatus.BookingStatusList;
+
+                        $('#tbodyTrack').find('tr').each(function (i, el) {
+
+                            var varServiceId = 0;
+                            var varRate = 0;
+                            var varUnit = "";
+                            var varBookingDay = 0;
+                            var varBookingSlot = 0;
+                            var varBookingConfirmSlot = 0;
+                            var varBillingHrs = 0;
+
+                            $(this).find("input[type='hidden'][id='hdnServiceId']").each(function () {
+                                varServiceId = $(this).val().trim();
+                            });
+
+
+                            /////////////////////// Bind Data From Booking Status ///////////////////////////////
+                            var BookingStatus = '';
+
+                            if (varBookingStatusList.length > 0) {
+                                BookingStatus = jQuery.grep(varBookingStatusList, function (obj) {
+                                    return obj.ServiceId == varServiceId
+                                });
+
+                                if (BookingStatus.length > 0) {
+                                    varRate = NullHandle(BookingStatus[0].Rate);
+                                    varUnit = NullHandle(BookingStatus[0].UOM);
+                                    varBookingDay = NullHandle(BookingStatus[0].ZZBookingInADay);
+                                    varBookingSlot = NullHandle(BookingStatus[0].ZZSlotInADay);
+                                    varBookingConfirmSlot = NullHandle(BookingStatus[0].ZZConfirmedBookinginSlot);
+                                    varBillingHrs = NullHandle(BookingStatus[0].MinBilling);
+                                }
+
+                                $(this).find("[id='txtRate']").each(function () {
+                                    $(this).text(NullHandle(varRate));
+                                });
+                                $(this).find("[id='txtUnit']").each(function () {
+                                    $(this).text(NullHandle(varUnit));
+                                });
+                                $(this).find("[id='txtBookingDay']").each(function () {
+                                    $(this).text(NullHandle(varBookingDay));
+                                });
+                                $(this).find("[id='txtBookingSlot']").each(function () {
+                                    $(this).text(NullHandle(varBookingSlot));
+                                });
+                                $(this).find("[id='txtBookingConfirmSlot']").each(function () {
+                                    $(this).text(NullHandle(varBookingConfirmSlot));
+                                });
+                                $(this).find("input[type='hidden'][id='hdnBillingHrs']").each(function () {
+                                    $(this).val(varBillingHrs);
+                                });
+                            }
+                        });
+                    }
+                },
+                error: function (xhr) {
+
+                    // $("#ajax-progress-dialog").dialog("close");
+                    alert(xhr.responseText);
+                }
+            });
+            }
+        }
+        catch (e) {
+
+        }
+
+    }
+
+    ///////////////////////////// Track Detail Save   //////////////////////////////////////////////////////
+    function TrackDetailSave() {
+        try {
+            var model = [];
+            var indx = 0;
+
+            var varDate = $("#TrackDate").val().trim();
+            var varTimeSlotId = $("#lstTrackTimeSlot").val().trim();
+            var varCategoryId = $("input[name='Category']:checked").val();
+            var varTrackGroupId = $("#lstServiceLookup").val();
+            
+            var strMSG = "";
+
+            if (parseInt(varTrackGroupId) == 0) {
+                strMSG = strMSG + 'Select Track  \n</br>'
+            }
+            if (parseInt(VehicleId) == 0) {
+                strMSG = strMSG + 'Select Vehicle Row  \n</br>'
+            }
+            if (varDate == "") {
+                strMSG = strMSG + 'Date  \n</br>'
+            }
+            if (varTimeSlotId == undefined || parseInt(varTimeSlotId) == 0) {
+                strMSG = strMSG + 'Time Slot  \n</br>'
+            }
+
+
+
+            $('#tbodyTrack').find('tr').each(function (i, el) {
+                TimeDtls = {};
+                TimeDtls.TrackBookingTimeDetailId = -1;
+                TimeDtls.ZZDate = varDate;
+                TimeDtls.SlotPropId = varTimeSlotId;
+                TimeDtls.VehicleId = VehicleId;
+                TimeDtls.ZZCategoryId = varCategoryId;
+                TimeDtls.ZZTrackGroupId = varTrackGroupId;
+
+                var varHrs = '';
+                var varMin = '';
+
+                $(this).find("input[type='hidden'][id='hdnServiceId']").each(function () {
+                    TimeDtls.ServiceId = $(this).val().trim();
+                });
+
+                $(this).find("input[type='text'][id='txtUsageHrs']").each(function () {
+                    varHrs = $(this).val().trim();
+                });
+
+                $(this).find("input[type='text'][id='txtUsageMin']").each(function () {
+                    varMin = $(this).val().trim();
+                });
+                $(this).find("input[type='hidden'][id='hdnBillingHrs']").each(function () {
+                    TimeDtls.BillingHrs = $(this).val().trim();
+                });
+
+                if ((varHrs != undefined && varHrs != '' && parseInt(varHrs) > 0) || (varMin != undefined && varMin != '' && parseInt(varMin) >0)) {
+
+                    TimeDtls.TotalHours = varHrs;
+                    TimeDtls.TotalMinutes = varMin;
+                    model[indx] = new Object(TimeDtls);
+                    indx++;
+                }
+
+            });
+
+            if (model == undefined ||  model.length==0) {
+                strMSG = strMSG + 'Track Usage Hours/Minutes  \n</br>'
+            }
+
+            if (strMSG != '') {
+                alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
+                return false;
+            }
+            else {
+
+                $("#btnSave").hide();
+                //$("#ajax-progress-dialog").dialog("open");
+                $.ajax({
+                    url: '@Url.Action("TrackBookingDetailSave", "Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    data: '{model: ' + JSON.stringify(model) + '}',
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+
+                        // $("#ajax-progress-dialog").dialog("close");
+                        if (data.StatusId != "99" && data.StatusId != "-99") {
+
+                            TrackBookingDetailList = data.TrackBookingDetailList;
+                            TrackBookingTimeDetailList = data.TrackBookingTimeDetailList;
+
+                            BindVehicleData(data.TrackBookingDetailList);
+                            BindServiceTimeDetails(VehicleId);
+                            ChangeRowColour(ColourRowId);
+                        }
+                        $("#btnSave").show();
+                        alert(data.Status);
+                    },
+                    error: function (xhr) {
+
+                        $("#btnSave").show();
+                        // $("#ajax-progress-dialog").dialog("close");
+                        alert(xhr.responseText);
+                    }
+                });
+            }
+        }
+        catch (e) {
+
+            //$("#ajax-progress-dialog").dialog("close");
+            $("#btnSave").show();
+            alert(e.message);
+            return false;
+        }
+    }
+
+    ///////////////////////////// Bind Track Time Details  //////////////////////////////////////////////////////
+    function BindServiceTimeDetails(varVehicleId) {
+        try {
+
+            var gridData = "";
+            var data = TrackBookingTimeDetailList;
+            if (TrackBookingTimeDetailList.length > 0 && parseInt(varVehicleId)>0) {
+                data = "";
+                data = jQuery.grep(TrackBookingTimeDetailList, function (obj) {
+                    return obj.VehicleId == varVehicleId;
+                });
+            }
+
+            $("#tbodyServiceDetails").html("");
+
+            for (var i = 0; i < data.length; i++) {
+
+                gridData = gridData + "<tr>";
+
+                gridData = gridData + "<td>" + NullHandle(data[i].VehicleNo) + "</td>";
+                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZDate) + "</td>";
+                gridData = gridData + "<td>" + NullHandle(data[i].ZZServiceSpecification) + "</td>";
+                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZSlot) + "</td>";
+                gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].Rate) + "</td>";
+                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZUOM) + "</td>";
+                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].TotalHours) + "</td>";
+                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].TotalMinutes) + "</td>";
+                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].RoundOffHrs) + "</td>";
+                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].BillingHrs) + "</td>";
+                gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].Amount) + "</td>";
+                gridData = gridData + "<td><a href='#' style='cursor: pointer' class='btn btn-link btn-danger btn-just-icon remove' title='Delete Track Detail' onclick='return TrackBookingDetailDelete(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].ZZDate) + '"' + "," + NullHandle(data[i].ServiceId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>close</i></a></td>";
+
+                gridData = gridData + "</tr>";
+            }
+
+            $("#tbodyServiceDetails").html(gridData);
+
+
+        }
+        catch (e) {
+
+        }
+    }
+
+
+    ///////////////////////////// Track Detail Delete  //////////////////////////////////////////////////////
+    function TrackBookingDetailDelete(varVehicleId, varDate, varServiceId, varTimeSlotId, varTrackGroupId) {
+        try {
+
+            // $("#ajax-progress-dialog").dialog("open");
+            $.ajax({
+                url: '@Url.Action("TrackBookingDetailDelete", "Home")',
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                data: { 'intVehicleId': varVehicleId, 'strDate': varDate, 'intServiceId': varServiceId, 'intTimeSlotId': varTimeSlotId, 'intTrackGroupId': varTrackGroupId},
+                success: function (data) {
+
+                    //  $("#ajax-progress-dialog").dialog("close");
+                    if (data.StatusId != "99" && data.StatusId != "-99") {
+                        TrackBookingDetailList = data.TrackBookingDetailList;
+                        TrackBookingTimeDetailList = data.TrackBookingTimeDetailList;
+
+                        BindVehicleData(data.TrackBookingDetailList);
+                        BindServiceTimeDetails(VehicleId);
+                        ChangeRowColour(ColourRowId);
+                    }
+                    alert(data.Status);
+                },
+                error: function (xhr) {
+
+                    // $("#ajax-progress-dialog").dialog("close");
+                    alert(xhr.responseText);
+                }
+            });
+        }
+        catch (e) {
+
+            // $("#ajax-progress-dialog").dialog("close");
+            alert(e.message);
+            //  return false;
+        }
+    }
+
+    /////////////////////// Date Selection Changed ////////////////////////////////////////
+    function ResetCategoryTimeSlot() {
+        try {
+            debugger;
+            if (parseInt($("#lstServiceLookup").val()) == 0) {
+                $("#TrackDate").val("");
+                $("#lstServiceLookup").focus();                
+                alert("Please Select Track");  
+                return false;
+                
+            }
+            else {
+                if ($("#TrackDate").val().trim() != "") {
+                    if (ServiceCategoryList.length > 1) {
+                        $("input[name='Category']:checked").prop('checked', false);
+                        $("#tbodyTrack").html("");
+                        $("#divCardBody").hide();
+                    }
+                    else {
+                        BindTrackService();
+                    }
+                    $("#lstTrackTimeSlot").val(0);
+                }
+            }
+        }
+        catch (e) {
+
+        }
+    }
+
+    //function ResetTimeSlot() {
+    //    try {
+    //        $("#lstTrackTimeSlot").val(0);
+    //        $("#tbodyTrack").html("");
+    //        $("#divCardBody").hide();
+    //    }
+    //    catch (e) {
+
+    //    }
+    //}
+
+    ////////////// Usage Hours Changed ////////////////////
+    function ValidateHours(tx, rowId) {
+        try {
+        if (tx.value > 23) {
+            tx.value = "";
+            alert('Hours value can not greater 23');
+            }
+            CalculateAmount(rowId)
+        }
+        catch (e) {
+
+        }
+    }
+
+    ///////////////////// Usage Minutes Changed //////////////////////////////
+    function ValidateMinutes(tx, rowId) {
+        try {
+            if (tx.value > 59) {
+                tx.value = "";
+                alert('Minutes value can not greater 59');
+            }
+            CalculateAmount(rowId)
+        }
+        catch (e) {
+
+        }
+    }
+
+    function CalculateAmount(rowId) {
+        try {
+
+            var varRate = 0;
+            var varUsageHrs = 0;
+            var varUsageMin = 0;
+            var varUsageHrsRounded = 0;
+            var varMinBilling = 0;
+            var varAmount = 0;
+
+
+            //$(rowId).find("[id='txtRate']").each(function () {
+            //    varRate = $(this).text().trim();
+            //});
+
+            $(rowId).find("input[type='text'][id='txtUsageHrs']").each(function () {
+                varUsageHrs = $(this).val().trim();
+            });
+            $(rowId).find("input[type='text'][id='txtUsageMin']").each(function () {
+                varUsageMin = $(this).val().trim();
+            });
+            //$(rowId).find("[id='txtBillHrs']").each(function () {
+            //    varMinBilling = $(this).text().trim();
+            //});
+
+            if (varUsageHrs == undefined || varUsageHrs.trim()== "")
+            {
+                varUsageHrs = 0;
+            }
+            if (varUsageMin == undefined || varUsageMin.trim()== "")
+            {
+                varUsageMin = 0;
+            }
+
+            varUsageHrsRounded = parseInt(varUsageHrs);
+
+            if ((parseInt(varUsageHrsRounded) == 0 && parseInt(varUsageMin) >= 1) || (parseInt(varUsageHrsRounded) >0 && parseInt(varUsageMin) >=30)) {
+                varUsageHrsRounded = parseInt(varUsageHrsRounded) + 1;
+            }
+
+            //if (parseInt(varMinBilling) > parseInt(varUsageHrsRounded) && parseInt(varUsageHrsRounded)>0) {
+            //    varAmount = parseInt(varMinBilling) * parseFloat(varRate)
+            //}
+            //else {
+            //    varAmount = parseInt(varUsageHrsRounded) * parseFloat(varRate)
+            //}
+
+
+            $(rowId).find("[id='txtRoundHrs']").each(function () {
+                $(this).text(varUsageHrsRounded);
+            });
+            //$(rowId).find("[id='txtAmount']").each(function () {
+            //    $(this).text(parseFloat(varAmount).toFixed(2));
+            //});
+        }
+        catch (e) {
+
+        }
+    }
+
+    function ChangeRowColour(RowId) {
+        try {
+            changeColorVehicle(RowId);
+        }
+        catch (e) {
+
+        }
+    }
+    ///////////////// Vehicle Selecttion Changed ///////////////////////////////////
+    function BindTrackcategory(RowId,varVehicleId) {
+        try {
+            if (parseInt($("#lstServiceLookup").val()) == 0) {
+                alert("Please Select Track");
+            }
+            else {
+                ColourRowId = RowId;
+                if (parseInt(varVehicleId) != parseInt(VehicleId)) {
+                    if (ServiceCategoryList.length > 1) {
+                        $("input[name='Category']:checked").prop('checked', false);
+                    }
+                    $("#lstTrackTimeSlot").val(0);
+                    $("#tbodyTrack").html("");
+                    $("#divCardBody").hide();
+                    $("#TrackDate").val("");
+                }
+                VehicleId = varVehicleId;
+                changeColorVehicle(RowId);
+                BindServiceTimeDetails(VehicleId);
+                $("#TrackDate").attr('disabled', false);
+            }
+        }
+        catch (e) {
+
+        }
+    }
+
+    ///////////////////////////// Set Button Visibility  //////////////////////////////////////////////////////
+    function SetButtonVisibility() {
+        //try {
+        //    if ($("#StatusPropId").val() != undefined && parseInt($("#StatusPropId").val()) == 40) {
+        //        $("#btnAdd").attr('disabled', false);
+        //    }
+        //    else {
+        //        $("#btnAdd").attr('disabled', true);
+        //    }
+        //}
+        //catch (e) {
+
+        //}
+    }
+
+
+    ///////////////////////////// Masking  //////////////////////////////////////////////////////
+    function MaskControls() {
+        try {
+            (function ($) {
+                $(function () {
+                    //$("#AddMoreTR").find("input[type='text'][id='RegistrationNo']").each(function () {
+                    //    $(this).mask('aa-##-$$-9999');
+                    //});
+                    //$("#AddMoreTR").find("input[type='text'][id='VehicleType']").each(function () {
+                    //    $(this).attr('onkeypress', 'return CheckIsAlpha(event,this);');
+                    //});
+                    //$("#tbodyTrack").find("input[type='text'][id='txtUsageHrs']").each(function () {
+                    //    $(this).attr('onkeypress', 'return CheckIsNumeric(event,this);');
+                    //});
+                    //$("#tbodyTrack").find("input[type='text'][id='txtUsageMin']").each(function () {
+                    //    $(this).attr('onkeypress', 'return CheckIsNumeric(event,this);');
+                    //});
+                });
+            })(jQuery);
+        }
+        catch (e) {
+
+        }
+    }
+
+    $(document).ready(function () {
+        MaskControls();
+       // SetButtonVisibility();
+       // LoadTrackInfo();
+    });
+
+    ///////////////////////// Old Code ////////////////////////////////
+
+    @*function BindBookingStatus() {
         try {
 
             var gridData = "";
             var varDate = $("#TrackDate").val();
             var varCategoryId = 0;
             var varTimeSlotId = 0;
-
-            if (parseInt(varCategorySlotFlag) == 0) {
-                varCategoryId = varCategorySlotId;
-                varTimeSlotId = $("#lstTrackTimeSlot").val();
-            }
-            else if (parseInt(varCategorySlotFlag) == 1) {
-                varCategoryId = $("input[name='Category']:checked").val();
-                varTimeSlotId = $("#lstTrackTimeSlot").val();
-            }
+            varCategoryId = $("input[name='Category']:checked").val();
+            varTimeSlotId = $("#lstTrackTimeSlot").val();
 
             var strMSG = "";
             if (parseInt(VehicleId) == 0) {
@@ -493,381 +1201,6 @@
 
         }
 
-    }
-
-    ///////////////////////////// Track Detail Save  //////////////////////////////////////////////////////
-    function TrackDetailSave() {
-        try {
-            var model = [];            
-            var indx = 0;
-
-            var varDate = $("#TrackDate").val().trim();
-            var varTimeSlotId = $("#lstTrackTimeSlot").val().trim();
-
-            var strMSG = "";
-            if (parseInt(VehicleId) == 0) {
-                strMSG = strMSG + 'Select Vehicle Row  \n</br>'
-            }
-            if (varDate == "") {
-                strMSG = strMSG + 'Date  \n</br>'
-            }
-            if (varTimeSlotId == undefined || parseInt(varTimeSlotId) == 0) {
-                strMSG = strMSG + 'Time Slot  \n</br>'
-            }
-
-            
-
-            $('#tbodyTrack').find('tr').each(function (i, el) {
-                TimeDtls = {};
-                TimeDtls.TrackBookingTimeDetailId = -1;
-                TimeDtls.ZZDate = varDate;
-                TimeDtls.SlotPropId = varTimeSlotId;
-                TimeDtls.VehicleId = VehicleId;
-
-                var varHrs = '';
-                var varMin = '';
-
-                $(this).find("input[type='hidden'][id='hdnServiceId']").each(function () {
-                    TimeDtls.ServiceId = $(this).val().trim();
-                });
-
-                $(this).find("input[type='text'][id='txtUsageHrs']").each(function () {
-                    varHrs = $(this).val().trim();
-                });
-
-                $(this).find("input[type='text'][id='txtUsageMin']").each(function () {
-                    varMin = $(this).val().trim();
-                });
-
-                if ((varHrs != undefined && varHrs != '' && parseInt(varHrs) > 0) || (varMin != undefined && varMin != '' && parseInt(varMin) >= 30)) {
-                    
-                    TimeDtls.TotalHours = varHrs;
-                    TimeDtls.TotalMinutes = varMin;
-                    model[indx] = new Object(TimeDtls);
-                    indx++;                    
-                }
-
-            });
-
-            if (model == undefined ||  model.length==0) {
-                strMSG = strMSG + 'Track Usage Hours/Minutes  \n</br>'
-            }
-
-            if (strMSG != '') {
-                alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
-                return false;
-            }
-            else {
-
-                $("#btnSave").hide();
-                //$("#ajax-progress-dialog").dialog("open");
-                $.ajax({
-                    url: '@Url.Action("TrackBookingDetailSave", "Home")',
-                    type: 'POST',
-                    dataType: 'json',
-                    async: true,
-                    data: '{model: ' + JSON.stringify(model) + '}',
-                    contentType: "application/json; charset=utf-8",
-                    success: function (data) {
-
-                        // $("#ajax-progress-dialog").dialog("close");
-                        if (data.StatusId != "99" && data.StatusId != "-99") {
-
-                            TrackBookingDetailList = data.TrackBookingDetailList;
-                            TrackBookingTimeDetailList = data.TrackBookingTimeDetailList;
-
-                            BindVehicleData(data.TrackBookingDetailList);
-                            BindServiceTimeDetails(VehicleId);
-                            ChangeRowColour(ColourRowId);
-                        }
-                        $("#btnSave").show();
-                        alert(data.Status);
-                    },
-                    error: function (xhr) {
-
-                        $("#btnSave").show();
-                        // $("#ajax-progress-dialog").dialog("close");
-                        alert(xhr.responseText);
-                    }
-                });
-            }
-        }
-        catch (e) {
-
-            //$("#ajax-progress-dialog").dialog("close");
-            $("#btnSave").show();
-            alert(e.message);
-            return false;
-        }
-    }
-
-    ///////////////////////////// Bind Track Time Details  //////////////////////////////////////////////////////
-    function BindServiceTimeDetails(varVehicleId) {
-        try {
-
-            var gridData = "";
-            var data = TrackBookingTimeDetailList;
-            if (TrackBookingTimeDetailList.length > 0 && parseInt(varVehicleId)>0) {
-                data = "";
-                data = jQuery.grep(TrackBookingTimeDetailList, function (obj) {
-                    return obj.VehicleId == varVehicleId;
-                });
-            }
-
-            $("#tbodyServiceDetails").html("");
-
-            for (var i = 0; i < data.length; i++) {
-
-                gridData = gridData + "<tr>";
-                               
-                gridData = gridData + "<td>" + NullHandle(data[i].VehicleNo) + "</td>";
-                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZDate) + "</td>";
-                gridData = gridData + "<td>" + NullHandle(data[i].ZZServiceSpecification) + "</td>";               
-                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZSlot) + "</td>";
-                gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].Rate) + "</td>";
-                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZUOM) + "</td>";
-                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].TotalHours) + "</td>";
-                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].TotalMinutes) + "</td>";
-                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].RoundOffHrs) + "</td>";
-                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].BillingHrs) + "</td>";
-                gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].Amount) + "</td>";
-                gridData = gridData + "<td><a href='#' style='cursor: pointer' class='btn btn-link btn-danger btn-just-icon remove' title='Delete Track Detail' onclick='return TrackBookingDetailDelete(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].ZZDate) + '"' + "," + NullHandle(data[i].ServiceId) + "," + NullHandle(data[i].SlotPropId) + ")'><i class='material-icons'>close</i></a></td>";
-
-                gridData = gridData + "</tr>";
-            }
-
-            $("#tbodyServiceDetails").html(gridData);
-
-
-        }
-        catch (e) {
-
-        }
-    }
-
-
-    ///////////////////////////// Track Detail Delete  //////////////////////////////////////////////////////
-    function TrackBookingDetailDelete(varVehicleId, varDate, varServiceId, varTimeSlotId) {
-        try {
-            
-            // $("#ajax-progress-dialog").dialog("open");
-            $.ajax({
-                url: '@Url.Action("TrackBookingDetailDelete", "Home")',
-                type: 'POST',
-                dataType: 'json',
-                async: true,
-                data: { 'intVehicleId': varVehicleId, 'strDate': varDate, 'intServiceId': varServiceId, 'intTimeSlotId': varTimeSlotId},
-                success: function (data) {
-
-                    //  $("#ajax-progress-dialog").dialog("close");
-                    if (data.StatusId != "99" && data.StatusId != "-99") {
-                        TrackBookingDetailList = data.TrackBookingDetailList;
-                        TrackBookingTimeDetailList = data.TrackBookingTimeDetailList;
-
-                        BindVehicleData(data.TrackBookingDetailList);
-                        BindServiceTimeDetails(VehicleId);
-                        ChangeRowColour(ColourRowId);
-                    }
-                    alert(data.Status);
-                },
-                error: function (xhr) {
-
-                    // $("#ajax-progress-dialog").dialog("close");
-                    alert(xhr.responseText);
-                }
-            });
-        }
-        catch (e) {
-
-            // $("#ajax-progress-dialog").dialog("close");
-            alert(e.message);
-            //  return false;
-        }
-    }
-
-    function ResetCategoryTimeSlot() {
-        try {
-            if (ServiceCategoryList.length > 1) {
-                $("input[name='Category']:checked").prop('checked', false);
-            }
-            else {
-                ///
-            }
-            $("#lstTrackTimeSlot").val(0);
-            $("#tbodyTrack").html("");
-        }
-        catch (e) {
-
-        }
-    }
-
-    //function ResetTimeSlot() {
-    //    try {
-    //        $("#lstTrackTimeSlot").val(0);
-    //        $("#tbodyTrack").html("");
-    //    }
-    //    catch (e) {
-
-    //    }
-    //}
-
-    function ValidateHours(tx, rowId) {
-        try {
-        if (tx.value > 23) {
-            tx.value = "";
-            alert('Hours value can not greater 23');
-            }
-            CalculateAmount(rowId)
-        }
-        catch (e) {
-
-        }
-    }
-
-    function ValidateMinutes(tx, rowId) {
-        try {
-            if (tx.value > 59) {
-                tx.value = "";
-                alert('Minutes value can not greater 59');
-            }
-            CalculateAmount(rowId)
-        }
-        catch (e) {
-
-        }
-    }
-
-    function CalculateAmount(rowId) {
-        try {
-
-            var varRate = 0;
-            var varUsageHrs = 0;
-            var varUsageMin = 0;
-            var varUsageHrsRounded = 0;
-            var varMinBilling = 0;
-            var varAmount = 0;
-
-
-            $(rowId).find("[id='txtRate']").each(function () {
-                varRate = $(this).text().trim();
-            });
-            $(rowId).find("input[type='text'][id='txtUsageHrs']").each(function () {
-                varUsageHrs = $(this).val().trim();
-            });
-            $(rowId).find("input[type='text'][id='txtUsageMin']").each(function () {
-                varUsageMin = $(this).val().trim();
-            });
-            //$(rowId).find("[id='txtBillHrs']").each(function () {
-            //    varMinBilling = $(this).text().trim();
-            //});
-
-            if (varUsageHrs == undefined || varUsageHrs.trim()== "")
-            {
-                varUsageHrs = 0;
-            }
-            if (varUsageMin == undefined || varUsageMin.trim()== "")
-            {
-                varUsageMin = 0;
-            }
-
-            if (parseInt(varUsageMin) >= 30) {
-                varUsageHrsRounded = parseInt(varUsageHrs) + 1;
-            }
-            else {
-                varUsageHrsRounded = parseInt(varUsageHrs);
-            }
-
-            if (parseInt(varMinBilling) > parseInt(varUsageHrsRounded) && parseInt(varUsageHrsRounded)>0) {
-                varAmount = parseInt(varMinBilling) * parseFloat(varRate)
-            }
-            else {
-                varAmount = parseInt(varUsageHrsRounded) * parseFloat(varRate)
-            }
-
-
-            $(rowId).find("[id='txtRoundHrs']").each(function () {
-                $(this).text(varUsageHrsRounded);
-            });
-            //$(rowId).find("[id='txtAmount']").each(function () {
-            //    $(this).text(parseFloat(varAmount).toFixed(2));
-            //});
-        }
-        catch (e) {
-
-        }
-    }
-
-    function ChangeRowColour(RowId) {
-        try {
-            changeColorVehicle(RowId);
-        }
-        catch (e) {
-
-        }
-    }
-
-    function BindTrackcategory(RowId,varVehicleId) {
-        try {
-            ColourRowId = RowId;
-            if (parseInt(varVehicleId) != parseInt(VehicleId)) {
-               // $("input[name='Category']:checked").prop('checked', false);
-                $("#lstTrackTimeSlot").val(0);
-                $("#tbodyTrack").html("");
-            }
-            VehicleId = varVehicleId;
-            changeColorVehicle(RowId);
-            BindServiceTimeDetails(VehicleId);
-        }
-        catch (e) {
-
-        }
-    }
-
-    ///////////////////////////// Set Button Visibility  //////////////////////////////////////////////////////
-    function SetButtonVisibility() {
-        //try {
-        //    if ($("#StatusPropId").val() != undefined && parseInt($("#StatusPropId").val()) == 40) {
-        //        $("#btnAdd").attr('disabled', false);
-        //    }
-        //    else {
-        //        $("#btnAdd").attr('disabled', true);
-        //    }
-        //}
-        //catch (e) {
-
-        //}
-    }
-
-
-    ///////////////////////////// Masking  //////////////////////////////////////////////////////
-    function MaskControls() {
-        try {
-            (function ($) {
-                $(function () {
-                    //$("#AddMoreTR").find("input[type='text'][id='RegistrationNo']").each(function () {
-                    //    $(this).mask('aa-##-$$-9999');
-                    //});
-                    //$("#AddMoreTR").find("input[type='text'][id='VehicleType']").each(function () {
-                    //    $(this).attr('onkeypress', 'return CheckIsAlpha(event,this);');
-                    //});
-                    //$("#tbodyTrack").find("input[type='text'][id='txtUsageHrs']").each(function () {
-                    //    $(this).attr('onkeypress', 'return CheckIsNumeric(event,this);');
-                    //});
-                    //$("#tbodyTrack").find("input[type='text'][id='txtUsageMin']").each(function () {
-                    //    $(this).attr('onkeypress', 'return CheckIsNumeric(event,this);');
-                    //});
-                });
-            })(jQuery);
-        }
-        catch (e) {
-
-        }
-    }
-
-    $(document).ready(function () {
-        MaskControls();
-       // SetButtonVisibility();
-        LoadTrackInfo();
-    });
+    }*@
 
 </script>
