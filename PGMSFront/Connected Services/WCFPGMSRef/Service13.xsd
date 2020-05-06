@@ -142,10 +142,12 @@
       <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
       <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Department" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartmentId" type="xs:int" />
       <xs:element minOccurs="0" name="DocNo" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="Project" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ProjectManager" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StatusPropId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="WorkFlowId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ZZActivity" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZBookingDate" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZStatus" nillable="true" type="xs:string" />

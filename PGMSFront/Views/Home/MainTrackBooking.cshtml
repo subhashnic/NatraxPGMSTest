@@ -101,14 +101,14 @@
                                             <div class="form-check" id="divCategory">
 
                                                 @*@foreach (var itm in ViewBag.ServiveCategory)
-                                                    {
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="radio" name="Category"  value='@itm.Value' onclick="BindTrackService()"> @itm.Text
-                                                            <span class="circle">
-                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    }*@
+                                            {
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="radio" name="Category"  value='@itm.Value' onclick="BindTrackService()"> @itm.Text
+                                                    <span class="circle">
+                                                        <span class="check"></span>
+                                                    </span>
+                                                </label>
+                                            }*@
                                             </div>
                                         </td>
 
@@ -123,7 +123,7 @@
                                             </select>
                                         </td>
                                         <td align="right" width="10%">
-                                            <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="TrackDetailSave()"">Save</button>
+                                            <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="TrackDetailSave()" ">Save</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -147,7 +147,7 @@
                                                 <th width="9%" class="text-center">Slot wise Confirmed</th>
                                                 <th width="9%" class="text-center">Round Hours</th>
                                                 @*<th width="9%" class="text-center">Bill Hours</th>
-                                                    <th width="9%" class="text-right">Amount</th>*@
+                                            <th width="9%" class="text-right">Amount</th>*@
                                             </tr>
                                         </thead>
                                         <tbody id="tbodyTrack"></tbody>
@@ -197,6 +197,16 @@
             @Html.HiddenFor(m => m.ZZCompanyId, new { id = "ZZCompanyId", style = "width:0px;" })
             @Html.HiddenFor(m => m.StatusPropId, new { id = "StatusPropId", style = "width:0px;" })
             @Html.HiddenFor(m => m.TrackGroupId, new { id = "TrackGroupId", style = "width:0px;" })
+            <table Style="width:100%">
+                <tr>
+                    <td Style="width:50%;text-align:left">
+                        <button type="submit" name="btnPrevNext" class="btn btn-fill btn-rose btn-sm pull-right" id="btnPrev">Prev</button>
+                    </td>
+                    <td Style="width:50%;text-align:right">
+                        @*<button type="submit" name="btnPrevNext" style="display:none" class="btn btn-fill btn-rose btn-sm pull-right" id="btnNext">Next</button>*@
+                    </td>
+                </tr>
+            </table>
         </div>
 
 

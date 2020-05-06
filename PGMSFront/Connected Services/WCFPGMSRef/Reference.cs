@@ -1787,6 +1787,9 @@ namespace PGMSFront.WCFPGMSRef {
         private string DepartmentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DepartmentIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> DocNoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1797,6 +1800,9 @@ namespace PGMSFront.WCFPGMSRef {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> StatusPropIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> WorkFlowIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ZZActivityField;
@@ -1915,6 +1921,19 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DepartmentId {
+            get {
+                return this.DepartmentIdField;
+            }
+            set {
+                if ((this.DepartmentIdField.Equals(value) != true)) {
+                    this.DepartmentIdField = value;
+                    this.RaisePropertyChanged("DepartmentId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> DocNo {
             get {
                 return this.DocNoField;
@@ -1962,6 +1981,19 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((this.StatusPropIdField.Equals(value) != true)) {
                     this.StatusPropIdField = value;
                     this.RaisePropertyChanged("StatusPropId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> WorkFlowId {
+            get {
+                return this.WorkFlowIdField;
+            }
+            set {
+                if ((this.WorkFlowIdField.Equals(value) != true)) {
+                    this.WorkFlowIdField = value;
+                    this.RaisePropertyChanged("WorkFlowId");
                 }
             }
         }

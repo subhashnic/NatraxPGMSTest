@@ -131,7 +131,16 @@
                                 <div class="form-group">
                                     @*<button type="button" class="btn btn-fill btn-rose btn-sm pull-right" id="btnSubmit">Cancel</button>*@
                                     <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" id="btnSubmit" onclick="return BookingSave()">Save</button>
+                                                                        
                                 </div>
+                                <table Style="width:100%">
+                                    <tr>
+                                        <td Style="width:50%;text-align:left"></td>
+                                        <td Style="width:50%;text-align:right">
+                                            <button type="submit" name="btnPrevNext" style="display:none" class="btn btn-fill btn-rose btn-sm pull-right" id="btnNext">Next</button>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -163,6 +172,9 @@
                     if (data.StatusId != "99" && data.StatusId != "-99") {
                         BookingList = data.BookingList;
                         BindBasicData(data.BookingList[0]);
+                        if (BookingList.length > 0) {
+                            $("#btnNext").show();
+                        }  
                     }
                 },
                 error: function (xhr) {

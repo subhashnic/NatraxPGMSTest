@@ -218,7 +218,7 @@ namespace PGMSFront.Controllers
 
         #region Booking
 
-        #region Main
+        #region Main/Search
         public ActionResult Booking()
         {
             CommonModel model = new CommonModel();
@@ -238,7 +238,9 @@ namespace PGMSFront.Controllers
                 model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
                 model.UserCode = Convert.ToString(Session["UserCode"]);
 
-                //BookingGetByBookingId(1111111);
+                ViewBag.CompanyDepartment = CompanyDepartmentGetByCustomerMasterId(Convert.ToInt32(Session["ZZCompanyId"]));
+                ViewBag.BookingType = GetBookingType();
+                ViewBag.BookingStatus = GetBookingStatus();
             }
             catch
             {
@@ -283,7 +285,7 @@ namespace PGMSFront.Controllers
             return Json(new { Status = strStatus, StatusId = intStatusId, BookingList = objreturndbmlBooking.objdbmlBookingList }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult BookingSearchViewGetByCompanyIdFromDateToDate()
+        public ActionResult BookingSearchViewGetByDepartmentBookinStatus(int intDepartmentId,int intBookingTypeId,int intStatusPropId)
         {
             if (Session["UserId"] == null)
             {
@@ -296,14 +298,8 @@ namespace PGMSFront.Controllers
             returndbmlBookingSearchView objreturndbmlBookingSearchView = new returndbmlBookingSearchView();
 
             try
-            {
-                int intCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
-                DateTime dtFromDate = objClassUserFunctions.ToDateTimeNotNull("01/01/2020");
-                DateTime dtToDate = DateTime.Now.Date;
-                int intBPId = 21;
-                int intStatusPropId = 40;
-
-                objreturndbmlBookingSearchView = objServiceClient.BookingSearchViewGetByCompanyIdFromDateToDateFront(intCompanyId, dtFromDate, dtToDate, intBPId, intStatusPropId);
+            {      
+                objreturndbmlBookingSearchView = objServiceClient.BookingSearchViewGetByCompanyIdFromDateToDateFront(intDepartmentId, DateTime.Now.Date, DateTime.Now.Date, intBookingTypeId, intStatusPropId);
 
                 if (objreturndbmlBookingSearchView != null && objreturndbmlBookingSearchView.objdbmlStatus.StatusId == 1)
                 {
@@ -346,6 +342,38 @@ namespace PGMSFront.Controllers
             return RedirectToAction("Basic", "Home");
         }
 
+        public List<SelectListItem> GetBookingType()
+        {
+            List<SelectListItem> Items = new List<SelectListItem>();
+            try
+            {
+                Items.Add(new SelectListItem {Text= "Booking",Value= "21" });
+                Items.Add(new SelectListItem { Text = "RFQ - Confidential", Value = "46" });
+                Items.Add(new SelectListItem { Text = "RFQ - Regular", Value = "98" });
+            }
+            catch
+            {
+
+            }
+            return Items;
+        }
+
+        public List<SelectListItem> GetBookingStatus()
+        {
+            List<SelectListItem> Items = new List<SelectListItem>();
+            try
+            {
+                Items.Add(new SelectListItem { Text = "All", Value = "0" });
+                Items.Add(new SelectListItem { Text = "In progress", Value = "40" });
+                Items.Add(new SelectListItem { Text = "Approve", Value = "38" });
+            }
+            catch
+            {
+
+            }
+            return Items;
+        }
+
         #endregion
 
         #region Basic
@@ -370,6 +398,28 @@ namespace PGMSFront.Controllers
 
                 ViewBag.CompanyDepartment = CompanyDepartmentGetByCustomerMasterId(Convert.ToInt32(Session["ZZCompanyId"]));
 
+            }
+            catch
+            {
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Basic(CommonModel model, string btnPrevNext)
+        {
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                if (btnPrevNext.ToLower() == "next")
+                {
+                    return RedirectToAction("Vehicle", "Home");
+                }
             }
             catch
             {
@@ -555,6 +605,32 @@ namespace PGMSFront.Controllers
                     dbmlBookingView objdbmlBooking = new dbmlBookingView();
                     GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
                     model.StatusPropId = objdbmlBooking.StatusPropId;
+                }
+            }
+            catch
+            {
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Vehicle(CommonModel model, string btnPrevNext)
+        {
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                if (btnPrevNext.ToLower() == "prev")
+                {
+                    return RedirectToAction("Basic", "Home");
+                }
+                if (btnPrevNext.ToLower() == "next")
+                {
+                    return RedirectToAction("DynamicPlatform", "Home");
                 }
             }
             catch
@@ -808,6 +884,28 @@ namespace PGMSFront.Controllers
         #endregion
 
         #region Tracks
+        [HttpPost]
+        public ActionResult DynamicPlatform(CommonModel model, string btnPrevNext)
+        {
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                if (btnPrevNext.ToLower() == "prev")
+                {
+                    return RedirectToAction("Vehicle", "Home");
+                }                
+            }
+            catch
+            {
+            }
+
+            return View(model);
+        }
+
         public ActionResult HighSpeedTrack()
         {
             CommonModel model = new CommonModel();
