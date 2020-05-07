@@ -218,7 +218,7 @@ namespace PGMSFront.Controllers
 
         #region Booking
 
-        #region Main
+        #region Main/Search
         public ActionResult Booking()
         {
             CommonModel model = new CommonModel();
@@ -238,7 +238,9 @@ namespace PGMSFront.Controllers
                 model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
                 model.UserCode = Convert.ToString(Session["UserCode"]);
 
-                //BookingGetByBookingId(1111111);
+                ViewBag.CompanyDepartment = CompanyDepartmentGetByCustomerMasterId(Convert.ToInt32(Session["ZZCompanyId"]));
+                ViewBag.BookingType = GetBookingType();
+                ViewBag.BookingStatus = GetBookingStatus();
             }
             catch
             {
@@ -283,7 +285,7 @@ namespace PGMSFront.Controllers
             return Json(new { Status = strStatus, StatusId = intStatusId, BookingList = objreturndbmlBooking.objdbmlBookingList }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult BookingSearchViewGetByCompanyIdFromDateToDate()
+        public ActionResult BookingSearchViewGetByDepartmentBookinStatus(int intDepartmentId,int intBookingTypeId,int intStatusPropId)
         {
             if (Session["UserId"] == null)
             {
@@ -296,14 +298,8 @@ namespace PGMSFront.Controllers
             returndbmlBookingSearchView objreturndbmlBookingSearchView = new returndbmlBookingSearchView();
 
             try
-            {
-                int intCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
-                DateTime dtFromDate = objClassUserFunctions.ToDateTimeNotNull("01/01/2020");
-                DateTime dtToDate = DateTime.Now.Date;
-                int intBPId = 21;
-                int intStatusPropId = 40;
-
-                objreturndbmlBookingSearchView = objServiceClient.BookingSearchViewGetByCompanyIdFromDateToDateFront(intCompanyId, dtFromDate, dtToDate, intBPId, intStatusPropId);
+            {      
+                objreturndbmlBookingSearchView = objServiceClient.BookingSearchViewGetByCompanyIdFromDateToDateFront(intDepartmentId, DateTime.Now.Date, DateTime.Now.Date, intBookingTypeId, intStatusPropId);
 
                 if (objreturndbmlBookingSearchView != null && objreturndbmlBookingSearchView.objdbmlStatus.StatusId == 1)
                 {
@@ -346,6 +342,38 @@ namespace PGMSFront.Controllers
             return RedirectToAction("Basic", "Home");
         }
 
+        public List<SelectListItem> GetBookingType()
+        {
+            List<SelectListItem> Items = new List<SelectListItem>();
+            try
+            {
+                Items.Add(new SelectListItem {Text= "Booking",Value= "21" });
+                Items.Add(new SelectListItem { Text = "RFQ - Confidential", Value = "46" });
+                Items.Add(new SelectListItem { Text = "RFQ - Regular", Value = "98" });
+            }
+            catch
+            {
+
+            }
+            return Items;
+        }
+
+        public List<SelectListItem> GetBookingStatus()
+        {
+            List<SelectListItem> Items = new List<SelectListItem>();
+            try
+            {
+                Items.Add(new SelectListItem { Text = "All", Value = "0" });
+                Items.Add(new SelectListItem { Text = "In progress", Value = "40" });
+                Items.Add(new SelectListItem { Text = "Approve", Value = "38" });
+            }
+            catch
+            {
+
+            }
+            return Items;
+        }
+
         #endregion
 
         #region Basic
@@ -370,12 +398,52 @@ namespace PGMSFront.Controllers
 
                 ViewBag.CompanyDepartment = CompanyDepartmentGetByCustomerMasterId(Convert.ToInt32(Session["ZZCompanyId"]));
 
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+                    model.DocDate = objdbmlBooking.ZZBookingDate;
+                    model.DocNo = objdbmlBooking.BookingNo;
+                    model.DocType = objdbmlBooking.ZZBookingType;
+                    model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
+                    model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+                }
+                else
+                {
+                    model.DocDate = "To be allotted";
+                    model.DocNo = "Booking";
+                    model.DocType = "To be allotted";
+                    model.WorkFlowId = 6;
+                }
+               
             }
             catch
             {
             }
 
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Basic(CommonModel model, string btnPrevNext)
+        {
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                if (btnPrevNext.ToLower() == "next")
+                {
+                    return RedirectToAction("Vehicle", "Home");
+                }
+            }
+            catch
+            {
+            }
+
+            return RedirectToAction("Basic", "Home");
         }
 
         public ActionResult LoadBasicInfo()
@@ -555,13 +623,44 @@ namespace PGMSFront.Controllers
                     dbmlBookingView objdbmlBooking = new dbmlBookingView();
                     GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
                     model.StatusPropId = objdbmlBooking.StatusPropId;
-                }
+                    model.DocDate = objdbmlBooking.ZZBookingDate;
+                    model.DocNo = objdbmlBooking.BookingNo;
+                    model.DocType = objdbmlBooking.ZZBookingType;
+                    model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
+                    model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+                }               
             }
             catch
             {
             }
 
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Vehicle(CommonModel model, string btnPrevNext)
+        {
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                if (btnPrevNext.ToLower() == "prev")
+                {
+                    return RedirectToAction("Basic", "Home");
+                }
+                if (btnPrevNext.ToLower() == "next")
+                {
+                    return RedirectToAction("MainTrackBooking", "Home");
+                }
+            }
+            catch
+            {
+            }
+
+            return RedirectToAction("Vehicle", "Home");
         }
 
         public ActionResult LoadVehicleInfo()
@@ -769,6 +868,16 @@ namespace PGMSFront.Controllers
                 model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
                 model.UserCode = Convert.ToString(Session["UserCode"]);
 
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+                    model.DocDate = objdbmlBooking.ZZBookingDate;
+                    model.DocNo = objdbmlBooking.BookingNo;
+                    model.DocType = objdbmlBooking.ZZBookingType;
+                    model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
+                    model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+                }
             }
             catch
             {
@@ -798,6 +907,16 @@ namespace PGMSFront.Controllers
                 model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
                 model.UserCode = Convert.ToString(Session["UserCode"]);
 
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+                    model.DocDate = objdbmlBooking.ZZBookingDate;
+                    model.DocNo = objdbmlBooking.BookingNo;
+                    model.DocType = objdbmlBooking.ZZBookingType;
+                    model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
+                    model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+                }
             }
             catch
             {
@@ -808,6 +927,75 @@ namespace PGMSFront.Controllers
         #endregion
 
         #region Tracks
+        public ActionResult MainTrackBooking()
+        {
+            CommonModel model = new CommonModel();
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                model.UserId = Convert.ToInt32(Session["UserId"]);
+                model.UserTypePropId = Convert.ToInt32(Session["UserTypePropId"]);
+                model.ZZCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
+                model.UserName = Convert.ToString(Session["UserName"]);
+                model.EmailId = Convert.ToString(Session["EmailId"]);
+                model.LoginId = Convert.ToString(Session["LoginId"]);
+                model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
+                model.UserCode = Convert.ToString(Session["UserCode"]);
+                model.TrackGroupId = 2;
+                model.TrackGroup = "T2-Dynamic Platform";
+                model.ViewTitle = "T2 Dynamic Platform";
+
+                Session["TrackGroupId"] = model.TrackGroupId;
+                Session["TrackGroup"] = model.TrackGroup;
+                ViewBag.ServiveLookup = GetServiveLookup();
+                ViewBag.TimeSlot = GetTimeSlot();
+                ViewBag.ServiveCategory = GetServiveCategory(model.TrackGroupId);
+
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+                    model.DocDate = objdbmlBooking.ZZBookingDate;
+                    model.DocNo = objdbmlBooking.BookingNo;
+                    model.DocType = objdbmlBooking.ZZBookingType;
+                    model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
+                    model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+                }
+
+            }
+            catch
+            {
+            }
+
+            return View("MainTrackBooking", model);
+        }
+
+        [HttpPost]
+        public ActionResult MainTrackBooking(CommonModel model, string btnPrevNext)
+        {
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                if (btnPrevNext.ToLower() == "prev")
+                {
+                    return RedirectToAction("Vehicle", "Home");
+                }                
+            }
+            catch
+            {
+            }
+
+            return RedirectToAction("MainTrackBooking", "Home");
+        }
+
         public ActionResult HighSpeedTrack()
         {
             CommonModel model = new CommonModel();
@@ -915,44 +1103,7 @@ namespace PGMSFront.Controllers
 
             return View("MainTrackBooking", model);
         }
-
-        public ActionResult MainTrackBooking()
-        {
-            CommonModel model = new CommonModel();
-            try
-            {
-                if (Session["UserId"] == null)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-
-                model.UserId = Convert.ToInt32(Session["UserId"]);
-                model.UserTypePropId = Convert.ToInt32(Session["UserTypePropId"]);
-                model.ZZCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
-                model.UserName = Convert.ToString(Session["UserName"]);
-                model.EmailId = Convert.ToString(Session["EmailId"]);
-                model.LoginId = Convert.ToString(Session["LoginId"]);
-                model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
-                model.UserCode = Convert.ToString(Session["UserCode"]);
-                //model.TrackGroupId = 5;
-                //model.TrackGroup = "T5a-Fatigue Surface Low Severity";
-                //model.ViewTitle = "T5a-Fatigue Surface Low Severity";
-
-                //Session["TrackGroupId"] = model.TrackGroupId;
-                //Session["TrackGroup"] = model.TrackGroup;
-
-                ViewBag.TimeSlot = GetTimeSlot();
-                ViewBag.ServiveLookup = GetServiveLookup();
-                // ViewBag.ServiveCategory = GetServiveCategory(model.TrackGroupId);
-
-            }
-            catch
-            {
-            }
-
-            return View("MainTrackBooking", model);
-        }
-
+        
         public ActionResult LoadTrackInfo(int intTrackGroupId)
         {
             if (Session["UserId"] == null)

@@ -28,10 +28,66 @@
 </style>
 
 <div class="content">
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
+                    <div class="card-header card-header-rose card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h6 class="card-title" style="margin-top: 5px;">
+                            Date: <label id="BookingDate">@Model.DocDate</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            Document Type: <label id="BookingType">@Model.DocType</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            Document No.: <label id="BookingNo">@Model.DocNo</label>
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="arrow-steps clearfix">
+                            @if (@Model.WorkFlowId == 6)
+                            {
+                                <div id="WWF6" class="step current"><span>Booking</span></div>
+                            }
+                            else
+                            {
+                                <div id="WWF6" class="step"><span>Booking</span></div>
+                            }
+                            @if (@Model.WorkFlowId == 7)
+                            {
+                                <div id="WWF7" class="step current"><span>PI</span></div>
+                            }
+                            else
+                            {
+                                <div id="WWF7" class="step"><span>PI</span></div>
+                            }                            
+                            @if (@Model.WorkFlowId == 8)
+                            {
+                                <div id="WWF8" class="step current"><span>Approve</span></div>
+                            }
+                            else
+                            {
+                                <div id="WWF8" class="step"><span>Approve</span></div>
+                            }
+                            @if (@Model.WorkFlowId == 9)
+                            {
+                                <div id="WWF9" class="step current"><span>PO</span></div>
+                            }
+                            else
+                            {
+                                <div id="WWF9" class="step"><span>PO</span></div>
+                            }
+                            @if (@Model.WorkFlowId == 10)
+                            {
+                                <div id="WWF10" class="step current"><span>PO Verification</span></div>
+                            }
+                            else
+                            {
+                                <div id="WWF10" class="step"><span>PO Verification</span></div>
+                            }
+
+                        </div>
+                    </div>
                     <div class="card-header">
                         <h4 class="card-title">Vehicle wise Test Summary</h4>
                     </div>
@@ -123,7 +179,7 @@
                                             </select>
                                         </td>
                                         <td align="right" width="10%">
-                                            <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="TrackDetailSave()"">Save</button>
+                                            <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="TrackDetailSave()" ">Save</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -197,6 +253,18 @@
             @Html.HiddenFor(m => m.ZZCompanyId, new { id = "ZZCompanyId", style = "width:0px;" })
             @Html.HiddenFor(m => m.StatusPropId, new { id = "StatusPropId", style = "width:0px;" })
             @Html.HiddenFor(m => m.TrackGroupId, new { id = "TrackGroupId", style = "width:0px;" })
+
+            @using (Html.BeginForm(new { @class = "form-horizontal" }))
+            {
+                <table Style="width:100%">
+                    <tr>
+                        <td Style="width:50%;text-align:left">
+                            <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
+                        </td>
+                        <td Style="width:50%;text-align:right"></td>
+                    </tr>
+                </table>
+            }
         </div>
 
 
@@ -220,7 +288,7 @@
         catch (e) {
         }
 
-   
+
     function changeColorVehicle(id) {
         if (id != Holdid || Holdid == "") {
             $("#trVehicle_" + Holdid + "").removeClass('highlighted');
@@ -337,7 +405,7 @@
     ///////////////////////////// Bind Servive Category  //////////////////////////////////////////////////////
     function BindServiceCategory(data) {
         try {
-           
+
             var gridData = "";
 
             $("#divCategory").html("");
@@ -645,7 +713,7 @@
             var varTimeSlotId = $("#lstTrackTimeSlot").val().trim();
             var varCategoryId = $("input[name='Category']:checked").val();
             var varTrackGroupId = $("#lstServiceLookup").val();
-            
+
             var strMSG = "";
 
             if (parseInt(varTrackGroupId) == 0) {
@@ -842,10 +910,10 @@
             debugger;
             if (parseInt($("#lstServiceLookup").val()) == 0) {
                 $("#TrackDate").val("");
-                $("#lstServiceLookup").focus();                
-                alert("Please Select Track");  
+                $("#lstServiceLookup").focus();
+                alert("Please Select Track");
                 return false;
-                
+
             }
             else {
                 if ($("#TrackDate").val().trim() != "") {
@@ -1046,6 +1114,7 @@
         MaskControls();
        // SetButtonVisibility();
        // LoadTrackInfo();
+        $("#TrackGroupId").focus();
     });
 
     ///////////////////////// Old Code ////////////////////////////////

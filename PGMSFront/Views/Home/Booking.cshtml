@@ -34,34 +34,40 @@
                         {
                         <div class="row">
                             <div class="col-md-3">
-                                <div class="form-group" style="        height: 70px;">
+                                <div class="form-group" style="height: 70px;">
                                     <label for="exampleEmail" class="bmd-label-floating">Department *</label>
-                                    <select class="form-control" id="DepartmentId" style="        margin-top: 34px;">
-                                        <option>-Select-</option>
+                                    <select class="form-control" id="DepartmentId" style="margin-top: 34px;">
+                                        @foreach (var itm in ViewBag.CompanyDepartment)
+                                        {
+                                            <option value='@itm.Value'>@itm.Text</option>
+                                        }
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group" style="        height: 70px;">
+                                <div class="form-group" style="height: 70px;">
                                     <label for="exampleEmail" class="bmd-label-floating">Booking Type *</label>
-                                    <select class="form-control" id="BookingTypeId" style="        margin-top: 34px;">
-                                        <option>-Select-</option>
+                                    <select class="form-control" id="BookingTypeId" style="margin-top: 34px;">
+                                        @foreach (var itm in ViewBag.BookingType)
+                                        {
+                                            <option value='@itm.Value'>@itm.Text</option>
+                                        }
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group" style="        height: 70px;">
+                                <div class="form-group" style="height: 70px;">
                                     <label for="exampleEmail" class="bmd-label-floating">Status *</label>
-                                    <select class="form-control" id="StatusId" style="        margin-top: 34px;">
-                                        <option>-Select-</option>
-                                        <option>All</option>
-                                        <option>In Progress</option>
-                                        <option>Others</option>
+                                    <select class="form-control" id="StatusId" style="margin-top: 34px;">
+                                        @foreach (var itm in ViewBag.BookingStatus)
+                                        {
+                                            <option value='@itm.Value'>@itm.Text</option>
+                                        }
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group" style="        margin: 0 !important;">
+                                <div class="form-group" style="margin: 0 !important;">
                                     <label for="exampleEmail" class="bmd-label-floating">&nbsp;</label><br />
                                     <button type="button" class="btn btn-fill btn-rose btn-sm" id="btnSubmit" onclick="return LoadBookingInfo()">Get Data</button>
                                 </div>
@@ -100,13 +106,12 @@
         try {
             // $("#ajax-progress-dialog").dialog("open");
             $.ajax({
-                url: '@Url.Action("BookingSearchViewGetByCompanyIdFromDateToDate", "Home")',
+                url: '@Url.Action("BookingSearchViewGetByDepartmentBookinStatus", "Home")',
                 type: 'POST',
                 dataType: 'json',
                 async: true,
-                data: {},
-                success: function (data) {
-
+                data: { 'intDepartmentId': $("#DepartmentId").val(), 'intBookingTypeId': $("#BookingTypeId").val(), 'intStatusPropId': $("#StatusId").val()},
+                success: function (data) {                   
                     //  $("#ajax-progress-dialog").dialog("close");
                     if (data.StatusId != "99" && data.StatusId != "-99") {
                         BookingList = data.BookingList;

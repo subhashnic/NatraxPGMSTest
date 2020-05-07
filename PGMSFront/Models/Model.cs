@@ -27,7 +27,12 @@ namespace PGMSFront.Models {
         public int? StatusPropId { get; set; }
         public int TrackGroupId { get; set; }
         public string TrackGroup { get; set; }
-        public string ViewTitle { get; set; }        
+        public string ViewTitle { get; set; }
+        public string DocDate { get; set; }
+        public string DocType { get; set; }
+        public string DocNo { get; set; }
+        public int? WorkFlowId { get; set; }
+        public int? WorkFlowStatusId { get; set; }
 
     }
 }

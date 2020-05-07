@@ -893,6 +893,18 @@ namespace PGMSFront.WCFPGMSRef {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ZZBookingDateField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZBookingTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ZZStatusPropertyIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ZZStatusWorkflowIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ZZWorkFlowIdField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -1358,6 +1370,58 @@ namespace PGMSFront.WCFPGMSRef {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZBookingType {
+            get {
+                return this.ZZBookingTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZBookingTypeField, value) != true)) {
+                    this.ZZBookingTypeField = value;
+                    this.RaisePropertyChanged("ZZBookingType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ZZStatusPropertyId {
+            get {
+                return this.ZZStatusPropertyIdField;
+            }
+            set {
+                if ((this.ZZStatusPropertyIdField.Equals(value) != true)) {
+                    this.ZZStatusPropertyIdField = value;
+                    this.RaisePropertyChanged("ZZStatusPropertyId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ZZStatusWorkflowId {
+            get {
+                return this.ZZStatusWorkflowIdField;
+            }
+            set {
+                if ((this.ZZStatusWorkflowIdField.Equals(value) != true)) {
+                    this.ZZStatusWorkflowIdField = value;
+                    this.RaisePropertyChanged("ZZStatusWorkflowId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ZZWorkFlowId {
+            get {
+                return this.ZZWorkFlowIdField;
+            }
+            set {
+                if ((this.ZZWorkFlowIdField.Equals(value) != true)) {
+                    this.ZZWorkFlowIdField = value;
+                    this.RaisePropertyChanged("ZZWorkFlowId");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -1787,6 +1851,9 @@ namespace PGMSFront.WCFPGMSRef {
         private string DepartmentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DepartmentIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> DocNoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1797,6 +1864,9 @@ namespace PGMSFront.WCFPGMSRef {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> StatusPropIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> WorkFlowIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ZZActivityField;
@@ -1915,6 +1985,19 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DepartmentId {
+            get {
+                return this.DepartmentIdField;
+            }
+            set {
+                if ((this.DepartmentIdField.Equals(value) != true)) {
+                    this.DepartmentIdField = value;
+                    this.RaisePropertyChanged("DepartmentId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> DocNo {
             get {
                 return this.DocNoField;
@@ -1962,6 +2045,19 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((this.StatusPropIdField.Equals(value) != true)) {
                     this.StatusPropIdField = value;
                     this.RaisePropertyChanged("StatusPropId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> WorkFlowId {
+            get {
+                return this.WorkFlowIdField;
+            }
+            set {
+                if ((this.WorkFlowIdField.Equals(value) != true)) {
+                    this.WorkFlowIdField = value;
+                    this.RaisePropertyChanged("WorkFlowId");
                 }
             }
         }

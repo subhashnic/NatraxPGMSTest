@@ -24,18 +24,54 @@
                         <i class="material-icons">assignment</i>
                     </div>
                     <h6 class="card-title" style="margin-top: 5px;">
-                        Date: 05/05/2020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        Document Type: BOOK123&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        Document No.: BOOK123
+                        Date: <label id="BookingDate">@Model.DocDate</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Document Type: <label id="BookingType">@Model.DocType</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Document No.: <label id="BookingNo">@Model.DocNo</label>
                     </h6>
                 </div>
                 <div class="card-body">
                     <div class="arrow-steps clearfix">
-                        <div class="step current"><span>Booking</span></div>
-                        <div class="step"><span>PI</span></div>
-                        <div class="step"><span>Approve</span></div>
-                        <div class="step"><span>PO</span></div>
-                        <div class="step"><span>PO Verification</span></div>
+                        @if (@Model.WorkFlowId == 6)
+                        {
+                            <div id="WWF6" class="step current"><span>Booking</span></div>
+                        }
+                        else
+                        {
+                            <div id="WWF6" class="step"><span>Booking</span></div>
+                        }
+                        @if (@Model.WorkFlowId == 7)
+                        {
+                            <div id="WWF7" class="step current"><span>PI</span></div>
+                        }
+                        else
+                        {
+                            <div id="WWF7" class="step"><span>PI</span></div>
+                        }
+                        @if (@Model.WorkFlowId == 8)
+                        {
+                            <div id="WWF8" class="step current"><span>Approve</span></div>
+                        }
+                        else
+                        {
+                            <div id="WWF8" class="step"><span>Approve</span></div>
+                        }
+                        @if (@Model.WorkFlowId == 9)
+                        {
+                            <div id="WWF9" class="step current"><span>PO</span></div>
+                        }
+                        else
+                        {
+                            <div id="WWF9" class="step"><span>PO</span></div>
+                        }
+                        @if (@Model.WorkFlowId == 10)
+                        {
+                            <div id="WWF10" class="step current"><span>PO Verification</span></div>
+                        }
+                        else
+                        {
+                            <div id="WWF10" class="step"><span>PO Verification</span></div>
+                        }
+
                     </div>
                 </div>
             </div>
@@ -125,12 +161,21 @@
                             </div>
                             <div class="col-md-2"></div>
                         </div>
-
+                       
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     @*<button type="button" class="btn btn-fill btn-rose btn-sm pull-right" id="btnSubmit">Cancel</button>*@
-                                    <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" id="btnSubmit" onclick="return BookingSave()">Save</button>
+                                    <table Style="width:100%">
+                                        <tr>
+                                            <td Style="width:50%;text-align:right">
+                                                <button type="button" class="btn btn-fill btn-rose btn-sm " id="btnSubmit" onclick="return BookingSave()">Save</button>
+                                            </td>
+                                            <td Style="width:50%;text-align:right">
+                                                <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm" />
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -163,6 +208,9 @@
                     if (data.StatusId != "99" && data.StatusId != "-99") {
                         BookingList = data.BookingList;
                         BindBasicData(data.BookingList[0]);
+                        if (BookingList.length > 0) {
+                            $("#btnNext").show();
+                        }  
                     }
                 },
                 error: function (xhr) {
@@ -188,7 +236,7 @@
             //if ($("#BookingDate").val().trim() == "") {
             //    strMSG = strMSG + 'Booking Date \n</br>'
             //}
-            debugger;
+            
             if ($("#DepartmentId").val().trim() == "") {
                 strMSG = strMSG + 'Department Name \n</br>'
             }
@@ -232,7 +280,7 @@
                     model.StatusPropId = 40;
                 }
 
-                model.ZZBookingDate = $("#BookingDate").val().trim();
+               // model.ZZBookingDate = $("#BookingDate").val().trim();
                 model.DepartmentId = $("#DepartmentId").val().trim();
                 model.Project = $("#Project").val().trim();
                 model.ProjectManager = $("#ProjectManager").val().trim();
@@ -288,8 +336,9 @@
     ///////////////////////////// Bind Basic Info  //////////////////////////////////////////////////////
     function BindBasicData(data) {
         try {
-            $("#BookingDate").val(NullHandle(data.ZZBookingDate));
-            $("#BookingNo").val(NullHandle(data.BookingNo));
+           
+            $("#BookingDate").text(NullHandle(data.ZZBookingDate));
+            $("#BookingNo").text(NullHandle(data.BookingNo));
             $("#DepartmentId").val(NullHandle(data.DepartmentId));
             $("#Project").val(NullHandle(data.Project));
             $("#ProjectManager").val(NullHandle(data.ProjectManager));
@@ -332,8 +381,8 @@
             }
             //$("#PartCode").prop("readonly", blnStatus);
 
-            $("#BookingDate").attr('disabled', blnStatus);
-            $("#BookingNo").attr('disabled', true);
+            //$("#BookingDate").attr('disabled', blnStatus);
+            //$("#BookingNo").attr('disabled', true);
             $("#DepartmentId").attr('disabled', blnStatus);
             $("#Project").attr('disabled', blnStatus);
             $("#ProjectManager").attr('disabled', blnStatus);
@@ -376,7 +425,7 @@
     $(document).ready(function () {
         MaskControls();
         LoadBasicInfo();
-        $("#BookingDate").focus();
+        $("#DepartmentId").focus();
     });
 
 </script>
