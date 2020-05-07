@@ -218,7 +218,7 @@ namespace PGMSFront.Controllers
 
         #region Booking
 
-        #region Main/Search
+        #region Booking Search/New/Inprocess
         public ActionResult Booking()
         {
             CommonModel model = new CommonModel();
@@ -228,6 +228,7 @@ namespace PGMSFront.Controllers
                 {
                     return RedirectToAction("Index", "Home");
                 }
+                Session["objdbmlBooking"] = null;
 
                 model.UserId = Convert.ToInt32(Session["UserId"]);
                 model.UserTypePropId = Convert.ToInt32(Session["UserTypePropId"]);
@@ -249,6 +250,38 @@ namespace PGMSFront.Controllers
             return View(model);
         }
 
+        public ActionResult NewBooking()
+        {
+            CommonModel model = new CommonModel();
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                Session["objdbmlBooking"] = null;
+
+                model.UserId = Convert.ToInt32(Session["UserId"]);
+                model.UserTypePropId = Convert.ToInt32(Session["UserTypePropId"]);
+                model.ZZCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
+                model.UserName = Convert.ToString(Session["UserName"]);
+                model.EmailId = Convert.ToString(Session["EmailId"]);
+                model.LoginId = Convert.ToString(Session["LoginId"]);
+                model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
+                model.UserCode = Convert.ToString(Session["UserCode"]);
+
+                //ViewBag.CompanyDepartment = CompanyDepartmentGetByCustomerMasterId(Convert.ToInt32(Session["ZZCompanyId"]));
+                //ViewBag.BookingType = GetBookingType();
+                //ViewBag.BookingStatus = GetBookingStatus();
+            }
+            catch
+            {
+            }
+
+            return View(model);
+        }
+
+        [ValidateAntiForgeryToken]
         public ActionResult BookingGetByCompanyIdStatusPropId()
         {
             if (Session["UserId"] == null)
@@ -285,6 +318,7 @@ namespace PGMSFront.Controllers
             return Json(new { Status = strStatus, StatusId = intStatusId, BookingList = objreturndbmlBooking.objdbmlBookingList }, JsonRequestBehavior.AllowGet);
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult BookingSearchViewGetByDepartmentBookinStatus(int intDepartmentId,int intBookingTypeId,int intStatusPropId)
         {
             if (Session["UserId"] == null)
@@ -318,6 +352,7 @@ namespace PGMSFront.Controllers
             return Json(new { Status = strStatus, StatusId = intStatusId, BookingList = objreturndbmlBookingSearchView.objdbmlBookingSearchView }, JsonRequestBehavior.AllowGet);
         }
 
+        //[ValidateAntiForgeryToken]
         public ActionResult BookingGetByBookingId(int intBookingId)
         {
             if (Session["UserId"] == null)
@@ -411,8 +446,8 @@ namespace PGMSFront.Controllers
                 else
                 {
                     model.DocDate = "To be allotted";
-                    model.DocNo = "Booking";
-                    model.DocType = "To be allotted";
+                    model.DocNo = "To be allotted";
+                    model.DocType = "Booking";
                     model.WorkFlowId = 6;
                 }
                
@@ -425,6 +460,7 @@ namespace PGMSFront.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Basic(CommonModel model, string btnPrevNext)
         {
             try
@@ -446,6 +482,7 @@ namespace PGMSFront.Controllers
             return RedirectToAction("Basic", "Home");
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult LoadBasicInfo()
         {
             if (Session["UserId"] == null)
@@ -481,6 +518,7 @@ namespace PGMSFront.Controllers
             return Json(new { Status = strStatus, StatusId = intStatusId, BookingList = objdbmlBookingList }, JsonRequestBehavior.AllowGet);
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult BookingSave(dbmlBookingView model)
         {
             if (Session["UserId"] == null)
@@ -539,6 +577,7 @@ namespace PGMSFront.Controllers
             return Json(new { Status = strStatus, StatusId = intStatusId, BookingList = objreturndbmlBooking.objdbmlBookingList }, JsonRequestBehavior.AllowGet);
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult BookingDelete(int intBookingId)
         {
             if (Session["UserId"] == null)
@@ -638,6 +677,7 @@ namespace PGMSFront.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Vehicle(CommonModel model, string btnPrevNext)
         {
             try
@@ -663,6 +703,7 @@ namespace PGMSFront.Controllers
             return RedirectToAction("Vehicle", "Home");
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult LoadVehicleInfo()
         {
             if (Session["UserId"] == null)
@@ -704,6 +745,7 @@ namespace PGMSFront.Controllers
             return Json(new { Status = strStatus, StatusId = intStatusId, VehicleList = objreturndbmlVehicle.objdbmlListOfVehicleComponent }, JsonRequestBehavior.AllowGet);
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult VehicleSave(dbmlListOfVehicleComponent model)
         {
             if (Session["UserId"] == null)
@@ -768,6 +810,7 @@ namespace PGMSFront.Controllers
             return Json(new { Status = strStatus, StatusId = intStatusId, VehicleList = objreturndbmlVehicle.objdbmlListOfVehicleComponent }, JsonRequestBehavior.AllowGet);
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult VehicleDelete(int intVehCompId)
         {
             if (Session["UserId"] == null)
@@ -1536,12 +1579,7 @@ namespace PGMSFront.Controllers
         public ActionResult AddOnServices()
         {
             return View();
-        }
-
-        public ActionResult NewBooking()
-        {
-            return View();
-        }
+        }              
 
         public ActionResult TrackDetail()
         {
