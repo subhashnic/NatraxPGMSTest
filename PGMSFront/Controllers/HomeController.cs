@@ -712,6 +712,7 @@ namespace PGMSFront.Controllers
                 {
                     return RedirectToAction("Basic", "Home");
                 }
+
                 if (btnPrevNext.ToLower() == "next")
                 {
                     return RedirectToAction("MainTrackBooking", "Home");
