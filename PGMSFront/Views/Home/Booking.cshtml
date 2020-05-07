@@ -21,78 +21,75 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-rose card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">assignment</i>
-                        </div>
+            <div class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                    <div class="card-text">
                         <h4 class="card-title">Booking History</h4>
                     </div>
-                    <div class="card-body">
-                        @using (Html.BeginForm(new { @class = "form-horizontal" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group" style="height: 70px;">
-                                        <label for="exampleEmail" class="bmd-label-floating">Department *</label>
-                                        <select class="form-control" id="DepartmentId" style="margin-top: 34px;">
-                                            @foreach (var itm in ViewBag.CompanyDepartment)
-                                            {
-                                                <option value='@itm.Value'>@itm.Text</option>
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group" style="height: 70px;">
-                                        <label for="exampleEmail" class="bmd-label-floating">Booking Type *</label>
-                                        <select class="form-control" id="BookingTypeId" style="margin-top: 34px;">
-                                            @foreach (var itm in ViewBag.BookingType)
-                                            {
-                                                <option value='@itm.Value'>@itm.Text</option>
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group" style="height: 70px;">
-                                        <label for="exampleEmail" class="bmd-label-floating">Status *</label>
-                                        <select class="form-control" id="StatusId" style="margin-top: 34px;">
-                                            @foreach (var itm in ViewBag.BookingStatus)
-                                            {
-                                                <option value='@itm.Value'>@itm.Text</option>
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group" style="margin: 0 !important;">
-                                        <label for="exampleEmail" class="bmd-label-floating">&nbsp;</label><br />
-                                        <button type="button" class="btn btn-fill btn-rose btn-sm" id="btnSubmit" onclick="return LoadBookingInfo()">Get Data</button>
-                                    </div>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm(new { @class = "form-horizontal" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group" style="height: 70px;">
+                                    <label for="exampleEmail" class="bmd-label-floating">Department *</label>
+                                    <select class="form-control" id="DepartmentId" style="margin-top: 34px;">
+                                        @foreach (var itm in ViewBag.CompanyDepartment)
+                                        {
+                                            <option value='@itm.Value'>@itm.Text</option>
+                                        }
+                                    </select>
                                 </div>
                             </div>
-                        }
-                        <hr />
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th width="10%">Action</th>
-                                        @*<th width="5%">#</th>*@
-                                        @*<th width="20%">Company</th>*@
-                                        <th width="30%">Department</th>
-                                        <th width="20%">Date</th>
-                                        <th width="20%">Booking No.</th>
-                                        <th width="20%">Booking Status</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody id="tbodyBooking"></tbody>
-                            </table>
+                            <div class="col-md-3">
+                                <div class="form-group" style="height: 70px;">
+                                    <label for="exampleEmail" class="bmd-label-floating">Booking Type *</label>
+                                    <select class="form-control" id="BookingTypeId" style="margin-top: 34px;">
+                                        @foreach (var itm in ViewBag.BookingType)
+                                        {
+                                            <option value='@itm.Value'>@itm.Text</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group" style="height: 70px;">
+                                    <label for="exampleEmail" class="bmd-label-floating">Status *</label>
+                                    <select class="form-control" id="StatusId" style="margin-top: 34px;">
+                                        @foreach (var itm in ViewBag.BookingStatus)
+                                        {
+                                            <option value='@itm.Value'>@itm.Text</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group" style="margin: 0 !important;">
+                                    <label for="exampleEmail" class="bmd-label-floating">&nbsp;</label><br />
+                                    <button type="button" class="btn btn-fill btn-rose btn-sm" id="btnSubmit" onclick="return LoadBookingInfo()">Get Data</button>
+                                </div>
+                            </div>
                         </div>
+                    }
+                    <hr />
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th width="10%">Action</th>
+                                    @*<th width="5%">#</th>*@
+                                    @*<th width="20%">Company</th>*@
+                                    <th width="30%">Department</th>
+                                    <th width="20%">Date</th>
+                                    <th width="20%">Booking No.</th>
+                                    <th width="20%">Booking Status</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyBooking"></tbody>
+                        </table>
                     </div>
                 </div>
             </div>

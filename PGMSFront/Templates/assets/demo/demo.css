@@ -365,10 +365,18 @@ a, a:active {
         }
 
 .table .td-actions .btn {
-    margin: 0px;
-    padding: 0px;
+    padding: 2px 3px 2px 3px;
 }
 
 .card .form-check {
     margin-top: 3px;
+}
+
+.table thead tr th {
+    font-size: 14px;
+    border-top: 1px solid #ddd;
+}
+
+.table tbody tr td {
+    font-size: 14px;
 }

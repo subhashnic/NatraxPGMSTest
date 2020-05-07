@@ -26,6 +26,9 @@
         padding: 0px 5px 5px 5px !important;
     }
 
+    #txtUsageHrs, #txtUsageMin {
+        height: 24px !important;
+    }
 
     #txtUsageHrs, .is-focused #txtUsageHrs {
         background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #fff9c8 1px, rgba(210, 210, 210, 0) 1px);
@@ -33,6 +36,10 @@
 
     #txtUsageMin, .is-focused #txtUsageMin {
         background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #fff9c8 1px, rgba(210, 210, 210, 0) 1px);
+    }
+
+    .main-panel > .content {
+        margin-top: 0 !important;
     }
 </style>
 
@@ -45,10 +52,10 @@
                     @*<div class="card-icon">
                             <i class="material-icons">assignment</i>
                         </div>*@
-                    <h6 class="card-title" style="        margin-top: 5px;">
-                        Date: <label id="BookingDate">@Model.DocDate</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        Document Type: <label id="BookingType">@Model.DocType</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        Document No.: <label id="BookingNo">@Model.DocNo</label>
+                    <h6 class="card-title" style="margin-top: 5px;">
+                        <strong><span>Date:</span></strong>&nbsp;<span id="BookingDate">@Model.DocDate</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <strong><span>Document Type:</span></strong>&nbsp;<span id="BookingType">@Model.DocType</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <strong><span>Document No.:</span></strong>&nbsp;<span id="BookingNo">@Model.DocNo</span>
                     </h6>
                 </div>
                 <div class="card-body" style="        padding: 0px 5px 10px 5px !important;">
@@ -580,14 +587,14 @@
                     var rowId = "trTrackDtls" + i.toString();
                     gridData = gridData + "<tr class='TypeBDynamic' id='" + rowId + "'>";
                     gridData = gridData + "<td>" + NullHandle(data[i].ServiceSpecification) + "</td>";
-                    gridData = gridData + "<td class='text-right'><span id='txtRate'>" + NullHandle(varRate) + "</span></td>";//Rate
-                    gridData = gridData + "<td class='text-center'><span id='txtUnit'>" + NullHandle(varUnit) + "</span></td>";//Unit
+                    gridData = gridData + "<td class='text-right' id='txtRate'>" + NullHandle(varRate) + "</td>";//Rate
+                    gridData = gridData + "<td class='text-center' id='txtUnit'>" + NullHandle(varUnit) + "</td>";//Unit
                     gridData = gridData + "<td class='text-right table-warning'><input id='txtUsageHrs' onchange='ValidateHours(this," + rowId + ");' onkeypress='return CheckIsNumeric(event,this);'  maxlength='2' type='text' value='" + varUsageHrs + "' class='form-control timepicker text-left' placeholder='HH'></td>";//UsageHrs
                     gridData = gridData + "<td class='text-right table-warning'><input id='txtUsageMin' onchange='ValidateMinutes(this," + rowId + ");' onkeypress='return CheckIsNumeric(event,this);' maxlength='2' type='text' value='" + varUsageMin + "' class='form-control timepicker text-left' placeholder='MM'></td>";//UsageMin
-                    gridData = gridData + "<td class='text-center'> <span id='txtBookingDay'>" + NullHandle(varBookingDay) + "</span></td>";//Booking Day
-                    gridData = gridData + "<td class='text-center'><span id='txtBookingSlot'>" + NullHandle(varBookingSlot) + "</span></td>";//Booking Slot
-                    gridData = gridData + "<td class='text-center'> <span id='txtBookingConfirmSlot'>" + NullHandle(varBookingConfirmSlot) + "</span></td>";//Booking Confirmed Slot
-                    gridData = gridData + "<td class='text-center'><span id='txtRoundHrs'>" + NullHandle(varRoundHrs) + "</span></td>";//Round Hrs
+                    gridData = gridData + "<td class='text-center' id='txtBookingDay'>" + NullHandle(varBookingDay) + "</td>";//Booking Day
+                    gridData = gridData + "<td class='text-center' id='txtBookingSlot'>" + NullHandle(varBookingSlot) + "</td>";//Booking Slot
+                    gridData = gridData + "<td class='text-center' id='txtBookingConfirmSlot'>" + NullHandle(varBookingConfirmSlot) + "</td>";//Booking Confirmed Slot
+                    gridData = gridData + "<td class='text-center' id='txtRoundHrs'>" + NullHandle(varRoundHrs) + "</td>";//Round Hrs
                    // gridData = gridData + "<td class='text-center'><label id='txtBillHrs'>" + NullHandle(varBillingHrs) + "</label></td>";// Billing Hrs
                     //gridData = gridData + "<td class='text-right'><label id='txtAmount'>" + NullHandle(varAmount) + "</label></td>"; //Amount
                     gridData = gridData + "<td style='display:none'><input type='hidden' id='hdnServiceId' value=" + NullHandle(data[i].ServiceId) + " /><input type='hidden' id='hdnBillingHrs' value=" + NullHandle(varBillingHrs) + " /> </td>";
