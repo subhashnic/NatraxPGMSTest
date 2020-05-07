@@ -79,6 +79,7 @@
 
         @using (Html.BeginForm(new { @class = "form-horizontal" }))
         {
+            @Html.AntiForgeryToken()
             <div class="row">
                 <div class="card">
                     <div class="card-body" style="padding-bottom: 0px;">
@@ -161,7 +162,7 @@
                             </div>
                             <div class="col-md-2"></div>
                         </div>
-                       
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -186,8 +187,8 @@
             @Html.HiddenFor(m => m.UserId, new { id = "UserId", style = "width:0px;" })
             @Html.HiddenFor(m => m.UserTypePropId, new { id = "UserTypePropId", style = "width:0px;" })
             @Html.HiddenFor(m => m.ZZCompanyId, new { id = "ZZCompanyId", style = "width:0px;" })
-        }
-    </div>
+            }
+        </div>
 </div>
 <script>
     var BookingList = '';
@@ -196,12 +197,14 @@
     function LoadBasicInfo() {
         try {
             // $("#ajax-progress-dialog").dialog("open");
+            var data = {};
+            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
             $.ajax({
                 url: '@Url.Action("LoadBasicInfo","Home")',
                 type: 'POST',
                 dataType: 'json',
                 async: true,
-                data: {},
+                data: dataWithAntiforgeryToken,
                 success: function (data) {
 
                     //  $("#ajax-progress-dialog").dialog("close");
@@ -296,19 +299,25 @@
                 $("#btnSubmit").hide();
                 //$("#ajax-progress-dialog").dialog("open");
                // LoaderShow();
+                var data = {'model': model};
+                var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                 $.ajax({
                     url: '@Url.Action("BookingSave","Home")',
                     type: 'POST',
                     dataType: 'json',
                     async: true,
-                    data: '{model: ' + JSON.stringify(model) + '}',
-                    contentType: "application/json; charset=utf-8",
+                    data: dataWithAntiforgeryToken,
+                    //contentType: "application/json; charset=utf-8",
                     success: function (data) {
                        //  $("#ajax-progress-dialog").dialog("close");
                        // LoaderHide();
                         if (data.StatusId != "99" && data.StatusId != "-99") {
                             BookingList = data.BookingList;
                             BindBasicData(data.BookingList[0]);
+
+                            if (BookingList.length > 0) {
+                                $("#btnNext").show();
+                            } 
                         }
                         $("#btnSubmit").show();
                         alert(data.Status);
@@ -340,6 +349,7 @@
            
             $("#BookingDate").text(NullHandle(data.ZZBookingDate));
             $("#BookingNo").text(NullHandle(data.BookingNo));
+            $("#BookingType").text(NullHandle(data.ZZBookingType));
             $("#DepartmentId").val(NullHandle(data.DepartmentId));
             $("#Project").val(NullHandle(data.Project));
             $("#ProjectManager").val(NullHandle(data.ProjectManager));

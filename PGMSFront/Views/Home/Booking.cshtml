@@ -32,47 +32,48 @@
                     <div class="card-body">
                         @using (Html.BeginForm(new { @class = "form-horizontal" }))
                         {
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group" style="height: 70px;">
-                                    <label for="exampleEmail" class="bmd-label-floating">Department *</label>
-                                    <select class="form-control" id="DepartmentId" style="margin-top: 34px;">
-                                        @foreach (var itm in ViewBag.CompanyDepartment)
-                                        {
-                                            <option value='@itm.Value'>@itm.Text</option>
-                                        }
-                                    </select>
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group" style="height: 70px;">
+                                        <label for="exampleEmail" class="bmd-label-floating">Department *</label>
+                                        <select class="form-control" id="DepartmentId" style="margin-top: 34px;">
+                                            @foreach (var itm in ViewBag.CompanyDepartment)
+                                            {
+                                                <option value='@itm.Value'>@itm.Text</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group" style="height: 70px;">
+                                        <label for="exampleEmail" class="bmd-label-floating">Booking Type *</label>
+                                        <select class="form-control" id="BookingTypeId" style="margin-top: 34px;">
+                                            @foreach (var itm in ViewBag.BookingType)
+                                            {
+                                                <option value='@itm.Value'>@itm.Text</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group" style="height: 70px;">
+                                        <label for="exampleEmail" class="bmd-label-floating">Status *</label>
+                                        <select class="form-control" id="StatusId" style="margin-top: 34px;">
+                                            @foreach (var itm in ViewBag.BookingStatus)
+                                            {
+                                                <option value='@itm.Value'>@itm.Text</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group" style="margin: 0 !important;">
+                                        <label for="exampleEmail" class="bmd-label-floating">&nbsp;</label><br />
+                                        <button type="button" class="btn btn-fill btn-rose btn-sm" id="btnSubmit" onclick="return LoadBookingInfo()">Get Data</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group" style="height: 70px;">
-                                    <label for="exampleEmail" class="bmd-label-floating">Booking Type *</label>
-                                    <select class="form-control" id="BookingTypeId" style="margin-top: 34px;">
-                                        @foreach (var itm in ViewBag.BookingType)
-                                        {
-                                            <option value='@itm.Value'>@itm.Text</option>
-                                        }
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group" style="height: 70px;">
-                                    <label for="exampleEmail" class="bmd-label-floating">Status *</label>
-                                    <select class="form-control" id="StatusId" style="margin-top: 34px;">
-                                        @foreach (var itm in ViewBag.BookingStatus)
-                                        {
-                                            <option value='@itm.Value'>@itm.Text</option>
-                                        }
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group" style="margin: 0 !important;">
-                                    <label for="exampleEmail" class="bmd-label-floating">&nbsp;</label><br />
-                                    <button type="button" class="btn btn-fill btn-rose btn-sm" id="btnSubmit" onclick="return LoadBookingInfo()">Get Data</button>
-                                </div>
-                            </div>
-                        </div>
                         }
                         <hr />
                         <div class="table-responsive">
@@ -105,12 +106,14 @@
     function LoadBookingInfo() {
         try {
             // $("#ajax-progress-dialog").dialog("open");
+            var data = { 'intDepartmentId': $("#DepartmentId").val(), 'intBookingTypeId': $("#BookingTypeId").val(), 'intStatusPropId': $("#StatusId").val() };
+            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
             $.ajax({
                 url: '@Url.Action("BookingSearchViewGetByDepartmentBookinStatus", "Home")',
                 type: 'POST',
                 dataType: 'json',
                 async: true,
-                data: { 'intDepartmentId': $("#DepartmentId").val(), 'intBookingTypeId': $("#BookingTypeId").val(), 'intStatusPropId': $("#StatusId").val()},
+                data: dataWithAntiforgeryToken,
                 success: function (data) {                   
                     //  $("#ajax-progress-dialog").dialog("close");
                     if (data.StatusId != "99" && data.StatusId != "-99") {

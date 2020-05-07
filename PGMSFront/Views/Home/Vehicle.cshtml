@@ -26,6 +26,7 @@
 <div class="content">
     @using (Html.BeginForm(new { @class = "form-horizontal" }))
     {
+        @Html.AntiForgeryToken()
         <div class="container-fluid">
             <div class="row">
                 <div class="card">
@@ -155,7 +156,7 @@
             </tr>
         </table>
     }
-    </div>
+</div>
 <script>
     var VehCompId = 0;
     var VehicleList = '';
@@ -190,12 +191,14 @@
     function LoadVehicleInfo() {
         try {
             // $("#ajax-progress-dialog").dialog("open");
+            var data = {};
+            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
             $.ajax({
                 url: '@Url.Action("LoadVehicleInfo", "Home")',
                 type: 'POST',
                 dataType: 'json',
                 async: true,
-                data: {},
+                data: dataWithAntiforgeryToken,
                 success: function (data) {
 
                     //  $("#ajax-progress-dialog").dialog("close");
@@ -312,19 +315,25 @@
 
                 btnSave.hide();
                 //$("#ajax-progress-dialog").dialog("open");
+                var data = {'model': model};
+                var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                 $.ajax({
                     url: '@Url.Action("VehicleSave", "Home")',
                     type: 'POST',
                     dataType: 'json',
                     async: true,
-                    data: '{model: ' + JSON.stringify(model) + '}',
-                    contentType: "application/json; charset=utf-8",
+                    data: dataWithAntiforgeryToken,
+                    //contentType: "application/json; charset=utf-8",
                     success: function (data) {
 
                         // $("#ajax-progress-dialog").dialog("close");
                         if (data.StatusId != "99" && data.StatusId != "-99") {
                             VehicleList = data.VehicleList;
                             BindVehicleData(data.VehicleList);
+
+                            if (VehicleList.length > 0) {
+                                $("#btnNext").show();
+                            } 
                         }
                         btnSave.show();
                         alert(data.Status);
@@ -349,20 +358,30 @@
 
     ///////////////////////////// Load Vehicle Info  //////////////////////////////////////////////////////
     function VehicleDelete(varVehCompId) {
+
         try {
             // $("#ajax-progress-dialog").dialog("open");
+            var data = {'intVehCompId': varVehCompId };
+            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
             $.ajax({
                 url: '@Url.Action("VehicleDelete", "Home")',
                 type: 'POST',
                 dataType: 'json',
                 async: true,
-                data: { 'intVehCompId': varVehCompId},
+                data: dataWithAntiforgeryToken,
                 success: function (data) {
 
                     //  $("#ajax-progress-dialog").dialog("close");
                     if (data.StatusId != "99" && data.StatusId != "-99") {
                         VehicleList = data.VehicleList;
                         BindVehicleData(data.VehicleList);
+
+                        if (VehicleList.length > 0) {
+                            $("#btnNext").show();
+                        }
+                        else {
+                            $("#btnNext").hide();
+                        }
                     }
                     alert(data.Status);
                 },
