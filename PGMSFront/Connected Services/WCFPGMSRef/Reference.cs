@@ -876,6 +876,9 @@ namespace PGMSFront.WCFPGMSRef {
         private System.Nullable<int> StatusPropIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> TabStatusIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<decimal> TaxAmountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -897,10 +900,16 @@ namespace PGMSFront.WCFPGMSRef {
         private string ZZBookingTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZCreatedByField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> ZZStatusPropertyIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> ZZStatusWorkflowIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZUpdatedByField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> ZZWorkFlowIdField;
@@ -1293,6 +1302,19 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> TabStatusId {
+            get {
+                return this.TabStatusIdField;
+            }
+            set {
+                if ((this.TabStatusIdField.Equals(value) != true)) {
+                    this.TabStatusIdField = value;
+                    this.RaisePropertyChanged("TabStatusId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<decimal> TaxAmount {
             get {
                 return this.TaxAmountField;
@@ -1384,6 +1406,19 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZCreatedBy {
+            get {
+                return this.ZZCreatedByField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZCreatedByField, value) != true)) {
+                    this.ZZCreatedByField = value;
+                    this.RaisePropertyChanged("ZZCreatedBy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> ZZStatusPropertyId {
             get {
                 return this.ZZStatusPropertyIdField;
@@ -1405,6 +1440,19 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((this.ZZStatusWorkflowIdField.Equals(value) != true)) {
                     this.ZZStatusWorkflowIdField = value;
                     this.RaisePropertyChanged("ZZStatusWorkflowId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZUpdatedBy {
+            get {
+                return this.ZZUpdatedByField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZUpdatedByField, value) != true)) {
+                    this.ZZUpdatedByField = value;
+                    this.RaisePropertyChanged("ZZUpdatedBy");
                 }
             }
         }

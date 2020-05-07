@@ -532,7 +532,7 @@ namespace PGMSFront.Controllers
             returndbmlBooking objreturndbmlBooking = new returndbmlBooking();
 
             try
-            {
+            {                
                 model.BookingDate = DateTime.Now.Date;//objClassUserFunctions.ToDateTimeNotNull(model.ZZBookingDate);
                 model.BPId = 21;
                 model.CompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
@@ -544,6 +544,18 @@ namespace PGMSFront.Controllers
                 {
                     model.BookingNo = "Temp";
                 }
+
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+                    model.TabStatusId = objdbmlBooking.TabStatusId;
+                }
+                else
+                {
+                    model.TabStatusId = 0;
+                }
+
 
                 returndbmlBooking objreturndbmlBookingTemp = new returndbmlBooking();
                 ObservableCollection<dbmlBookingView> objdbmlBookingList = new ObservableCollection<dbmlBookingView>();
@@ -656,7 +668,7 @@ namespace PGMSFront.Controllers
                 model.UserCode = Convert.ToString(Session["UserCode"]);
                 model.StatusPropId = 0;
                 ViewBag.VehicleType = GetVehicleType();
-
+               
                 if (Session["objdbmlBooking"] != null)
                 {
                     dbmlBookingView objdbmlBooking = new dbmlBookingView();
@@ -667,7 +679,16 @@ namespace PGMSFront.Controllers
                     model.DocType = objdbmlBooking.ZZBookingType;
                     model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
                     model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
-                }               
+
+                    //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 10)
+                    //{
+                    //    return RedirectToActionByStatusId(Convert.ToInt32(objdbmlBooking.TabStatusId));
+                    //}
+                }
+                else
+                {
+                    return RedirectToAction("Basic", "Home");
+                }                
             }
             catch
             {
@@ -920,6 +941,15 @@ namespace PGMSFront.Controllers
                     model.DocType = objdbmlBooking.ZZBookingType;
                     model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
                     model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+
+                    //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 20)
+                    //{
+                    //    return RedirectToActionByStatusId(Convert.ToInt32(objdbmlBooking.TabStatusId));
+                    //}
+                }
+                else
+                {
+                    return RedirectToAction("Basic", "Home");
                 }
             }
             catch
@@ -959,6 +989,15 @@ namespace PGMSFront.Controllers
                     model.DocType = objdbmlBooking.ZZBookingType;
                     model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
                     model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+
+                    //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 30)
+                    //{
+                    //    return RedirectToActionByStatusId(Convert.ToInt32(objdbmlBooking.TabStatusId));
+                    //}
+                }
+                else
+                {
+                    return RedirectToAction("Basic", "Home");
                 }
             }
             catch
@@ -1007,6 +1046,15 @@ namespace PGMSFront.Controllers
                     model.DocType = objdbmlBooking.ZZBookingType;
                     model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
                     model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+
+                    //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 40)
+                    //{
+                    //    return RedirectToActionByStatusId(Convert.ToInt32(objdbmlBooking.TabStatusId));
+                    //}
+                }
+                else
+                {
+                    return RedirectToAction("Basic", "Home");
                 }
 
             }
@@ -1475,6 +1523,20 @@ namespace PGMSFront.Controllers
         #endregion
 
         #region Common
+        public ActionResult RedirectToActionByStatusId(int intTabStatusId)
+        {
+            int intBPId = Convert.ToInt32(Session["BPId"]);
+            switch (intTabStatusId)
+            {
+                case 0: return RedirectToAction("Basic", "Home");               
+                case 10: return RedirectToAction("Vehicle", "Home");                      
+                case 20: return RedirectToAction("Driver", "Home");
+                case 30: return RedirectToAction("Attenee", "Home");
+                case 40: return RedirectToAction("MainTrackBooking", "Home");
+               
+                default: return RedirectToAction("Basic", "Home");
+            }
+        }
         protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding, JsonRequestBehavior behavior)
         {
             return new JsonResult()

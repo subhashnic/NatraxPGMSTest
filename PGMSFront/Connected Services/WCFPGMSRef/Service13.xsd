@@ -95,6 +95,7 @@
       <xs:element minOccurs="0" name="RFQId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StatusPropId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TabStatusId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="TaxAmount" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="TaxableAmount" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="TotalAmount" nillable="true" type="xs:decimal" />
@@ -102,8 +103,10 @@
       <xs:element minOccurs="0" name="UpdateId" type="xs:int" />
       <xs:element minOccurs="0" name="ZZBookingDate" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZBookingType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZCreatedBy" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZStatusPropertyId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ZZStatusWorkflowId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ZZUpdatedBy" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZWorkFlowId" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
