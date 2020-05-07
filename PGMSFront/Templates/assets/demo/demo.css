@@ -175,9 +175,9 @@ tr.highlighted td {
     margin-bottom: 0 !important;
 }
 
-.table .form-check .form-check-sign {
-    top: 0px !important;
-}
+    .table .form-check .form-check-sign {
+        top: 0px !important;
+    }
 
 .form-control {
     height: 26px !important;
@@ -202,7 +202,7 @@ tr.highlighted td {
     /*border-top: 1px solid #9c27b0;*/
 }
 
-.xdsoft_datetimepicker .xdsoft_noselect .xdsoft_dark{
+.xdsoft_datetimepicker .xdsoft_noselect .xdsoft_dark {
     left: 370px !important;
 }
 
@@ -224,15 +224,15 @@ tr.highlighted td {
 }
 /* Scroll bar css */
 
-.active {
+/*.active {
     background: #555;
-}
+}*/
 
 .owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev, .owl-carousel button.owl-dot {
     font-size: 30px !important;
 }
 
-.owl-dots{
+.owl-dots {
     display: none !important;
 }
 
@@ -241,8 +241,8 @@ tr.highlighted td {
     border: 1px solid #dee2e6 !important;
 }
 
-.item{
-   background: #FFF !important;
+.item {
+    background: #FFF !important;
 }
 
 .owl-carousel .owl-dots, .owl-theme .owl-nav {
@@ -363,3 +363,12 @@ a, a:active {
         .arrow-steps .step.current:after {
             border-left: 17px solid #ec407a;
         }
+
+.table .td-actions .btn {
+    margin: 0px;
+    padding: 0px;
+}
+
+.card .form-check {
+    margin-top: 3px;
+}
