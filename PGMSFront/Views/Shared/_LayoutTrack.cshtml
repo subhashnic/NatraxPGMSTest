@@ -80,7 +80,13 @@
                             <p> Attendee </p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
+                        <a class="nav-link" id="BasicLI" href="@Url.Action("MainTrackBooking", "Home")">
+                            <i class="material-icons">emoji_transportation</i>
+                            <p> Tracks </p>
+                        </a>
+                    </li>
+                    @*<li class="nav-item ">
                         <a class="nav-link collapsed" data-toggle="collapse" href="#Tracks" aria-expanded="false">
                             <i class="material-icons">emoji_transportation</i>
                             <p>
@@ -132,31 +138,6 @@
                                         <p> T5 Fatigue Structure </p>
                                     </a>
                                 </li>
-                                @*<li class="nav-item">
-                        <a class="nav-link collapsed" data-toggle="collapse" href="#FatigueTrack" aria-expanded="false">
-                            <i class="material-icons">data_usage</i>
-                            <p>
-                                Fatigue Track
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse" id="FatigueTrack" style="">
-                            <ul class="nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="@Url.Action("FatigueSurface", "Home")">
-                                        <i class="material-icons">&nbsp;</i>
-                                        <p> Fatigue Surface </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="@Url.Action("FatigueStructure", "Home")">
-                                        <i class="material-icons">&nbsp;</i>
-                                        <p> Fatigue Structure </p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>*@
                                 <li class="nav-item">
                                     <a class="nav-link" href="@Url.Action("GravelandOffRoad", "Home")">
                                         <i class="material-icons">data_usage</i>
@@ -213,7 +194,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li>*@
 
                     <li class="nav-item ">
                         <a class="nav-link collapsed" data-toggle="collapse" href="#Labs" aria-expanded="false">
