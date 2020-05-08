@@ -19,7 +19,7 @@
         margin-top: 16px !important;
     }
 
-    a > i{
+    a > i {
         color: #FFF;
     }
 
@@ -36,8 +36,8 @@
                 <div class="card">
                     <div class="card-header card-header-rose card-header-icon">
                         @*<div class="card-icon">
-                            <i class="material-icons">assignment</i>
-                        </div>*@
+                                <i class="material-icons">assignment</i>
+                            </div>*@
                         <h6 class="card-title" style="margin-top: 5px;">
                             <strong><span>Date:</span></strong>&nbsp;<span id="BookingDate">@Model.DocDate</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <strong><span>Document Type:</span></strong>&nbsp;<span id="BookingType">@Model.DocType</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -135,9 +135,9 @@
                                                     <a type='button' class='btn btn-danger' onclick="AddMoreCancel()"><i class='material-icons'>close</i></a>
                                                 </td>
                                                 @*<td class="text-center">
-                                    <a href="#" class="btn btn-link btn-info btn-just-icon remove" onclick="return VehicleSave()" id="btnSave"><i class="material-icons">save</i></a>
-                                    <a href="#" class="btn btn-link btn-danger btn-just-icon remove" onclick="AddMoreCancel()"><i class="material-icons">close</i></a>
-                                </td>*@
+                                                        <a href="#" class="btn btn-link btn-info btn-just-icon remove" onclick="return VehicleSave()" id="btnSave"><i class="material-icons">save</i></a>
+                                                        <a href="#" class="btn btn-link btn-danger btn-just-icon remove" onclick="AddMoreCancel()"><i class="material-icons">close</i></a>
+                                                    </td>*@
                                             </tr>
                                         </tbody>
                                     </table>
@@ -147,10 +147,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 @*<input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
-                <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm pull-right" />*@
+                                    <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm pull-right" />*@
                             </div>
                         </div>
-                        <br />                      
+                        <br />
                         <table Style="width:100%">
                             <tr>
                                 <td Style="width:50%;text-align:left">
@@ -167,12 +167,12 @@
                     @Html.HiddenFor(m => m.ZZCompanyId, new { id = "ZZCompanyId", style = "width:0px;" })
                     @Html.HiddenFor(m => m.StatusPropId, new { id = "StatusPropId", style = "width:0px;" })
 
-                    
+
                 </div>
 
             </div>
         </div>
-        
+
     }
 </div>
 <script>
@@ -185,7 +185,7 @@
             $(this).show();
         });
         $("#AddMoreTR").find("input[type='text'][id='RegistrationNo']").each(function () {
-            $(this).val("");           
+            $(this).val("");
         });
         //$("#AddMoreTR").find("select[id='VehicleType']").each(function () {
         //    $(this).val("");
@@ -208,7 +208,7 @@
     ///////////////////////////// Load Vehicle Info  //////////////////////////////////////////////////////
     function LoadVehicleInfo() {
         try {
-            // $("#ajax-progress-dialog").dialog("open");
+            LoaderShow();
             var data = {};
             var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
             $.ajax({
@@ -219,25 +219,25 @@
                 data: dataWithAntiforgeryToken,
                 success: function (data) {
 
-                    //  $("#ajax-progress-dialog").dialog("close");
+                    LoaderHide();
                     if (data.StatusId != "99" && data.StatusId != "-99") {
                         VehicleList = data.VehicleList;
                         BindVehicleData(data.VehicleList);
                         if (VehicleList.length > 0) {
                             $("#btnNext").show();
-                        }  
+                        }
                     }
                 },
                 error: function (xhr) {
 
-                    // $("#ajax-progress-dialog").dialog("close");
+                    LoaderHide();
                     alert(xhr.responseText);
                 }
             });
         }
         catch (e) {
 
-            // $("#ajax-progress-dialog").dialog("close");
+            LoaderHide();
             alert(e.message);
             //  return false;
         }
@@ -258,7 +258,7 @@
                     $(this).show();
                 });
                 $("#AddMoreTR").find("input[type='text'][id='RegistrationNo']").each(function () {
-                    $(this).val(NullHandle(varVehicle[0].VorC));                   
+                    $(this).val(NullHandle(varVehicle[0].VorC));
                 });
                 $("#AddMoreTR").find("select[id='VehicleType']").each(function () {
                     $(this).val(NullHandle(varVehicle[0].TypeId));
@@ -332,7 +332,7 @@
             else {
 
                 btnSave.hide();
-                //$("#ajax-progress-dialog").dialog("open");
+                LoaderShow();
                 var data = {'model': model};
                 var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                 $.ajax({
@@ -344,14 +344,14 @@
                     //contentType: "application/json; charset=utf-8",
                     success: function (data) {
 
-                        // $("#ajax-progress-dialog").dialog("close");
+                        LoaderHide();
                         if (data.StatusId != "99" && data.StatusId != "-99") {
                             VehicleList = data.VehicleList;
                             BindVehicleData(data.VehicleList);
 
                             if (VehicleList.length > 0) {
                                 $("#btnNext").show();
-                            } 
+                            }
                         }
                         btnSave.show();
                         alert(data.Status);
@@ -359,15 +359,14 @@
                     error: function (xhr) {
 
                         btnSave.show();
-                        // $("#ajax-progress-dialog").dialog("close");
+                        LoaderHide();
                         alert(xhr.responseText);
                     }
                 });
             }
         }
         catch (e) {
-
-            //$("#ajax-progress-dialog").dialog("close");
+            LoaderHide();
             btnSave.show();
             alert(e.message);
             return false;
@@ -378,48 +377,68 @@
     function VehicleDelete(varVehCompId) {
 
         try {
-            // $("#ajax-progress-dialog").dialog("open");
-            var data = {'intVehCompId': varVehCompId };
-            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
-            $.ajax({
-                url: '@Url.Action("VehicleDelete", "Home")',
-                type: 'POST',
-                dataType: 'json',
-                async: true,
-                data: dataWithAntiforgeryToken,
-                success: function (data) {
+            $.confirm({
+                title: 'Confirm Alert!',
+                content: "Are you sure want to delete?",
+                icon: 'fa fa-question',
+                closeIcon: true,
+                animation: 'scale',
+                type: 'orange',
+                escapeKey: 'cancel',
+                buttons: {
+                    MyFunction: {
+                        text: 'OK',
+                        action: function () {
+                            LoaderShow();
+                            var data = { 'intVehCompId': varVehCompId };
+                            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+                            $.ajax({
+                                url: '@Url.Action("VehicleDelete", "Home")',
+                                type: 'POST',
+                                dataType: 'json',
+                                async: true,
+                                data: dataWithAntiforgeryToken,
+                                success: function (data) {
 
-                    //  $("#ajax-progress-dialog").dialog("close");
-                    if (data.StatusId != "99" && data.StatusId != "-99") {
-                        VehicleList = data.VehicleList;
-                        BindVehicleData(data.VehicleList);
+                                    LoaderHide();
+                                    if (data.StatusId != "99" && data.StatusId != "-99") {
+                                        VehicleList = data.VehicleList;
+                                        BindVehicleData(data.VehicleList);
 
-                        if (VehicleList.length > 0) {
-                            $("#btnNext").show();
+                                        if (VehicleList.length > 0) {
+                                            $("#btnNext").show();
+                                        }
+                                        else {
+                                            $("#btnNext").hide();
+                                        }
+                                    }
+                                    alert(data.Status);
+                                },
+                                error: function (xhr) {
+
+                                    LoaderHide();
+                                    alert(xhr.responseText);
+                                }
+                            });
+
                         }
-                        else {
-                            $("#btnNext").hide();
-                        }
+                    },
+                    cancel: function () {
                     }
-                    alert(data.Status);
-                },
-                error: function (xhr) {
-
-                    // $("#ajax-progress-dialog").dialog("close");
-                    alert(xhr.responseText);
                 }
             });
+
         }
         catch (e) {
 
-            // $("#ajax-progress-dialog").dialog("close");
+            LoaderHide();
             alert(e.message);
             //  return false;
         }
     }
     ///////////////////////////// Bind Basic Info  //////////////////////////////////////////////////////
     function BindVehicleData(data) {
-        try {           
+        try {
             var gridData = "";
             var StatusPropId = $("#StatusPropId").val();
             //var row = $('#tbodyVehicle').find('tr:eq(0)');

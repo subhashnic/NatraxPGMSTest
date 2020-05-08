@@ -139,10 +139,11 @@
                                             <th class="text-center" width="10%">From Date</th>
                                             <th class="text-center" width="10%">To Date</th>
                                             <th class="text-center" width="8%">Test Days</th>
-                                            <th class="text-center" width="8%">Usage Hour</th>
-                                            <th class="text-center" width="8%">Rounded</th>
-                                            <th class="text-center" width="8%">Bill Hour</th>
-                                            <th class="text-right" width="10%">Amount</th>
+                                            <th class="text-center" width="8%">Usage Hours</th>
+                                            <th class="text-center" width="8%">Usage Minutes</th>
+                                            <th class="text-center" width="8%">Bill Hours</th>
+                                            @*<th class="text-center" width="8%">Bill Hour</th>
+                                            <th class="text-right" width="10%">Amount</th>*@
                                         </tr>
                                     </thead>
                                     <tbody id="tbodyVehicle">
@@ -268,7 +269,7 @@
                                     <table class="table table-bordered table-striped">
                                         <thead class=" text-primary">
                                             <tr>
-                                                <th class="text-center" width="5%">#</th>
+                                                <th class="text-center" width="3%">#</th>
                                                 <th width="10%">Vehicle No.</th>
                                                 <th class="text-center" width="10%">Date</th>
                                                 <th width="15%">Track</th>
@@ -281,7 +282,7 @@
                                                 <th class="text-center" width="8%">Round Hours</th>
                                                 @*<th class="text-center" width="5%">Bill Hours.</th>
                                                     <th class="text-right" width="10%">Amount</th>*@
-                                                <th class="text-center" width="5%">#</th>
+                                                <th class="text-center" width="3%">#</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbodyServiceDetails"></tbody>
@@ -294,6 +295,7 @@
                                 <br />
                                 @using (Html.BeginForm(new { @class = "form-horizontal" }))
                                 {
+                                    @Html.AntiForgeryToken()
                                     <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
                                 }
                             </div>
@@ -398,17 +400,18 @@
                 ColourRowId = -1;
                 Holdid = '';
 
-
-                // $("#ajax-progress-dialog").dialog("open");
+                var data = { 'intTrackGroupId': varTrackGroupId };
+                var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+                LoaderShow();
                 $.ajax({
                     url: '@Url.Action("LoadTrackInfo", "Home")',
                     type: 'POST',
                     dataType: 'json',
                     async: true,
-                    data: { 'intTrackGroupId': varTrackGroupId },
+                    data: dataWithAntiforgeryToken,
                     success: function (data) {
-                        debugger;
-                        //  $("#ajax-progress-dialog").dialog("close");
+                       
+                        LoaderHide();
                         if (data.StatusId != "99" && data.StatusId != "-99") {
                             ServicesList = data.ServicesList;
                             ServiceCategoryList = data.ServiceCategoryList;
@@ -423,7 +426,7 @@
                     },
                     error: function (xhr) {
                         LoaderHide();
-                        // $("#ajax-progress-dialog").dialog("close");
+                        LoaderHide();
                         alert(xhr.responseText);
                     }
                 });
@@ -431,7 +434,7 @@
         }
         catch (e) {
 
-            // $("#ajax-progress-dialog").dialog("close");
+            LoaderHide();
             alert(e.message);
             //  return false;
         }
@@ -457,10 +460,12 @@
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].UsagesHrs) + "</td>";
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].UsagesMinute) + "</td>";
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].BillingHrs) + "</td>";
-                gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].Amount) + "</td>";
+                //gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].BillingHrs) + "</td>";
+                //gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].Amount) + "</td>";
                 gridData = gridData + "<td style='display:none'><input type='hidden' id='hdnVehicleId' value=" + NullHandle(data[i].VehicleId) + " /><input type='hidden' id='hdnRowId' value=" + NullHandle(indx) + " /> </td>";
 
                 gridData = gridData + "</tr>";
+
             }
 
             $("#tbodyVehicle").html(gridData);
@@ -690,18 +695,19 @@
                     varServiceList[i]=NullHandle(data[i].ServiceId);
                 }
 
-
-            // $("#ajax-progress-dialog").dialog("open");
+                var data = { 'intlstServiceId': varServiceList, 'intTimeSlotId': parseInt(varTimeSlotId), 'strWED': varDate };
+                var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+            LoaderShow();
             $.ajax({
                 url: '@Url.Action("BookingStatusGetByServiceIdTimeSlotPropIdWEFDate", "Home")',
                 type: 'POST',
                 dataType: 'json',
                 async: true,
-                data: {'intlstServiceId':varServiceList , 'intTimeSlotId':  parseInt(varTimeSlotId),  'strWED': varDate},
+                data: dataWithAntiforgeryToken,
                // contentType: "application/json; charset=utf-8",
                 success: function (dataBokkingStatus) {
 
-                    //  $("#ajax-progress-dialog").dialog("close");
+                    LoaderHide();
                     if (dataBokkingStatus.StatusId != "99" && dataBokkingStatus.StatusId != "-99") {
                         var varBookingStatusList = dataBokkingStatus.BookingStatusList;
 
@@ -761,14 +767,14 @@
                 },
                 error: function (xhr) {
 
-                    // $("#ajax-progress-dialog").dialog("close");
+                    LoaderHide();
                     alert(xhr.responseText);
                 }
             });
             }
         }
         catch (e) {
-
+            LoaderHide();
         }
 
     }
@@ -849,17 +855,20 @@
             else {
 
                 $("#btnSave").hide();
-                //$("#ajax-progress-dialog").dialog("open");
+                LoaderShow();
+                //'{model: ' + JSON.stringify(model) + '}'
+                var data = { 'model': model };
+                var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                 $.ajax({
                     url: '@Url.Action("TrackBookingDetailSave", "Home")',
                     type: 'POST',
                     dataType: 'json',
                     async: true,
-                    data: '{model: ' + JSON.stringify(model) + '}',
-                    contentType: "application/json; charset=utf-8",
+                    data: dataWithAntiforgeryToken,
+                    //contentType: "application/json; charset=utf-8",
                     success: function (data) {
 
-                        // $("#ajax-progress-dialog").dialog("close");
+                        LoaderHide();
                         if (data.StatusId != "99" && data.StatusId != "-99") {
 
                             TrackBookingDetailList = data.TrackBookingDetailList;
@@ -875,7 +884,7 @@
                     error: function (xhr) {
 
                         $("#btnSave").show();
-                        // $("#ajax-progress-dialog").dialog("close");
+                        LoaderHide();
                         alert(xhr.responseText);
                     }
                 });
@@ -883,7 +892,7 @@
         }
         catch (e) {
 
-            //$("#ajax-progress-dialog").dialog("close");
+            LoaderHide();
             $("#btnSave").show();
             alert(e.message);
             return false;
@@ -907,7 +916,7 @@
 
             for (var i = 0; i < data.length; i++) {
                 gridData = gridData + "<tr>";
-                gridData = gridData + "<td class='td-actions text-center'><a href='#' class='btn btn-info' title='Edit Track Details' onclick='return TrackBookingDetailEdit(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].ZZDate) + '"' + "," + NullHandle(data[i].ZZCategoryId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>edit</i></a></td>";
+                gridData = gridData + "<td class='td-actions text-center'><button type='button' class='btn btn-info' title='Edit Track Details' onclick='return TrackBookingDetailEdit(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].ZZDate) + '"' + "," + NullHandle(data[i].ZZCategoryId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>edit</i></button></td>";
                 gridData = gridData + "<td>" + NullHandle(data[i].VehicleNo) + "</td>";
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZDate) + "</td>";
                 gridData = gridData + "<td>" + NullHandle(data[i].ZZServiceSpecification) + "</td>";
@@ -1032,7 +1041,7 @@
             }
 
             $("#tbodyTrack").html(gridData);
-
+            BindBookingStatus();
         }
         catch (e) {
 
@@ -1043,35 +1052,58 @@
     ///////////////////////////// Track Detail Delete  //////////////////////////////////////////////////////
     function TrackBookingDetailDelete(varVehicleId, varDate, varServiceId, varTimeSlotId, varTrackGroupId) {
         try {
-            $.ajax({
-                url: '@Url.Action("TrackBookingDetailDelete", "Home")',
-                type: 'POST',
-                dataType: 'json',
-                async: true,
-                data: { 'intVehicleId': varVehicleId, 'strDate': varDate, 'intServiceId': varServiceId, 'intTimeSlotId': varTimeSlotId, 'intTrackGroupId': varTrackGroupId},
-                success: function (data) {
+            $.confirm({
+                title: 'Confirm Alert!',
+                content: "Are you sure want to delete?",
+                icon: 'fa fa-question',
+                closeIcon: true,
+                animation: 'scale',
+                type: 'orange',
+                escapeKey: 'cancel',
+                buttons: {
+                    MyFunction: {
+                        text: 'OK',
+                        action: function () {
+                            LoaderShow();
+                            var data = { 'intVehicleId': varVehicleId, 'strDate': varDate, 'intServiceId': varServiceId, 'intTimeSlotId': varTimeSlotId, 'intTrackGroupId': varTrackGroupId };
+                            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+                            $.ajax({
+                                url: '@Url.Action("TrackBookingDetailDelete", "Home")',
+                                type: 'POST',
+                                dataType: 'json',
+                                async: true,
+                                data: dataWithAntiforgeryToken,
+                                success: function (data) {
 
-                    //  $("#ajax-progress-dialog").dialog("close");
-                    if (data.StatusId != "99" && data.StatusId != "-99") {
-                        TrackBookingDetailList = data.TrackBookingDetailList;
-                        TrackBookingTimeDetailList = data.TrackBookingTimeDetailList;
+                                    LoaderHide();
+                                    if (data.StatusId != "99" && data.StatusId != "-99") {
+                                        TrackBookingDetailList = data.TrackBookingDetailList;
+                                        TrackBookingTimeDetailList = data.TrackBookingTimeDetailList;
 
-                        BindVehicleData(data.TrackBookingDetailList);
-                        BindServiceTimeDetails(VehicleId);
-                        ChangeRowColour(ColourRowId);
+                                        BindVehicleData(data.TrackBookingDetailList);
+                                        BindServiceTimeDetails(VehicleId);
+                                        ChangeRowColour(ColourRowId);
+                                    }
+                                    alert(data.Status);
+                                },
+                                error: function (xhr) {
+
+                                    LoaderHide();
+                                    alert(xhr.responseText);
+                                }
+                            });
+
+                        }
+                    },
+                    cancel: function () {
                     }
-                    alert(data.Status);
-                },
-                error: function (xhr) {
-
-                    // $("#ajax-progress-dialog").dialog("close");
-                    alert(xhr.responseText);
                 }
             });
+
         }
         catch (e) {
 
-            // $("#ajax-progress-dialog").dialog("close");
+            LoaderHide();
             alert(e.message);
             //  return false;
         }
@@ -1340,7 +1372,7 @@
                 }
 
 
-            // $("#ajax-progress-dialog").dialog("open");
+            LoaderShow();
             $.ajax({
                 url: '@Url.Action("BookingStatusGetByServiceIdTimeSlotPropIdWEFDate", "Home")',
                 type: 'POST',
@@ -1350,7 +1382,7 @@
                // contentType: "application/json; charset=utf-8",
                 success: function (dataBokkingStatus) {
 
-                    //  $("#ajax-progress-dialog").dialog("close");
+                    LoaderHide();
                     if (dataBokkingStatus.StatusId != "99" && dataBokkingStatus.StatusId != "-99") {
                         var varBookingStatusList = dataBokkingStatus.BookingStatusList;
                         ////////////////////// Binding Data Start /////////////////////////////////////////////////////
@@ -1433,7 +1465,7 @@
                 },
                 error: function (xhr) {
 
-                    // $("#ajax-progress-dialog").dialog("close");
+                    LoaderHide();
                     alert(xhr.responseText);
                 }
             });
