@@ -202,7 +202,7 @@
     ///////////////////////////// Load Basic Info  //////////////////////////////////////////////////////
     function LoadBasicInfo() {
         try {
-            // $("#ajax-progress-dialog").dialog("open");
+            LoaderShow();
             var data = {};
             var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
             $.ajax({
@@ -213,7 +213,7 @@
                 data: dataWithAntiforgeryToken,
                 success: function (data) {
 
-                    //  $("#ajax-progress-dialog").dialog("close");
+                    LoaderHide();
                     if (data.StatusId != "99" && data.StatusId != "-99") {
                         BookingList = data.BookingList;
                         BindBasicData(data.BookingList[0]);
@@ -224,14 +224,14 @@
                 },
                 error: function (xhr) {
 
-                    // $("#ajax-progress-dialog").dialog("close");
+                    LoaderHide();
                     alert(xhr.responseText);
                 }
             });
         }
         catch (e) {
 
-            // $("#ajax-progress-dialog").dialog("close");
+            LoaderHide();
             alert(e.message);
             //  return false;
         }
@@ -303,8 +303,7 @@
 
 
                 $("#btnSubmit").hide();
-                //$("#ajax-progress-dialog").dialog("open");
-               // LoaderShow();
+                LoaderShow();             
                 var data = {'model': model};
                 var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                 $.ajax({
@@ -315,8 +314,7 @@
                     data: dataWithAntiforgeryToken,
                     //contentType: "application/json; charset=utf-8",
                     success: function (data) {
-                       //  $("#ajax-progress-dialog").dialog("close");
-                       // LoaderHide();
+                       LoaderHide();                      
                         if (data.StatusId != "99" && data.StatusId != "-99") {
                             BookingList = data.BookingList;
                             BindBasicData(data.BookingList[0]);
@@ -331,8 +329,7 @@
                     error: function (xhr) {
 
                         $("#btnSubmit").show();
-                        // $("#ajax-progress-dialog").dialog("close");
-                     //   LoaderHide();
+                        LoaderHide();                    
                         alert(xhr.responseText);
                     }
                 });
@@ -341,8 +338,7 @@
         }
         catch (e) {
 
-            //$("#ajax-progress-dialog").dialog("close");
-           // LoaderHide();
+            LoaderHide();          
             $("#btnSubmit").show();
             alert(e.message);
             return false;
@@ -448,7 +444,7 @@
 
     //var focusables = $(":input").not('[type="image"]');
     //$("input").bind("keydown", function (event) {
-    //    
+        
     //    var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
     //    if (keyCode == 10 || keyCode == 13) {
     //        event.stopPropagation();

@@ -102,7 +102,7 @@
     ///////////////////////////// Load Basic Info  //////////////////////////////////////////////////////
     function LoadBookingInfo() {
         try {
-            // $("#ajax-progress-dialog").dialog("open");
+            LoaderShow();
             var data = { 'intDepartmentId': $("#DepartmentId").val(), 'intBookingTypeId': $("#BookingTypeId").val(), 'intStatusPropId': $("#StatusId").val() };
             var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
             $.ajax({
@@ -112,7 +112,7 @@
                 async: true,
                 data: dataWithAntiforgeryToken,
                 success: function (data) {                   
-                    //  $("#ajax-progress-dialog").dialog("close");
+                    LoaderHide();
                     if (data.StatusId != "99" && data.StatusId != "-99") {
                         BookingList = data.BookingList;
                         BindGridData(data.BookingList);
@@ -120,14 +120,14 @@
                 },
                 error: function (xhr) {
 
-                    // $("#ajax-progress-dialog").dialog("close");
+                    LoaderHide();
                     alert(xhr.responseText);
                 }
             });
         }
         catch (e) {
 
-            // $("#ajax-progress-dialog").dialog("close");
+            LoaderHide();
             alert(e.message);
             //  return false;
         }
