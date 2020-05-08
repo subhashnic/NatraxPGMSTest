@@ -4,8 +4,7 @@
     <meta charset="utf-8" />
     @Scripts.Render("~/bundles/MyScripts")
     <link href="~/Templates/Alert/jquery-confirm.min.css" rel="stylesheet" />
-    <link rel="apple-touch-icon" sizes="76x76" href="~/Templates/assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="~/Templates/assets/img/favicon.png">
+    <link rel="icon" href="~/Templates/img/favicon.png" type="image/png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>@ViewBag.Title</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
@@ -34,6 +33,11 @@
     </style>
 </head>
 <body class="">
+    <div class="ntx-loader" style="display: none;">
+        <div class="ntx-loader-box">
+            <img src="~/Templates/img/loader.gif" alt="natrax_loader">
+        </div>
+    </div>
     <div class="wrapper ">
         <div class="sidebar" data-color="rose" data-background-color="black" data-image="~/Templates/assets/img/sidebar-1.jpg">
             <div class="logo"> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-mini"> </a> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-normal"> NATRAX </a> </div>
@@ -143,29 +147,29 @@
 
 
                     @*<li class="nav-item ">
-            <a class="nav-link" href="">
-                <i class="material-icons">apps</i>
-                <p>
-                    Booking Summary
-                </p>
-            </a>
-        </li>
-        <li class="nav-item ">
-            <a class="nav-link" href="">
-                <i class="material-icons">content_paste</i>
-                <p>
-                    Services Summary
-                </p>
-            </a>
-        </li>
-        <li class="nav-item ">
-            <a class="nav-link" href="#">
-                <i class="material-icons">grid_on</i>
-                <p>
-                    Client Informations
-                </p>
-            </a>
-        </li>*@
+                            <a class="nav-link" href="">
+                                <i class="material-icons">apps</i>
+                                <p>
+                                    Booking Summary
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="">
+                                <i class="material-icons">content_paste</i>
+                                <p>
+                                    Services Summary
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">
+                                <i class="material-icons">grid_on</i>
+                                <p>
+                                    Client Informations
+                                </p>
+                            </a>
+                        </li>*@
                     <li class="nav-item ">
                         <a class="nav-link" href="https://www.accuweather.com/en/in/pithampur/2999688/hourly-weather-forecast/2999688" target="_blank">
                             <i class="material-icons">filter_drama</i>
@@ -173,11 +177,11 @@
                         </a>
                     </li>
                     @*<li class="nav-item ">
-                        <a class="nav-link" href="javascript:void(0)">
-                            <i class="material-icons">folder</i>
-                            <p>Invoice Details </p>
-                        </a>
-                    </li>*@
+                            <a class="nav-link" href="javascript:void(0)">
+                                <i class="material-icons">folder</i>
+                                <p>Invoice Details </p>
+                            </a>
+                        </li>*@
                 </ul>
             </div>
         </div>
@@ -187,22 +191,22 @@
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
                         @*<div class="navbar-minimize">
-                            <button id="minimizeSidebar" class="btn btn-just-icon btn-white btn-fab btn-round"> <i class="material-icons text_align-center visible-on-sidebar-regular">more_vert</i> <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i> </button>
-                        </div>*@
+                                <button id="minimizeSidebar" class="btn btn-just-icon btn-white btn-fab btn-round"> <i class="material-icons text_align-center visible-on-sidebar-regular">more_vert</i> <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i> </button>
+                            </div>*@
                         @{ var actionName = this.ViewContext.RouteData.Values["action"].ToString(); }
                         <a class="navbar-brand" href="#pablo">@ViewBag.Title</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="navbar-toggler-icon icon-bar"></span> <span class="navbar-toggler-icon icon-bar"></span> <span class="navbar-toggler-icon icon-bar"></span> </button>
                     <div class="collapse navbar-collapse justify-content-end">
                         @*<form class="navbar-form">
-                            <div class="input-group no-border">
-                                <input type="text" value="" class="form-control" placeholder="Search...">
-                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                    <i class="material-icons">search</i>
-                                    <div class="ripple-container"></div>
-                                </button>
-                            </div>
-                        </form>*@
+                                <div class="input-group no-border">
+                                    <input type="text" value="" class="form-control" placeholder="Search...">
+                                    <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                        <i class="material-icons">search</i>
+                                        <div class="ripple-container"></div>
+                                    </button>
+                                </div>
+                            </form>*@
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -307,7 +311,7 @@
             </div>
         </div>*@
     <!--   Core JS Files   -->
-   
+
     <script src="~/Templates/assets/js/core/popper.min.js"></script>
     <script src="~/Templates/assets/js/core/bootstrap-material-design.min.js"></script>
     @*<script src="~/Templates/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>*@
@@ -351,6 +355,13 @@
     <script src="~/Templates/assets/demo/demo.js"></script>
     <script src="~/Templates/assets/owl/owl.carousel.js"></script>
     <script>
+        document.onreadystatechange = function () {
+            if (document.readyState !== "complete") {
+                $(".ntx-loader").show();
+            } else {
+                $(".ntx-loader").hide();
+            }
+        };
         $(document).ready(function () {
             $().ready(function () {
                 var owl = $('.owl-carousel');
@@ -371,11 +382,11 @@
                     }
                 });
 
-                
+
                 $('#AddMoreCancel').click(function () {
                     $("#AddMoreTR").hide();
                 });
-                
+
 
                 $sidebar = $('.sidebar');
 

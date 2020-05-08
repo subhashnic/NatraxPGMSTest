@@ -545,7 +545,7 @@ button:focus {
     position: relative;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(http://183.182.84.210/PGMS/Templates/img/Natrax/MainImage.png) no-repeat scroll center;*/
     z-index: 1;
-    background-image: url(../Tracks/Natrax.jpg) !important;
+    background-image: url(../img/Natrax-Overall-Track-Pics2.jpg) !important;
     min-height: 550px;
     background-repeat: no-repeat !important;
     background-size: cover !important;

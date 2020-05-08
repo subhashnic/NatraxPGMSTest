@@ -345,9 +345,12 @@
     <Content Include="Templates\img\dpmt\icon5.png" />
     <Content Include="Templates\img\dpmt\icon6.png" />
     <Content Include="Templates\img\dpmt\icon7.png" />
+    <Content Include="Templates\img\favicon.png" />
     <Content Include="Templates\img\features-bg1.jpg" />
+    <Content Include="Templates\img\loader.gif" />
     <Content Include="Templates\img\logo.png" />
     <Content Include="Templates\img\map-bg.png" />
+    <Content Include="Templates\img\Natrax-Overall-Track-Pics2.jpg" />
     <Content Include="Templates\img\pdfIcon.png" />
     <Content Include="Templates\img\quote.png" />
     <Content Include="Templates\img\Untitled-1.png" />
