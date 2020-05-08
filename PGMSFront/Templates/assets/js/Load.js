@@ -3,7 +3,7 @@
 
     // Creating modal dialog's DOM
     var $dialog = $(
-        '<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top:15%; overflow-y:visible;">' +
+        '<div class="modal fade" id="LoaderPopup" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top:15%; overflow-y:visible;">' +
         '<div class="modal-dialog modal-sm" style="width: 240px;">' +
         '<div class="modal-content">' +
         '<div class="modal-body" style="text-align: center;"><img src="../Templates/assets/img/load.gif" style="width: 30px;"><br><br>Loading...</div></div></div>');

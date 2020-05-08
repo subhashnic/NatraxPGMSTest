@@ -327,6 +327,12 @@
     </div>
 </div>
 <script>
+    
+    
+    $(document).ready(function(){
+        //LoaderShow();
+        //setTimeout(function () { LoaderHide(); }, 3000);
+    });
     var ServicesList = '';
     var TimeSlotList = '';
     var ServiceCategoryList = '';
@@ -370,6 +376,7 @@
     ///////////////////////////// Load Track/Vehicle Info  //////////////////////////////////////////////////////
     function LoadTrackInfo() {
         try {
+            LoaderShow();
             $("#TrackDate").attr('disabled', true);
             var varTrackGroupId = $("#lstServiceLookup").val();
 
@@ -400,7 +407,7 @@
                     async: true,
                     data: { 'intTrackGroupId': varTrackGroupId },
                     success: function (data) {
-
+                        debugger;
                         //  $("#ajax-progress-dialog").dialog("close");
                         if (data.StatusId != "99" && data.StatusId != "-99") {
                             ServicesList = data.ServicesList;
@@ -412,9 +419,10 @@
                             BindServiceTimeDetails(0);
                             BindServiceCategory(ServiceCategoryList);
                         }
+                        LoaderHide();
                     },
                     error: function (xhr) {
-
+                        LoaderHide();
                         // $("#ajax-progress-dialog").dialog("close");
                         alert(xhr.responseText);
                     }
@@ -1035,8 +1043,6 @@
     ///////////////////////////// Track Detail Delete  //////////////////////////////////////////////////////
     function TrackBookingDetailDelete(varVehicleId, varDate, varServiceId, varTimeSlotId, varTrackGroupId) {
         try {
-
-            // $("#ajax-progress-dialog").dialog("open");
             $.ajax({
                 url: '@Url.Action("TrackBookingDetailDelete", "Home")',
                 type: 'POST',
