@@ -1029,11 +1029,11 @@ namespace PGMSFront.Controllers
                 model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
                 model.UserCode = Convert.ToString(Session["UserCode"]);
                 model.TrackGroupId = 2;
-                model.TrackGroup = "T2-Dynamic Platform";
-                model.ViewTitle = "T2 Dynamic Platform";
+                model.TrackGroup = "Track Booking";
+                model.ViewTitle = "Track Booking";
 
-                Session["TrackGroupId"] = model.TrackGroupId;
-                Session["TrackGroup"] = model.TrackGroup;
+                //Session["TrackGroupId"] = model.TrackGroupId;
+                //Session["TrackGroup"] = model.TrackGroup;
                 ViewBag.ServiveLookup = GetServiveLookup();
                 ViewBag.TimeSlot = GetTimeSlot();
                 ViewBag.ServiveCategory = GetServiveCategory(model.TrackGroupId);

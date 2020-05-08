@@ -170,9 +170,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm pull-right" />
-                                    <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" id="btnSubmit" onclick="return BookingSave()">Save</button>
-                                    @*<table Style="width:100%">
+                                    @*<input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm pull-right" />
+                                    <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" id="btnSubmit" onclick="return BookingSave()">Save</button>*@
+                                   
+                                    <table Style="width:100%">
                                         <tr>
                                             <td Style="width:50%;text-align:right">
                                                 <button type="button" class="btn btn-fill btn-rose btn-sm " id="btnSubmit" onclick="return BookingSave()">Save</button>
@@ -181,7 +182,7 @@
                                                 <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm" />
                                             </td>
                                         </tr>
-                                    </table>*@
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -239,7 +240,7 @@
     ///////////////////////////// Booking Save  //////////////////////////////////////////////////////
     function BookingSave() {
         try {
-            debugger;
+            
             var strMSG = '';
 
             //if ($("#BookingDate").val().trim() == "") {
@@ -447,7 +448,7 @@
 
     //var focusables = $(":input").not('[type="image"]');
     //$("input").bind("keydown", function (event) {
-    //    debugger;
+    //    
     //    var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
     //    if (keyCode == 10 || keyCode == 13) {
     //        event.stopPropagation();

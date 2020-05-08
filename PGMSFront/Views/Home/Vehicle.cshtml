@@ -135,9 +135,9 @@
                                                     <a type='button' class='btn btn-danger' onclick="AddMoreCancel()"><i class='material-icons'>close</i></a>
                                                 </td>
                                                 @*<td class="text-center">
-                            <a href="#" class="btn btn-link btn-info btn-just-icon remove" onclick="return VehicleSave()" id="btnSave"><i class="material-icons">save</i></a>
-                            <a href="#" class="btn btn-link btn-danger btn-just-icon remove" onclick="AddMoreCancel()"><i class="material-icons">close</i></a>
-                        </td>*@
+                                    <a href="#" class="btn btn-link btn-info btn-just-icon remove" onclick="return VehicleSave()" id="btnSave"><i class="material-icons">save</i></a>
+                                    <a href="#" class="btn btn-link btn-danger btn-just-icon remove" onclick="AddMoreCancel()"><i class="material-icons">close</i></a>
+                                </td>*@
                                             </tr>
                                         </tbody>
                                     </table>
@@ -146,29 +146,33 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <input type="submit" id="btnPrev" name="btnPrevNext" value="Previous" class="btn btn-fill btn-rose btn-sm " />
-                                <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm pull-right" />
+                                @*<input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
+                <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm pull-right" />*@
                             </div>
                         </div>
+                        <br />                      
+                        <table Style="width:100%">
+                            <tr>
+                                <td Style="width:50%;text-align:left">
+                                    <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
+                                </td>
+                                <td Style="width:50%;text-align:right">
+                                    <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm " />
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                     @Html.HiddenFor(m => m.UserId, new { id = "UserId", style = "width:0px;" })
                     @Html.HiddenFor(m => m.UserTypePropId, new { id = "UserTypePropId", style = "width:0px;" })
                     @Html.HiddenFor(m => m.ZZCompanyId, new { id = "ZZCompanyId", style = "width:0px;" })
                     @Html.HiddenFor(m => m.StatusPropId, new { id = "StatusPropId", style = "width:0px;" })
+
+                    
                 </div>
 
             </div>
         </div>
-        @*<table Style="width:100%">
-            <tr>
-                <td Style="width:50%;text-align:left">
-                    <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
-                </td>
-                <td Style="width:50%;text-align:right">
-                    <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm " />
-                </td>
-            </tr>
-        </table>*@
+        
     }
 </div>
 <script>
@@ -437,8 +441,8 @@
 
                 if (parseInt(StatusPropId)==40) {
                     gridData = gridData + "<td class='td-actions text-center'>";
-                    gridData = gridData + "<a href='#' class='btn btn-info' onclick='return VehicleEdit(" + NullHandle(data[i].VehCompId) + ")' > <i class='material-icons'>edit</i></a>&nbsp;";
-                    gridData = gridData + "<a href='#' class='btn btn-danger' onclick='return VehicleDelete(" + NullHandle(data[i].VehCompId)+")'><i class='material-icons'>close</i></a>";
+                    gridData = gridData + "<a href='#' class='btn btn-info' title='Edit Vehicle : " + NullHandle(data[i].VorC)+"' onclick='return VehicleEdit(" + NullHandle(data[i].VehCompId) + ")' > <i class='material-icons'>edit</i></a>&nbsp;";
+                    gridData = gridData + "<a href='#' class='btn btn-danger' title='Delete Vehicle : " + NullHandle(data[i].VorC) +"' onclick='return VehicleDelete(" + NullHandle(data[i].VehCompId)+")'><i class='material-icons'>close</i></a>";
                     gridData = gridData +"</td>";
                 }
                 else {

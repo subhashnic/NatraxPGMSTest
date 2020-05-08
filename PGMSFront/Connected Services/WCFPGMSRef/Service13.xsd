@@ -326,10 +326,12 @@
       <xs:element minOccurs="0" name="UpdateId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="VehicleId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="VehicleNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZCategory" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZCategoryId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ZZDate" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZServiceSpecification" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZSlot" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZTrackGroup" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZTrackGroupId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ZZUOM" nillable="true" type="xs:string" />
     </xs:sequence>
