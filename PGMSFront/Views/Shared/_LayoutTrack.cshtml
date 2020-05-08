@@ -35,6 +35,12 @@
 </head>
 
 <body class="sidebar-mini">
+    <div class="Loader" id="divLoading" style="display: none;">
+        <div id="preloading" class="preloading">
+            <img src="@Url.Content("~/Templates/assets/img/load.gif")" style="width: 100px;">
+        </div>
+        <div id="overlay"></div>
+    </div>
     <div class="wrapper ">
         <div class="sidebar" data-color="rose" data-background-color="black" data-image="~/Templates/assets/img/sidebar-1.jpg">
             <div class="logo"> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-mini"> </a> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-normal"> NATRAX </a> </div>
@@ -468,13 +474,15 @@
     @Scripts.Render("~/bundles/MyScripts")
     <script>
         function LoaderShow() {
-            waitingDialog.show('', {
-                dialogSize: 'sm', progressType: 'warning'
-            });
+            //waitingDialog.show('', {
+            //    dialogSize: 'sm', progressType: 'warning'
+            //});
+            $(".Loader").show();
         }
 
         function LoaderHide() {
-            waitingDialog.hide();
+            //waitingDialog.hide();
+            $(".Loader").hide();
         }
         $(document).ready(function () {
             $().ready(function () {
