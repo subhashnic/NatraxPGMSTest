@@ -149,15 +149,13 @@
       <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
       <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Department" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="DepartmentId" type="xs:int" />
       <xs:element minOccurs="0" name="DocNo" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="Project" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ProjectManager" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StatusPropId" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="WorkFlowId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ZZActivity" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ZZBookingDate" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZUpdatedBy" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZWorkFlowColor" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZWorkFlowName" nillable="true" type="xs:string" />
     </xs:sequence>
@@ -376,6 +374,8 @@
       <xs:element minOccurs="0" name="UsageDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="VehicleId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="VehicleNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZUOM" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZUsageDate" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlTrackBookingTimeSummary" nillable="true" type="tns:dbmlTrackBookingTimeSummary" />
