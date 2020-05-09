@@ -1899,9 +1899,6 @@ namespace PGMSFront.WCFPGMSRef {
         private string DepartmentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int DepartmentIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> DocNoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1914,16 +1911,13 @@ namespace PGMSFront.WCFPGMSRef {
         private System.Nullable<int> StatusPropIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> WorkFlowIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ZZActivityField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ZZBookingDateField;
+        private string ZZStatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ZZStatusField;
+        private string ZZUpdatedByField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ZZWorkFlowColorField;
@@ -2033,19 +2027,6 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DepartmentId {
-            get {
-                return this.DepartmentIdField;
-            }
-            set {
-                if ((this.DepartmentIdField.Equals(value) != true)) {
-                    this.DepartmentIdField = value;
-                    this.RaisePropertyChanged("DepartmentId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> DocNo {
             get {
                 return this.DocNoField;
@@ -2098,19 +2079,6 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> WorkFlowId {
-            get {
-                return this.WorkFlowIdField;
-            }
-            set {
-                if ((this.WorkFlowIdField.Equals(value) != true)) {
-                    this.WorkFlowIdField = value;
-                    this.RaisePropertyChanged("WorkFlowId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public string ZZActivity {
             get {
                 return this.ZZActivityField;
@@ -2124,19 +2092,6 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ZZBookingDate {
-            get {
-                return this.ZZBookingDateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ZZBookingDateField, value) != true)) {
-                    this.ZZBookingDateField = value;
-                    this.RaisePropertyChanged("ZZBookingDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public string ZZStatus {
             get {
                 return this.ZZStatusField;
@@ -2145,6 +2100,19 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((object.ReferenceEquals(this.ZZStatusField, value) != true)) {
                     this.ZZStatusField = value;
                     this.RaisePropertyChanged("ZZStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZUpdatedBy {
+            get {
+                return this.ZZUpdatedByField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZUpdatedByField, value) != true)) {
+                    this.ZZUpdatedByField = value;
+                    this.RaisePropertyChanged("ZZUpdatedBy");
                 }
             }
         }
@@ -4698,6 +4666,12 @@ namespace PGMSFront.WCFPGMSRef {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string VehicleNoField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZUOMField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZUsageDateField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -5107,6 +5081,32 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((object.ReferenceEquals(this.VehicleNoField, value) != true)) {
                     this.VehicleNoField = value;
                     this.RaisePropertyChanged("VehicleNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZUOM {
+            get {
+                return this.ZZUOMField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZUOMField, value) != true)) {
+                    this.ZZUOMField = value;
+                    this.RaisePropertyChanged("ZZUOM");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZUsageDate {
+            get {
+                return this.ZZUsageDateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZUsageDateField, value) != true)) {
+                    this.ZZUsageDateField = value;
+                    this.RaisePropertyChanged("ZZUsageDate");
                 }
             }
         }
@@ -5522,6 +5522,12 @@ namespace PGMSFront.WCFPGMSRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/TrackBookingTimeDetailDeleteFrontByServiceId", ReplyAction="http://tempuri.org/IService1/TrackBookingTimeDetailDeleteFrontByServiceIdResponse" +
             "")]
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlTrackBookingDetail> TrackBookingTimeDetailDeleteFrontByServiceIdAsync(int intBookingId, int intTrackGroupId, int intVehicleId, System.DateTime dtDate, int intServiceId, int intTimeSlotId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WorkFlowActivityInsert", ReplyAction="http://tempuri.org/IService1/WorkFlowActivityInsertResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlBooking WorkFlowActivityInsert(int DocId, int WorkPlowId, int StatusId, string Remark);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WorkFlowActivityInsert", ReplyAction="http://tempuri.org/IService1/WorkFlowActivityInsertResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBooking> WorkFlowActivityInsertAsync(int DocId, int WorkPlowId, int StatusId, string Remark);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -5693,6 +5699,14 @@ namespace PGMSFront.WCFPGMSRef {
         
         public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlTrackBookingDetail> TrackBookingTimeDetailDeleteFrontByServiceIdAsync(int intBookingId, int intTrackGroupId, int intVehicleId, System.DateTime dtDate, int intServiceId, int intTimeSlotId) {
             return base.Channel.TrackBookingTimeDetailDeleteFrontByServiceIdAsync(intBookingId, intTrackGroupId, intVehicleId, dtDate, intServiceId, intTimeSlotId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlBooking WorkFlowActivityInsert(int DocId, int WorkPlowId, int StatusId, string Remark) {
+            return base.Channel.WorkFlowActivityInsert(DocId, WorkPlowId, StatusId, Remark);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBooking> WorkFlowActivityInsertAsync(int DocId, int WorkPlowId, int StatusId, string Remark) {
+            return base.Channel.WorkFlowActivityInsertAsync(DocId, WorkPlowId, StatusId, Remark);
         }
     }
 }

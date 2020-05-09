@@ -27,472 +27,556 @@
 </style>
 <div class="content">
     <div class="container-fluid">
-        
-        <div class="row">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">
-                        Track Booking
-                    </h4>
-                </div>
-                <div class="card" style="        margin-bottom: 10px !important;">
-                    <div class="card-header" style="        padding: 0px 0px 0px 15px;">
-                        <div class="card-text" style="        padding: 0px 0px 0px 5px !important;">
-                            <h5 class="card-title">Fresh Booking on Standard Rates</h5>
-                            @*<p class="card-category">New employees on 15th September, 2016</p>*@
+        @using (Html.BeginForm(new { @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            Track Booking
+                        </h4>
+                    </div>
+                    <div class="card" style="        margin-bottom: 10px !important;">
+                        <div class="card-header" style="        padding: 0px 0px 0px 15px;">
+                            <div class="card-text" style="        padding: 0px 0px 0px 5px !important;">
+                                <h5 class="card-title">Fresh Booking on Standard Rates</h5>
+                                @*<p class="card-category">New employees on 15th September, 2016</p>*@
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <a href="@Url.Action("Basic", "Home")" class='btn btn-info' style="padding: 7px 20px;">New Booking</a>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="text-warning">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Date</th>
+                                            <th>Booking No.</th>
+                                            <th>Department</th>
+                                            <th>Project</th>
+                                            <th>Created by</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodyBooking">
+                                        <tr>
+                                            <td>1</td>
+                                            <td>03/05/2020</td>
+                                            <td>Temp 0123</td>
+                                            <td>Test 123</td>
+                                            <td>NATRAX</td>
+                                            <td>Subhash Singh</td>
+                                            <td class='td-actions text-center'>
+                                                <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>03/05/2020</td>
+                                            <td>Continue Temp 009</td>
+                                            <td>Test 123</td>
+                                            <td>NATRAX</td>
+                                            <td>Subhash Singh</td>
+                                            <td class='td-actions text-right'>
+                                                <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <a href="@Url.Action("Basic", "Home")" class='btn btn-info' style="padding: 7px 20px;">New Booking</a>
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead class="text-warning">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Date</th>
-                                        <th>Booking No.</th>
-                                        <th>Department</th>
-                                        <th>Project</th>
-                                        <th>Created by</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>03/05/2020</td>
-                                        <td>Temp 0123</td>
-                                        <td>Test 123</td>
-                                        <td>NATRAX</td>
-                                        <td>Subhash Singh</td>
-                                        <td class='td-actions text-center'>
-                                            <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>03/05/2020</td>
-                                        <td>Continue Temp 009</td>
-                                        <td>Test 123</td>
-                                        <td>NATRAX</td>
-                                        <td>Subhash Singh</td>
-                                        <td class='td-actions text-center'>
-                                            <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="card" style="        margin-bottom: 10px !important;">
-                    <div class="card-header" style="        padding: 0px 0px 0px 15px;">
-                        <div class="card-text" style="        padding: 0px 0px 0px 5px !important;">
-                            <h5 class="card-title">Booking against RFQ</h5>
-                            @*<p class="card-category">New employees on 15th September, 2016</p>*@
+                    <div class="card" style="        margin-bottom: 10px !important;">
+                        <div class="card-header" style="        padding: 0px 0px 0px 15px;">
+                            <div class="card-text" style="        padding: 0px 0px 0px 5px !important;">
+                                <h5 class="card-title">Booking against RFQ</h5>
+                                @*<p class="card-category">New employees on 15th September, 2016</p>*@
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="text-warning">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Date</th>
+                                            <th>Booking No.</th>
+                                            <th>Department</th>
+                                            <th>Project</th>
+                                            <th>Created by</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>03/05/2020</td>
+                                            <td>Continue X001</td>
+                                            <td>Test 123</td>
+                                            <td>NATRAX</td>
+                                            <td>Subhash Singh</td>
+                                            <td class='td-actions text-center'>
+                                                <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>03/05/2020</td>
+                                            <td>Create against Y001 (Normal)</td>
+                                            <td>Test 123</td>
+                                            <td>NATRAX</td>
+                                            <td>Subhash Singh</td>
+                                            <td class='td-actions text-center'>
+                                                <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>03/05/2020</td>
+                                            <td>Create against Z001 (Confidential)</td>
+                                            <td>Test 123</td>
+                                            <td>NATRAX</td>
+                                            <td>Subhash Singh</td>
+                                            <td class='td-actions text-center'>
+                                                <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead class="text-warning">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Date</th>
-                                        <th>Booking No.</th>
-                                        <th>Department</th>
-                                        <th>Project</th>
-                                        <th>Created by</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>03/05/2020</td>
-                                        <td>Continue X001</td>
-                                        <td>Test 123</td>
-                                        <td>NATRAX</td>
-                                        <td>Subhash Singh</td>
-                                        <td class='td-actions text-center'>
-                                            <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>03/05/2020</td>
-                                        <td>Create against Y001 (Normal)</td>
-                                        <td>Test 123</td>
-                                        <td>NATRAX</td>
-                                        <td>Subhash Singh</td>
-                                        <td class='td-actions text-center'>
-                                            <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>03/05/2020</td>
-                                        <td>Create against Z001 (Confidential)</td>
-                                        <td>Test 123</td>
-                                        <td>NATRAX</td>
-                                        <td>Subhash Singh</td>
-                                        <td class='td-actions text-center'>
-                                            <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="card" style="        margin-bottom: 10px !important;">
-                    <div class="card-header" style="        padding: 0px 0px 0px 15px;">
-                        <div class="card-text" style="        padding: 0px 0px 0px 5px !important;">
-                            <h5 class="card-title">Booking against CONTRACT</h5>
-                            @*<p class="card-category">New employees on 15th September, 2016</p>*@
+                    <div class="card" style="        margin-bottom: 10px !important;">
+                        <div class="card-header" style="        padding: 0px 0px 0px 15px;">
+                            <div class="card-text" style="        padding: 0px 0px 0px 5px !important;">
+                                <h5 class="card-title">Booking against CONTRACT</h5>
+                                @*<p class="card-category">New employees on 15th September, 2016</p>*@
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="text-warning">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Date</th>
+                                            <th>Booking No.</th>
+                                            <th>Department</th>
+                                            <th>Project</th>
+                                            <th>Created by</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>03/05/2020</td>
+                                            <td>Continue C001</td>
+                                            <td>Test 123</td>
+                                            <td>NATRAX</td>
+                                            <td>Subhash Singh</td>
+                                            <td class='td-actions text-center'>
+                                                <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>03/05/2020</td>
+                                            <td>Create against C0012</td>
+                                            <td>Test 123</td>
+                                            <td>NATRAX</td>
+                                            <td>Subhash Singh</td>
+                                            <td class='td-actions text-center'>
+                                                <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>03/05/2020</td>
+                                            <td>Create against C0013</td>
+                                            <td>Test 123</td>
+                                            <td>NATRAX</td>
+                                            <td>Subhash Singh</td>
+                                            <td class='td-actions text-center'>
+                                                <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead class="text-warning">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Date</th>
-                                        <th>Booking No.</th>
-                                        <th>Department</th>
-                                        <th>Project</th>
-                                        <th>Created by</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>03/05/2020</td>
-                                        <td>Continue C001</td>
-                                        <td>Test 123</td>
-                                        <td>NATRAX</td>
-                                        <td>Subhash Singh</td>
-                                        <td class='td-actions text-center'>
-                                            <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>03/05/2020</td>
-                                        <td>Create against C0012</td>
-                                        <td>Test 123</td>
-                                        <td>NATRAX</td>
-                                        <td>Subhash Singh</td>
-                                        <td class='td-actions text-center'>
-                                            <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>03/05/2020</td>
-                                        <td>Create against C0013</td>
-                                        <td>Test 123</td>
-                                        <td>NATRAX</td>
-                                        <td>Subhash Singh</td>
-                                        <td class='td-actions text-center'>
-                                            <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="card" style="        margin-bottom: 10px !important;">
-                    <div class="card-header" style="        padding: 0px 0px 0px 15px;">
-                        <div class="card-text" style="        padding: 0px 0px 0px 5px !important;">
-                            <h5 class="card-title">RFQ - Confidential Testing</h5>
-                            @*<p class="card-category">New employees on 15th September, 2016</p>*@
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <button class='btn btn-info' style="        padding: 7px 20px;">New Booking</button>
-                            </div>
-                            <div class="col-md-10">
-                                <p class="card-category">Here are the explanation for this booking.</p>
+                    <div class="card" style="        margin-bottom: 10px !important;">
+                        <div class="card-header" style="        padding: 0px 0px 0px 15px;">
+                            <div class="card-text" style="        padding: 0px 0px 0px 5px !important;">
+                                <h5 class="card-title">RFQ - Confidential Testing</h5>
+                                @*<p class="card-category">New employees on 15th September, 2016</p>*@
                             </div>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead class="text-warning">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Date</th>
-                                        <th>Booking No.</th>
-                                        <th>Department</th>
-                                        <th>Project</th>
-                                        <th>Created by</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>03/05/2020</td>
-                                        <td>Continue C001</td>
-                                        <td>Test 123</td>
-                                        <td>NATRAX</td>
-                                        <td>Subhash Singh</td>
-                                        <td class='td-actions text-center'>
-                                            <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>03/05/2020</td>
-                                        <td>Continue C002</td>
-                                        <td>Test 123</td>
-                                        <td>NATRAX</td>
-                                        <td>Subhash Singh</td>
-                                        <td class='td-actions text-center'>
-                                            <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <button class='btn btn-info' style="        padding: 7px 20px;">New Booking</button>
+                                </div>
+                                <div class="col-md-10">
+                                    <p class="card-category">Here are the explanation for this booking.</p>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="text-warning">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Date</th>
+                                            <th>Booking No.</th>
+                                            <th>Department</th>
+                                            <th>Project</th>
+                                            <th>Created by</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>03/05/2020</td>
+                                            <td>Continue C001</td>
+                                            <td>Test 123</td>
+                                            <td>NATRAX</td>
+                                            <td>Subhash Singh</td>
+                                            <td class='td-actions text-center'>
+                                                <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>03/05/2020</td>
+                                            <td>Continue C002</td>
+                                            <td>Test 123</td>
+                                            <td>NATRAX</td>
+                                            <td>Subhash Singh</td>
+                                            <td class='td-actions text-center'>
+                                                <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="card" style="        margin-bottom: 10px !important;">
-                    <div class="card-header" style="        padding: 0px 0px 0px 15px;">
-                        <div class="card-text" style="        padding: 0px 0px 0px 5px !important;">
-                            <h5 class="card-title">RFQ - Normal Testing</h5>
-                            @*<p class="card-category">New employees on 15th September, 2016</p>*@
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <button class='btn btn-info' style="        padding: 7px 20px;">New Booking</button>
-                            </div>
-                            <div class="col-md-10">
-                                <p class="card-category">Here are the explanation for this booking.</p>
+                    <div class="card" style="        margin-bottom: 10px !important;">
+                        <div class="card-header" style="        padding: 0px 0px 0px 15px;">
+                            <div class="card-text" style="        padding: 0px 0px 0px 5px !important;">
+                                <h5 class="card-title">RFQ - Normal Testing</h5>
+                                @*<p class="card-category">New employees on 15th September, 2016</p>*@
                             </div>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead class="text-warning">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Date</th>
-                                        <th>Booking No.</th>
-                                        <th>Department</th>
-                                        <th>Project</th>
-                                        <th>Created by</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>03/05/2020</td>
-                                        <td>Continue N001</td>
-                                        <td>Test 123</td>
-                                        <td>NATRAX</td>
-                                        <td>Subhash Singh</td>
-                                        <td class='td-actions text-center'>
-                                            <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>03/05/2020</td>
-                                        <td>Continue N002</td>
-                                        <td>Test 123</td>
-                                        <td>NATRAX</td>
-                                        <td>Subhash Singh</td>
-                                        <td class='td-actions text-center'>
-                                            <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <button class='btn btn-info' style="        padding: 7px 20px;">New Booking</button>
+                                </div>
+                                <div class="col-md-10">
+                                    <p class="card-category">Here are the explanation for this booking.</p>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="text-warning">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Date</th>
+                                            <th>Booking No.</th>
+                                            <th>Department</th>
+                                            <th>Project</th>
+                                            <th>Created by</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>03/05/2020</td>
+                                            <td>Continue N001</td>
+                                            <td>Test 123</td>
+                                            <td>NATRAX</td>
+                                            <td>Subhash Singh</td>
+                                            <td class='td-actions text-center'>
+                                                <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>03/05/2020</td>
+                                            <td>Continue N002</td>
+                                            <td>Test 123</td>
+                                            <td>NATRAX</td>
+                                            <td>Subhash Singh</td>
+                                            <td class='td-actions text-center'>
+                                                <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="card" style="        margin-bottom: 10px !important;">
-                    <div class="card-header" style="        padding: 0px 0px 0px 15px;">
-                        <div class="card-text" style="        padding: 0px 0px 0px 5px !important;">
-                            <h5 class="card-title">Contract</h5>
-                            @*<p class="card-category">New employees on 15th September, 2016</p>*@
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <button class='btn btn-info' style="        padding: 7px 20px;">New Booking</button>
-                            </div>
-                            <div class="col-md-10">
-                                <p class="card-category">Here are the explanation for this booking.</p>
+                    <div class="card" style="        margin-bottom: 10px !important;">
+                        <div class="card-header" style="        padding: 0px 0px 0px 15px;">
+                            <div class="card-text" style="        padding: 0px 0px 0px 5px !important;">
+                                <h5 class="card-title">Contract</h5>
+                                @*<p class="card-category">New employees on 15th September, 2016</p>*@
                             </div>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead class="text-warning">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Date</th>
-                                        <th>Booking No.</th>
-                                        <th>Department</th>
-                                        <th>Project</th>
-                                        <th>Created by</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>03/05/2020</td>
-                                        <td>Continue C001</td>
-                                        <td>Test 123</td>
-                                        <td>NATRAX</td>
-                                        <td>Subhash Singh</td>
-                                        <td class='td-actions text-center'>
-                                            <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>03/05/2020</td>
-                                        <td>Continue C002</td>
-                                        <td>Test 123</td>
-                                        <td>NATRAX</td>
-                                        <td>Subhash Singh</td>
-                                        <td class='td-actions text-center'>
-                                            <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <button class='btn btn-info' style="        padding: 7px 20px;">New Booking</button>
+                                </div>
+                                <div class="col-md-10">
+                                    <p class="card-category">Here are the explanation for this booking.</p>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="text-warning">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Date</th>
+                                            <th>Booking No.</th>
+                                            <th>Department</th>
+                                            <th>Project</th>
+                                            <th>Created by</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>03/05/2020</td>
+                                            <td>Continue C001</td>
+                                            <td>Test 123</td>
+                                            <td>NATRAX</td>
+                                            <td>Subhash Singh</td>
+                                            <td class='td-actions text-center'>
+                                                <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>03/05/2020</td>
+                                            <td>Continue C002</td>
+                                            <td>Test 123</td>
+                                            <td>NATRAX</td>
+                                            <td>Subhash Singh</td>
+                                            <td class='td-actions text-center'>
+                                                <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">
-                        Lab Booking
-                    </h4>
-                </div>
-                <div class="card" style="        margin-bottom: 10px !important;">
-                    <div class="card-header" style="        padding: 0px 0px 0px 15px;">
-                        <div class="card-text" style="        padding: 0px 0px 0px 5px !important;">
-                            <h5 class="card-title">RFQ - Normal Testing</h5>
-                            @*<p class="card-category">New employees on 15th September, 2016</p>*@
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            Lab Booking
+                        </h4>
+                    </div>
+                    <div class="card" style="        margin-bottom: 10px !important;">
+                        <div class="card-header" style="        padding: 0px 0px 0px 15px;">
+                            <div class="card-text" style="        padding: 0px 0px 0px 5px !important;">
+                                <h5 class="card-title">RFQ - Normal Testing</h5>
+                                @*<p class="card-category">New employees on 15th September, 2016</p>*@
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <button class='btn btn-info' style="        padding: 7px 20px;">New Booking</button>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="text-warning">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Date</th>
+                                            <th>Booking No.</th>
+                                            <th>Department</th>
+                                            <th>Project</th>
+                                            <th>Created by</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>03/05/2020</td>
+                                            <td>Continue ABC</td>
+                                            <td>Test 123</td>
+                                            <td>NATRAX</td>
+                                            <td>Subhash Singh</td>
+                                            <td class='td-actions text-center'>
+                                                <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>03/05/2020</td>
+                                            <td>Continue XYZ</td>
+                                            <td>Test 123</td>
+                                            <td>NATRAX</td>
+                                            <td>Subhash Singh</td>
+                                            <td class='td-actions text-center'>
+                                                <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <button class='btn btn-info' style="        padding: 7px 20px;">New Booking</button>
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead class="text-warning">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Date</th>
-                                        <th>Booking No.</th>
-                                        <th>Department</th>
-                                        <th>Project</th>
-                                        <th>Created by</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>03/05/2020</td>
-                                        <td>Continue ABC</td>
-                                        <td>Test 123</td>
-                                        <td>NATRAX</td>
-                                        <td>Subhash Singh</td>
-                                        <td class='td-actions text-center'>
-                                            <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>03/05/2020</td>
-                                        <td>Continue XYZ</td>
-                                        <td>Test 123</td>
-                                        <td>NATRAX</td>
-                                        <td>Subhash Singh</td>
-                                        <td class='td-actions text-center'>
-                                            <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="card" style="        margin-bottom: 10px !important;">
-                    <div class="card-header" style="        padding: 0px 0px 0px 15px;">
-                        <div class="card-text" style="        padding: 0px 0px 0px 5px !important;">
-                            <h5 class="card-title">Booking against RFQ</h5>
-                            @*<p class="card-category">New employees on 15th September, 2016</p>*@
+                    <div class="card" style="        margin-bottom: 10px !important;">
+                        <div class="card-header" style="        padding: 0px 0px 0px 15px;">
+                            <div class="card-text" style="        padding: 0px 0px 0px 5px !important;">
+                                <h5 class="card-title">Booking against RFQ</h5>
+                                @*<p class="card-category">New employees on 15th September, 2016</p>*@
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead class="text-warning">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Date</th>
-                                        <th>Booking No.</th>
-                                        <th>Department</th>
-                                        <th>Project</th>
-                                        <th>Created by</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>03/05/2020</td>
-                                        <td>Create against 01</td>
-                                        <td>Test 123</td>
-                                        <td>NATRAX</td>
-                                        <td>Subhash Singh</td>
-                                        <td class='td-actions text-center'>
-                                            <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>03/05/2020</td>
-                                        <td>Create against 02</td>
-                                        <td>Test 123</td>
-                                        <td>NATRAX</td>
-                                        <td>Subhash Singh</td>
-                                        <td class='td-actions text-center'>
-                                            <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="text-warning">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Date</th>
+                                            <th>Booking No.</th>
+                                            <th>Department</th>
+                                            <th>Project</th>
+                                            <th>Created by</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>03/05/2020</td>
+                                            <td>Create against 01</td>
+                                            <td>Test 123</td>
+                                            <td>NATRAX</td>
+                                            <td>Subhash Singh</td>
+                                            <td class='td-actions text-center'>
+                                                <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>03/05/2020</td>
+                                            <td>Create against 02</td>
+                                            <td>Test 123</td>
+                                            <td>NATRAX</td>
+                                            <td>Subhash Singh</td>
+                                            <td class='td-actions text-center'>
+                                                <button class='btn btn-info' id=""><i class='material-icons'>trending_up</i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+        }
     </div>
 </div>
 
+<script>
+    var BookingList = '';
+
+    ///////////////////////////// Load Basic Info  //////////////////////////////////////////////////////
+    function LoadBookingInfo() {
+        try {
+            LoaderShow();
+            var data = { 'intDepartmentId': 0, 'intBookingTypeId': 21, 'intStatusPropId': 40 };
+            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+            $.ajax({
+                url: '@Url.Action("BookingSearchViewGetByDepartmentBookinStatus", "Home")',
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                data: dataWithAntiforgeryToken,
+                success: function (data) {
+                    LoaderHide();
+                    if (data.StatusId != "99" && data.StatusId != "-99") {
+                        BookingList = data.BookingList;
+                        BindGridData(data.BookingList);
+                    }
+                },
+                error: function (xhr) {
+
+                    LoaderHide();
+                    alert(xhr.responseText);
+                }
+            });
+        }
+        catch (e) {
+
+            LoaderHide();
+            alert(e.message);
+            //  return false;
+        }
+    }
+
+    function BindGridData(data) {
+
+        try {
+            var gridData = "";
+
+            $("#tbodyBooking").html("");
+
+            for (var i = 0; i < data.length; i++) {
+                gridData = gridData + "<tr >";
+                gridData = gridData + "<td>" + NullHandle(i+1) + "</td>";              
+                gridData = gridData + "<td>" + NullHandle(data[i].ZZBookingDate) + "</td>";
+                gridData = gridData + "<td>" + NullHandle(data[i].BookingNo) + "</td>";               
+                gridData = gridData + "<td>" + NullHandle(data[i].Department) + "</td>";
+                gridData = gridData + "<td>" + NullHandle(data[i].Project) + "</td>";
+                gridData = gridData + "<td>" + NullHandle(data[i].ZZUpdatedBy) + "</td>";
+                gridData = gridData + "<td class='td-actions'>";
+                gridData = gridData + "<button type='button' rel='tooltip' class='btn btn-info' data-original-title='' title='Select Booking No : " + data[i].BookingNo + "' onclick = 'BookingGetByBookingId(" + NullHandle(data[i].BookingId) + ")'><i class='material-icons'>trending_up</i></button>";
+                gridData = gridData + "</td>";
+
+
+                gridData = gridData + "</tr>";
+            }
+
+            $("#tbodyBooking").html(gridData);
+
+
+        }
+        catch (e) {
+
+        }
+    }
+
+    function BookingGetByBookingId(BookingId) {
+        location.href = "@Url.Action("BookingGetByBookingId", "Home", new { id = UrlParameter.Optional })" + "?" + "dfs,ktgbdas,hdffg.khdfrhdduihdgtymdmpxjidgndlxcmhdgmdpldjn,dlkchgj,d,.dkjdhhdk,dmdhhnd,dkmdndhnndmdmjmd" + "&" + "intBookingId=" + BookingId
+
+        //window.location.href = '@Url.Action("BookingGetByBookingId", "Home")?intBookingId='+BookingId+'';
+    }
+
+    $(document).ready(function () {
+        LoadBookingInfo();
+        
+    });
+</script>

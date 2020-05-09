@@ -267,4 +267,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="WorkFlowActivityInsert">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DocId" type="xs:int" />
+        <xs:element minOccurs="0" name="WorkPlowId" type="xs:int" />
+        <xs:element minOccurs="0" name="StatusId" type="xs:int" />
+        <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WorkFlowActivityInsertResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="WorkFlowActivityInsertResult" nillable="true" type="q25:returndbmlBooking" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
