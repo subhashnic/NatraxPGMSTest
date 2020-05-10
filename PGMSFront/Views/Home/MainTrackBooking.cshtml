@@ -120,13 +120,13 @@
                                 }
                             </select>
                         </div>
-                        <div class="col-md-6">
-                            <h4 class="card-title text-center" style="        margin-top: 10px;">Vehicle wise Test Summary</h4>
+                        <div class="col-md-6" id="divVehicleTitle" style="display:none">
+                            <h4 class="card-title text-center" style="margin-top: 10px;">Vehicle wise Test Summary</h4>
                         </div>
                     </div>
                 </div>
 
-                <div class="card-body">
+                <div class="card-body" id="divVehicle" style="display:none">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
@@ -179,11 +179,10 @@
                         <div class="col-md-2" style="        max-width: 12% !important;">
                             <input disabled="disabled" type="text" id="TrackDate" onchange="ResetCategoryTimeSlot()" class="form-control datetimepicker" placeholder="DD-MM-YYYY">
                         </div>
-                        <div class="col-md-1" id="divCategoryTitle" style='        display: none;
-        max-width: 5% !important;'>
+                        <div class="col-md-1" id="divCategoryTitle" style='display: none; max-width: 5% !important;'>
                             Type
                         </div>
-                        <div class="col-md-2" id="divCategoryValue" style='        display: none'>
+                        <div class="col-md-2" id="divCategoryValue" style='display: none'>
                             <div class="form-check" id="divCategory"></div>
                         </div>
                         <div class="col-md-3" style="        max-width: 18% !important;">
@@ -203,32 +202,32 @@
                         </div>
                     </div>
                     @*<div class="table-responsive">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td width="4%" style="border-left: 1px solid #DDD;">Date</td>
-                                        <td width="10%"><input disabled="disabled" type="text" id="TrackDate" onchange="ResetCategoryTimeSlot()" class="form-control datetimepicker" placeholder="DD-MM-YYYY"></td>
-                                        <td width="4%" id="divCategoryTitle" style='display:none;border-left: 1px solid #DDD;'>Type</td>
-                                        <td width="12%" id="divCategoryValue" style='display:none'>
-                                            <div class="form-check" id="divCategory"></div>
-                                        </td>
-                                        <td width="14%" style="border-left: 1px solid #DDD;">Time slot for starting the Test</td>
-                                        <td width="10%">
-                                            <select class="form-control" id="lstTrackTimeSlot" onchange="BindBookingStatus()">
-                                                <option value="0">- Select Time Slot -</option>
-                                                @foreach (var itm in ViewBag.TimeSlot)
-                                                {
-                                                    <option value='@itm.Value'>@itm.Text</option>
-                                                }
-                                            </select>
-                                        </td>
-                                        <td align="right" width="10%">
-                                            <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="TrackDetailSave()">Save</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>*@
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td width="4%" style="border-left: 1px solid #DDD;">Date</td>
+                            <td width="10%"><input disabled="disabled" type="text" id="TrackDate" onchange="ResetCategoryTimeSlot()" class="form-control datetimepicker" placeholder="DD-MM-YYYY"></td>
+                            <td width="4%" id="divCategoryTitle" style='display:none;border-left: 1px solid #DDD;'>Type</td>
+                            <td width="12%" id="divCategoryValue" style='display:none'>
+                                <div class="form-check" id="divCategory"></div>
+                            </td>
+                            <td width="14%" style="border-left: 1px solid #DDD;">Time slot for starting the Test</td>
+                            <td width="10%">
+                                <select class="form-control" id="lstTrackTimeSlot" onchange="BindBookingStatus()">
+                                    <option value="0">- Select Time Slot -</option>
+                                    @foreach (var itm in ViewBag.TimeSlot)
+                                    {
+                                        <option value='@itm.Value'>@itm.Text</option>
+                                    }
+                                </select>
+                            </td>
+                            <td align="right" width="10%">
+                                <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="TrackDetailSave()">Save</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>*@
                 </div>
                 <div class="card-body" id="divCardBody" style="        display: none">
                     <div class="row">
@@ -247,7 +246,7 @@
                                             <th width="12%" class="text-center">Slot wise Confirmed</th>
                                             <th width="8%" class="text-center">Round Hrs.</th>
                                             @*<th width="9%" class="text-center">Bill Hours</th>
-                                                <th width="9%" class="text-right">Amount</th>*@
+                                    <th width="9%" class="text-right">Amount</th>*@
                                         </tr>
                                     </thead>
                                     <tbody id="tbodyTrack"></tbody>
@@ -273,7 +272,7 @@
                                                 <th width="10%">Vehicle No.</th>
                                                 <th class="text-center" width="10%">Date</th>
                                                 <th width="15%">Track</th>
-                                                <th class="text-center" width="8%">Category</th>
+                                                <th width="8%">Category</th>
                                                 <th class="text-center" width="10%">Time Slot</th>
                                                 <th class="text-right" width="7%">Rate</th>
                                                 <th class="text-center" width="7%">Unit</th>
@@ -281,11 +280,53 @@
                                                 <th class="text-center" width="10%">Usage Minutes</th>
                                                 <th class="text-center" width="8%">Round Hours</th>
                                                 @*<th class="text-center" width="5%">Bill Hours.</th>
-                                                    <th class="text-right" width="10%">Amount</th>*@
+                                        <th class="text-right" width="10%">Amount</th>*@
                                                 <th class="text-center" width="3%">#</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbodyServiceDetails"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                @*<br />
+                                @using (Html.BeginForm(new { @class = "form-horizontal" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
+                                }*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title text-center">Calculation Details</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped">
+                                        <thead class=" text-primary">
+                                            <tr>
+
+                                                <th width="25%">Biiling Item</th>
+                                                <th width="25%">Specification</th>
+                                                <th class="text-center"width="10%">Vehicle No.</th>
+                                                <th class="text-center" width="8%">Date</th>
+                                                <th class="text-center" width="8%">Usage Hours (Rounded)</th>
+                                                <th class="text-center" width="5%">Billing Qty.</th>
+                                                <th class="text-right" width="6%">Rate</th>
+                                                <th class="text-center" width="5%">Unit</th>
+                                                <th class="text-right" width="8%">Amount</th>
+                                              
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyCalculationSummary"></tbody>
                                     </table>
                                 </div>
                             </div>
@@ -340,6 +381,7 @@
     var ServiceCategoryList = '';
     var TrackBookingDetailList = '';
     var TrackBookingTimeDetailList = '';
+    var TrackBookingTimeSummaryList = '';
     var VehicleId = 0;
     var ColourRowId = -1;
     var Holdid = '';
@@ -417,10 +459,15 @@
                             ServiceCategoryList = data.ServiceCategoryList;
                             TrackBookingDetailList = data.TrackBookingDetailList;
                             TrackBookingTimeDetailList = data.TrackBookingTimeDetailList;
+                            TrackBookingTimeSummaryList = data.TrackBookingTimeSummaryList;
 
                             BindVehicleData(data.TrackBookingDetailList);
                             BindServiceTimeDetails(0);
                             BindServiceCategory(ServiceCategoryList);
+                            BindCalculationSummary();
+
+                            $("#divVehicleTitle").show();
+                            $("#divVehicle").show();
                         }
                         LoaderHide();
                     },
@@ -544,20 +591,26 @@
                     $("input[name='Category']:checked").prop('checked', false);
                 }
                 $("#lstTrackTimeSlot").val(0);
+                alert('Select Track');
+                return false;
             }
             if (parseInt(VehicleId) == 0) {
                 strMSG = strMSG + 'Select Vehicle Row  \n</br>'
                 if (ServiceCategoryList.length > 1) {
                     $("input[name='Category']:checked").prop('checked', false);
                 }
-               $("#lstTrackTimeSlot").val(0);
+                $("#lstTrackTimeSlot").val(0);
+                alert('Select Vehicle Row');
+                return false;
             }
             if (varDate.trim() == "") {
                 strMSG = strMSG + 'Date  \n</br>'
                 if (ServiceCategoryList.length > 1) {
                     $("input[name='Category']:checked").prop('checked', false);
                 }
-               $("#lstTrackTimeSlot").val(0);
+                $("#lstTrackTimeSlot").val(0);
+                alert('Select Date');
+                return false; 
             }
 
             if (strMSG != '') {
@@ -619,15 +672,17 @@
                     gridData = gridData + "<td class='text-center' id='txtBookingSlot'>" + NullHandle(varBookingSlot) + "</td>";//Booking Slot
                     gridData = gridData + "<td class='text-center' id='txtBookingConfirmSlot'>" + NullHandle(varBookingConfirmSlot) + "</td>";//Booking Confirmed Slot
                     gridData = gridData + "<td class='text-center' id='txtRoundHrs'>" + NullHandle(varRoundHrs) + "</td>";//Round Hrs
-                   // gridData = gridData + "<td class='text-center'><label id='txtBillHrs'>" + NullHandle(varBillingHrs) + "</label></td>";// Billing Hrs
+                   // gridData = gridData + "<td class='text-center'><label id='txtBillHrs'>" + NullHandle(varBillingHrs) + "</label></td>";// Billing Hrs 
                     //gridData = gridData + "<td class='text-right'><label id='txtAmount'>" + NullHandle(varAmount) + "</label></td>"; //Amount
-                    gridData = gridData + "<td style='display:none'><input type='hidden' id='hdnServiceId' value=" + NullHandle(data[i].ServiceId) + " /><input type='hidden' id='hdnBillingHrs' value=" + NullHandle(varBillingHrs) + " /> </td>";
+                    gridData = gridData + "<td style='display:none'><input type='hidden' id='hdnServiceId' value=" + NullHandle(data[i].ServiceId) + " /><input type='hidden' id='hdnBillingHrs' value=" + NullHandle(varBillingHrs) + " /><input type='hidden' id='hdnGroupMinBilling' value=" + NullHandle(data[i].GroupforMinBillingHours)  + " /> </td>";
 
 
                     gridData = gridData + "</tr>";
                 }
 
                 $("#tbodyTrack").html(gridData);
+
+                BindBookingStatus();
             }
         }
         catch (e) {
@@ -649,33 +704,41 @@
 
             var strMSG = "";
             if (parseInt($("#lstServiceLookup").val()) == 0) {
-                strMSG = strMSG + 'Select Track  \n</br>'
+                //strMSG = strMSG + 'Select Track  \n</br>'
                 if (ServiceCategoryList.length > 1) {
                     $("input[name='Category']:checked").prop('checked', false);
                 }
                 $("#lstTrackTimeSlot").val(0);
+                alert('Select Track');
+                return false;
             }
             if (parseInt(VehicleId) == 0) {
-                strMSG = strMSG + 'Select Vehicle Row  \n</br>'
+                //strMSG = strMSG + 'Select Vehicle Row  \n</br>'
                 if (ServiceCategoryList.length > 1) {
                     $("input[name='Category']:checked").prop('checked', false);
                 }
                 $("#lstTrackTimeSlot").val(0);
+                alert('Select Vehicle Row');
+                return false;
             }
             if (varDate.trim() == "") {
-                strMSG = strMSG + 'Date  \n</br>'
+               // strMSG = strMSG + 'Date  \n</br>'
                 if (ServiceCategoryList.length > 1) {
                     $("input[name='Category']:checked").prop('checked', false);
                 }
                 $("#lstTrackTimeSlot").val(0);
+                alert('Select Date');
+                return false;
             }
             if (varCategoryId==undefined || parseInt(varCategoryId) == 0) {
-                strMSG = strMSG + 'Service Category  \n</br>'
+               // strMSG = strMSG + 'Service Category  \n</br>'
+                alert('Select Service Category');
                 $("#lstTrackTimeSlot").val(0);
+                return false;
             }
-            if (varTimeSlotId == undefined || parseInt(varTimeSlotId) == 0) {
-                strMSG = strMSG + 'Time Slot  \n</br>'
-            }
+            //if (varTimeSlotId == undefined || parseInt(varTimeSlotId) == 0) {
+            //    strMSG = strMSG + 'Time Slot  \n</br>'
+            //}
 
             if (strMSG != '') {
                 alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
@@ -789,7 +852,7 @@
             var varTimeSlotId = $("#lstTrackTimeSlot").val().trim();
             var varCategoryId = $("input[name='Category']:checked").val();
             var varTrackGroupId = $("#lstServiceLookup").val();
-
+            var varGroupMinBilling = '';
             var strMSG = "";
 
             if (parseInt(varTrackGroupId) == 0) {
@@ -818,6 +881,7 @@
 
                 var varHrs = '';
                 var varMin = '';
+               
 
                 $(this).find("input[type='hidden'][id='hdnServiceId']").each(function () {
                     TimeDtls.ServiceId = $(this).val().trim();
@@ -833,7 +897,10 @@
                 $(this).find("input[type='hidden'][id='hdnBillingHrs']").each(function () {
                     TimeDtls.BillingHrs = $(this).val().trim();
                 });
-
+                $(this).find("input[type='hidden'][id='hdnGroupMinBilling']").each(function () {
+                    varGroupMinBilling = $(this).val().trim();
+                });
+                
                 if ((varHrs != undefined && varHrs != '' && parseInt(varHrs) > 0) || (varMin != undefined && varMin != '' && parseInt(varMin) >0)) {
 
                     TimeDtls.TotalHours = varHrs;
@@ -857,7 +924,7 @@
                 $("#btnSave").hide();
                 LoaderShow();
                 //'{model: ' + JSON.stringify(model) + '}'
-                var data = { 'model': model };
+                var data = { 'model': model, 'strGroupMinBilling': varGroupMinBilling};
                 var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                 $.ajax({
                     url: '@Url.Action("TrackBookingDetailSave", "Home")',
@@ -873,9 +940,11 @@
 
                             TrackBookingDetailList = data.TrackBookingDetailList;
                             TrackBookingTimeDetailList = data.TrackBookingTimeDetailList;
+                            TrackBookingTimeSummaryList = data.TrackBookingTimeSummaryList;
 
                             BindVehicleData(data.TrackBookingDetailList);
                             BindServiceTimeDetails(VehicleId);
+                            BindCalculationSummary();
                             ChangeRowColour(ColourRowId);
                         }
                         $("#btnSave").show();
@@ -935,6 +1004,40 @@
             }
 
             $("#tbodyServiceDetails").html(gridData);
+
+
+        }
+        catch (e) {
+
+        }
+    }
+
+    //////////////////////////// Bind Track Calculation Summary //////////////////////////////////////////////////////
+    function BindCalculationSummary() {
+        try {
+
+            var gridData = "";
+            var data = TrackBookingTimeSummaryList;           
+
+            $("#tbodyCalculationSummary").html("");
+
+            for (var i = 0; i < data.length; i++) {
+                gridData = gridData + "<tr>";
+            
+                gridData = gridData + "<td>" + NullHandle(data[i].BillingItem) + "</td>";               
+                gridData = gridData + "<td>" + NullHandle(data[i].Specification) + "</td>";
+                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].VehicleNo) + "</td>";             
+                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZUsageDate) + "</td>";
+                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].RoundOffHrs) + "</td>";
+                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].BillingHrs) + "</td>";
+                gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].Rate) + "</td>";
+                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZUOM) + "</td>";             
+                gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].Amount) + "</td>";
+
+                gridData = gridData + "</tr>";
+            }
+
+            $("#tbodyCalculationSummary").html(gridData);
 
 
         }
@@ -1079,9 +1182,11 @@
                                     if (data.StatusId != "99" && data.StatusId != "-99") {
                                         TrackBookingDetailList = data.TrackBookingDetailList;
                                         TrackBookingTimeDetailList = data.TrackBookingTimeDetailList;
+                                        TrackBookingTimeSummaryList = data.TrackBookingTimeSummaryList;
 
                                         BindVehicleData(data.TrackBookingDetailList);
                                         BindServiceTimeDetails(VehicleId);
+                                        BindCalculationSummary();
                                         ChangeRowColour(ColourRowId);
                                     }
                                     alert(data.Status);
@@ -1246,7 +1351,7 @@
 
         }
     }
-    ///////////////// Vehicle Selecttion Changed ///////////////////////////////////
+    ///////////////// Vehicle Selection Changed ///////////////////////////////////
     function BindTrackcategory(RowId,varVehicleId) {
         try {
             if (parseInt($("#lstServiceLookup").val()) == 0) {

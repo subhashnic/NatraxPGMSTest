@@ -1139,11 +1139,11 @@ namespace PGMSFront.Controllers
             {
                 strStatus = ex.Message;
             }
-            return Json(new { Status = strStatus, StatusId = intStatusId, ServiceCategoryList = lstCategory, ServicesList = objdbmlServicesView, TrackBookingDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingDetail, TrackBookingTimeDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingTimeDetail }, JsonRequestBehavior.AllowGet);
+            return Json(new { Status = strStatus, StatusId = intStatusId, ServiceCategoryList = lstCategory, ServicesList = objdbmlServicesView, TrackBookingDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingDetail, TrackBookingTimeDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingTimeDetail, TrackBookingTimeSummaryList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingTimeSummary }, JsonRequestBehavior.AllowGet);
         }
 
         [ValidateAntiForgeryToken]
-        public ActionResult TrackBookingDetailSave(ObservableCollection<dbmlTrackBookingTimeDetail> model)
+        public ActionResult TrackBookingDetailSave(ObservableCollection<dbmlTrackBookingTimeDetail> model,string strGroupMinBilling)
         {
             if (Session["UserId"] == null)
             {
@@ -1216,7 +1216,7 @@ namespace PGMSFront.Controllers
             {
                 strStatus = ex.Message;
             }
-            return Json(new { Status = strStatus, StatusId = intStatusId, TrackBookingDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingDetail, TrackBookingTimeDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingTimeDetail }, JsonRequestBehavior.AllowGet);
+            return Json(new { Status = strStatus, StatusId = intStatusId, TrackBookingDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingDetail, TrackBookingTimeDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingTimeDetail, TrackBookingTimeSummaryList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingTimeSummary }, JsonRequestBehavior.AllowGet);
         }
 
         [ValidateAntiForgeryToken]
@@ -1298,7 +1298,7 @@ namespace PGMSFront.Controllers
             {
                 strStatus = ex.Message;
             }
-            return Json(new { Status = strStatus, StatusId = intStatusId, TrackBookingDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingDetail, TrackBookingTimeDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingTimeDetail }, JsonRequestBehavior.AllowGet);
+            return Json(new { Status = strStatus, StatusId = intStatusId, TrackBookingDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingDetail, TrackBookingTimeDetailList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingTimeDetail, TrackBookingTimeSummaryList = objreturndbmlTrackBookingDetail.objdbmlTrackBookingTimeSummary }, JsonRequestBehavior.AllowGet);
         }
 
         public List<SelectListItem> GetTimeSlot()
