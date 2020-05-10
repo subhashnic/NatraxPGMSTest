@@ -734,7 +734,7 @@
     <Content Include="Views\Home\Storage.cshtml" />
     <Content Include="Views\Home\AddOnServices.cshtml" />
     <Content Include="Views\Shared\_LayoutBooking.cshtml" />
-    <Content Include="Views\Home\NewBooking.cshtml" />
+    <Content Include="Views\Home\TrackBookingsAndRFQ.cshtml" />
     <Content Include="Views\Home\TrackDetail.cshtml" />
     <Content Include="Views\Home\Basic.cshtml" />
     <Content Include="Views\Home\Vehicle.cshtml" />
@@ -788,6 +788,7 @@
     <Content Include="Views\Home\UnderConstruction.cshtml" />
     <Content Include="Templates\Alert\Alert.zip" />
     <Content Include="Views\Home\MainTrackBooking.cshtml" />
+    <Content Include="Views\Shared\_LayoutTrackBookingAndRFQ.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

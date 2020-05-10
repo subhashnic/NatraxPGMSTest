@@ -250,7 +250,7 @@ namespace PGMSFront.Controllers
             return View(model);
         }
 
-        public ActionResult NewBooking()
+        public ActionResult TrackBookingsAndRFQ()
         {
             CommonModel model = new CommonModel();
             try
