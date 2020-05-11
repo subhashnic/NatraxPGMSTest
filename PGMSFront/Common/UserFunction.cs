@@ -287,7 +287,7 @@ namespace PGMSFront.Common
             }
             return blnStatus;
         }
-        
+
         #endregion
 
         #region FTP Functions
@@ -607,21 +607,35 @@ namespace PGMSFront.Common
             }
             return blnMailSentStatus;
         }
-        #endregion      
-        
+        #endregion
+
     }
     #endregion
 
     #region HardCodedFunctionsVariables
     public enum HardCodeValues
     {
-        UserTypeDeveloperId = -2,
-        UserTypeAdministratorId = -1,
-        
+        ServiceBPIdLab = 11,
+        ServiceBPIdTrack = 12,
+        ServiceBPIdWorkShop = 13,
+        ServiceBPIdAddOn = 37,
+        TimeSlotPropId = 9,
+        BookingBPId = 21,
+        RFQConfBPId = 98,
+        RFQRegBPId = 46,
+        BookingWFId = 6,
+        RFQConfWFId = 57,
+        RFQRegWFId = 29,
+
+        VehicleGrpPropId = 99,
+        CompGrpPropId = 98,
+        OpenStatusId =40,
+        SubmitStatusId = 38,
+
     };
 
     public static class HardCodeList
-    {          
+    {
         public static List<SelectListItem> GetMonth()
         {
             List<SelectListItem> objMonthList = new List<SelectListItem>();

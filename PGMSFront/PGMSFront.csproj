@@ -133,6 +133,12 @@
     <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlTrackBookingDetail.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlWorkFlowView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlCompanyView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\WCFPGMSRef\Service1.disco" />
     <None Include="Connected Services\WCFPGMSRef\configuration91.svcinfo" />
     <None Include="Connected Services\WCFPGMSRef\configuration.svcinfo" />
@@ -447,6 +453,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\WCFPGMSRef\Service14.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\WCFPGMSRef\Service15.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />

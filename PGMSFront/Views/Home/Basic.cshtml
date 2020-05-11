@@ -35,7 +35,19 @@
                 </div>
                 <div class="card-body">
                     <div class="arrow-steps clearfix">
-                        @if (@Model.WorkFlowId == 6)
+                        @foreach (var itm in Model.WorkFlowView)
+                        {
+                            if (@Model.WorkFlowId == itm.WorkFlowId)
+                            {
+                                <div class="step current"><span>@itm.WorkFlowName</span></div>
+                            }
+                            else
+                            {
+                                <div class="step"><span>@itm.WorkFlowName</span></div>
+                            }
+                        }
+
+                        @*@if (@Model.WorkFlowId == 6)
                         {
                             <div id="WWF6" class="step current"><span>Booking</span></div>
                         }
@@ -74,7 +86,7 @@
                         else
                         {
                             <div id="WWF10" class="step"><span>PO Verification</span></div>
-                        }
+                        }*@
 
                     </div>
                 </div>
@@ -172,11 +184,14 @@
                                 <div class="form-group">
                                     @*<input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm pull-right" />
                                     <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" id="btnSubmit" onclick="return BookingSave()">Save</button>*@
-                                   
+
                                     <table Style="width:100%">
                                         <tr>
                                             <td Style="width:50%;text-align:right">
-                                                <button type="button" class="btn btn-fill btn-rose btn-sm " id="btnSubmit" onclick="return BookingSave()">Save</button>
+                                                @if (Model.StatusPropId == 40 && Model.WorkFlowId == 6)
+                                                {
+                                                    <button type="button" class="btn btn-fill btn-rose btn-sm " id="btnSubmit" onclick="return BookingSave()">Save</button>
+                                                }
                                             </td>
                                             <td Style="width:50%;text-align:right">
                                                 <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm" />
@@ -193,8 +208,14 @@
             @Html.HiddenFor(m => m.UserId, new { id = "UserId", style = "width:0px;" })
             @Html.HiddenFor(m => m.UserTypePropId, new { id = "UserTypePropId", style = "width:0px;" })
             @Html.HiddenFor(m => m.ZZCompanyId, new { id = "ZZCompanyId", style = "width:0px;" })
-            }
-        </div>
+            @Html.HiddenFor(m => m.WorkFlowId, new { id = "WorkFlowId", style = "width:0px;" })
+            @Html.HiddenFor(m => m.StatusPropId, new { id = "StatusPropId", style = "width:0px;" })
+            @Html.HiddenFor(m => m.StateId, new { id = "StateId", style = "width:0px;" })
+            @Html.HiddenFor(m => m.BPId, new { id = "BPId", style = "width:0px;" })
+            @Html.HiddenFor(m => m.DocId, new { id = "DocId", style = "width:0px;" })
+            @Html.HiddenFor(m => m.ReportURL, new { id = "ReportURL", style = "width:0px;" })
+        }
+    </div>
 </div>
 <script>
     var BookingList = '';
@@ -219,7 +240,10 @@
                         BindBasicData(data.BookingList[0]);
                         if (BookingList.length > 0) {
                             $("#btnNext").show();
-                        }  
+                        }
+                    }
+                    else {
+                        alert(data.Status);
                     }
                 },
                 error: function (xhr) {
@@ -240,13 +264,13 @@
     ///////////////////////////// Booking Save  //////////////////////////////////////////////////////
     function BookingSave() {
         try {
-            
+
             var strMSG = '';
 
             //if ($("#BookingDate").val().trim() == "") {
             //    strMSG = strMSG + 'Booking Date \n</br>'
             //}
-            
+
             if ($("#DepartmentId").val().trim() == "") {
                 strMSG = strMSG + 'Department Name \n</br>'
             }
@@ -287,7 +311,6 @@
                 }
                 else {
                     model.BookingId = -1;
-                    model.StatusPropId = 40;
                 }
 
                // model.ZZBookingDate = $("#BookingDate").val().trim();
@@ -303,7 +326,7 @@
 
 
                 $("#btnSubmit").hide();
-                LoaderShow();             
+                LoaderShow();
                 var data = {'model': model};
                 var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                 $.ajax({
@@ -314,14 +337,14 @@
                     data: dataWithAntiforgeryToken,
                     //contentType: "application/json; charset=utf-8",
                     success: function (data) {
-                       LoaderHide();                      
+                       LoaderHide();
                         if (data.StatusId != "99" && data.StatusId != "-99") {
                             BookingList = data.BookingList;
                             BindBasicData(data.BookingList[0]);
 
                             if (BookingList.length > 0) {
                                 $("#btnNext").show();
-                            } 
+                            }
                         }
                         $("#btnSubmit").show();
                         alert(data.Status);
@@ -329,7 +352,7 @@
                     error: function (xhr) {
 
                         $("#btnSubmit").show();
-                        LoaderHide();                    
+                        LoaderHide();
                         alert(xhr.responseText);
                     }
                 });
@@ -338,7 +361,7 @@
         }
         catch (e) {
 
-            LoaderHide();          
+            LoaderHide();
             $("#btnSubmit").show();
             alert(e.message);
             return false;
@@ -348,7 +371,7 @@
     ///////////////////////////// Bind Basic Info  //////////////////////////////////////////////////////
     function BindBasicData(data) {
         try {
-           
+
             $("#BookingDate").text(NullHandle(data.ZZBookingDate));
             $("#BookingNo").text(NullHandle(data.BookingNo));
             $("#BookingType").text(NullHandle(data.ZZBookingType));
@@ -362,6 +385,8 @@
             $("#MobileNo").val(NullHandle(data.MobileNo));
             $("#Remark").val(NullHandle(data.Remark));
             $("#CreatedBy").val(NullHandle(data.ZZUpdatedBy));
+            $("#DocId").val(NullHandle(data.BookingId));
+            
         }
         catch (e) {
 
@@ -374,7 +399,7 @@
     ///////////////////////////// Set Button Visibility  //////////////////////////////////////////////////////
     function SetButtonVisibility() {
         try {
-            if (BookingList.length > 0 && parseInt(BookingList[0].StatusPropId) == 40) {
+            if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#WorkFlowId").val()) ==6 ) {
                 $("#btnSubmit").attr('disabled', false);
             }
             else {
@@ -389,9 +414,9 @@
     ///////////////////////////// Disable Controls  //////////////////////////////////////////////////////
     function DisableControls() {
         try {
-            var blnStatus = false;
-            if (BookingList.length > 0 && parseInt(BookingList[0].StatusPropId) != 40) {
-                blnStatus = true;
+            var blnStatus = true;
+            if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#WorkFlowId").val()) ==6) {
+                blnStatus = false;
             }
             //$("#PartCode").prop("readonly", blnStatus);
 
@@ -444,7 +469,7 @@
 
     //var focusables = $(":input").not('[type="image"]');
     //$("input").bind("keydown", function (event) {
-        
+
     //    var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
     //    if (keyCode == 10 || keyCode == 13) {
     //        event.stopPropagation();

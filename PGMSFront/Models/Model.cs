@@ -1,6 +1,8 @@
 
+using PGMSFront.WCFPGMSRef;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,15 +26,21 @@ namespace PGMSFront.Models {
         public string ZZUserType { get; set; }
         public string UserCode { get; set; }
         public string Message { get; set; }
-        public int? StatusPropId { get; set; }
+        public int StatusPropId { get; set; }
         public int TrackGroupId { get; set; }
         public string TrackGroup { get; set; }
         public string ViewTitle { get; set; }
         public string DocDate { get; set; }
         public string DocType { get; set; }
         public string DocNo { get; set; }
-        public int? WorkFlowId { get; set; }
+        public int WorkFlowId { get; set; }
         public int? WorkFlowStatusId { get; set; }
+        public int StateId { get; set; }
+        public int DocId { get; set; }
+        public int BPId { get; set; }
+        public string ReportURL { get; set; }
+
+        public ObservableCollection<dbmlWorkFlowView> WorkFlowView = new ObservableCollection<dbmlWorkFlowView>();
 
     }
 }

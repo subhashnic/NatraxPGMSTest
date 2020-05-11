@@ -19,6 +19,7 @@ namespace PGMSFront.Controllers
         #region Global Variables
         Service1Client objServiceClient = new Service1Client();
         ClassUserFunctions objClassUserFunctions = new ClassUserFunctions();
+        static string strRptURL= System.Configuration.ConfigurationManager.AppSettings["ReportUrl"];
         #endregion
 
         #region Login
@@ -77,10 +78,11 @@ namespace PGMSFront.Controllers
                             Session["Properties"] = objreturndbmlProperty.objdbmlProperty;
                         }
 
-                        returndbmlServicesView objreturndbmlServicesView = objServiceClient.ServicesGetByBPId(12);
-                        if (objreturndbmlServicesView.objdbmlStatus.StatusId == 1 && objreturndbmlServicesView.objdbmlServicesView.Count > 0)
+                        returndbmlCompanyView objreturndbmlCompanyView = objServiceClient.CompanyViewGetByCompanyId(Convert.ToInt32(objdbmlUserView.ZZCompanyId));
+                        if (objreturndbmlCompanyView.objdbmlStatus.StatusId == 1 && objreturndbmlCompanyView.objdbmlCompanyView.Count > 0)
                         {
-                            Session["Services"] = objreturndbmlServicesView.objdbmlServicesView;
+                            Session["Company"] = objreturndbmlCompanyView.objdbmlCompanyView.FirstOrDefault();
+                            Session["StateId"] = objreturndbmlCompanyView.objdbmlCompanyView.FirstOrDefault().StateId;
                         }
 
                         return RedirectToAction("Dashboard", "Home");
@@ -319,7 +321,7 @@ namespace PGMSFront.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        public ActionResult BookingSearchViewGetByDepartmentBookinStatus(int intDepartmentId,int intBookingTypeId,int intStatusPropId)
+        public ActionResult BookingSearchViewGetByDepartmentBookinStatus(int intDepartmentId, int intBookingTypeId, int intStatusPropId)
         {
             if (Session["UserId"] == null)
             {
@@ -332,7 +334,7 @@ namespace PGMSFront.Controllers
             returndbmlBookingSearchView objreturndbmlBookingSearchView = new returndbmlBookingSearchView();
 
             try
-            {      
+            {
                 objreturndbmlBookingSearchView = objServiceClient.BookingSearchViewGetByCompanyIdFromDateToDateFront(intDepartmentId, DateTime.Now.Date, DateTime.Now.Date, intBookingTypeId, intStatusPropId);
 
                 if (objreturndbmlBookingSearchView != null && objreturndbmlBookingSearchView.objdbmlStatus.StatusId == 1)
@@ -382,9 +384,9 @@ namespace PGMSFront.Controllers
             List<SelectListItem> Items = new List<SelectListItem>();
             try
             {
-                Items.Add(new SelectListItem {Text= "Booking",Value= "21" });
-                Items.Add(new SelectListItem { Text = "RFQ - Confidential", Value = "46" });
-                Items.Add(new SelectListItem { Text = "RFQ - Regular", Value = "98" });
+                Items.Add(new SelectListItem { Text = "Booking", Value = Convert.ToString(Convert.ToInt32(HardCodeValues.BookingBPId)) });
+                Items.Add(new SelectListItem { Text = "RFQ - Confidential", Value = Convert.ToString(Convert.ToInt32(HardCodeValues.RFQConfBPId)) });
+                Items.Add(new SelectListItem { Text = "RFQ - Regular", Value = Convert.ToString(Convert.ToInt32(HardCodeValues.RFQRegBPId)) });
             }
             catch
             {
@@ -430,6 +432,10 @@ namespace PGMSFront.Controllers
                 model.LoginId = Convert.ToString(Session["LoginId"]);
                 model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
                 model.UserCode = Convert.ToString(Session["UserCode"]);
+                Session["BPId"] = Convert.ToInt32(HardCodeValues.BookingBPId);
+                model.StateId = Convert.ToInt32(Session["StateId"]);
+                model.BPId = Convert.ToInt32(Session["BPId"]);
+                model.ReportURL = strRptURL;
 
                 ViewBag.CompanyDepartment = CompanyDepartmentGetByCustomerMasterId(Convert.ToInt32(Session["ZZCompanyId"]));
 
@@ -440,17 +446,22 @@ namespace PGMSFront.Controllers
                     model.DocDate = objdbmlBooking.ZZBookingDate;
                     model.DocNo = objdbmlBooking.BookingNo;
                     model.DocType = objdbmlBooking.ZZBookingType;
-                    model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
+                    model.WorkFlowId = Convert.ToInt32(objdbmlBooking.ZZWorkFlowId);
                     model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+                    model.StatusPropId = objdbmlBooking.BookingId;
+                    model.DocId = Convert.ToInt32(Session["BPId"]);
                 }
                 else
                 {
                     model.DocDate = "To be allotted";
                     model.DocNo = "To be allotted";
                     model.DocType = "Booking";
-                    model.WorkFlowId = 6;
+                    model.WorkFlowId = Convert.ToInt32(HardCodeValues.BookingWFId);
+                    model.StatusPropId = Convert.ToInt32(HardCodeValues.OpenStatusId);
                 }
-               
+
+                model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]));
+
             }
             catch
             {
@@ -532,14 +543,15 @@ namespace PGMSFront.Controllers
             returndbmlBooking objreturndbmlBooking = new returndbmlBooking();
 
             try
-            {                
+            {
                 model.BookingDate = DateTime.Now.Date;//objClassUserFunctions.ToDateTimeNotNull(model.ZZBookingDate);
-                model.BPId = 21;
+                model.BPId = Convert.ToInt32(Session["BPId"]);
                 model.CompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
                 model.CreateId = Convert.ToInt32(Session["UserId"]);
                 model.CreateDate = DateTime.Now;
                 model.UpdateId = Convert.ToInt32(Session["UserId"]);
                 model.UpdateDate = DateTime.Now;
+                model.StatusPropId = Convert.ToInt32(HardCodeValues.OpenStatusId); 
                 if (model.BookingId <= 0)
                 {
                     model.BookingNo = "Temp";
@@ -644,6 +656,32 @@ namespace PGMSFront.Controllers
             }
             return Items;
         }
+
+        public ObservableCollection<dbmlWorkFlowView> WorkFlowViewGetByBPId(int intBPId)
+        {
+            ObservableCollection<dbmlWorkFlowView> objdbmlWorkFlowView = new ObservableCollection<dbmlWorkFlowView>();
+            try
+            {               
+                if (Session["WorkFlowView"] != null)
+                {
+                    GeneralColl<dbmlWorkFlowView>.CopyCollection(Session["WorkFlowView"] as ObservableCollection<dbmlWorkFlowView>, objdbmlWorkFlowView);
+                }
+                else
+                {
+                    returndbmlWorkFlowView objreturndbmlWorkFlowView = objServiceClient.WorkFlowViewGetByBPId(intBPId);
+                    if (objreturndbmlWorkFlowView.objdbmlStatus.StatusId == 1 && objreturndbmlWorkFlowView.objdbmlWorkFlowView.Count > 0)
+                    {
+                        Session["WorkFlowView"] = objreturndbmlWorkFlowView.objdbmlWorkFlowView;
+                        objdbmlWorkFlowView = objreturndbmlWorkFlowView.objdbmlWorkFlowView;
+                    }
+                }               
+            }
+            catch
+            {
+
+            }
+            return objdbmlWorkFlowView;
+        }
         #endregion
 
         #region Vehicle
@@ -667,28 +705,33 @@ namespace PGMSFront.Controllers
                 model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
                 model.UserCode = Convert.ToString(Session["UserCode"]);
                 model.StatusPropId = 0;
+                model.StateId = Convert.ToInt32(Session["StateId"]);
                 ViewBag.VehicleType = GetVehicleType();
-               
+
                 if (Session["objdbmlBooking"] != null)
                 {
                     dbmlBookingView objdbmlBooking = new dbmlBookingView();
-                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
-                    model.StatusPropId = objdbmlBooking.StatusPropId;
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);                 
                     model.DocDate = objdbmlBooking.ZZBookingDate;
                     model.DocNo = objdbmlBooking.BookingNo;
                     model.DocType = objdbmlBooking.ZZBookingType;
-                    model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
+                    model.WorkFlowId = Convert.ToInt32(objdbmlBooking.ZZWorkFlowId);
                     model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+                    model.StatusPropId = Convert.ToInt32(objdbmlBooking.StatusPropId);
+                    model.BPId = Convert.ToInt32(Session["BPId"]);
+                    model.ReportURL = strRptURL;
+                    model.StatusPropId = objdbmlBooking.BookingId;
 
                     //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 10)
                     //{
                     //    return RedirectToActionByStatusId(Convert.ToInt32(objdbmlBooking.TabStatusId));
                     //}
+                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]));
                 }
                 else
                 {
                     return RedirectToAction("Basic", "Home");
-                }                
+                }
             }
             catch
             {
@@ -788,8 +831,8 @@ namespace PGMSFront.Controllers
                     GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
 
                     model.DocId = objdbmlBooking.BookingId;
-                    model.BPId = 21;
-                    model.Id = 99;
+                    model.BPId = Convert.ToInt32(Session["BPId"]);
+                    model.GroupId = Convert.ToInt32(HardCodeValues.VehicleGrpPropId);
                     model.GroupName = "Vehicle";
                     model.CreateId = Convert.ToInt32(Session["UserId"]);
                     model.CreateDate = DateTime.Now;
@@ -932,6 +975,7 @@ namespace PGMSFront.Controllers
                 model.LoginId = Convert.ToString(Session["LoginId"]);
                 model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
                 model.UserCode = Convert.ToString(Session["UserCode"]);
+                model.StateId = Convert.ToInt32(Session["StateId"]);
 
                 if (Session["objdbmlBooking"] != null)
                 {
@@ -940,13 +984,15 @@ namespace PGMSFront.Controllers
                     model.DocDate = objdbmlBooking.ZZBookingDate;
                     model.DocNo = objdbmlBooking.BookingNo;
                     model.DocType = objdbmlBooking.ZZBookingType;
-                    model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
+                    model.WorkFlowId = Convert.ToInt32(objdbmlBooking.ZZWorkFlowId);
                     model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+                    model.StatusPropId = Convert.ToInt32(objdbmlBooking.StatusPropId);
 
                     //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 20)
                     //{
                     //    return RedirectToActionByStatusId(Convert.ToInt32(objdbmlBooking.TabStatusId));
                     //}
+                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]));
                 }
                 else
                 {
@@ -980,6 +1026,7 @@ namespace PGMSFront.Controllers
                 model.LoginId = Convert.ToString(Session["LoginId"]);
                 model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
                 model.UserCode = Convert.ToString(Session["UserCode"]);
+                model.StateId = Convert.ToInt32(Session["StateId"]);
 
                 if (Session["objdbmlBooking"] != null)
                 {
@@ -988,13 +1035,15 @@ namespace PGMSFront.Controllers
                     model.DocDate = objdbmlBooking.ZZBookingDate;
                     model.DocNo = objdbmlBooking.BookingNo;
                     model.DocType = objdbmlBooking.ZZBookingType;
-                    model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
+                    model.WorkFlowId = Convert.ToInt32(objdbmlBooking.ZZWorkFlowId);
                     model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+                    model.StatusPropId = Convert.ToInt32(objdbmlBooking.StatusPropId);
 
                     //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 30)
                     //{
                     //    return RedirectToActionByStatusId(Convert.ToInt32(objdbmlBooking.TabStatusId));
                     //}
+                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]));
                 }
                 else
                 {
@@ -1027,10 +1076,16 @@ namespace PGMSFront.Controllers
                 model.EmailId = Convert.ToString(Session["EmailId"]);
                 model.LoginId = Convert.ToString(Session["LoginId"]);
                 model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
-                model.UserCode = Convert.ToString(Session["UserCode"]);
-                model.TrackGroupId = 2;
+                model.UserCode = Convert.ToString(Session["UserCode"]);               
                 model.TrackGroup = "Track Booking";
                 model.ViewTitle = "Track Booking";
+                model.StateId = Convert.ToInt32(Session["StateId"]);
+
+                returndbmlServicesView objreturndbmlServicesView = objServiceClient.ServicesGetByBPId(Convert.ToInt32(Session["BPId"]));
+                if (objreturndbmlServicesView.objdbmlStatus.StatusId == 1 && objreturndbmlServicesView.objdbmlServicesView.Count > 0)
+                {
+                    Session["Services"] = objreturndbmlServicesView.objdbmlServicesView;
+                }
 
                 //Session["TrackGroupId"] = model.TrackGroupId;
                 //Session["TrackGroup"] = model.TrackGroup;
@@ -1045,13 +1100,18 @@ namespace PGMSFront.Controllers
                     model.DocDate = objdbmlBooking.ZZBookingDate;
                     model.DocNo = objdbmlBooking.BookingNo;
                     model.DocType = objdbmlBooking.ZZBookingType;
-                    model.WorkFlowId = objdbmlBooking.ZZWorkFlowId;
+                    model.WorkFlowId = Convert.ToInt32(objdbmlBooking.ZZWorkFlowId);
                     model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+                    model.StatusPropId = Convert.ToInt32(objdbmlBooking.StatusPropId);
+                    model.BPId = Convert.ToInt32(Session["BPId"]);
+                    model.ReportURL = strRptURL;
+                    model.StatusPropId = objdbmlBooking.BookingId;
 
                     //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 40)
                     //{
                     //    return RedirectToActionByStatusId(Convert.ToInt32(objdbmlBooking.TabStatusId));
                     //}
+                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]));
                 }
                 else
                 {
@@ -1080,7 +1140,7 @@ namespace PGMSFront.Controllers
                 if (btnPrevNext.ToLower() == "prev")
                 {
                     return RedirectToAction("Vehicle", "Home");
-                }                
+                }
             }
             catch
             {
@@ -1108,7 +1168,7 @@ namespace PGMSFront.Controllers
             {
                 GeneralColl<dbmlServicesView>.CopyCollection(Session["Services"] as ObservableCollection<dbmlServicesView>, objdbmlServicesView);
             }
-            objdbmlServicesView = new ObservableCollection<dbmlServicesView>(objdbmlServicesView.Where(itm => itm.TrackGroupId == intTrackGroupId));
+            objdbmlServicesView = new ObservableCollection<dbmlServicesView>(objdbmlServicesView.Where(itm => itm.TrackGroupId == intTrackGroupId).OrderBy(itm => itm.SrNo));
 
             returndbmlTrackBookingDetail objreturndbmlTrackBookingDetail = new returndbmlTrackBookingDetail();
             try
@@ -1143,7 +1203,7 @@ namespace PGMSFront.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        public ActionResult TrackBookingDetailSave(ObservableCollection<dbmlTrackBookingTimeDetail> model,string strGroupMinBilling)
+        public ActionResult TrackBookingDetailSave(ObservableCollection<dbmlTrackBookingTimeDetail> model)
         {
             if (Session["UserId"] == null)
             {
@@ -1156,43 +1216,93 @@ namespace PGMSFront.Controllers
 
             returndbmlTrackBookingDetail objreturndbmlTrackBookingDetail = new returndbmlTrackBookingDetail();
             returndbmlTrackBookingDetail objreturndbmlTrackBookingDetailTemp = new returndbmlTrackBookingDetail();
-           
+
             try
             {
                 if (Session["objdbmlBooking"] != null)
                 {
                     dbmlBookingView objdbmlBooking = new dbmlBookingView();
                     GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
-                    foreach (var itm in model)
+                    ObservableCollection<dbmlServicesView> objdbmlServicesView = new ObservableCollection<dbmlServicesView>();
+                    if (Session["Services"] != null)
                     {
-                        itm.BookingId = objdbmlBooking.BookingId;
-                        itm.BookingDetailId = 0;
-                        itm.BPId = 21;
-                        itm.Date = objClassUserFunctions.ToDateTimeNotNull(itm.ZZDate);
-                        itm.CreateId = Convert.ToInt32(Session["UserId"]);
-                        itm.CreateDate = DateTime.Now;
-                        itm.UpdateId = Convert.ToInt32(Session["UserId"]);
-                        itm.UpdateDate = DateTime.Now;
+                        GeneralColl<dbmlServicesView>.CopyCollection(Session["Services"] as ObservableCollection<dbmlServicesView>, objdbmlServicesView);
+                    }
 
-                        int intRoundOffHrs = Convert.ToInt32(itm.TotalHours);
-                        int intRoundOffMin = Convert.ToInt32(itm.TotalMinutes);                       
+                    objdbmlServicesView = new ObservableCollection<dbmlServicesView>(objdbmlServicesView.Where(itm => itm.ServiceId == model.FirstOrDefault().ServiceId));
 
-                        if ((intRoundOffHrs>0 && intRoundOffMin>=30) || (intRoundOffHrs == 0 && intRoundOffMin >= 1))
+                    if (Convert.ToString(objdbmlServicesView.FirstOrDefault().GroupforMinBillingHours).ToUpper() == "YES")
+                    {
+                        int intMinBillHrs = Convert.ToInt32(model.FirstOrDefault().BillingHrs);
+                        int intGroupRoundHrs = 0;
+
+                        foreach (var itm in model)
                         {
-                            intRoundOffHrs = intRoundOffHrs + 1;
-                            intRoundOffMin=0;
-                        }
+                            itm.BookingId = objdbmlBooking.BookingId;
+                            itm.BookingDetailId = 0;
+                            itm.BPId = Convert.ToInt32(Session["BPId"]);
+                            itm.Date = objClassUserFunctions.ToDateTimeNotNull(itm.ZZDate);
+                            itm.CreateId = Convert.ToInt32(Session["UserId"]);
+                            itm.CreateDate = DateTime.Now;
+                            itm.UpdateId = Convert.ToInt32(Session["UserId"]);
+                            itm.UpdateDate = DateTime.Now;
 
-                        itm.RoundOffHrs = intRoundOffHrs;
-                        itm.RoundOffMin = intRoundOffMin;
+                            int intRoundOffHrs = Convert.ToInt32(itm.TotalHours);
+                            int intRoundOffMin = Convert.ToInt32(itm.TotalMinutes);
 
-                        if(intRoundOffHrs> Convert.ToInt32(itm.BillingHrs))
-                        {
+                            if ((intRoundOffHrs > 0 && intRoundOffMin >= 30) || (intRoundOffHrs == 0 && intRoundOffMin >= 1))
+                            {
+                                intRoundOffHrs = intRoundOffHrs + 1;
+                                intRoundOffMin = 0;
+                            }
+
+                            itm.RoundOffHrs = intRoundOffHrs;
+                            itm.RoundOffMin = intRoundOffMin;
                             itm.BillingHrs = intRoundOffHrs;
+                            intGroupRoundHrs += intRoundOffHrs;
+
+                            itm.TotalHours = Convert.ToInt32(itm.TotalHours);
+                            itm.TotalMinutes = Convert.ToInt32(itm.TotalMinutes);
                         }
 
-                    }                       
-                
+                        if (intGroupRoundHrs < intMinBillHrs)
+                        {
+                            int intServiceId = Convert.ToInt32(model.OrderByDescending(itm => Convert.ToInt32(itm.TotalHours)).ThenByDescending(itm => Convert.ToInt32(itm.TotalMinutes)).ThenBy(itm => Convert.ToDecimal(itm.Rate)).ThenBy(itm => Convert.ToInt32(itm.SrNo)).First().ServiceId);
+                            model.FirstOrDefault(itm => itm.ServiceId == intServiceId).BillingHrs += (intMinBillHrs - intGroupRoundHrs);                            
+                        }
+                    }
+                    else
+                    {
+                        foreach (var itm in model)
+                        {
+                            itm.BookingId = objdbmlBooking.BookingId;
+                            itm.BookingDetailId = 0;
+                            itm.BPId = Convert.ToInt32(Session["BPId"]);
+                            itm.Date = objClassUserFunctions.ToDateTimeNotNull(itm.ZZDate);
+                            itm.CreateId = Convert.ToInt32(Session["UserId"]);
+                            itm.CreateDate = DateTime.Now;
+                            itm.UpdateId = Convert.ToInt32(Session["UserId"]);
+                            itm.UpdateDate = DateTime.Now;
+
+                            int intRoundOffHrs = Convert.ToInt32(itm.TotalHours);
+                            int intRoundOffMin = Convert.ToInt32(itm.TotalMinutes);
+
+                            if ((intRoundOffHrs > 0 && intRoundOffMin >= 30) || (intRoundOffHrs == 0 && intRoundOffMin >= 1))
+                            {
+                                intRoundOffHrs = intRoundOffHrs + 1;
+                                intRoundOffMin = 0;
+                            }
+
+                            itm.RoundOffHrs = intRoundOffHrs;
+                            itm.RoundOffMin = intRoundOffMin;
+
+                            if (intRoundOffHrs > Convert.ToInt32(itm.BillingHrs))
+                            {
+                                itm.BillingHrs = intRoundOffHrs;
+                            }
+                        }
+                    }
+
                     objreturndbmlTrackBookingDetailTemp.objdbmlTrackBookingTimeDetail = model;
 
 
@@ -1256,7 +1366,7 @@ namespace PGMSFront.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        public ActionResult TrackBookingDetailDelete(int intVehicleId, string strDate, int intServiceId, int intTimeSlotId,int intTrackGroupId)
+        public ActionResult TrackBookingDetailDelete(int intVehicleId, string strDate, int intServiceId, int intTimeSlotId, int intTrackGroupId)
         {
             if (Session["UserId"] == null)
             {
@@ -1323,7 +1433,7 @@ namespace PGMSFront.Controllers
 
                 if (objProp != null && objProp.Count > 0)
                 {
-                    ObservableCollection<dbmlProperty> objPropList = new ObservableCollection<dbmlProperty>(objProp.Where(itm => itm.PropertyTypeId == 9));
+                    ObservableCollection<dbmlProperty> objPropList = new ObservableCollection<dbmlProperty>(objProp.Where(itm => itm.PropertyTypeId == Convert.ToInt32(HardCodeValues.TimeSlotPropId)));
                     foreach (var itm in objPropList)
                     {
                         Items.Add(new SelectListItem { Text = itm.Property, Value = itm.PropertyId.ToString(), Selected = false });
@@ -1349,7 +1459,7 @@ namespace PGMSFront.Controllers
                 }
                 else
                 {
-                    returndbmlServicesView objreturndbmlServicesView = objServiceClient.ServicesGetByBPId(12);
+                    returndbmlServicesView objreturndbmlServicesView = objServiceClient.ServicesGetByBPId((int)HardCodeValues.ServiceBPIdTrack);
                     if (objreturndbmlServicesView.objdbmlStatus.StatusId == 1 && objreturndbmlServicesView.objdbmlServicesView.Count > 0)
                     {
                         Session["Services"] = objreturndbmlServicesView.objdbmlServicesView;
@@ -1359,7 +1469,7 @@ namespace PGMSFront.Controllers
 
                 if (objdbmlServicesView != null && objdbmlServicesView.Count > 0)
                 {
-                    ObservableCollection<dbmlServicesView> objdbmlServicesViewList = new ObservableCollection<dbmlServicesView>(objdbmlServicesView.Where(itm => itm.TrackGroupId == intTrackGroupId));
+                    ObservableCollection<dbmlServicesView> objdbmlServicesViewList = new ObservableCollection<dbmlServicesView>(objdbmlServicesView.Where(itm => itm.TrackGroupId == intTrackGroupId).OrderBy(itm => itm.SrNo));
                     foreach (var itm in objdbmlServicesViewList)
                     {
                         if (Items.FirstOrDefault(Category => Convert.ToInt32(Category.Value) == itm.CategoryPropId) == null)
@@ -1388,7 +1498,7 @@ namespace PGMSFront.Controllers
                 }
                 else
                 {
-                    returndbmlServicesView objreturndbmlServicesView = objServiceClient.ServicesGetByBPId(12);
+                    returndbmlServicesView objreturndbmlServicesView = objServiceClient.ServicesGetByBPId(Convert.ToInt32(Session["BPId"]));
                     if (objreturndbmlServicesView.objdbmlStatus.StatusId == 1 && objreturndbmlServicesView.objdbmlServicesView.Count > 0)
                     {
                         Session["Services"] = objreturndbmlServicesView.objdbmlServicesView;
@@ -1398,7 +1508,7 @@ namespace PGMSFront.Controllers
 
                 if (objdbmlServicesView != null && objdbmlServicesView.Count > 0)
                 {
-                    ObservableCollection<dbmlServicesView> objdbmlServicesViewList = new ObservableCollection<dbmlServicesView>(objdbmlServicesView.Where(itm => itm.TrackGroupId >0));
+                    ObservableCollection<dbmlServicesView> objdbmlServicesViewList = new ObservableCollection<dbmlServicesView>(objdbmlServicesView.Where(itm => itm.TrackGroupId > 0).OrderBy(itm => itm.SrNo));
                     foreach (var itm in objdbmlServicesViewList)
                     {
                         if (Items.FirstOrDefault(itmTrack => Convert.ToInt32(itmTrack.Value) == itm.TrackGroupId) == null)
@@ -1426,12 +1536,12 @@ namespace PGMSFront.Controllers
             int intBPId = Convert.ToInt32(Session["BPId"]);
             switch (intTabStatusId)
             {
-                case 0: return RedirectToAction("Basic", "Home");               
-                case 10: return RedirectToAction("Vehicle", "Home");                      
+                case 0: return RedirectToAction("Basic", "Home");
+                case 10: return RedirectToAction("Vehicle", "Home");
                 case 20: return RedirectToAction("Driver", "Home");
                 case 30: return RedirectToAction("Attenee", "Home");
                 case 40: return RedirectToAction("MainTrackBooking", "Home");
-               
+
                 default: return RedirectToAction("Basic", "Home");
             }
         }
@@ -1504,7 +1614,7 @@ namespace PGMSFront.Controllers
         //{
         //    return View();
         //}
-        
+
         //public ActionResult VillageRoadTrack()
         //{
         //    return View();

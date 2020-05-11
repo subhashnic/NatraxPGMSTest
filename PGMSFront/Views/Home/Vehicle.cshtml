@@ -46,45 +46,16 @@
                     </div>
                     <div class="card-body">
                         <div class="arrow-steps clearfix">
-                            @if (@Model.WorkFlowId == 6)
+                            @foreach (var itm in Model.WorkFlowView)
                             {
-                                <div id="WWF6" class="step current"><span>Booking</span></div>
-                            }
-                            else
-                            {
-                                <div id="WWF6" class="step"><span>Booking</span></div>
-                            }
-                            @if (@Model.WorkFlowId == 7)
-                            {
-                                <div id="WWF7" class="step current"><span>PI</span></div>
-                            }
-                            else
-                            {
-                                <div id="WWF7" class="step"><span>PI</span></div>
-                            }
-                            @if (@Model.WorkFlowId == 8)
-                            {
-                                <div id="WWF8" class="step current"><span>Approve</span></div>
-                            }
-                            else
-                            {
-                                <div id="WWF8" class="step"><span>Approve</span></div>
-                            }
-                            @if (@Model.WorkFlowId == 9)
-                            {
-                                <div id="WWF9" class="step current"><span>PO</span></div>
-                            }
-                            else
-                            {
-                                <div id="WWF9" class="step"><span>PO</span></div>
-                            }
-                            @if (@Model.WorkFlowId == 10)
-                            {
-                                <div id="WWF10" class="step current"><span>PO Verification</span></div>
-                            }
-                            else
-                            {
-                                <div id="WWF10" class="step"><span>PO Verification</span></div>
+                                if (@Model.WorkFlowId == itm.WorkFlowId)
+                                {
+                                    <div class="step current"><span>@itm.WorkFlowName</span></div>
+                                }
+                                else
+                                {
+                                    <div class="step"><span>@itm.WorkFlowName</span></div>
+                                }
                             }
 
                         </div>
@@ -97,7 +68,10 @@
                     <div class="card-header">
                         <h4 class="card-title">
                             <label class="card-title">Testing Vehicle Count : </label> <label class="card-title" id="lblVehicleCount"></label>
-                            <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="AddMore()" id="btnAdd">Add More</button>
+                            @if (Model.StatusPropId == 40 && Model.WorkFlowId == 6)
+                            {
+                                <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="AddMore()" id="btnAdd">Add More</button>
+                            }
                         </h4>
                     </div>
                     <div class="card-body">
@@ -135,9 +109,9 @@
                                                     <a type='button' class='btn btn-danger' onclick="AddMoreCancel()"><i class='material-icons'>close</i></a>
                                                 </td>
                                                 @*<td class="text-center">
-                                                        <a href="#" class="btn btn-link btn-info btn-just-icon remove" onclick="return VehicleSave()" id="btnSave"><i class="material-icons">save</i></a>
-                                                        <a href="#" class="btn btn-link btn-danger btn-just-icon remove" onclick="AddMoreCancel()"><i class="material-icons">close</i></a>
-                                                    </td>*@
+                                        <a href="#" class="btn btn-link btn-info btn-just-icon remove" onclick="return VehicleSave()" id="btnSave"><i class="material-icons">save</i></a>
+                                        <a href="#" class="btn btn-link btn-danger btn-just-icon remove" onclick="AddMoreCancel()"><i class="material-icons">close</i></a>
+                                    </td>*@
                                             </tr>
                                         </tbody>
                                     </table>
@@ -147,7 +121,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 @*<input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
-                                    <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm pull-right" />*@
+                    <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm pull-right" />*@
                             </div>
                         </div>
                         <br />
@@ -165,9 +139,12 @@
                     @Html.HiddenFor(m => m.UserId, new { id = "UserId", style = "width:0px;" })
                     @Html.HiddenFor(m => m.UserTypePropId, new { id = "UserTypePropId", style = "width:0px;" })
                     @Html.HiddenFor(m => m.ZZCompanyId, new { id = "ZZCompanyId", style = "width:0px;" })
+                    @Html.HiddenFor(m => m.WorkFlowId, new { id = "WorkFlowId", style = "width:0px;" })
                     @Html.HiddenFor(m => m.StatusPropId, new { id = "StatusPropId", style = "width:0px;" })
-
-
+                    @Html.HiddenFor(m => m.StateId, new { id = "StateId", style = "width:0px;" })
+                    @Html.HiddenFor(m => m.BPId, new { id = "BPId", style = "width:0px;" })
+                    @Html.HiddenFor(m => m.DocId, new { id = "DocId", style = "width:0px;" })
+                    @Html.HiddenFor(m => m.ReportURL, new { id = "ReportURL", style = "width:0px;" })
                 </div>
 
             </div>
@@ -226,6 +203,9 @@
                         if (VehicleList.length > 0) {
                             $("#btnNext").show();
                         }
+                    }
+                    else {
+                        alert(data.Status);
                     }
                 },
                 error: function (xhr) {
@@ -441,6 +421,7 @@
         try {
             var gridData = "";
             var StatusPropId = $("#StatusPropId").val();
+            var WorkFlowId = $("#WorkFlowId").val();
             //var row = $('#tbodyVehicle').find('tr:eq(0)');
 
             gridData = "<tr id='AddMoreTR' style='display: none;'>" + $("#AddMoreTR").html() + "</tr>";
@@ -458,7 +439,7 @@
                 gridData = gridData + "<td>" + NullHandle(data[i].Description1) + "</td>";
                 gridData = gridData + "<td>" + NullHandle(data[i].Description2) + "</td>";
 
-                if (parseInt(StatusPropId)==40) {
+                if (parseInt(StatusPropId) == 40 && parseInt(WorkFlowId) == 6) {
                     gridData = gridData + "<td class='td-actions text-center'>";
                     gridData = gridData + "<a href='#' class='btn btn-info' title='Edit Vehicle : " + NullHandle(data[i].VorC)+"' onclick='return VehicleEdit(" + NullHandle(data[i].VehCompId) + ")' > <i class='material-icons'>edit</i></a>&nbsp;";
                     gridData = gridData + "<a href='#' class='btn btn-danger' title='Delete Vehicle : " + NullHandle(data[i].VorC) +"' onclick='return VehicleDelete(" + NullHandle(data[i].VehCompId)+")'><i class='material-icons'>close</i></a>";
@@ -483,7 +464,7 @@
     ///////////////////////////// Set Button Visibility  //////////////////////////////////////////////////////
     function SetButtonVisibility() {
         try {
-            if ($("#StatusPropId").val() != undefined && parseInt($("#StatusPropId").val()) == 40) {
+            if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#WorkFlowId").val())==6) {
                 $("#btnAdd").attr('disabled', false);
             }
             else {

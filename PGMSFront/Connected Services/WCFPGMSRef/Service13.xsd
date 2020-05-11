@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCFServiceTemplate" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/WCFPGMSFront/Service1.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Data.Linq" />
   <xs:complexType name="dbmlStatus">
     <xs:sequence>
       <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
@@ -39,6 +40,38 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlUserView" nillable="true" type="tns:dbmlUserView" />
+  <xs:complexType name="ArrayOfdbmlCompanyView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlCompanyView" nillable="true" type="tns:dbmlCompanyView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdbmlCompanyView" nillable="true" type="tns:ArrayOfdbmlCompanyView" />
+  <xs:complexType name="dbmlCompanyView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BankAccountNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BankName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BranchName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CityId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Company" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyFax" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Data.Linq" minOccurs="0" name="CompanyImage" nillable="true" type="q1:Binary" />
+      <xs:element minOccurs="0" name="CompanyPan" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyWeb" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IFSCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Pincode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShortName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StateId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dbmlCompanyView" nillable="true" type="tns:dbmlCompanyView" />
   <xs:complexType name="ArrayOfdbmlProperty">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlProperty" nillable="true" type="tns:dbmlProperty" />
@@ -175,8 +208,8 @@
       <xs:element minOccurs="0" name="Description1" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Description2" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DocId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="Sno" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="TypeId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="UpdateDate" nillable="true" type="xs:dateTime" />
@@ -402,4 +435,27 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlBookingStatusTimeSlotView" nillable="true" type="tns:dbmlBookingStatusTimeSlotView" />
+  <xs:complexType name="ArrayOfdbmlWorkFlowView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlWorkFlowView" nillable="true" type="tns:dbmlWorkFlowView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdbmlWorkFlowView" nillable="true" type="tns:ArrayOfdbmlWorkFlowView" />
+  <xs:complexType name="dbmlWorkFlowView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BPId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateId" type="xs:int" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sequence" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateId" type="xs:int" />
+      <xs:element minOccurs="0" name="WorkFlowColor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WorkFlowId" type="xs:int" />
+      <xs:element minOccurs="0" name="WorkFlowName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WorkFlowTypePropId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ZZWorkFlowType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dbmlWorkFlowView" nillable="true" type="tns:dbmlWorkFlowView" />
 </xs:schema>

@@ -112,6 +112,9 @@
                         BookingList = data.BookingList;
                         BindGridData(data.BookingList);
                     }
+                    else {
+                        alert(data.Status);
+                    }
                 },
                 error: function (xhr) {
 
@@ -166,7 +169,8 @@
         
         //window.location.href = '@Url.Action("BookingGetByBookingId", "Home")?intBookingId='+BookingId+'';
     }
-    $(document).ready(function () {       
+    $(document).ready(function () {  
+      
         LoadBookingInfo();
         $("#DepartmentId").focus();
     });
