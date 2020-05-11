@@ -298,10 +298,12 @@
   <xs:element name="WorkFlowActivityInsert">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="DocId" type="xs:int" />
-        <xs:element minOccurs="0" name="WorkPlowId" type="xs:int" />
-        <xs:element minOccurs="0" name="StatusId" type="xs:int" />
-        <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="intDocId" type="xs:int" />
+        <xs:element minOccurs="0" name="intBPId" type="xs:int" />
+        <xs:element minOccurs="0" name="intWorkPlowId" type="xs:int" />
+        <xs:element minOccurs="0" name="intStatusId" type="xs:int" />
+        <xs:element minOccurs="0" name="strRemark" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="intCreateId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

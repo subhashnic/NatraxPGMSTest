@@ -682,6 +682,47 @@ namespace PGMSFront.Controllers
             }
             return objdbmlWorkFlowView;
         }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult AcceptPI()
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlBooking objreturndbmlBooking = new returndbmlBooking();
+
+            try
+            {              
+
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+                   
+                    objreturndbmlBooking = objServiceClient.WorkFlowActivityInsert(objdbmlBooking.BookingId, Convert.ToInt32(Session["BPId"]), Convert.ToInt32(objdbmlBooking.ZZWorkFlowId), Convert.ToInt32(objdbmlBooking.StatusPropId), "", Convert.ToInt32(Session["UserId"]));
+                    if (objreturndbmlBooking != null && objreturndbmlBooking.objdbmlStatus.StatusId == 1)
+                    {
+                        Session["objdbmlBooking"] = objreturndbmlBooking.objdbmlBookingList.FirstOrDefault();
+                        intStatusId = 1;
+                        strStatus = "Data Saved Successfully";
+                    }
+                    else
+                    {
+                        strStatus = objreturndbmlBooking.objdbmlStatus.Status;
+                    }
+                }                           
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, BookingList = objreturndbmlBooking.objdbmlBookingList }, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region Vehicle
@@ -1081,7 +1122,7 @@ namespace PGMSFront.Controllers
                 model.ViewTitle = "Track Booking";
                 model.StateId = Convert.ToInt32(Session["StateId"]);
 
-                returndbmlServicesView objreturndbmlServicesView = objServiceClient.ServicesGetByBPId(Convert.ToInt32(Session["BPId"]));
+                returndbmlServicesView objreturndbmlServicesView = objServiceClient.ServicesGetByBPId(Convert.ToInt32(HardCodeValues.ServiceBPIdTrack));
                 if (objreturndbmlServicesView.objdbmlStatus.StatusId == 1 && objreturndbmlServicesView.objdbmlServicesView.Count > 0)
                 {
                     Session["Services"] = objreturndbmlServicesView.objdbmlServicesView;
@@ -1089,7 +1130,7 @@ namespace PGMSFront.Controllers
 
                 //Session["TrackGroupId"] = model.TrackGroupId;
                 //Session["TrackGroup"] = model.TrackGroup;
-                ViewBag.ServiveLookup = GetServiveLookup();
+                ViewBag.ServiveLookup = GetServiveLookup(Convert.ToInt32(HardCodeValues.ServiceBPIdTrack));
                 ViewBag.TimeSlot = GetTimeSlot();
                 ViewBag.ServiveCategory = GetServiveCategory(model.TrackGroupId);
 
@@ -1486,7 +1527,7 @@ namespace PGMSFront.Controllers
             return Items;
         }
 
-        public List<SelectListItem> GetServiveLookup()
+        public List<SelectListItem> GetServiveLookup(int intBPId)
         {
             List<SelectListItem> Items = new List<SelectListItem>();
             try
@@ -1498,7 +1539,7 @@ namespace PGMSFront.Controllers
                 }
                 else
                 {
-                    returndbmlServicesView objreturndbmlServicesView = objServiceClient.ServicesGetByBPId(Convert.ToInt32(Session["BPId"]));
+                    returndbmlServicesView objreturndbmlServicesView = objServiceClient.ServicesGetByBPId(intBPId);
                     if (objreturndbmlServicesView.objdbmlStatus.StatusId == 1 && objreturndbmlServicesView.objdbmlServicesView.Count > 0)
                     {
                         Session["Services"] = objreturndbmlServicesView.objdbmlServicesView;

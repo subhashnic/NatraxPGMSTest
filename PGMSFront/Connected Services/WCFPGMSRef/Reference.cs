@@ -6289,10 +6289,10 @@ namespace PGMSFront.WCFPGMSRef {
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlWorkFlowView> WorkFlowViewGetByBPIdAsync(int intBPId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WorkFlowActivityInsert", ReplyAction="http://tempuri.org/IService1/WorkFlowActivityInsertResponse")]
-        PGMSFront.WCFPGMSRef.returndbmlBooking WorkFlowActivityInsert(int DocId, int WorkPlowId, int StatusId, string Remark);
+        PGMSFront.WCFPGMSRef.returndbmlBooking WorkFlowActivityInsert(int intDocId, int intBPId, int intWorkPlowId, int intStatusId, string strRemark, int intCreateId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WorkFlowActivityInsert", ReplyAction="http://tempuri.org/IService1/WorkFlowActivityInsertResponse")]
-        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBooking> WorkFlowActivityInsertAsync(int DocId, int WorkPlowId, int StatusId, string Remark);
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBooking> WorkFlowActivityInsertAsync(int intDocId, int intBPId, int intWorkPlowId, int intStatusId, string strRemark, int intCreateId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -6482,12 +6482,12 @@ namespace PGMSFront.WCFPGMSRef {
             return base.Channel.WorkFlowViewGetByBPIdAsync(intBPId);
         }
         
-        public PGMSFront.WCFPGMSRef.returndbmlBooking WorkFlowActivityInsert(int DocId, int WorkPlowId, int StatusId, string Remark) {
-            return base.Channel.WorkFlowActivityInsert(DocId, WorkPlowId, StatusId, Remark);
+        public PGMSFront.WCFPGMSRef.returndbmlBooking WorkFlowActivityInsert(int intDocId, int intBPId, int intWorkPlowId, int intStatusId, string strRemark, int intCreateId) {
+            return base.Channel.WorkFlowActivityInsert(intDocId, intBPId, intWorkPlowId, intStatusId, strRemark, intCreateId);
         }
         
-        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBooking> WorkFlowActivityInsertAsync(int DocId, int WorkPlowId, int StatusId, string Remark) {
-            return base.Channel.WorkFlowActivityInsertAsync(DocId, WorkPlowId, StatusId, Remark);
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBooking> WorkFlowActivityInsertAsync(int intDocId, int intBPId, int intWorkPlowId, int intStatusId, string strRemark, int intCreateId) {
+            return base.Channel.WorkFlowActivityInsertAsync(intDocId, intBPId, intWorkPlowId, intStatusId, strRemark, intCreateId);
         }
     }
 }
