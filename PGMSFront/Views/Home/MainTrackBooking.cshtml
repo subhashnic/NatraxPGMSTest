@@ -431,7 +431,8 @@
                     async: true,
                     data: dataWithAntiforgeryToken,
                     success: function (data) {
-                       
+                        debugger
+                        $(".filter-option").css({"color": "#ec407a", "font-size": "15px", "border-bottom": "2px solid #ec407a"});
                         LoaderHide();
                         if (data.StatusId != "99" && data.StatusId != "-99") {
                             ServicesList = data.ServicesList;

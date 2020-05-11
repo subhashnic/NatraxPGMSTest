@@ -428,3 +428,13 @@ a, a:active {
 .ntx-loader-box {
     position: relative;
 }
+
+.bootstrap-select .btn.dropdown-toggle.select-with-transition{
+    padding-right: 0px !important;
+}
+
+.bootstrap-select .dropdown-toggle .filter-option {
+    text-align: center !important;
+    /*color: #ec407a !important;
+    font-size: 15px !important;*/
+}
