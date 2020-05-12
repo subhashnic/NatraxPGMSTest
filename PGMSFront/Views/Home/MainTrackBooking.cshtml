@@ -53,9 +53,9 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <select class="selectpicker" data-style="select-with-transition" id="lstServiceLookup" onchange="LoadTrackInfo()" title="<b>Please Select Track</b>" data-size="7">
+                            <select class="selectpicker" data-style="select-with-transition" id="lstServiceLookup" onchange="LoadTrackInfo()" title="" data-size="7">
                                 @*<select class="form-control" id="lstServiceLookup" onchange="LoadTrackInfo()">*@
-                                @*<option value="0">- Select Track -</option>*@
+                                <option value="0">- Please Select Track -</option>
                                 @foreach (var itm in ViewBag.ServiveLookup)
                                 {
                                     <option value='@itm.Value'>@itm.Text</option>
@@ -370,15 +370,17 @@
     ///////////////////////////// Load Track/Vehicle Info  //////////////////////////////////////////////////////
     function LoadTrackInfo() {
         try {
+           
             LoaderShow();
             $("#TrackDate").attr('disabled', true);
             var varTrackGroupId = $("#lstServiceLookup").val();
 
-            if (varTrackGroupId == undefined || parseInt(varTrackGroupId <= 0)) {
-                alert("Please Select Track");
-                return false;
-            }
-            else {
+            //if (varTrackGroupId == undefined || parseInt(varTrackGroupId <= 0)) {
+            //    alert("Please Select Track");
+            //    return false;
+            //}
+            //else 
+            {
 
                 if (ServiceCategoryList.length > 1) {
                     $("input[name='Category']:checked").prop('checked', false);
@@ -402,7 +404,7 @@
                     async: true,
                     data: dataWithAntiforgeryToken,
                     success: function (data) {
-                        debugger
+                      
                         $(".filter-option").css({"color": "#ec407a", "font-size": "15px", "border-bottom": "2px solid #ec407a"});
                         LoaderHide();
                         if (data.StatusId != "99" && data.StatusId != "-99") {
@@ -1427,7 +1429,7 @@
     $(document).ready(function () {
         MaskControls();
        // SetButtonVisibility();
-       // LoadTrackInfo();
+        LoadTrackInfo();
         $("#TrackGroupId").focus();
         DisableControls();
     });
