@@ -751,7 +751,7 @@
     <Content Include="Templates\vendors\linericon\fonts\Linearicons-Free.woff" />
     <Content Include="Templates\vendors\linericon\fonts\Linearicons-Free.woff2" />
     <Content Include="Views\Shared\_LayoutTrack.cshtml" />
-    <Content Include="Views\Home\Booking.cshtml" />
+    <Content Include="Views\Home\ManageBooking.cshtml" />
     <Content Include="Views\Home\DynamicPlatform.cshtml" />
     <Content Include="Views\Front\BrakingTrack.cshtml" />
     <Content Include="Views\Front\TestHill.cshtml" />

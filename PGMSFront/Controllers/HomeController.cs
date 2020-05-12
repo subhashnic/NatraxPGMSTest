@@ -221,7 +221,7 @@ namespace PGMSFront.Controllers
         #region Booking
 
         #region Booking Search/New/Inprocess
-        public ActionResult Booking()
+        public ActionResult ManageBooking()
         {
             CommonModel model = new CommonModel();
             try
