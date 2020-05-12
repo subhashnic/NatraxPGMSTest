@@ -827,6 +827,7 @@
     <Content Include="Templates\Alert\Alert.zip" />
     <Content Include="Views\Home\MainTrackBooking.cshtml" />
     <Content Include="Views\Shared\_LayoutTrackBookingAndRFQ.cshtml" />
+    <Content Include="Views\Home\BookingHeader.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

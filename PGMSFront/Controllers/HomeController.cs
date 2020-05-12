@@ -448,8 +448,8 @@ namespace PGMSFront.Controllers
                     model.DocType = objdbmlBooking.ZZBookingType;
                     model.WorkFlowId = Convert.ToInt32(objdbmlBooking.ZZWorkFlowId);
                     model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
-                    model.StatusPropId = objdbmlBooking.BookingId;
-                    model.DocId = Convert.ToInt32(Session["BPId"]);
+                    model.StatusPropId = Convert.ToInt32(objdbmlBooking.StatusPropId);
+                    model.DocId = objdbmlBooking.BookingId;
                 }
                 else
                 {
@@ -760,8 +760,8 @@ namespace PGMSFront.Controllers
                     model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
                     model.StatusPropId = Convert.ToInt32(objdbmlBooking.StatusPropId);
                     model.BPId = Convert.ToInt32(Session["BPId"]);
-                    model.ReportURL = strRptURL;
-                    model.StatusPropId = objdbmlBooking.BookingId;
+                    model.ReportURL = strRptURL;                   
+                    model.DocId = objdbmlBooking.BookingId;
 
                     //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 10)
                     //{
@@ -1028,6 +1028,7 @@ namespace PGMSFront.Controllers
                     model.WorkFlowId = Convert.ToInt32(objdbmlBooking.ZZWorkFlowId);
                     model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
                     model.StatusPropId = Convert.ToInt32(objdbmlBooking.StatusPropId);
+                    model.DocId = objdbmlBooking.BookingId;
 
                     //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 20)
                     //{
@@ -1079,6 +1080,7 @@ namespace PGMSFront.Controllers
                     model.WorkFlowId = Convert.ToInt32(objdbmlBooking.ZZWorkFlowId);
                     model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
                     model.StatusPropId = Convert.ToInt32(objdbmlBooking.StatusPropId);
+                    model.DocId = objdbmlBooking.BookingId;
 
                     //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 30)
                     //{
@@ -1146,7 +1148,7 @@ namespace PGMSFront.Controllers
                     model.StatusPropId = Convert.ToInt32(objdbmlBooking.StatusPropId);
                     model.BPId = Convert.ToInt32(Session["BPId"]);
                     model.ReportURL = strRptURL;
-                    model.StatusPropId = objdbmlBooking.BookingId;
+                    model.DocId = objdbmlBooking.BookingId;
 
                     //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 40)
                     //{
