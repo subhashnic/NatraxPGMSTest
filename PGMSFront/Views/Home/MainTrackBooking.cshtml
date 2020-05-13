@@ -52,7 +52,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-3" id="divServiveLookup">
                             <select class="selectpicker" data-style="select-with-transition" id="lstServiceLookup" onchange="LoadTrackInfo()" title="" data-size="7">
                                 @*<select class="form-control" id="lstServiceLookup" onchange="LoadTrackInfo()">*@
                                 <option value="0">- Please Select Track -</option>
@@ -421,6 +421,11 @@
 
                             $("#divVehicleTitle").show();
                             $("#divVehicle").show();
+                           
+                            //if (parseInt($("#StatusPropId").val()) != 40 || parseInt($("#WorkFlowId").val()) != 6) {
+                            //    BindServiceLookup(ServicesList, TrackBookingTimeSummaryList);
+                            //} 
+                            
                         }
                         else {
                             alert(data.Status);
@@ -442,6 +447,36 @@
             //  return false;
         }
     }
+
+    ///////////////////////////// Bind Vehicle Info  //////////////////////////////////////////////////////
+    function BindServiceLookup(dataService,dataSummary) {
+        try {
+            $("#divServiveLookup").html("");
+            var gridData = "<select class='selectpicker' data-style='select -with-transition' id='lstServiceLookup' onchange='LoadTrackInfo()' title='' data-size='7'>";
+            gridData = gridData + "<option value='0'>- Please Select Track -</option>";
+           
+         
+            for (var i = 0; i < dataService.length; i++) {                
+
+                if (dataSummary.length > 0) {
+                    var data = jQuery.grep(dataSummary, function (obj) {
+                        return obj.BillingItem == NullHandle(dataService[i].ZZServiceGroupName);
+                    });
+                    if (data.length > 0) {
+                        gridData = gridData + "<option value='" + NullHandle(dataService[i].TrackGroupId) + "'>" + NullHandle(dataService[i].ZZTrackGroup) + "</option>";
+                        //$("#lstServiceLookup").append(gridData);
+                    }
+                }
+            }          
+            gridData = gridData + "</select>";
+
+            $("#divServiveLookup").html(gridData);
+        }
+        catch (e) {
+
+        }
+    }
+    
 
     ///////////////////////////// Bind Vehicle Info  //////////////////////////////////////////////////////
     function BindVehicleData(data) {
@@ -963,7 +998,12 @@
 
             for (var i = 0; i < data.length; i++) {
                 gridData = gridData + "<tr>";
-                gridData = gridData + "<td class='td-actions text-center'><button type='button' class='btn btn-info' title='Edit Track Details' onclick='return TrackBookingDetailEdit(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].ZZDate) + '"' + "," + NullHandle(data[i].ZZCategoryId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>edit</i></button></td>";
+                if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#WorkFlowId").val()) == 6) {
+                    gridData = gridData + "<td class='td-actions text-center'><button type='button' class='btn btn-info' title='Edit Track Details' onclick='return TrackBookingDetailEdit(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].ZZDate) + '"' + "," + NullHandle(data[i].ZZCategoryId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>edit</i></button></td>";
+                }
+                else {
+                    gridData = gridData + "<td class='td-actions text-center'><button type='button' class='btn btn-info' title='View Track Details' onclick='return TrackBookingDetailEdit(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].ZZDate) + '"' + "," + NullHandle(data[i].ZZCategoryId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>trending_up</i></button></td>";
+                }
                 gridData = gridData + "<td>" + NullHandle(data[i].VehicleNo) + "</td>";
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZDate) + "</td>";
                 gridData = gridData + "<td>" + NullHandle(data[i].ZZServiceSpecification) + "</td>";
