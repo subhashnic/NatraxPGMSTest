@@ -420,7 +420,7 @@
                             $("#divVehicleTitle").show();
                             $("#divVehicle").show();
 
-                            if (parseInt($("#StatusPropId").val()) != 40 || parseInt($("#WorkFlowId").val()) != 6) {
+                            if (parseInt(varTrackGroupId)==0 && (parseInt($("#StatusPropId").val()) != 40 || parseInt($("#WorkFlowId").val())) != 6) {
                                 BindServiceLookup(ServicesList, TrackBookingTimeSummaryList);
                             }
 
@@ -470,18 +470,29 @@
             var itemSelectorOption = $('#lstServiceLookup option');
             itemSelectorOption.remove(); 
             $("#lstServiceLookup").selectpicker("refresh");
-            //html += "<option value='0'>- Please Select Track -</option>";
-            //var TestList = [];
+
+            $("#lstServiceLookup").append('<option value="0">- Please Select Track -</option>').selectpicker('refresh');
+            var TestList = [];
+            var i = 0;
             $.each(dataService, function (index, object) {
                 if (dataSummary.length > 0) {
                     var data = jQuery.grep(dataSummary, function (obj) {
                         return obj.BillingItem == NullHandle(object.ZZServiceGroupName);
                     });
-                    if (data.length > 0) {
+
+                    var dataSer = jQuery.grep(TestList, function (obj) {
+                        return obj.TrackGroupId == object.TrackGroupId;
+                    });
+                  
+                    if (data.length > 0 && dataSer.length==0) {
+                        TestList[i] = new Object(object);
                         $("#lstServiceLookup").append('<option value="' + NullHandle(object.TrackGroupId) + '">' + NullHandle(object.ZZTrackGroup) + '</option>').selectpicker('refresh');
-                    }
+                        dataSer = '';
+                        i = i + 1;
+                    }                   
                 }
             });
+           
         }
         catch (e) {
 
