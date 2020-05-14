@@ -629,8 +629,14 @@ namespace PGMSFront.Common
 
         VehicleGrpPropId = 99,
         CompGrpPropId = 98,
-        OpenStatusId =40,
-        SubmitStatusId = 38,
+
+        OpenStatusId =40,  
+        ApproveStatusId =38,
+        UnApproveStatusId=39,
+        SubmitStatusId=41,
+        RevertStatusId=43,
+        RejectStatusId=45
+
 
     };
 

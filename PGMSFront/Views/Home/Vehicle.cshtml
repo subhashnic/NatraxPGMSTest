@@ -54,7 +54,7 @@
                                             <th width="8%">Sr. No.</th>
                                             <th width="20%">Vehicle Registration No.</th>
                                             <th width="20%">Vehicle Type</th>
-                                            <th width="20%">Axel</th>
+                                            <th width="20%">Axles</th>
                                             <th width="20%">Weight</th>
                                             <th width="12%" class="text-center">Action</th>
                                         </tr>
@@ -265,7 +265,7 @@
             $("#AddMoreTR").find("input[type='text'][id='VehicleAxel']").each(function () {
                 model.Description1 = $(this).val().trim();
                 if ($(this).val().trim() == "") {
-                    strMSG = strMSG + 'Vehicle Axel  \n</br>'
+                    strMSG = strMSG + 'Vehicle Axles  \n</br>'
                 }
             });
             $("#AddMoreTR").find("input[type='text'][id='VehicleWeight']").each(function () {

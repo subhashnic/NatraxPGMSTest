@@ -450,6 +450,7 @@ namespace PGMSFront.Controllers
                     model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
                     model.StatusPropId = Convert.ToInt32(objdbmlBooking.StatusPropId);
                     model.DocId = objdbmlBooking.BookingId;
+                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), objdbmlBooking.BookingId);
                 }
                 else
                 {
@@ -458,10 +459,8 @@ namespace PGMSFront.Controllers
                     model.DocType = "Booking";
                     model.WorkFlowId = Convert.ToInt32(HardCodeValues.BookingWFId);
                     model.StatusPropId = Convert.ToInt32(HardCodeValues.OpenStatusId);
-                }
-
-                model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]));
-
+                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]),0);
+                } 
             }
             catch
             {
@@ -657,7 +656,7 @@ namespace PGMSFront.Controllers
             return Items;
         }
 
-        public ObservableCollection<dbmlWorkFlowView> WorkFlowViewGetByBPId(int intBPId)
+        public ObservableCollection<dbmlWorkFlowView> WorkFlowViewGetByBPId(int intBPId,int intDocId)
         {
             ObservableCollection<dbmlWorkFlowView> objdbmlWorkFlowView = new ObservableCollection<dbmlWorkFlowView>();
             try
@@ -668,7 +667,7 @@ namespace PGMSFront.Controllers
                 }
                 else
                 {
-                    returndbmlWorkFlowView objreturndbmlWorkFlowView = objServiceClient.WorkFlowViewGetByBPId(intBPId);
+                    returndbmlWorkFlowView objreturndbmlWorkFlowView = objServiceClient.WorkFlowViewGetByBPId(intBPId, intDocId);
                     if (objreturndbmlWorkFlowView.objdbmlStatus.StatusId == 1 && objreturndbmlWorkFlowView.objdbmlWorkFlowView.Count > 0)
                     {
                         Session["WorkFlowView"] = objreturndbmlWorkFlowView.objdbmlWorkFlowView;
@@ -704,7 +703,7 @@ namespace PGMSFront.Controllers
                     dbmlBookingView objdbmlBooking = new dbmlBookingView();
                     GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
                    
-                    objreturndbmlBooking = objServiceClient.WorkFlowActivityInsert(objdbmlBooking.BookingId, Convert.ToInt32(Session["BPId"]), Convert.ToInt32(objdbmlBooking.ZZWorkFlowId), Convert.ToInt32(objdbmlBooking.StatusPropId), "", Convert.ToInt32(Session["UserId"]));
+                    objreturndbmlBooking = objServiceClient.WorkFlowActivityInsert(objdbmlBooking.BookingId, Convert.ToInt32(Session["BPId"]), Convert.ToInt32(objdbmlBooking.ZZWorkFlowId), Convert.ToInt32(HardCodeValues.SubmitStatusId), "", Convert.ToInt32(Session["UserId"]));
                     if (objreturndbmlBooking != null && objreturndbmlBooking.objdbmlStatus.StatusId == 1)
                     {
                         Session["objdbmlBooking"] = objreturndbmlBooking.objdbmlBookingList.FirstOrDefault();
@@ -767,7 +766,7 @@ namespace PGMSFront.Controllers
                     //{
                     //    return RedirectToActionByStatusId(Convert.ToInt32(objdbmlBooking.TabStatusId));
                     //}
-                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]));
+                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), objdbmlBooking.BookingId);
                 }
                 else
                 {
@@ -1034,7 +1033,7 @@ namespace PGMSFront.Controllers
                     //{
                     //    return RedirectToActionByStatusId(Convert.ToInt32(objdbmlBooking.TabStatusId));
                     //}
-                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]));
+                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), objdbmlBooking.BookingId);
                 }
                 else
                 {
@@ -1086,7 +1085,7 @@ namespace PGMSFront.Controllers
                     //{
                     //    return RedirectToActionByStatusId(Convert.ToInt32(objdbmlBooking.TabStatusId));
                     //}
-                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]));
+                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), objdbmlBooking.BookingId);
                 }
                 else
                 {
@@ -1154,7 +1153,7 @@ namespace PGMSFront.Controllers
                     //{
                     //    return RedirectToActionByStatusId(Convert.ToInt32(objdbmlBooking.TabStatusId));
                     //}
-                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]));
+                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), objdbmlBooking.BookingId);
                 }
                 else
                 {

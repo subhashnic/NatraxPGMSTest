@@ -285,6 +285,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="intBPId" type="xs:int" />
+        <xs:element minOccurs="0" name="intDocId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -6283,10 +6283,10 @@ namespace PGMSFront.WCFPGMSRef {
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlTrackBookingDetail> TrackBookingTimeDetailDeleteFrontByServiceIdAsync(int intBookingId, int intTrackGroupId, int intVehicleId, System.DateTime dtDate, int intServiceId, int intTimeSlotId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WorkFlowViewGetByBPId", ReplyAction="http://tempuri.org/IService1/WorkFlowViewGetByBPIdResponse")]
-        PGMSFront.WCFPGMSRef.returndbmlWorkFlowView WorkFlowViewGetByBPId(int intBPId);
+        PGMSFront.WCFPGMSRef.returndbmlWorkFlowView WorkFlowViewGetByBPId(int intBPId, int intDocId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WorkFlowViewGetByBPId", ReplyAction="http://tempuri.org/IService1/WorkFlowViewGetByBPIdResponse")]
-        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlWorkFlowView> WorkFlowViewGetByBPIdAsync(int intBPId);
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlWorkFlowView> WorkFlowViewGetByBPIdAsync(int intBPId, int intDocId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WorkFlowActivityInsert", ReplyAction="http://tempuri.org/IService1/WorkFlowActivityInsertResponse")]
         PGMSFront.WCFPGMSRef.returndbmlBooking WorkFlowActivityInsert(int intDocId, int intBPId, int intWorkPlowId, int intStatusId, string strRemark, int intCreateId);
@@ -6474,12 +6474,12 @@ namespace PGMSFront.WCFPGMSRef {
             return base.Channel.TrackBookingTimeDetailDeleteFrontByServiceIdAsync(intBookingId, intTrackGroupId, intVehicleId, dtDate, intServiceId, intTimeSlotId);
         }
         
-        public PGMSFront.WCFPGMSRef.returndbmlWorkFlowView WorkFlowViewGetByBPId(int intBPId) {
-            return base.Channel.WorkFlowViewGetByBPId(intBPId);
+        public PGMSFront.WCFPGMSRef.returndbmlWorkFlowView WorkFlowViewGetByBPId(int intBPId, int intDocId) {
+            return base.Channel.WorkFlowViewGetByBPId(intBPId, intDocId);
         }
         
-        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlWorkFlowView> WorkFlowViewGetByBPIdAsync(int intBPId) {
-            return base.Channel.WorkFlowViewGetByBPIdAsync(intBPId);
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlWorkFlowView> WorkFlowViewGetByBPIdAsync(int intBPId, int intDocId) {
+            return base.Channel.WorkFlowViewGetByBPIdAsync(intBPId, intDocId);
         }
         
         public PGMSFront.WCFPGMSRef.returndbmlBooking WorkFlowActivityInsert(int intDocId, int intBPId, int intWorkPlowId, int intStatusId, string strRemark, int intCreateId) {
