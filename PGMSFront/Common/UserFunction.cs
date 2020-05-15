@@ -13,6 +13,11 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace PGMSFront.Common
 {
@@ -549,7 +554,94 @@ namespace PGMSFront.Common
         }
 
 
-        #endregion              
+        #endregion
+
+        #region Blob Functions
+
+        ////UploadFileStreamToAzureBlob("portalvhds2p3pblpxrbwgb", "+cNEOA8gjQmAPMZ/cc+MtSmG/XGoGWfqEvvVmshFNyrMQx/eJr3WeKOR2EQDCXXMkYurrnlp5novBs0yEap5kg==", "vhds", "SubhashIMG1.jpg", btArrayFile);
+        public string UploadFileStreamToAzureBlob(string strAccountName, string strKey, string strContainerName, string strTargetFileName, byte[] byteArraySourceFile)
+        {
+            string strStatus = string.Empty;
+            try
+            {
+                StorageCredentials sc = new StorageCredentials(strAccountName, strKey);
+
+                CloudStorageAccount storageAccount = new CloudStorageAccount(sc, true);
+
+                CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+
+                CloudBlobContainer container = blobClient.GetContainerReference(strContainerName);
+
+                CloudBlockBlob blockBlob = container.GetBlockBlobReference(strTargetFileName);
+
+                MemoryStream ms = new MemoryStream(byteArraySourceFile);
+
+                if (ms != null)
+                {
+                    blockBlob.UploadFromStream(ms);
+                }
+
+                strStatus = blockBlob.Uri.ToString();
+            }
+            catch (Exception ex)
+            {
+            }
+            return strStatus;
+        }
+
+        public byte[] DownloadBlobFileToStream(string strAccountName, string strKey, string strContainerName, string strFileName)
+        {
+            Byte[] byteArrayFile;
+            try
+            {
+
+                StorageCredentials sc = new StorageCredentials(strAccountName, strKey);
+
+                CloudStorageAccount storageAccount = new CloudStorageAccount(sc, true);
+
+                CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+
+                CloudBlobContainer container = blobClient.GetContainerReference(strContainerName);
+
+                CloudBlockBlob blockBlob = container.GetBlockBlobReference(strFileName);
+
+                MemoryStream ms = new MemoryStream();
+                blockBlob.DownloadToStream(ms);
+                byteArrayFile = ms.ToArray();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            return byteArrayFile;
+        }
+
+        public bool DeleteFileFromAzureBlob(string strAccountName, string strKey, string strContainerName, string strFileName)
+        {
+            bool blnStatus = false;
+            try
+            {
+                StorageCredentials sc = new StorageCredentials(strAccountName, strKey);
+
+                CloudStorageAccount storageAccount = new CloudStorageAccount(sc, true);
+
+                CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+
+                CloudBlobContainer container = blobClient.GetContainerReference(strContainerName);
+
+                CloudBlockBlob blockBlob = container.GetBlockBlobReference(strFileName);
+
+                blnStatus = blockBlob.DeleteIfExists(DeleteSnapshotsOption.IncludeSnapshots);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return blnStatus;
+        }
+
+        #endregion
 
         #region Send Mail
         public bool SendMailMessage(string strFrom, string strPSW, string strTo, string strReplyTo, string strBcc, string strCc, string strSubject, string strBody, Stream streamAtt, string strAttFileName)
@@ -606,6 +698,119 @@ namespace PGMSFront.Common
                 string strEx = ex.Message;
             }
             return blnMailSentStatus;
+        }
+        #endregion
+
+        #region Excel Import
+        public DataTable GetDataTableFromSpreadsheet(Stream MyExcelStream, bool ReadOnly)
+        {
+            DataTable dt = new DataTable();
+            using (SpreadsheetDocument sDoc = SpreadsheetDocument.Open(MyExcelStream, ReadOnly))
+            {
+                WorkbookPart workbookPart = sDoc.WorkbookPart;
+                IEnumerable<Sheet> sheets = sDoc.WorkbookPart.Workbook.GetFirstChild<Sheets>().Elements<Sheet>();
+                string relationshipId = sheets.First().Id.Value;
+                WorksheetPart worksheetPart = (WorksheetPart)sDoc.WorkbookPart.GetPartById(relationshipId);
+                Worksheet workSheet = worksheetPart.Worksheet;
+                SheetData sheetData = workSheet.GetFirstChild<SheetData>();
+                IEnumerable<Row> rows = sheetData.Descendants<Row>();
+
+                foreach (Cell cell in rows.ElementAt(0))
+                {
+                    dt.Columns.Add(GetCellValue(sDoc, cell));
+                }
+
+                foreach (Row row in rows) //this will also include your header row...
+                {
+                    DataRow tempRow = dt.NewRow();
+                    int columnIndex = 0;
+                    foreach (Cell cell in row.Descendants<Cell>())
+                    {
+                        // Gets the column index of the cell with data
+                        int cellColumnIndex = (int)GetColumnIndexFromName(GetColumnName(cell.CellReference));
+                        cellColumnIndex--; //zero based index
+                        if (columnIndex < cellColumnIndex)
+                        {
+                            do
+                            {
+                                tempRow[columnIndex] = ""; //Insert blank data here;
+                                columnIndex++;
+                            }
+                            while (columnIndex < cellColumnIndex);
+                        }
+                        tempRow[columnIndex] = GetCellValue(sDoc, cell);
+
+                        columnIndex++;
+                    }
+                    dt.Rows.Add(tempRow);
+                }
+            }
+            dt.Rows.RemoveAt(0);
+            return dt;
+        }
+
+        public static string GetColumnName(string cellReference)
+        {
+            // Create a regular expression to match the column name portion of the cell name.
+            Regex regex = new Regex("[A-Za-z]+");
+            Match match = regex.Match(cellReference);
+            return match.Value;
+        }
+
+        public static int? GetColumnIndexFromName(string columnName)
+        {
+
+            //return columnIndex;
+            string name = columnName;
+            int number = 0;
+            int pow = 1;
+            for (int i = name.Length - 1; i >= 0; i--)
+            {
+                number += (name[i] - 'A' + 1) * pow;
+                pow *= 26;
+            }
+            return number;
+        }
+
+        public static string GetCellValue(SpreadsheetDocument document, Cell cell)
+        {
+            SharedStringTablePart stringTablePart = document.WorkbookPart.SharedStringTablePart;
+            if (cell.CellValue == null)
+            {
+                return "";
+            }
+            string value = cell.CellValue.InnerXml;
+            if (cell.DataType != null && cell.DataType.Value == CellValues.SharedString)
+            {
+                return stringTablePart.SharedStringTable.ChildElements[Int32.Parse(value)].InnerText;
+            }
+            else
+            {
+                return value;
+            }
+        }
+
+        public string ConvertDataTableToHTMLTable(DataTable dt)
+        {
+            string ret = "";
+            ret = "<table id=" + (char)34 + "tblExcel" + (char)34 + ">";
+            ret += "<tr>";
+            foreach (DataColumn col in dt.Columns)
+            {
+                ret += "<td class=" + (char)34 + "tdColumnHeader" + (char)34 + ">" + col.ColumnName + "</td>";
+            }
+            ret += "</tr>";
+            foreach (DataRow row in dt.Rows)
+            {
+                ret += "<tr>";
+                for (int i = 0; i < dt.Columns.Count; i++)
+                {
+                    ret += "<td class=" + (char)34 + "tdCellData" + (char)34 + ">" + row[i].ToString() + "</td>";
+                }
+                ret += "</tr>";
+            }
+            ret += "</table>";
+            return ret;
         }
         #endregion
 

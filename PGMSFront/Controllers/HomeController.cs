@@ -722,6 +722,122 @@ namespace PGMSFront.Controllers
             }
             return Json(new { Status = strStatus, StatusId = intStatusId, BookingList = objreturndbmlBooking.objdbmlBookingList }, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult BillCopyUpload()
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+            returndbmlBooking objreturndbmlBooking = new returndbmlBooking();
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+           
+            try
+            {
+
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+
+                    HttpPostedFileBase file = Request.Files["ImageData"];
+                   if(file.InputStream.Length>0)
+                    {
+                        string strFileExtention = file.ContentType;
+                        if (strFileExtention.ToLower() == "image/jpeg" || strFileExtention.ToLower() == "application/pdf")
+                        {
+                            if ((file.ContentLength / 1024) > 0 && (file.ContentLength / 1024) <= 2048)
+                            {
+                                strFileExtention = strFileExtention.Substring(strFileExtention.IndexOf('/') + 1);
+                                byte[] byteImage = objClassUserFunctions.ConvertToBytes(file.InputStream);
+                                bool blnStatus = false;
+                                string strFTPUserName = System.Configuration.ConfigurationManager.AppSettings["strFTPUserName"]; ;
+                                string strFTPUserPSW = System.Configuration.ConfigurationManager.AppSettings["strFTPUserPassword"]; ;
+                                string strFTPUrl = System.Configuration.ConfigurationManager.AppSettings["strFTPServer"];
+                                string strStaticUrl = System.Configuration.ConfigurationManager.AppSettings["strStaticURL"];
+                                string strFTPRoot = System.Configuration.ConfigurationManager.AppSettings["strFTPRoot"];
+
+                                string strBlobAccount = System.Configuration.ConfigurationManager.AppSettings["strBlobAccount"];
+                                string strAccountKey = System.Configuration.ConfigurationManager.AppSettings["strAccountKey"];
+                                string strFileStorage = System.Configuration.ConfigurationManager.AppSettings["strFileStorage"];
+
+                                string strImageName = "PO_" + Convert.ToString(objdbmlBooking.BookingId) + "." + strFileExtention;
+                                string strImageContainerName = "";                              
+                                string strImageURL = "";                              
+                                string strFTPFilePath = "";
+                                if (strFileStorage == "FTP")
+                                {
+                                    ////////////////////// For FTP /////////////////////////////////////////////                       
+                                    strFTPFilePath = strFTPRoot + strImageContainerName + "/" + strImageName;                                                               
+
+                                    blnStatus = objClassUserFunctions.UploadImageToFTPFromWEBCLIENT(strFTPUrl, strFTPUserName, strFTPUserPSW, byteImage, strFTPFilePath);
+                                }
+                                else if (strFileStorage == "AzureBlob")
+                                {
+                                    /////////////////////// For Azure Blob ///////////////////////////////////////////////////                            
+                                    strImageURL = objClassUserFunctions.UploadFileStreamToAzureBlob(strBlobAccount, strAccountKey, strImageContainerName, strImageName, byteImage);
+                                    if (strImageURL != "")
+                                        blnStatus = true;
+                                }
+                                if (blnStatus)
+                                {
+                                    objdbmlBooking.PODocPath = strImageName;
+                                    objdbmlBooking.UpdateId = Convert.ToInt32(Session["UserId"]);                                   
+                                    objdbmlBooking.UpdateDate = DateTime.Now;
+
+                                    returndbmlBooking objreturndbmlBookingTemp = new returndbmlBooking();
+                                    ObservableCollection<dbmlBookingView> objdbmlBookingViewList = new ObservableCollection<dbmlBookingView>();
+                                    objdbmlBookingViewList.Add(objdbmlBooking);
+                                    objreturndbmlBookingTemp.objdbmlBookingList = objdbmlBookingViewList;
+
+                                    objreturndbmlBooking = objServiceClient.BookingUpdate(objreturndbmlBookingTemp);
+                                    if (objreturndbmlBooking != null && objreturndbmlBooking.objdbmlStatus.StatusId == 1)
+                                    {
+                                        Session["objdbmlBooking"] = objreturndbmlBooking.objdbmlBookingList.FirstOrDefault();
+                                        intStatusId = 1;
+                                        strStatus = "PO Uploaded Successfully";
+                                    }                                                                      
+                                    else
+                                    {
+                                        if (strFileStorage == "FTP")
+                                        {
+                                            bool delStatus = objClassUserFunctions.DeleteFileFromFTPFromWEBCLIENT(strFTPUrl, strFTPUserName, strFTPUserPSW, strFTPFilePath);
+                                        }
+                                        else if (strFileStorage == "AzureBlob")
+                                        {
+                                            bool delStatus = objClassUserFunctions.DeleteFileFromAzureBlob(strBlobAccount, strAccountKey, strImageContainerName, strImageName);
+                                        }
+
+                                        strStatus = "PO Uploading Process Failed!";
+                                        //strStatus = objreturndbmlBooking.objdbmlStatus.Status;
+                                    }
+                                }
+                                else
+                                {
+                                    strStatus = "PO Uploading Process Failed!";
+                                }
+                            }
+                            else
+                            {
+                                strStatus = "PO File Size between 1KB to 2 MB can be accepted!";
+                            }
+                        }
+                        else
+                        {
+                            strStatus = "Only (JPEG, PDF) format can be accepted!";
+                        }
+                    }                    
+                }             
+                
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+
+            return Json(new { StatusId = intStatusId, Status = strStatus }, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region Vehicle
