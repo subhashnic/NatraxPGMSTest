@@ -1607,5 +1607,36 @@ namespace PGMSFront.Controllers
         }
         #endregion
 
+
+        public ActionResult Component()
+        {
+            return View();
+        }
+
+        public ActionResult TrackWorkshopBooking()
+        {
+            return View();
+        }
+
+        public ActionResult TrackAddOnServicesBooking()
+        {
+            return View();
+        }
+
+        public ActionResult LabWorkshopBooking()
+        {
+            return View();
+        }
+
+        public ActionResult LabAddOnServicesBooking()
+        {
+            return View();
+        }
+
+        public ActionResult MainLabBooking()
+        {
+            return View();
+        }
+
     }
 }

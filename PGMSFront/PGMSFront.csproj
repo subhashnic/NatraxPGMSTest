@@ -826,6 +826,12 @@
     <Content Include="Views\Home\MainTrackBooking.cshtml" />
     <Content Include="Views\Shared\_LayoutTrackBookingAndRFQ.cshtml" />
     <Content Include="Views\Home\BookingHeader.cshtml" />
+    <Content Include="Views\Home\Component.cshtml" />
+    <Content Include="Views\Home\TrackWorkshopBooking.cshtml" />
+    <Content Include="Views\Home\TrackAddOnServicesBooking.cshtml" />
+    <Content Include="Views\Home\LabWorkshopBooking.cshtml" />
+    <Content Include="Views\Home\LabAddOnServicesBooking.cshtml" />
+    <Content Include="Views\Home\MainLabBooking.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
