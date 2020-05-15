@@ -85,6 +85,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" id="BasicLI" href="@Url.Action("Component", "Home")">
+                            <i class="material-icons">airport_shuttle</i>
+                            <p> Component </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" id="BasicLI" href="@Url.Action("Driver", "Home")">
                             <i class="material-icons">person_pin</i>
                             <p> Driver </p>
@@ -102,269 +108,35 @@
                             <p> Tracks </p>
                         </a>
                     </li>
-                    @*<li class="nav-item ">
-            <a class="nav-link collapsed" data-toggle="collapse" href="#Tracks" aria-expanded="false">
-                <i class="material-icons">emoji_transportation</i>
-                <p>
-                    Tracks
-                    <b class="caret"></b>
-                </p>
-            </a>
-            <div class="collapse" id="Tracks" style="">
-                <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("HighSpeedTrack", "Home")">
-                            <i class="material-icons">data_usage</i>
-                            <p> T1 High Speed Track </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("DynamicPlatform", "Home")">
-                            <i class="material-icons">data_usage</i>
-                            <p> T2 Dynamic Platform </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("BrakingTrack", "Home")">
-                            <i class="material-icons">data_usage</i>
-                            <p> T3 Braking Track </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("TestHill", "Home")">
-                            <i class="material-icons">data_usage</i>
-                            <p> T4 Test Hill / Gradient Track </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("FatigueSurfaceLowSeverity", "Home")">
-                            <i class="material-icons">data_usage</i>
-                            <p> T5 Fatigue Surface Low Severity </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("FatigueSurfaceHighSeverity", "Home")">
-                            <i class="material-icons">data_usage</i>
-                            <p> T5 Fatigue Surface High Severity </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("FatigueStructure", "Home")">
-                            <i class="material-icons">data_usage</i>
-                            <p> T5 Fatigue Structure </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("GravelandOffRoad", "Home")">
-                            <i class="material-icons">data_usage</i>
-                            <p> T6 Gravel and Off Road </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("HandlingTrackfor4W", "Home")">
-                            <i class="material-icons">data_usage</i>
-                            <p> T7 Handling Track for 4W </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("ComfortTrack", "Home")">
-                            <i class="material-icons">data_usage</i>
-                            <p> T8 Comfort Track </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("HandlingTrackfor2W", "Home")">
-                            <i class="material-icons">data_usage</i>
-                            <p> T9 Handling Track for 2W </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("SustainabilityTrack", "Home")">
-                            <i class="material-icons">data_usage</i>
-                            <p> T10 Sustainability Track </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("WetSkidPad", "Home")">
-                            <i class="material-icons">data_usage</i>
-                            <p> T11 Wet Skid Pad </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("VillageRoadTrack", "Home")">
-                            <i class="material-icons">data_usage</i>
-                            <p> T12 Village Road Track </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("ExternalNoiseTrack", "Home")">
-                            <i class="material-icons">data_usage</i>
-                            <p> T13 External Noise Track </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("GeneralRoad", "Home")">
-                            <i class="material-icons">data_usage</i>
-                            <p> T14 General Road </p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </li>*@
-
-                    <li class="nav-item ">
-                        <a class="nav-link collapsed" data-toggle="collapse" href="#Labs" aria-expanded="false">
-                            <i class="material-icons">storefront</i>
-                            <p>
-                                Labs
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse" id="Labs" style="">
-                            <ul class="nav">
-                                @*<li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)">
-                            <i class="material-icons">data_usage</i>
-                            <p> Instrumentation Lab </p>
-                        </a>
-                    </li>*@
-                                @*<li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)">
-                            <i class="material-icons">data_usage</i>
-                            <p> Vehicle Dynamics Lab </p>
-                        </a>
-                    </li>*@
-                                <li class="nav-item">
-                                    <a class="nav-link collapsed" data-toggle="collapse" href="#InstrumentationLab" aria-expanded="false">
-                                        <i class="material-icons">data_usage</i>
-                                        <p>
-                                            Instrumentation Lab
-                                            <b class="caret"></b>
-                                        </p>
-                                    </a>
-                                    <div class="collapse" id="InstrumentationLab" style="">
-                                        <ul class="nav">
-                                            <li class="nav-item ">
-                                                <a class="nav-link" href="@Url.Action("InstrumentationLabVehiclewise", "Home")">
-                                                    <i class="material-icons">&nbsp;</i>
-                                                    <p> Vehicle wise </p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item ">
-                                                <a class="nav-link" href="@Url.Action("InstrumentationLabComponentwise", "Home")">
-                                                    <i class="material-icons">&nbsp;</i>
-                                                    <p> Component wise </p>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link collapsed" data-toggle="collapse" href="#VehicleDynamicsLab" aria-expanded="false">
-                                        <i class="material-icons">data_usage</i>
-                                        <p>
-                                            Vehicle Dynamics Lab
-                                            <b class="caret"></b>
-                                        </p>
-                                    </a>
-                                    <div class="collapse" id="VehicleDynamicsLab" style="">
-                                        <ul class="nav">
-                                            <li class="nav-item ">
-                                                <a class="nav-link" href="@Url.Action("VehicleDynamicsLabVehiclewise", "Home")">
-                                                    <i class="material-icons">&nbsp;</i>
-                                                    <p> Vehicle wise </p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item ">
-                                                <a class="nav-link" href="@Url.Action("VehicleDynamicsLabComponentwise", "Home")">
-                                                    <i class="material-icons">&nbsp;</i>
-                                                    <p> Component wise </p>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="@Url.Action("BookPowerTrainLab", "Home")">
-                                        <i class="material-icons">data_usage</i>
-                                        <p> Power Train lab </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="javascript:void(0)">
-                                        <i class="material-icons">data_usage</i>
-                                        <p> CAD CAE Lab </p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("BookWorkshop", "Home")">
+                        <a class="nav-link" id="BasicLI" href="@Url.Action("TrackWorkshopBooking", "Home")">
                             <i class="material-icons">apartment</i>
-                            <p> Workshops </p>
+                            <p> Workshop / Storage (Track) </p>
                         </a>
                     </li>
-
-                    @*<li class="nav-item ">
-            <a class="nav-link collapsed" data-toggle="collapse" href="#Workshops" aria-expanded="false">
-                <i class="material-icons">apartment</i>
-                <p>
-                    Workshops
-                    <b class="caret"></b>
-                </p>
-            </a>
-            <div class="collapse" id="Workshops" style="">
-                <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)">
-                            <i class="material-icons">data_usage</i>
-                            <p> Client workshop </p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </li>*@
-
-                    <li class="nav-item ">
-                        <a class="nav-link collapsed" data-toggle="collapse" href="#Storage" aria-expanded="false">
-                            <i class="material-icons">battery_full</i>
-                            <p>
-                                Storage
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse" id="Storage" style="">
-                            <ul class="nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="@Url.Action("GeneralStorage", "Home")">
-                                        <i class="material-icons">data_usage</i>
-                                        <p> General Storage </p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="nav-item ">
-                        <a class="nav-link collapsed" data-toggle="collapse" href="#OtherServices" aria-expanded="false">
+                        <a class="nav-link" href="@Url.Action("TrackAddOnServicesBooking", "Home")">
                             <i class="material-icons">image</i>
-                            <p>
-                                Add-on Services
-                                <b class="caret"></b>
-                            </p>
+                            <p> Add-On Services (Track) </p>
                         </a>
-                        <div class="collapse" id="OtherServices" style="">
-                            <ul class="nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="javascript:void(0)">
-                                        <i class="material-icons">data_usage</i>
-                                        <p> Canteen </p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="BasicLI" href="@Url.Action("MainLabBooking", "Home")">
+                            <i class="material-icons">storefront</i>
+                            <p> Labs </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="BasicLI" href="@Url.Action("LabWorkshopBooking", "Home")">
+                            <i class="material-icons">apartment</i>
+                            <p> Workshop / Storage (Lab) </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("LabAddOnServicesBooking", "Home")">
+                            <i class="material-icons">image</i>
+                            <p> Add-On Services (Lab) </p>
+                        </a>
                     </li>
                 </ul>
             </div>
