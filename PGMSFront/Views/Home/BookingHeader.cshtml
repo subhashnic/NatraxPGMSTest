@@ -19,21 +19,21 @@
                             <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
                             <input type="button" id="btnAcceptPI" value="Accept P.I." onclick="return AcceptPI();" class="btn btn-fill btn-rose btn-sm" />
                         }
-                        else if (Model.WorkFlowId == 7 && Model.DocId > 0)
+                        @if (Model.WorkFlowId == 8 && Model.DocId > 0)
+                        {
+                            <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />                            
+                        }
+                        else if (Model.WorkFlowId == 9 && Model.DocId > 0)
                         {
                             <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
+                            <input type="button" id="btnUploadPO" value="Upload P.O." onclick="return OpenPODialog();" class="btn btn-fill btn-rose btn-sm" />
                         }
-                        else if (Model.WorkFlowId == 8 && Model.DocId > 0)
-                        {
-                            <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
-                            <input type="button" id="btnUploadPO" value="Upload P.O." onclick="return UploadPO();" class="btn btn-fill btn-rose btn-sm" />
-                        }
-                        else if ((Model.WorkFlowId == 9 || Model.WorkFlowId == 10) && Model.DocId > 0)
+                        else if (Model.WorkFlowId == 10 && Model.DocId > 0)
                         {
                             <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
                             <input type="button" id="btnViewPO" value="View P.O." onclick="return ViewPO();" class="btn btn-fill btn-rose btn-sm" />
-                            <button class="btn btn-fill btn-rose btn-sm" onclick="return UploadPO();">Upload P.O.</button>
                         }
+
                     </td>
                 </tr>
             </table>
@@ -112,16 +112,18 @@
                     <div class="col-md-4">
                         <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                             @*<div class="fileinput-new thumbnail">
-                                <img src="../../assets/img/image_placeholder.jpg" alt="...">
-                            </div>*@
+                                    <img src="../../assets/img/image_placeholder.jpg" alt="...">
+                                </div>*@
                             <div class="fileinput-preview fileinput-exists thumbnail" style="padding: 10px;"></div>
                             <div>
                                 <span class="btn btn-rose btn-round btn-file">
                                     <span class="fileinput-new">Select Document</span>
                                     <span class="fileinput-exists">Change</span>
-                                    <input type="file" name="..." />
+                                    <input type="file" name="..." id="filePOUPLD" />
                                 </span>
-                                <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                <a href="#pablo" id="fileInputClear" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                <button type="button" id="btnUpload" class="btn btn-fill btn-rose btn-sm" onclick="UploadPO()" style="margin-top: 5px;">UploadPO</button>
+                                <label id="uploadProgressBill" style="background-color: orangered;color:white; font-size: 12px;"></label>
                             </div>
                         </div>
                     </div>
@@ -129,18 +131,101 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-fill btn-rose btn-sm" style="margin-top: 5px;">Submit</button>
+                <button type="button" class="btn btn-fill btn-rose btn-sm" style="margin-top: 5px;" onclick="SubmitPO()">Submit</button>
                 <button type="button" class="btn btn-fill btn-danger btn-sm" data-dismiss="modal" style="margin-left: 5px; margin-top: 5px;">Close</button>
             </div>
         </div>
     </div>
 </div>
+
 <script>
     ///////////////////////////// Upload P.0.  //////////////////////////////////////////////////////
-    function UploadPO() {
+    function OpenPODialog() {
+        $("#fileInputClear").click();
         $("#UploadPOModal").modal("show");
     }
-    ///////////////////////////// Upload P.0.  //////////////////////////////////////////////////////
+
+    function UploadPO() {
+        try {
+            var varFileData = $("#filePOUPLD").val().trim();
+            if (varFileData == '') {
+                alert("Select File!");
+                return false;
+            }
+            else {
+                var formData = new FormData();
+                var imagefile = document.getElementById('filePOUPLD').files[0];
+                var FileType = imagefile.type;
+                var Fileize = imagefile.size;
+                if (FileType == "image/jpeg" || FileType == "application/pdf") {
+                    if ((parseInt(Fileize) / 1024) > 0 && (parseInt(Fileize) / 1024) < 2048) {
+                        LoaderShow();
+                        $("#btnUpload").hide();
+                        $("#uploadProgressBill").show();
+                        formData.append("ImageData", imagefile);
+
+                        var xhr = new XMLHttpRequest();
+
+                        xhr.open("POST", "../Home/POUpload", true);
+                        xhr.upload.addEventListener("progress", function (evt) { UploadPOProgress(evt); }, false);
+                        xhr.addEventListener("load", function (evt) { UploadPOComplete(evt); }, false);
+                        xhr.addEventListener("error", function (evt) { UploadPOFailed(evt); }, false);
+                        xhr.addEventListener("abort", function (evt) { UploadPOCanceled(evt); }, false);
+                        xhr.send(formData);
+                    }
+                    else {
+                        alert("PO file size between 1 KB to 2 MB can be accepted!");
+                        return false;
+                    }
+                }
+                else {
+                    alert("Only (JPEG, PDF) file format can be accepted!");
+                    return false;
+                }
+            }
+        }
+        catch (e) {
+            $("#btnUpload").show();
+            alert(e.message);
+            return false;
+        }
+    }
+
+    function UploadPOProgress(evt) {
+        if (evt.lengthComputable) {
+            var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+            $("#uploadProgressBill").text("Uploading Progress : " + percentComplete + "% ");
+        }
+    }
+
+    function UploadPOComplete(evt) {
+        LoaderHide();
+        $("#btnUpload").show();
+        if (evt.target.status == 200) {
+            var data = JSON.parse(evt.target.response);
+            alert(data.Status);
+            $("#uploadProgressBill").text('');
+        }
+        else {
+            $("#uploadProgressBill").text('');
+            alert("Error Uploading PO");
+        }
+    }
+
+    function UploadPOFailed(evt) {
+        LoaderHide();
+        $("#btnUpload").show();
+        $("#uploadProgressBill").text('');
+        alert("There was an error attempting to upload the PO!");
+
+    }
+
+    function UploadPOCanceled(evt) {
+        LoaderHide();
+        $("#btnUpload").show();
+        $("#uploadProgressBill").text('');
+        alert("The upload has been canceled by the user or the browser dropped the connection!");
+    }
 
     ///////////////////////////// View P.I.  //////////////////////////////////////////////////////
     function ViewPI() {
@@ -172,41 +257,114 @@
             strReportName = "rptBookingInvoiceIGST";
         }
 
-        var strReportViewerUrl = $("#ReportURL").val();
-        var strDocId = $("#DocId").val();
-        var strBPId = $("#BPId").val();
+        var strPOViewerUrl = $("#POURL").val();       
 
-        window.open(strReportViewerUrl + "?rptName=" + strReportName + "&DocId=" + strDocId + "&BPId=" + strBPId, '_blank');
+        window.open(strPOViewerUrl, '_blank');
         return false;
     }
 
     ///////////////////////////// Accept P.I.  //////////////////////////////////////////////////////
     function AcceptPI() {
         try {
-            LoaderShow();
-            var data = {};
-            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
-            $.ajax({
-                url: '@Url.Action("AcceptPI", "Home")',
-                type: 'POST',
-                dataType: 'json',
-                async: true,
-                data: dataWithAntiforgeryToken,
-                success: function (data) {
+            $.confirm({
+                title: 'Confirm Alert!',
+                content: "Are you sure want to accept P.I.?",
+                icon: 'fa fa-question',
+                closeIcon: true,
+                animation: 'scale',
+                type: 'orange',
+                escapeKey: 'cancel',
+                buttons: {
+                    MyFunction: {
+                        text: 'OK',
+                        action: function () {
+                            LoaderShow();
+                            var data = {};
+                            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+                            $.ajax({
+                                url: '@Url.Action("AcceptPI", "Home")',
+                                type: 'POST',
+                                dataType: 'json',
+                                async: true,
+                                data: dataWithAntiforgeryToken,
+                                success: function (data) {
 
-                    LoaderHide();
-                    if (data.StatusId != "99" && data.StatusId != "-99") {
-                        BookingList = data.BookingList;
-                       window.location.href = '@Url.Action("Basic", "Home")';
-                    }
-                    else {
-                        alert(data.Status);
-                    }
-                },
-                error: function (xhr) {
+                                    LoaderHide();
+                                    if (data.StatusId != "99" && data.StatusId != "-99") {
+                                        BookingList = data.BookingList;
+                                        window.location.href = '@Url.Action("Basic", "Home")';
+                                    }
+                                    else {
+                                        alert(data.Status);
+                                    }
+                                },
+                                error: function (xhr) {
 
-                    LoaderHide();
-                    alert(xhr.responseText);
+                                    LoaderHide();
+                                    alert(xhr.responseText);
+                                }
+                            });
+
+                        }
+                    },
+                    cancel: function () {
+                    }
+                }
+            });
+
+        }
+        catch (e) {
+
+            LoaderHide();
+            alert(e.message);
+            //  return false;
+        }
+    }
+     ///////////////////////////// Submit P.O.  //////////////////////////////////////////////////////
+    function SubmitPO() {
+        try {
+            $.confirm({
+                title: 'Confirm Alert!',
+                content: "Are you sure want to submit P.O.?",
+                icon: 'fa fa-question',
+                closeIcon: true,
+                animation: 'scale',
+                type: 'orange',
+                escapeKey: 'cancel',
+                buttons: {
+                    MyFunction: {
+                        text: 'OK',
+                        action: function () {
+                            LoaderShow();
+                            var data = {};
+                            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+                            $.ajax({
+                                url: '@Url.Action("AcceptPI", "Home")',
+                                type: 'POST',
+                                dataType: 'json',
+                                async: true,
+                                data: dataWithAntiforgeryToken,
+                                success: function (data) {
+
+                                    LoaderHide();
+                                    if (data.StatusId != "99" && data.StatusId != "-99") {
+                                        BookingList = data.BookingList;
+                                        window.location.href = '@Url.Action("Basic", "Home")';
+                                    }
+                                    else {
+                                        alert(data.Status);
+                                    }
+                                },
+                                error: function (xhr) {
+
+                                    LoaderHide();
+                                    alert(xhr.responseText);
+                                }
+                            });
+                        }
+                    },
+                    cancel: function () {
+                    }
                 }
             });
         }

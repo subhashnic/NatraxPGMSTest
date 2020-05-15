@@ -20,6 +20,7 @@ namespace PGMSFront.Controllers
         Service1Client objServiceClient = new Service1Client();
         ClassUserFunctions objClassUserFunctions = new ClassUserFunctions();
         static string strRptURL= System.Configuration.ConfigurationManager.AppSettings["ReportUrl"];
+        static string strPOURL = System.Configuration.ConfigurationManager.AppSettings["strPOURL"];
         #endregion
 
         #region Login
@@ -451,6 +452,7 @@ namespace PGMSFront.Controllers
                     model.StatusPropId = Convert.ToInt32(objdbmlBooking.StatusPropId);
                     model.DocId = objdbmlBooking.BookingId;
                     model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), objdbmlBooking.BookingId);
+                    model.POURL = strPOURL+ objdbmlBooking.PODocPath;
                 }
                 else
                 {
@@ -661,11 +663,11 @@ namespace PGMSFront.Controllers
             ObservableCollection<dbmlWorkFlowView> objdbmlWorkFlowView = new ObservableCollection<dbmlWorkFlowView>();
             try
             {               
-                if (Session["WorkFlowView"] != null)
-                {
-                    GeneralColl<dbmlWorkFlowView>.CopyCollection(Session["WorkFlowView"] as ObservableCollection<dbmlWorkFlowView>, objdbmlWorkFlowView);
-                }
-                else
+                //if (Session["WorkFlowView"] != null)
+                //{
+                //    GeneralColl<dbmlWorkFlowView>.CopyCollection(Session["WorkFlowView"] as ObservableCollection<dbmlWorkFlowView>, objdbmlWorkFlowView);
+                //}
+                //else
                 {
                     returndbmlWorkFlowView objreturndbmlWorkFlowView = objServiceClient.WorkFlowViewGetByBPId(intBPId, intDocId);
                     if (objreturndbmlWorkFlowView.objdbmlStatus.StatusId == 1 && objreturndbmlWorkFlowView.objdbmlWorkFlowView.Count > 0)
@@ -723,7 +725,7 @@ namespace PGMSFront.Controllers
             return Json(new { Status = strStatus, StatusId = intStatusId, BookingList = objreturndbmlBooking.objdbmlBookingList }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult BillCopyUpload()
+        public ActionResult POUpload()
         {
             if (Session["UserId"] == null)
             {
@@ -752,10 +754,9 @@ namespace PGMSFront.Controllers
                                 strFileExtention = strFileExtention.Substring(strFileExtention.IndexOf('/') + 1);
                                 byte[] byteImage = objClassUserFunctions.ConvertToBytes(file.InputStream);
                                 bool blnStatus = false;
-                                string strFTPUserName = System.Configuration.ConfigurationManager.AppSettings["strFTPUserName"]; ;
-                                string strFTPUserPSW = System.Configuration.ConfigurationManager.AppSettings["strFTPUserPassword"]; ;
-                                string strFTPUrl = System.Configuration.ConfigurationManager.AppSettings["strFTPServer"];
-                                string strStaticUrl = System.Configuration.ConfigurationManager.AppSettings["strStaticURL"];
+                                string strFTPUserName = System.Configuration.ConfigurationManager.AppSettings["strFTPUserName"];
+                                string strFTPUserPSW = System.Configuration.ConfigurationManager.AppSettings["strFTPUserPassword"];
+                                string strFTPUrl = System.Configuration.ConfigurationManager.AppSettings["strFTPServer"];                             
                                 string strFTPRoot = System.Configuration.ConfigurationManager.AppSettings["strFTPRoot"];
 
                                 string strBlobAccount = System.Configuration.ConfigurationManager.AppSettings["strBlobAccount"];
@@ -769,7 +770,7 @@ namespace PGMSFront.Controllers
                                 if (strFileStorage == "FTP")
                                 {
                                     ////////////////////// For FTP /////////////////////////////////////////////                       
-                                    strFTPFilePath = strFTPRoot + strImageContainerName + "/" + strImageName;                                                               
+                                    strFTPFilePath = strFTPRoot + strImageName;                                                               
 
                                     blnStatus = objClassUserFunctions.UploadImageToFTPFromWEBCLIENT(strFTPUrl, strFTPUserName, strFTPUserPSW, byteImage, strFTPFilePath);
                                 }
@@ -877,6 +878,7 @@ namespace PGMSFront.Controllers
                     model.BPId = Convert.ToInt32(Session["BPId"]);
                     model.ReportURL = strRptURL;                   
                     model.DocId = objdbmlBooking.BookingId;
+                    model.POURL = strPOURL + objdbmlBooking.PODocPath;
 
                     //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 10)
                     //{
@@ -1264,6 +1266,7 @@ namespace PGMSFront.Controllers
                     model.BPId = Convert.ToInt32(Session["BPId"]);
                     model.ReportURL = strRptURL;
                     model.DocId = objdbmlBooking.BookingId;
+                    model.POURL = strPOURL + objdbmlBooking.PODocPath;
 
                     //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 40)
                     //{

@@ -39,6 +39,7 @@ namespace PGMSFront.Models {
         public int DocId { get; set; }
         public int BPId { get; set; }
         public string ReportURL { get; set; }
+        public string POURL { get; set; }
 
         public ObservableCollection<dbmlWorkFlowView> WorkFlowView = new ObservableCollection<dbmlWorkFlowView>();
 

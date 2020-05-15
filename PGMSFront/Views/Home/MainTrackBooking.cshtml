@@ -145,32 +145,32 @@
                         </div>
                     </div>
                     @*<div class="table-responsive">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td width="4%" style="border-left: 1px solid #DDD;">Date</td>
-                                        <td width="10%"><input disabled="disabled" type="text" id="TrackDate" onchange="ResetCategoryTimeSlot()" class="form-control datetimepicker" placeholder="DD-MM-YYYY"></td>
-                                        <td width="4%" id="divCategoryTitle" style='display:none;border-left: 1px solid #DDD;'>Type</td>
-                                        <td width="12%" id="divCategoryValue" style='display:none'>
-                                            <div class="form-check" id="divCategory"></div>
-                                        </td>
-                                        <td width="14%" style="border-left: 1px solid #DDD;">Time slot for starting the Test</td>
-                                        <td width="10%">
-                                            <select class="form-control" id="lstTrackTimeSlot" onchange="BindBookingStatus()">
-                                                <option value="0">- Select Time Slot -</option>
-                                                @foreach (var itm in ViewBag.TimeSlot)
-                                                {
-                                                    <option value='@itm.Value'>@itm.Text</option>
-                                                }
-                                            </select>
-                                        </td>
-                                        <td align="right" width="10%">
-                                            <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="TrackDetailSave()">Save</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>*@
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td width="4%" style="border-left: 1px solid #DDD;">Date</td>
+                                <td width="10%"><input disabled="disabled" type="text" id="TrackDate" onchange="ResetCategoryTimeSlot()" class="form-control datetimepicker" placeholder="DD-MM-YYYY"></td>
+                                <td width="4%" id="divCategoryTitle" style='display:none;border-left: 1px solid #DDD;'>Type</td>
+                                <td width="12%" id="divCategoryValue" style='display:none'>
+                                    <div class="form-check" id="divCategory"></div>
+                                </td>
+                                <td width="14%" style="border-left: 1px solid #DDD;">Time slot for starting the Test</td>
+                                <td width="10%">
+                                    <select class="form-control" id="lstTrackTimeSlot" onchange="BindBookingStatus()">
+                                        <option value="0">- Select Time Slot -</option>
+                                        @foreach (var itm in ViewBag.TimeSlot)
+                                        {
+                                            <option value='@itm.Value'>@itm.Text</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td align="right" width="10%">
+                                    <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="TrackDetailSave()">Save</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>*@
                 </div>
                 <div class="card-body" id="divCardBody" style="        display: none">
                     <div class="row">
@@ -189,7 +189,7 @@
                                             <th width="12%" class="text-center">Slot wise Confirmed</th>
                                             <th width="8%" class="text-center">Round Hrs.</th>
                                             @*<th width="9%" class="text-center">Bill Hours</th>
-                                                <th width="9%" class="text-right">Amount</th>*@
+                                        <th width="9%" class="text-right">Amount</th>*@
                                         </tr>
                                     </thead>
                                     <tbody id="tbodyTrack"></tbody>
@@ -223,7 +223,7 @@
                                                 <th class="text-center" width="10%">Usage Minutes</th>
                                                 <th class="text-center" width="8%">Round Hours</th>
                                                 @*<th class="text-center" width="5%">Bill Hours.</th>
-                                                    <th class="text-right" width="10%">Amount</th>*@
+                                            <th class="text-right" width="10%">Amount</th>*@
                                                 <th class="text-center" width="3%">#</th>
                                             </tr>
                                         </thead>
@@ -235,11 +235,11 @@
                         <div class="row">
                             <div class="col-md-12">
                                 @*<br />
-                                    @using (Html.BeginForm(new { @class = "form-horizontal" }))
-                                    {
-                                        @Html.AntiForgeryToken()
-                                        <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
-                                    }*@
+                            @using (Html.BeginForm(new { @class = "form-horizontal" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
+                            }*@
                             </div>
                         </div>
                     </div>
@@ -298,18 +298,19 @@
             @Html.HiddenFor(m => m.BPId, new { id = "BPId", style = "width:0px;" })
             @Html.HiddenFor(m => m.DocId, new { id = "DocId", style = "width:0px;" })
             @Html.HiddenFor(m => m.ReportURL, new { id = "ReportURL", style = "width:0px;" })
+            @Html.HiddenFor(m => m.POURL, new { id = "POURL", style = "width:0px;" })
 
             @*@using (Html.BeginForm(new { @class = "form-horizontal" }))
-                {
-                    <table Style="width:100%">
-                        <tr>
-                            <td Style="width:50%;text-align:left">
-                                <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
-                            </td>
-                            <td Style="width:50%;text-align:right"></td>
-                        </tr>
-                    </table>
-                }*@
+        {
+            <table Style="width:100%">
+                <tr>
+                    <td Style="width:50%;text-align:left">
+                        <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
+                    </td>
+                    <td Style="width:50%;text-align:right"></td>
+                </tr>
+            </table>
+        }*@
         </div>
 
 

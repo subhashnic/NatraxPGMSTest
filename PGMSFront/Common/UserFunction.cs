@@ -352,8 +352,8 @@ namespace PGMSFront.Common
                 ftpRequest.Credentials = new NetworkCredential(ftpusername, ftppassword);
 
                 ftpRequest.UseBinary = true;
-                ftpRequest.UsePassive = true;
-                ftpRequest.KeepAlive = false;
+                ftpRequest.UsePassive = false;
+                ftpRequest.KeepAlive = true;
                 ftpRequest.Method = WebRequestMethods.Ftp.UploadFile;
 
                 //FileStream fs = File.OpenRead(strSorceFilePath);
