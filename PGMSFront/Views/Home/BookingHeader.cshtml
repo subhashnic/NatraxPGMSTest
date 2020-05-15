@@ -32,6 +32,7 @@
                         {
                             <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
                             <input type="button" id="btnViewPO" value="View P.O." onclick="return ViewPO();" class="btn btn-fill btn-rose btn-sm" />
+                            <button class="btn btn-fill btn-rose btn-sm" onclick="return UploadPO();">Upload P.O.</button>
                         }
                     </td>
                 </tr>
@@ -92,12 +93,54 @@
                     {
                         <div id="WWF10" class="step"><span>PO Verification</span></div>
                     }*@
-
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="UploadPOModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Upload PO</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="material-icons">clear</i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                            @*<div class="fileinput-new thumbnail">
+                                <img src="../../assets/img/image_placeholder.jpg" alt="...">
+                            </div>*@
+                            <div class="fileinput-preview fileinput-exists thumbnail" style="padding: 10px;"></div>
+                            <div>
+                                <span class="btn btn-rose btn-round btn-file">
+                                    <span class="fileinput-new">Select Document</span>
+                                    <span class="fileinput-exists">Change</span>
+                                    <input type="file" name="..." />
+                                </span>
+                                <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-fill btn-rose btn-sm" style="margin-top: 5px;">Submit</button>
+                <button type="button" class="btn btn-fill btn-danger btn-sm" data-dismiss="modal" style="margin-left: 5px; margin-top: 5px;">Close</button>
             </div>
         </div>
     </div>
 </div>
 <script>
+    ///////////////////////////// Upload P.0.  //////////////////////////////////////////////////////
+    function UploadPO() {
+        $("#UploadPOModal").modal("show");
+    }
+    ///////////////////////////// Upload P.0.  //////////////////////////////////////////////////////
 
     ///////////////////////////// View P.I.  //////////////////////////////////////////////////////
     function ViewPI() {
@@ -173,6 +216,6 @@
             alert(e.message);
             //  return false;
         }
-    }   
+    }
 
 </script>

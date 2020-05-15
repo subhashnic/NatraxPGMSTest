@@ -432,3 +432,26 @@ a, a:active {
 .bootstrap-select .btn.dropdown-toggle.select-with-transition{
     padding-right: 0px !important;
 }
+
+.modal-dialog .modal-header .close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.modal-dialog .modal-header {
+    padding-top: 5px;
+    padding-bottom: 3px;
+    background: #e91e63;
+    color: #FFF;
+}
+
+.modal .modal-header .close {
+    color: #FFF;
+    opacity: 1;
+}
+
+.modal-dialog .modal-footer {
+    border-top: 1px solid #EEE;
+    padding: 5px;
+}
