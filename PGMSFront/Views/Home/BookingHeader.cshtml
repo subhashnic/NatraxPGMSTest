@@ -19,19 +19,19 @@
                             <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
                             <input type="button" id="btnAcceptPI" value="Accept P.I." onclick="return AcceptPI();" class="btn btn-fill btn-rose btn-sm" />
                         }
-                        @if (Model.WorkFlowId == 8 && Model.DocId > 0)
+                        else if (Model.WorkFlowId == 8 && Model.DocId > 0)
                         {
-                            <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />                            
+                        <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
                         }
                         else if (Model.WorkFlowId == 9 && Model.DocId > 0)
                         {
-                            <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
-                            <input type="button" id="btnUploadPO" value="Upload P.O." onclick="return OpenPODialog();" class="btn btn-fill btn-rose btn-sm" />
+                        <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
+                        <input type="button" id="btnUploadPO" value="Upload P.O." onclick="return OpenPODialog();" class="btn btn-fill btn-rose btn-sm" />
                         }
                         else if (Model.WorkFlowId == 10 && Model.DocId > 0)
                         {
-                            <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
-                            <input type="button" id="btnViewPO" value="View P.O." onclick="return ViewPO();" class="btn btn-fill btn-rose btn-sm" />
+                        <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
+                        <input type="button" id="btnViewPO" value="View P.O." onclick="return ViewPO();" class="btn btn-fill btn-rose btn-sm" />
                         }
 
                     </td>
