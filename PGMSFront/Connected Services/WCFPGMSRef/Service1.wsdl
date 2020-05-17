@@ -35,6 +35,12 @@
   <wsdl:message name="IService1_PropertiesGetAll_OutputMessage">
     <wsdl:part name="parameters" element="tns:PropertiesGetAllResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_OptionListGetByPropertyId_InputMessage">
+    <wsdl:part name="parameters" element="tns:OptionListGetByPropertyId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_OptionListGetByPropertyId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OptionListGetByPropertyIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_BookingInsert_InputMessage">
     <wsdl:part name="parameters" element="tns:BookingInsert" />
   </wsdl:message>
@@ -197,6 +203,12 @@
   <wsdl:message name="IService1_LabBookingDetailViewFrontGetByBookingId_OutputMessage">
     <wsdl:part name="parameters" element="tns:LabBookingDetailViewFrontGetByBookingIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_LablinkVorCGetAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:LablinkVorCGetAll" />
+  </wsdl:message>
+  <wsdl:message name="IService1_LablinkVorCGetAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LablinkVorCGetAllResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="UserGetByLoginId">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/UserGetByLoginId" message="tns:IService1_UserGetByLoginId_InputMessage" />
@@ -209,6 +221,10 @@
     <wsdl:operation name="PropertiesGetAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/PropertiesGetAll" message="tns:IService1_PropertiesGetAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/PropertiesGetAllResponse" message="tns:IService1_PropertiesGetAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OptionListGetByPropertyId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/OptionListGetByPropertyId" message="tns:IService1_OptionListGetByPropertyId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/OptionListGetByPropertyIdResponse" message="tns:IService1_OptionListGetByPropertyId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="BookingInsert">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/BookingInsert" message="tns:IService1_BookingInsert_InputMessage" />
@@ -318,6 +334,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/LabBookingDetailViewFrontGetByBookingId" message="tns:IService1_LabBookingDetailViewFrontGetByBookingId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/LabBookingDetailViewFrontGetByBookingIdResponse" message="tns:IService1_LabBookingDetailViewFrontGetByBookingId_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="LablinkVorCGetAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/LablinkVorCGetAll" message="tns:IService1_LablinkVorCGetAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/LablinkVorCGetAllResponse" message="tns:IService1_LablinkVorCGetAll_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IService1" type="tns:IService1">
     <wsp:PolicyReference URI="#WSHttpBinding_IService1_policy" />
@@ -342,6 +362,15 @@
     </wsdl:operation>
     <wsdl:operation name="PropertiesGetAll">
       <soap12:operation soapAction="http://tempuri.org/IService1/PropertiesGetAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OptionListGetByPropertyId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/OptionListGetByPropertyId" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -585,6 +614,15 @@
     </wsdl:operation>
     <wsdl:operation name="LabBookingDetailViewFrontGetByBookingId">
       <soap12:operation soapAction="http://tempuri.org/IService1/LabBookingDetailViewFrontGetByBookingId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LablinkVorCGetAll">
+      <soap12:operation soapAction="http://tempuri.org/IService1/LablinkVorCGetAll" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

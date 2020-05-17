@@ -79,6 +79,12 @@ namespace PGMSFront.Controllers
                             Session["Properties"] = objreturndbmlProperty.objdbmlProperty;
                         }
 
+                        returndbmlLablinkVorC objreturndbmlLablinkVorC = objServiceClient.LablinkVorCGetAll();
+                        if (objreturndbmlLablinkVorC.objdbmlStatus.StatusId == 1 && objreturndbmlLablinkVorC.objdbmlLablinkVorC.Count > 0)
+                        {
+                            Session["LablinkVorC"] = objreturndbmlLablinkVorC.objdbmlLablinkVorC;
+                        }
+
                         returndbmlCompanyView objreturndbmlCompanyView = objServiceClient.CompanyViewGetByCompanyId(Convert.ToInt32(objdbmlUserView.ZZCompanyId));
                         if (objreturndbmlCompanyView.objdbmlStatus.StatusId == 1 && objreturndbmlCompanyView.objdbmlCompanyView.Count > 0)
                         {
@@ -948,6 +954,7 @@ namespace PGMSFront.Controllers
                     objreturndbmlVehicle = objServiceClient.ListOfVehicleComponentGetByDocId(objdbmlBooking.BookingId);
                     if (objreturndbmlVehicle.objdbmlStatus.StatusId == 1)
                     {
+                        objreturndbmlVehicle.objdbmlListOfVehicleComponent = new ObservableCollection<dbmlListOfVehicleComponent>(objreturndbmlVehicle.objdbmlListOfVehicleComponent.Where(itm=>itm.GroupId== Convert.ToInt32(HardCodeValues.VehicleGrpPropId)));
                         intStatusId = 1;
                         strStatus = "Success";
                     }
@@ -1013,6 +1020,7 @@ namespace PGMSFront.Controllers
 
                     if (objreturndbmlVehicle != null && objreturndbmlVehicle.objdbmlStatus.StatusId == 1)
                     {
+                        objreturndbmlVehicle.objdbmlListOfVehicleComponent = new ObservableCollection<dbmlListOfVehicleComponent>(objreturndbmlVehicle.objdbmlListOfVehicleComponent.Where(itm => itm.GroupId == Convert.ToInt32(HardCodeValues.VehicleGrpPropId)));
                         intStatusId = 1;
                         strStatus = "Data Saved Successfully";
                     }
@@ -1057,6 +1065,7 @@ namespace PGMSFront.Controllers
 
                     if (objreturndbmlVehicle != null && objreturndbmlVehicle.objdbmlStatus.StatusId == 1)
                     {
+                        objreturndbmlVehicle.objdbmlListOfVehicleComponent = new ObservableCollection<dbmlListOfVehicleComponent>(objreturndbmlVehicle.objdbmlListOfVehicleComponent.Where(itm => itm.GroupId == Convert.ToInt32(HardCodeValues.VehicleGrpPropId)));
                         intStatusId = 1;
                         strStatus = "Vehicle Deleted Successfully";
                     }
@@ -2258,6 +2267,302 @@ namespace PGMSFront.Controllers
 
         #endregion
 
+        #region Lab Booking Detail
+
+        public ActionResult MainLabBooking()
+        {
+            CommonModel model = new CommonModel();
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                model.UserId = Convert.ToInt32(Session["UserId"]);
+                model.UserTypePropId = Convert.ToInt32(Session["UserTypePropId"]);
+                model.ZZCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
+                model.UserName = Convert.ToString(Session["UserName"]);
+                model.EmailId = Convert.ToString(Session["EmailId"]);
+                model.LoginId = Convert.ToString(Session["LoginId"]);
+                model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
+                model.UserCode = Convert.ToString(Session["UserCode"]);
+                model.TrackGroup = "Track Booking";
+                model.ViewTitle = "Track Booking";
+                model.StateId = Convert.ToInt32(Session["StateId"]);
+
+                returndbmlServicesView objreturndbmlServicesView = objServiceClient.ServicesGetByBPId(Convert.ToInt32(HardCodeValues.ServiceBPIdLab));
+                if (objreturndbmlServicesView.objdbmlStatus.StatusId == 1 && objreturndbmlServicesView.objdbmlServicesView.Count > 0)
+                {
+                    Session["LabServices"] = objreturndbmlServicesView.objdbmlServicesView;
+                }
+
+                ViewBag.ServiveLookup = GetLabServiveLookup(Convert.ToInt32(HardCodeValues.ServiceBPIdAddOn));
+
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+                    model.DocDate = objdbmlBooking.ZZBookingDate;
+                    model.DocNo = objdbmlBooking.BookingNo;
+                    model.DocType = objdbmlBooking.ZZBookingType;
+                    model.WorkFlowId = Convert.ToInt32(objdbmlBooking.ZZWorkFlowId);
+                    model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+                    model.StatusPropId = Convert.ToInt32(objdbmlBooking.StatusPropId);
+                    model.BPId = Convert.ToInt32(Session["BPId"]);
+                    model.ReportURL = strRptURL;
+                    model.DocId = objdbmlBooking.BookingId;
+                    model.POURL = strPOURL + objdbmlBooking.PODocPath;
+
+                    //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 40)
+                    //{
+                    //    return RedirectToActionByStatusId(Convert.ToInt32(objdbmlBooking.TabStatusId));
+                    //}
+                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), objdbmlBooking.BookingId);
+                }
+                else
+                {
+                    return RedirectToAction("Basic", "Home");
+                }
+
+            }
+            catch
+            {
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult MainLabBooking(CommonModel model, string btnPrevNext)
+        {
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                //if (btnPrevNext.ToLower() == "prev")
+                //{
+                //    return RedirectToAction("TrackWorkshopBooking", "Home");
+                //}
+
+                //if (btnPrevNext.ToLower() == "next")
+                //{
+                //    return RedirectToAction("TrackAddOnServicesBooking", "Home");
+                //}
+            }
+            catch
+            {
+            }
+
+            return RedirectToAction("TrackWorkshopBooking", "Home");
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult LoadLabServicesInfo()
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlLabBookingDetailViewFront objreturndbmlLabBookingDetailViewFront = new returndbmlLabBookingDetailViewFront();
+            ObservableCollection<dbmlServicesView> objdbmlServicesView = new ObservableCollection<dbmlServicesView>();
+            ObservableCollection<dbmlLablinkVorC> objdbmlLablinkVorC = new ObservableCollection<dbmlLablinkVorC>();
+            returndbmlListOfVehicleComponent objreturndbmlListOfVehicleComponent = new returndbmlListOfVehicleComponent();
+
+            try
+            {                
+                if (Session["LabServices"] != null)
+                {
+                    GeneralColl<dbmlServicesView>.CopyCollection(Session["LabServices"] as ObservableCollection<dbmlServicesView>, objdbmlServicesView);
+                }
+               
+                if (Session["LablinkVorC"] != null)
+                {
+                    GeneralColl<dbmlLablinkVorC>.CopyCollection(Session["LablinkVorC"] as ObservableCollection<dbmlLablinkVorC>, objdbmlLablinkVorC);
+                }
+
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+
+                    objreturndbmlLabBookingDetailViewFront = objServiceClient.LabBookingDetailViewFrontGetByBookingId(objdbmlBooking.BookingId);
+                    if (objreturndbmlLabBookingDetailViewFront.objdbmlStatus.StatusId == 1)
+                    {
+                        intStatusId = 1;
+                        strStatus = "Success";
+                    }
+                    else
+                    {
+                        strStatus = objreturndbmlLabBookingDetailViewFront.objdbmlStatus.Status;
+                    }
+
+                    objreturndbmlListOfVehicleComponent = objServiceClient.ListOfVehicleComponentGetByDocId(objdbmlBooking.BookingId);
+                   
+                }
+                else
+                {
+                    strStatus = "Booking Details Not Found";
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, ServiceList= objdbmlServicesView, LablinkVorCList= objdbmlLablinkVorC, VehicleCompList= objreturndbmlListOfVehicleComponent.objdbmlListOfVehicleComponent, LabServicesList = objreturndbmlLabBookingDetailViewFront.objdbmlLabBookingDetailViewFront }, JsonRequestBehavior.AllowGet);
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult LabServicesSave(dbmlLabBookingDetailViewFront model)
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlLabBookingDetailViewFront objreturndbmlLabBookingDetailViewFront = new returndbmlLabBookingDetailViewFront();
+
+            try
+            {
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+
+                    model.BookingId = objdbmlBooking.BookingId;
+                    model.RefServiceBPId = Convert.ToInt32(Session["BPId"]);
+                    model.UsageDate = objClassUserFunctions.ToDateTimeNotNull(model.ZZUsageDate);
+                    model.CreateId = Convert.ToInt32(Session["UserId"]);
+                    model.CreateDate = DateTime.Now;
+                    model.UpdateId = Convert.ToInt32(Session["UserId"]);
+                    model.UpdateDate = DateTime.Now;
+
+                    returndbmlLabBookingDetailViewFront objreturndbmlLabBookingDetailViewFrontTemp = new returndbmlLabBookingDetailViewFront();
+                    ObservableCollection<dbmlLabBookingDetailViewFront> objdbmlLabBookingDetailViewFront = new ObservableCollection<dbmlLabBookingDetailViewFront>();
+                    objdbmlLabBookingDetailViewFront.Add(model);
+                    objreturndbmlLabBookingDetailViewFrontTemp.objdbmlLabBookingDetailViewFront = objdbmlLabBookingDetailViewFront;
+
+                    objreturndbmlLabBookingDetailViewFront = objServiceClient.LabBookingDetailInsertFront(objreturndbmlLabBookingDetailViewFrontTemp);
+
+                    if (objreturndbmlLabBookingDetailViewFront != null && objreturndbmlLabBookingDetailViewFront.objdbmlStatus.StatusId == 1)
+                    {
+                        intStatusId = 1;
+                        strStatus = "Lab Service Saved Successfully";
+                    }
+                    else
+                    {
+                        strStatus = objreturndbmlLabBookingDetailViewFront.objdbmlStatus.Status;
+                    }
+                }
+                else
+                {
+                    strStatus = "Booking Details Not Found";
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, LabServicesList = objreturndbmlLabBookingDetailViewFront.objdbmlLabBookingDetailViewFront }, JsonRequestBehavior.AllowGet);
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult LabServicesDelete(int intLabBookingDetailId)
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlLabBookingDetailViewFront objreturndbmlLabBookingDetailViewFront = new returndbmlLabBookingDetailViewFront();
+
+            try
+            {
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+
+                    objreturndbmlLabBookingDetailViewFront = objServiceClient.LabBookingDetailDelete(objdbmlBooking.BookingId, intLabBookingDetailId);
+
+                    if (objreturndbmlLabBookingDetailViewFront != null && objreturndbmlLabBookingDetailViewFront.objdbmlStatus.StatusId == 1)
+                    {
+                        intStatusId = 1;
+                        strStatus = "Lab Service Deleted Successfully";
+                    }
+                    else
+                    {
+                        strStatus = objreturndbmlLabBookingDetailViewFront.objdbmlStatus.Status;
+                    }
+                }
+                else
+                {
+                    strStatus = "Booking Details Not Found";
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, LabServicesList = objreturndbmlLabBookingDetailViewFront.objdbmlLabBookingDetailViewFront }, JsonRequestBehavior.AllowGet);
+        }
+
+        public List<SelectListItem> GetLabServiveLookup(int intBPId)
+        {
+            List<SelectListItem> Items = new List<SelectListItem>();
+            try
+            {
+                ObservableCollection<dbmlServicesView> objdbmlServicesView = new ObservableCollection<dbmlServicesView>();
+                if (Session["LabServices"] != null)
+                {
+                    GeneralColl<dbmlServicesView>.CopyCollection(Session["LabServices"] as ObservableCollection<dbmlServicesView>, objdbmlServicesView);
+                }
+                else
+                {
+                    returndbmlServicesView objreturndbmlServicesView = objServiceClient.ServicesGetByBPId(intBPId);
+                    if (objreturndbmlServicesView.objdbmlStatus.StatusId == 1 && objreturndbmlServicesView.objdbmlServicesView.Count > 0)
+                    {
+                        Session["LabServices"] = objreturndbmlServicesView.objdbmlServicesView;
+                        objdbmlServicesView = objreturndbmlServicesView.objdbmlServicesView;
+                    }
+                }
+
+                if (objdbmlServicesView != null && objdbmlServicesView.Count > 0)
+                {
+                    ObservableCollection<dbmlServicesView> objdbmlServicesViewList = new ObservableCollection<dbmlServicesView>(objdbmlServicesView.Where(itm => itm.ServiceId > 0).OrderBy(itm => itm.SrNo));
+                    foreach (var itm in objdbmlServicesViewList)
+                    {
+                        if (Items.FirstOrDefault(itmTrack => itmTrack.Value == itm.ServiceName) == null)
+                        {
+                            Items.Add(new SelectListItem { Text = itm.ServiceName, Value = itm.ServiceName, Selected = false });
+                        }
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            return Items;
+        }
+
+
+        #endregion
+
         #endregion
 
         #region Common
@@ -2304,10 +2609,6 @@ namespace PGMSFront.Controllers
             return View();
         }
 
-        public ActionResult MainLabBooking()
-        {
-            return View();
-        }
 
     }
 }

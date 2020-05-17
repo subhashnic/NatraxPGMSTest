@@ -91,6 +91,27 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlProperty" nillable="true" type="tns:dbmlProperty" />
+  <xs:complexType name="ArrayOfdbmlOptionList">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlOptionList" nillable="true" type="tns:dbmlOptionList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdbmlOptionList" nillable="true" type="tns:ArrayOfdbmlOptionList" />
+  <xs:complexType name="dbmlOptionList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BPId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="OptionDesc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OptionListId" type="xs:int" />
+      <xs:element minOccurs="0" name="OptionName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PropertyId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Sequence" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateId" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dbmlOptionList" nillable="true" type="tns:dbmlOptionList" />
   <xs:complexType name="ArrayOfdbmlBookingView">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlBookingView" nillable="true" type="tns:dbmlBookingView" />
@@ -605,4 +626,23 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlLabBookingDetailViewFront" nillable="true" type="tns:dbmlLabBookingDetailViewFront" />
+  <xs:complexType name="ArrayOfdbmlLablinkVorC">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlLablinkVorC" nillable="true" type="tns:dbmlLablinkVorC" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdbmlLablinkVorC" nillable="true" type="tns:ArrayOfdbmlLablinkVorC" />
+  <xs:complexType name="dbmlLablinkVorC">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ComOptionListId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateId" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupPropId" type="xs:int" />
+      <xs:element minOccurs="0" name="LablinkVorCId" type="xs:int" />
+      <xs:element minOccurs="0" name="ServiceId" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dbmlLablinkVorC" nillable="true" type="tns:dbmlLablinkVorC" />
 </xs:schema>
