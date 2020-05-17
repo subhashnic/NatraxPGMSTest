@@ -176,6 +176,15 @@
     <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlCompanyView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlBookingDetailAddOnServicesViewFront.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlLabBookingDetailViewFront.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\WCFPGMSRef\Service1.disco" />
     <None Include="Connected Services\WCFPGMSRef\configuration91.svcinfo" />
     <None Include="Connected Services\WCFPGMSRef\configuration.svcinfo" />
@@ -761,7 +770,6 @@
     <Content Include="Templates\vendors\linericon\fonts\Linearicons-Free.woff2" />
     <Content Include="Views\Shared\_LayoutTrack.cshtml" />
     <Content Include="Views\Home\ManageBooking.cshtml" />
-    <Content Include="Views\Home\DynamicPlatform.cshtml" />
     <Content Include="Views\Front\BrakingTrack.cshtml" />
     <Content Include="Views\Front\TestHill.cshtml" />
     <Content Include="Views\Front\FatigueSurfaceHighSeverity.cshtml" />
@@ -771,7 +779,6 @@
     <Content Include="Views\Front\SustainabilityTrack.cshtml" />
     <Content Include="Views\Front\WetSkidPad.cshtml" />
     <Content Include="Views\Front\ExternalNoiseTrack.cshtml" />
-    <Content Include="Views\Home\HighSpeedTrack.cshtml" />
     <Content Include="Views\Front\VillageRoadTrack.cshtml" />
     <Content Include="Views\Front\GeneralRoad.cshtml" />
     <Content Include="Views\Front\ComfortTrack.cshtml" />
@@ -788,7 +795,6 @@
     <Content Include="Views\Home\Driver.cshtml" />
     <Content Include="Views\Home\Attendee.cshtml" />
     <Content Include="Views\Front\FatigueStructure.cshtml" />
-    <Content Include="Views\Home\FatigueSurfaceLowSeverity.cshtml" />
     <Content Include="Views\Front\BookWorkshop.cshtml" />
     <Content Include="Views\Front\BookStorage.cshtml" />
     <Content Include="Views\Front\CompanyRegistration.cshtml" />
@@ -843,6 +849,7 @@
     <Content Include="Views\Home\LabWorkshopBooking.cshtml" />
     <Content Include="Views\Home\LabAddOnServicesBooking.cshtml" />
     <Content Include="Views\Home\MainLabBooking.cshtml" />
+    <Content Include="Views\Home\TrackAddOnServicesBooking - Copy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

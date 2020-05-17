@@ -1058,7 +1058,7 @@ namespace PGMSFront.Controllers
                     if (objreturndbmlVehicle != null && objreturndbmlVehicle.objdbmlStatus.StatusId == 1)
                     {
                         intStatusId = 1;
-                        strStatus = "Vehicle Deleteed Successfully";
+                        strStatus = "Vehicle Deleted Successfully";
                     }
                     else
                     {
@@ -1301,6 +1301,10 @@ namespace PGMSFront.Controllers
                 if (btnPrevNext.ToLower() == "prev")
                 {
                     return RedirectToAction("Vehicle", "Home");
+                }
+                else if (btnPrevNext.ToLower() == "next")
+                {
+                    return RedirectToAction("TrackWorkshopBooking", "Home");
                 }
             }
             catch
@@ -1696,6 +1700,564 @@ namespace PGMSFront.Controllers
 
         #endregion
 
+        #region Track Workshop Booking
+
+        public ActionResult TrackWorkshopBooking()
+        {
+            CommonModel model = new CommonModel();
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                model.UserId = Convert.ToInt32(Session["UserId"]);
+                model.UserTypePropId = Convert.ToInt32(Session["UserTypePropId"]);
+                model.ZZCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
+                model.UserName = Convert.ToString(Session["UserName"]);
+                model.EmailId = Convert.ToString(Session["EmailId"]);
+                model.LoginId = Convert.ToString(Session["LoginId"]);
+                model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
+                model.UserCode = Convert.ToString(Session["UserCode"]);
+                model.TrackGroup = "Track Booking";
+                model.ViewTitle = "Track Booking";
+                model.StateId = Convert.ToInt32(Session["StateId"]);
+
+                returndbmlServicesView objreturndbmlServicesView = objServiceClient.ServicesGetByBPId(Convert.ToInt32(HardCodeValues.ServiceBPIdWorkShop));
+                if (objreturndbmlServicesView.objdbmlStatus.StatusId == 1 && objreturndbmlServicesView.objdbmlServicesView.Count > 0)
+                {
+                    Session["WorkShopServices"] = objreturndbmlServicesView.objdbmlServicesView;
+                }
+                
+                ViewBag.ServiveLookup = GetWorkShopServiveLookup(Convert.ToInt32(HardCodeValues.ServiceBPIdWorkShop));
+               
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+                    model.DocDate = objdbmlBooking.ZZBookingDate;
+                    model.DocNo = objdbmlBooking.BookingNo;
+                    model.DocType = objdbmlBooking.ZZBookingType;
+                    model.WorkFlowId = Convert.ToInt32(objdbmlBooking.ZZWorkFlowId);
+                    model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+                    model.StatusPropId = Convert.ToInt32(objdbmlBooking.StatusPropId);
+                    model.BPId = Convert.ToInt32(Session["BPId"]);
+                    model.ReportURL = strRptURL;
+                    model.DocId = objdbmlBooking.BookingId;
+                    model.POURL = strPOURL + objdbmlBooking.PODocPath;
+
+                    //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 40)
+                    //{
+                    //    return RedirectToActionByStatusId(Convert.ToInt32(objdbmlBooking.TabStatusId));
+                    //}
+                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), objdbmlBooking.BookingId);
+                }
+                else
+                {
+                    return RedirectToAction("Basic", "Home");
+                }
+
+            }
+            catch
+            {
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TrackWorkshopBooking(CommonModel model, string btnPrevNext)
+        {
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                if (btnPrevNext.ToLower() == "prev")
+                {
+                    return RedirectToAction("MainTrackBooking", "Home");
+                }
+
+                if (btnPrevNext.ToLower() == "next")
+                {
+                    return RedirectToAction("TrackAddOnServicesBooking", "Home");
+                }
+            }
+            catch
+            {
+            }
+
+            return RedirectToAction("TrackWorkshopBooking", "Home");
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult LoadWorkshopBookingInfo()
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlWorkshopBookingDetailViewFront objreturndbmlWorkshopBookingDetailViewFront = new returndbmlWorkshopBookingDetailViewFront();
+            try
+            {
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+
+                    objreturndbmlWorkshopBookingDetailViewFront = objServiceClient.WorkshopBookingDetailViewFrontGetByBookingId(objdbmlBooking.BookingId);
+                    if (objreturndbmlWorkshopBookingDetailViewFront.objdbmlStatus.StatusId == 1)
+                    {
+                        intStatusId = 1;
+                        strStatus = "Success";
+                    }
+                    else
+                    {
+                        strStatus = objreturndbmlWorkshopBookingDetailViewFront.objdbmlStatus.Status;
+                    }
+                }
+                else
+                {
+                    strStatus = "Booking Details Not Found";
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, WorkshopBookingDetailList = objreturndbmlWorkshopBookingDetailViewFront.objdbmlWorkshopBookingDetailViewFront }, JsonRequestBehavior.AllowGet);
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult WorkshopBookingSave(dbmlWorkshopBookingDetailViewFront model)
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlWorkshopBookingDetailViewFront objreturndbmlWorkshopBookingDetailViewFront = new returndbmlWorkshopBookingDetailViewFront();
+
+            try
+            {
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+
+                    model.BookingId = objdbmlBooking.BookingId;
+                    model.RefServiceBPId = Convert.ToInt32(Session["BPId"]);
+                    model.UsageDate = objClassUserFunctions.ToDateTimeNotNull(model.ZZUsageDate);
+                    model.CreateId = Convert.ToInt32(Session["UserId"]);
+                    model.CreateDate = DateTime.Now;
+                    model.UpdateId = Convert.ToInt32(Session["UserId"]);
+                    model.UpdateDate = DateTime.Now;
+
+                    returndbmlWorkshopBookingDetailViewFront objreturndbmlWorkshopBookingDetailViewFrontTemp = new returndbmlWorkshopBookingDetailViewFront();
+                    ObservableCollection<dbmlWorkshopBookingDetailViewFront> objdbmlWorkshopBookingDetailViewFront = new ObservableCollection<dbmlWorkshopBookingDetailViewFront>();
+                    objdbmlWorkshopBookingDetailViewFront.Add(model);
+                    objreturndbmlWorkshopBookingDetailViewFrontTemp.objdbmlWorkshopBookingDetailViewFront = objdbmlWorkshopBookingDetailViewFront;
+
+                    objreturndbmlWorkshopBookingDetailViewFront = objServiceClient.WorkshopBookingDetailInsertFront(objreturndbmlWorkshopBookingDetailViewFrontTemp);
+
+                    if (objreturndbmlWorkshopBookingDetailViewFront != null && objreturndbmlWorkshopBookingDetailViewFront.objdbmlStatus.StatusId == 1)
+                    {
+                        intStatusId = 1;
+                        strStatus = "Workshop Detail Saved Successfully";
+                    }
+                    else
+                    {
+                        strStatus = objreturndbmlWorkshopBookingDetailViewFront.objdbmlStatus.Status;
+                    }
+                }
+                else
+                {
+                    strStatus = "Booking Details Not Found";
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, WorkshopBookingDetailList = objreturndbmlWorkshopBookingDetailViewFront.objdbmlWorkshopBookingDetailViewFront }, JsonRequestBehavior.AllowGet);
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult WorkshopBookingDelete(int intWorkshopBookingDetailId)
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlWorkshopBookingDetailViewFront objreturndbmlWorkshopBookingDetailViewFront = new returndbmlWorkshopBookingDetailViewFront();
+
+            try
+            {
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+
+                    objreturndbmlWorkshopBookingDetailViewFront = objServiceClient.WorkshopBookingDetailDelete(objdbmlBooking.BookingId, intWorkshopBookingDetailId);
+
+                    if (objreturndbmlWorkshopBookingDetailViewFront != null && objreturndbmlWorkshopBookingDetailViewFront.objdbmlStatus.StatusId == 1)
+                    {
+                        intStatusId = 1;
+                        strStatus = "Workshop Details Deleted Successfully";
+                    }
+                    else
+                    {
+                        strStatus = objreturndbmlWorkshopBookingDetailViewFront.objdbmlStatus.Status;
+                    }
+                }
+                else
+                {
+                    strStatus = "Booking Details Not Found";
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, WorkshopBookingDetailList = objreturndbmlWorkshopBookingDetailViewFront.objdbmlWorkshopBookingDetailViewFront }, JsonRequestBehavior.AllowGet);
+        }
+
+        public List<SelectListItem> GetWorkShopServiveLookup(int intBPId)
+        {
+            List<SelectListItem> Items = new List<SelectListItem>();
+            try
+            {
+                ObservableCollection<dbmlServicesView> objdbmlServicesView = new ObservableCollection<dbmlServicesView>();
+                if (Session["WorkShopServices"] != null)
+                {
+                    GeneralColl<dbmlServicesView>.CopyCollection(Session["WorkShopServices"] as ObservableCollection<dbmlServicesView>, objdbmlServicesView);
+                }
+                else
+                {
+                    returndbmlServicesView objreturndbmlServicesView = objServiceClient.ServicesGetByBPId(intBPId);
+                    if (objreturndbmlServicesView.objdbmlStatus.StatusId == 1 && objreturndbmlServicesView.objdbmlServicesView.Count > 0)
+                    {
+                        Session["WorkShopServices"] = objreturndbmlServicesView.objdbmlServicesView;
+                        objdbmlServicesView = objreturndbmlServicesView.objdbmlServicesView;
+                    }
+                }
+
+                if (objdbmlServicesView != null && objdbmlServicesView.Count > 0)
+                {
+                    ObservableCollection<dbmlServicesView> objdbmlServicesViewList = new ObservableCollection<dbmlServicesView>(objdbmlServicesView.Where(itm => itm.ServiceId > 0).OrderBy(itm => itm.SrNo));
+                    foreach (var itm in objdbmlServicesViewList)
+                    {
+                        if (Items.FirstOrDefault(itmTrack => Convert.ToInt32(itmTrack.Value) == itm.ServiceId) == null)
+                        {
+                            Items.Add(new SelectListItem { Text = itm.ServiceName +" "+itm.ServiceSpecification, Value = itm.ServiceId.ToString(), Selected = false });
+                        }
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            return Items;
+        }
+
+
+        #endregion
+
+        #region Track AddOn Services Booking
+
+        public ActionResult TrackAddOnServicesBooking()
+        {
+            CommonModel model = new CommonModel();
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                model.UserId = Convert.ToInt32(Session["UserId"]);
+                model.UserTypePropId = Convert.ToInt32(Session["UserTypePropId"]);
+                model.ZZCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
+                model.UserName = Convert.ToString(Session["UserName"]);
+                model.EmailId = Convert.ToString(Session["EmailId"]);
+                model.LoginId = Convert.ToString(Session["LoginId"]);
+                model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
+                model.UserCode = Convert.ToString(Session["UserCode"]);
+                model.TrackGroup = "Track Booking";
+                model.ViewTitle = "Track Booking";
+                model.StateId = Convert.ToInt32(Session["StateId"]);
+
+                returndbmlServicesView objreturndbmlServicesView = objServiceClient.ServicesGetByBPId(Convert.ToInt32(HardCodeValues.ServiceBPIdAddOn));
+                if (objreturndbmlServicesView.objdbmlStatus.StatusId == 1 && objreturndbmlServicesView.objdbmlServicesView.Count > 0)
+                {
+                    Session["AddOnServices"] = objreturndbmlServicesView.objdbmlServicesView;
+                }
+
+                ViewBag.ServiveLookup = GetAddOnServiveLookup(Convert.ToInt32(HardCodeValues.ServiceBPIdAddOn));
+
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+                    model.DocDate = objdbmlBooking.ZZBookingDate;
+                    model.DocNo = objdbmlBooking.BookingNo;
+                    model.DocType = objdbmlBooking.ZZBookingType;
+                    model.WorkFlowId = Convert.ToInt32(objdbmlBooking.ZZWorkFlowId);
+                    model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+                    model.StatusPropId = Convert.ToInt32(objdbmlBooking.StatusPropId);
+                    model.BPId = Convert.ToInt32(Session["BPId"]);
+                    model.ReportURL = strRptURL;
+                    model.DocId = objdbmlBooking.BookingId;
+                    model.POURL = strPOURL + objdbmlBooking.PODocPath;
+
+                    //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 40)
+                    //{
+                    //    return RedirectToActionByStatusId(Convert.ToInt32(objdbmlBooking.TabStatusId));
+                    //}
+                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), objdbmlBooking.BookingId);
+                }
+                else
+                {
+                    return RedirectToAction("Basic", "Home");
+                }
+
+            }
+            catch
+            {
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TrackAddOnServicesBooking(CommonModel model, string btnPrevNext)
+        {
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                if (btnPrevNext.ToLower() == "prev")
+                {
+                    return RedirectToAction("TrackWorkshopBooking", "Home");
+                }
+
+                //if (btnPrevNext.ToLower() == "next")
+                //{
+                //    return RedirectToAction("TrackAddOnServicesBooking", "Home");
+                //}
+            }
+            catch
+            {
+            }
+
+            return RedirectToAction("TrackWorkshopBooking", "Home");
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult LoadAddOnServicesInfo()
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlBookingDetailAddOnServicesViewFront objreturndbmlBookingDetailAddOnServicesViewFront = new returndbmlBookingDetailAddOnServicesViewFront();
+            try
+            {
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+
+                    objreturndbmlBookingDetailAddOnServicesViewFront = objServiceClient.BookingDetailAddOnServicesViewFrontGetByBookingId(objdbmlBooking.BookingId);
+                    if (objreturndbmlBookingDetailAddOnServicesViewFront.objdbmlStatus.StatusId == 1)
+                    {
+                        intStatusId = 1;
+                        strStatus = "Success";
+                    }
+                    else
+                    {
+                        strStatus = objreturndbmlBookingDetailAddOnServicesViewFront.objdbmlStatus.Status;
+                    }
+                }
+                else
+                {
+                    strStatus = "Booking Details Not Found";
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, LoadAddOnServicesList = objreturndbmlBookingDetailAddOnServicesViewFront.objdbmlBookingDetailAddOnServicesViewFront }, JsonRequestBehavior.AllowGet);
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult AddOnServicesSave(dbmlBookingDetailAddOnServicesViewFront model)
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlBookingDetailAddOnServicesViewFront objreturndbmlBookingDetailAddOnServicesViewFront = new returndbmlBookingDetailAddOnServicesViewFront();
+
+            try
+            {
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+
+                    model.BookingId = objdbmlBooking.BookingId;
+                    model.BPId = Convert.ToInt32(Session["BPId"]);
+                    model.ServiceDate = objClassUserFunctions.ToDateTimeNotNull(model.ZZServiceDate);
+                    model.CreateId = Convert.ToInt32(Session["UserId"]);
+                    model.CreateDate = DateTime.Now;
+                    model.UpdateId = Convert.ToInt32(Session["UserId"]);
+                    model.UpdateDate = DateTime.Now;
+
+                    returndbmlBookingDetailAddOnServicesViewFront objreturndbmlBookingDetailAddOnServicesViewFrontTemp = new returndbmlBookingDetailAddOnServicesViewFront();
+                    ObservableCollection<dbmlBookingDetailAddOnServicesViewFront> objdbmlBookingDetailAddOnServicesViewFront = new ObservableCollection<dbmlBookingDetailAddOnServicesViewFront>();
+                    objdbmlBookingDetailAddOnServicesViewFront.Add(model);
+                    objreturndbmlBookingDetailAddOnServicesViewFrontTemp.objdbmlBookingDetailAddOnServicesViewFront = objdbmlBookingDetailAddOnServicesViewFront;
+
+                    objreturndbmlBookingDetailAddOnServicesViewFront = objServiceClient.BookingDetailAddOnServicesInsertFront(objreturndbmlBookingDetailAddOnServicesViewFrontTemp);
+
+                    if (objreturndbmlBookingDetailAddOnServicesViewFront != null && objreturndbmlBookingDetailAddOnServicesViewFront.objdbmlStatus.StatusId == 1)
+                    {
+                        intStatusId = 1;
+                        strStatus = "Addon Service Saved Successfully";
+                    }
+                    else
+                    {
+                        strStatus = objreturndbmlBookingDetailAddOnServicesViewFront.objdbmlStatus.Status;
+                    }
+                }
+                else
+                {
+                    strStatus = "Booking Details Not Found";
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, LoadAddOnServicesList = objreturndbmlBookingDetailAddOnServicesViewFront.objdbmlBookingDetailAddOnServicesViewFront }, JsonRequestBehavior.AllowGet);
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult AddOnServicesDelete(int intBookingAddOnServiceId)
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlBookingDetailAddOnServicesViewFront objreturndbmlBookingDetailAddOnServicesViewFront = new returndbmlBookingDetailAddOnServicesViewFront();
+
+            try
+            {
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+
+                    objreturndbmlBookingDetailAddOnServicesViewFront = objServiceClient.BookingDetailAddOnServicesDelete(objdbmlBooking.BookingId, intBookingAddOnServiceId);
+
+                    if (objreturndbmlBookingDetailAddOnServicesViewFront != null && objreturndbmlBookingDetailAddOnServicesViewFront.objdbmlStatus.StatusId == 1)
+                    {
+                        intStatusId = 1;
+                        strStatus = "AddOn Services Deleted Successfully";
+                    }
+                    else
+                    {
+                        strStatus = objreturndbmlBookingDetailAddOnServicesViewFront.objdbmlStatus.Status;
+                    }
+                }
+                else
+                {
+                    strStatus = "Booking Details Not Found";
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, LoadAddOnServicesList = objreturndbmlBookingDetailAddOnServicesViewFront.objdbmlBookingDetailAddOnServicesViewFront }, JsonRequestBehavior.AllowGet);
+        }
+
+        public List<SelectListItem> GetAddOnServiveLookup(int intBPId)
+        {
+            List<SelectListItem> Items = new List<SelectListItem>();
+            try
+            {
+                ObservableCollection<dbmlServicesView> objdbmlServicesView = new ObservableCollection<dbmlServicesView>();
+                if (Session["AddOnServices"] != null)
+                {
+                    GeneralColl<dbmlServicesView>.CopyCollection(Session["AddOnServices"] as ObservableCollection<dbmlServicesView>, objdbmlServicesView);
+                }
+                else
+                {
+                    returndbmlServicesView objreturndbmlServicesView = objServiceClient.ServicesGetByBPId(intBPId);
+                    if (objreturndbmlServicesView.objdbmlStatus.StatusId == 1 && objreturndbmlServicesView.objdbmlServicesView.Count > 0)
+                    {
+                        Session["AddOnServices"] = objreturndbmlServicesView.objdbmlServicesView;
+                        objdbmlServicesView = objreturndbmlServicesView.objdbmlServicesView;
+                    }
+                }
+
+                if (objdbmlServicesView != null && objdbmlServicesView.Count > 0)
+                {
+                    ObservableCollection<dbmlServicesView> objdbmlServicesViewList = new ObservableCollection<dbmlServicesView>(objdbmlServicesView.Where(itm => itm.ServiceId > 0).OrderBy(itm => itm.SrNo));
+                    foreach (var itm in objdbmlServicesViewList)
+                    {
+                        if (Items.FirstOrDefault(itmTrack => Convert.ToInt32(itmTrack.Value) == itm.ServiceId) == null)
+                        {
+                            Items.Add(new SelectListItem { Text = itm.ServiceName + " " + itm.ServiceSpecification, Value = itm.ServiceId.ToString(), Selected = false });
+                        }
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            return Items;
+        }
+
+
+        #endregion
+
         #endregion
 
         #region Common
@@ -1730,17 +2292,7 @@ namespace PGMSFront.Controllers
         public ActionResult Component()
         {
             return View();
-        }
-
-        public ActionResult TrackWorkshopBooking()
-        {
-            return View();
-        }
-
-        public ActionResult TrackAddOnServicesBooking()
-        {
-            return View();
-        }
+        }       
 
         public ActionResult LabWorkshopBooking()
         {

@@ -143,6 +143,60 @@
   <wsdl:message name="IService1_WorkFlowActivityInsert_OutputMessage">
     <wsdl:part name="parameters" element="tns:WorkFlowActivityInsertResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_WorkshopBookingDetailInsertFront_InputMessage">
+    <wsdl:part name="parameters" element="tns:WorkshopBookingDetailInsertFront" />
+  </wsdl:message>
+  <wsdl:message name="IService1_WorkshopBookingDetailInsertFront_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WorkshopBookingDetailInsertFrontResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_WorkshopBookingDetailDelete_InputMessage">
+    <wsdl:part name="parameters" element="tns:WorkshopBookingDetailDelete" />
+  </wsdl:message>
+  <wsdl:message name="IService1_WorkshopBookingDetailDelete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WorkshopBookingDetailDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_WorkshopBookingDetailViewFrontGetByBookingId_InputMessage">
+    <wsdl:part name="parameters" element="tns:WorkshopBookingDetailViewFrontGetByBookingId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_WorkshopBookingDetailViewFrontGetByBookingId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WorkshopBookingDetailViewFrontGetByBookingIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingDetailAddOnServicesInsertFront_InputMessage">
+    <wsdl:part name="parameters" element="tns:BookingDetailAddOnServicesInsertFront" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingDetailAddOnServicesInsertFront_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BookingDetailAddOnServicesInsertFrontResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingDetailAddOnServicesDelete_InputMessage">
+    <wsdl:part name="parameters" element="tns:BookingDetailAddOnServicesDelete" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingDetailAddOnServicesDelete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BookingDetailAddOnServicesDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingDetailAddOnServicesViewFrontGetByBookingId_InputMessage">
+    <wsdl:part name="parameters" element="tns:BookingDetailAddOnServicesViewFrontGetByBookingId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BookingDetailAddOnServicesViewFrontGetByBookingId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BookingDetailAddOnServicesViewFrontGetByBookingIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_LabBookingDetailInsertFront_InputMessage">
+    <wsdl:part name="parameters" element="tns:LabBookingDetailInsertFront" />
+  </wsdl:message>
+  <wsdl:message name="IService1_LabBookingDetailInsertFront_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LabBookingDetailInsertFrontResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_LabBookingDetailDelete_InputMessage">
+    <wsdl:part name="parameters" element="tns:LabBookingDetailDelete" />
+  </wsdl:message>
+  <wsdl:message name="IService1_LabBookingDetailDelete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LabBookingDetailDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_LabBookingDetailViewFrontGetByBookingId_InputMessage">
+    <wsdl:part name="parameters" element="tns:LabBookingDetailViewFrontGetByBookingId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_LabBookingDetailViewFrontGetByBookingId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LabBookingDetailViewFrontGetByBookingIdResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="UserGetByLoginId">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/UserGetByLoginId" message="tns:IService1_UserGetByLoginId_InputMessage" />
@@ -227,6 +281,42 @@
     <wsdl:operation name="WorkFlowActivityInsert">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/WorkFlowActivityInsert" message="tns:IService1_WorkFlowActivityInsert_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/WorkFlowActivityInsertResponse" message="tns:IService1_WorkFlowActivityInsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WorkshopBookingDetailInsertFront">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/WorkshopBookingDetailInsertFront" message="tns:IService1_WorkshopBookingDetailInsertFront_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/WorkshopBookingDetailInsertFrontResponse" message="tns:IService1_WorkshopBookingDetailInsertFront_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WorkshopBookingDetailDelete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/WorkshopBookingDetailDelete" message="tns:IService1_WorkshopBookingDetailDelete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/WorkshopBookingDetailDeleteResponse" message="tns:IService1_WorkshopBookingDetailDelete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WorkshopBookingDetailViewFrontGetByBookingId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/WorkshopBookingDetailViewFrontGetByBookingId" message="tns:IService1_WorkshopBookingDetailViewFrontGetByBookingId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/WorkshopBookingDetailViewFrontGetByBookingIdResponse" message="tns:IService1_WorkshopBookingDetailViewFrontGetByBookingId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BookingDetailAddOnServicesInsertFront">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/BookingDetailAddOnServicesInsertFront" message="tns:IService1_BookingDetailAddOnServicesInsertFront_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/BookingDetailAddOnServicesInsertFrontResponse" message="tns:IService1_BookingDetailAddOnServicesInsertFront_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BookingDetailAddOnServicesDelete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/BookingDetailAddOnServicesDelete" message="tns:IService1_BookingDetailAddOnServicesDelete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/BookingDetailAddOnServicesDeleteResponse" message="tns:IService1_BookingDetailAddOnServicesDelete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BookingDetailAddOnServicesViewFrontGetByBookingId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/BookingDetailAddOnServicesViewFrontGetByBookingId" message="tns:IService1_BookingDetailAddOnServicesViewFrontGetByBookingId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/BookingDetailAddOnServicesViewFrontGetByBookingIdResponse" message="tns:IService1_BookingDetailAddOnServicesViewFrontGetByBookingId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LabBookingDetailInsertFront">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/LabBookingDetailInsertFront" message="tns:IService1_LabBookingDetailInsertFront_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/LabBookingDetailInsertFrontResponse" message="tns:IService1_LabBookingDetailInsertFront_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LabBookingDetailDelete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/LabBookingDetailDelete" message="tns:IService1_LabBookingDetailDelete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/LabBookingDetailDeleteResponse" message="tns:IService1_LabBookingDetailDelete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LabBookingDetailViewFrontGetByBookingId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/LabBookingDetailViewFrontGetByBookingId" message="tns:IService1_LabBookingDetailViewFrontGetByBookingId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/LabBookingDetailViewFrontGetByBookingIdResponse" message="tns:IService1_LabBookingDetailViewFrontGetByBookingId_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IService1" type="tns:IService1">
@@ -414,6 +504,87 @@
     </wsdl:operation>
     <wsdl:operation name="WorkFlowActivityInsert">
       <soap12:operation soapAction="http://tempuri.org/IService1/WorkFlowActivityInsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WorkshopBookingDetailInsertFront">
+      <soap12:operation soapAction="http://tempuri.org/IService1/WorkshopBookingDetailInsertFront" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WorkshopBookingDetailDelete">
+      <soap12:operation soapAction="http://tempuri.org/IService1/WorkshopBookingDetailDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WorkshopBookingDetailViewFrontGetByBookingId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/WorkshopBookingDetailViewFrontGetByBookingId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookingDetailAddOnServicesInsertFront">
+      <soap12:operation soapAction="http://tempuri.org/IService1/BookingDetailAddOnServicesInsertFront" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookingDetailAddOnServicesDelete">
+      <soap12:operation soapAction="http://tempuri.org/IService1/BookingDetailAddOnServicesDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookingDetailAddOnServicesViewFrontGetByBookingId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/BookingDetailAddOnServicesViewFrontGetByBookingId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LabBookingDetailInsertFront">
+      <soap12:operation soapAction="http://tempuri.org/IService1/LabBookingDetailInsertFront" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LabBookingDetailDelete">
+      <soap12:operation soapAction="http://tempuri.org/IService1/LabBookingDetailDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LabBookingDetailViewFrontGetByBookingId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/LabBookingDetailViewFrontGetByBookingId" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

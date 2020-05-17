@@ -6156,6 +6156,2100 @@ namespace PGMSFront.WCFPGMSRef {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlWorkshopBookingDetailViewFront", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
+    [System.SerializableAttribute()]
+    public partial class returndbmlWorkshopBookingDetailViewFront : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlWorkshopBookingDetailViewFront> objdbmlWorkshopBookingDetailViewFrontField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatus {
+            get {
+                return this.objdbmlStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlStatusField, value) != true)) {
+                    this.objdbmlStatusField = value;
+                    this.RaisePropertyChanged("objdbmlStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlWorkshopBookingDetailViewFront> objdbmlWorkshopBookingDetailViewFront {
+            get {
+                return this.objdbmlWorkshopBookingDetailViewFrontField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlWorkshopBookingDetailViewFrontField, value) != true)) {
+                    this.objdbmlWorkshopBookingDetailViewFrontField = value;
+                    this.RaisePropertyChanged("objdbmlWorkshopBookingDetailViewFront");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="dbmlWorkshopBookingDetailViewFront", Namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate")]
+    [System.SerializableAttribute()]
+    public partial class dbmlWorkshopBookingDetailViewFront : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> AmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> AuditIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> BookingDayField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> BookingIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> BookingStatusPropIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> CGSTAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> CGSTRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> CreateDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CreateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> DiscountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> IGSTAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> IGSTRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> POAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> PODateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PONumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> QuotAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> RateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> RefServiceBPIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RemarkField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> SGSTAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> SGSTRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ServiceIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> SnoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> TaxAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> TaxableAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> TotalAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> UOMPropIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> UpdateDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> UpdateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> UsageDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> UsageHoursField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> UsageMinutesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int WorkshopBookingDetailIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZBookStatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZPODateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZServiceNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZUOMField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZUsageDateField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> Amount {
+            get {
+                return this.AmountField;
+            }
+            set {
+                if ((this.AmountField.Equals(value) != true)) {
+                    this.AmountField = value;
+                    this.RaisePropertyChanged("Amount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> AuditId {
+            get {
+                return this.AuditIdField;
+            }
+            set {
+                if ((this.AuditIdField.Equals(value) != true)) {
+                    this.AuditIdField = value;
+                    this.RaisePropertyChanged("AuditId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> BookingDay {
+            get {
+                return this.BookingDayField;
+            }
+            set {
+                if ((this.BookingDayField.Equals(value) != true)) {
+                    this.BookingDayField = value;
+                    this.RaisePropertyChanged("BookingDay");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> BookingId {
+            get {
+                return this.BookingIdField;
+            }
+            set {
+                if ((this.BookingIdField.Equals(value) != true)) {
+                    this.BookingIdField = value;
+                    this.RaisePropertyChanged("BookingId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> BookingStatusPropId {
+            get {
+                return this.BookingStatusPropIdField;
+            }
+            set {
+                if ((this.BookingStatusPropIdField.Equals(value) != true)) {
+                    this.BookingStatusPropIdField = value;
+                    this.RaisePropertyChanged("BookingStatusPropId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> CGSTAmount {
+            get {
+                return this.CGSTAmountField;
+            }
+            set {
+                if ((this.CGSTAmountField.Equals(value) != true)) {
+                    this.CGSTAmountField = value;
+                    this.RaisePropertyChanged("CGSTAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> CGSTRate {
+            get {
+                return this.CGSTRateField;
+            }
+            set {
+                if ((this.CGSTRateField.Equals(value) != true)) {
+                    this.CGSTRateField = value;
+                    this.RaisePropertyChanged("CGSTRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> CreateDate {
+            get {
+                return this.CreateDateField;
+            }
+            set {
+                if ((this.CreateDateField.Equals(value) != true)) {
+                    this.CreateDateField = value;
+                    this.RaisePropertyChanged("CreateDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> CreateId {
+            get {
+                return this.CreateIdField;
+            }
+            set {
+                if ((this.CreateIdField.Equals(value) != true)) {
+                    this.CreateIdField = value;
+                    this.RaisePropertyChanged("CreateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> Discount {
+            get {
+                return this.DiscountField;
+            }
+            set {
+                if ((this.DiscountField.Equals(value) != true)) {
+                    this.DiscountField = value;
+                    this.RaisePropertyChanged("Discount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> IGSTAmount {
+            get {
+                return this.IGSTAmountField;
+            }
+            set {
+                if ((this.IGSTAmountField.Equals(value) != true)) {
+                    this.IGSTAmountField = value;
+                    this.RaisePropertyChanged("IGSTAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> IGSTRate {
+            get {
+                return this.IGSTRateField;
+            }
+            set {
+                if ((this.IGSTRateField.Equals(value) != true)) {
+                    this.IGSTRateField = value;
+                    this.RaisePropertyChanged("IGSTRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> POAmount {
+            get {
+                return this.POAmountField;
+            }
+            set {
+                if ((this.POAmountField.Equals(value) != true)) {
+                    this.POAmountField = value;
+                    this.RaisePropertyChanged("POAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> PODate {
+            get {
+                return this.PODateField;
+            }
+            set {
+                if ((this.PODateField.Equals(value) != true)) {
+                    this.PODateField = value;
+                    this.RaisePropertyChanged("PODate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PONumber {
+            get {
+                return this.PONumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PONumberField, value) != true)) {
+                    this.PONumberField = value;
+                    this.RaisePropertyChanged("PONumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> QuotAmount {
+            get {
+                return this.QuotAmountField;
+            }
+            set {
+                if ((this.QuotAmountField.Equals(value) != true)) {
+                    this.QuotAmountField = value;
+                    this.RaisePropertyChanged("QuotAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> Rate {
+            get {
+                return this.RateField;
+            }
+            set {
+                if ((this.RateField.Equals(value) != true)) {
+                    this.RateField = value;
+                    this.RaisePropertyChanged("Rate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> RefServiceBPId {
+            get {
+                return this.RefServiceBPIdField;
+            }
+            set {
+                if ((this.RefServiceBPIdField.Equals(value) != true)) {
+                    this.RefServiceBPIdField = value;
+                    this.RaisePropertyChanged("RefServiceBPId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remark {
+            get {
+                return this.RemarkField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RemarkField, value) != true)) {
+                    this.RemarkField = value;
+                    this.RaisePropertyChanged("Remark");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> SGSTAmount {
+            get {
+                return this.SGSTAmountField;
+            }
+            set {
+                if ((this.SGSTAmountField.Equals(value) != true)) {
+                    this.SGSTAmountField = value;
+                    this.RaisePropertyChanged("SGSTAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> SGSTRate {
+            get {
+                return this.SGSTRateField;
+            }
+            set {
+                if ((this.SGSTRateField.Equals(value) != true)) {
+                    this.SGSTRateField = value;
+                    this.RaisePropertyChanged("SGSTRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ServiceId {
+            get {
+                return this.ServiceIdField;
+            }
+            set {
+                if ((this.ServiceIdField.Equals(value) != true)) {
+                    this.ServiceIdField = value;
+                    this.RaisePropertyChanged("ServiceId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Sno {
+            get {
+                return this.SnoField;
+            }
+            set {
+                if ((this.SnoField.Equals(value) != true)) {
+                    this.SnoField = value;
+                    this.RaisePropertyChanged("Sno");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> TaxAmount {
+            get {
+                return this.TaxAmountField;
+            }
+            set {
+                if ((this.TaxAmountField.Equals(value) != true)) {
+                    this.TaxAmountField = value;
+                    this.RaisePropertyChanged("TaxAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> TaxableAmount {
+            get {
+                return this.TaxableAmountField;
+            }
+            set {
+                if ((this.TaxableAmountField.Equals(value) != true)) {
+                    this.TaxableAmountField = value;
+                    this.RaisePropertyChanged("TaxableAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> TotalAmount {
+            get {
+                return this.TotalAmountField;
+            }
+            set {
+                if ((this.TotalAmountField.Equals(value) != true)) {
+                    this.TotalAmountField = value;
+                    this.RaisePropertyChanged("TotalAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> UOMPropId {
+            get {
+                return this.UOMPropIdField;
+            }
+            set {
+                if ((this.UOMPropIdField.Equals(value) != true)) {
+                    this.UOMPropIdField = value;
+                    this.RaisePropertyChanged("UOMPropId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> UpdateDate {
+            get {
+                return this.UpdateDateField;
+            }
+            set {
+                if ((this.UpdateDateField.Equals(value) != true)) {
+                    this.UpdateDateField = value;
+                    this.RaisePropertyChanged("UpdateDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> UpdateId {
+            get {
+                return this.UpdateIdField;
+            }
+            set {
+                if ((this.UpdateIdField.Equals(value) != true)) {
+                    this.UpdateIdField = value;
+                    this.RaisePropertyChanged("UpdateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> UsageDate {
+            get {
+                return this.UsageDateField;
+            }
+            set {
+                if ((this.UsageDateField.Equals(value) != true)) {
+                    this.UsageDateField = value;
+                    this.RaisePropertyChanged("UsageDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> UsageHours {
+            get {
+                return this.UsageHoursField;
+            }
+            set {
+                if ((this.UsageHoursField.Equals(value) != true)) {
+                    this.UsageHoursField = value;
+                    this.RaisePropertyChanged("UsageHours");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> UsageMinutes {
+            get {
+                return this.UsageMinutesField;
+            }
+            set {
+                if ((this.UsageMinutesField.Equals(value) != true)) {
+                    this.UsageMinutesField = value;
+                    this.RaisePropertyChanged("UsageMinutes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int WorkshopBookingDetailId {
+            get {
+                return this.WorkshopBookingDetailIdField;
+            }
+            set {
+                if ((this.WorkshopBookingDetailIdField.Equals(value) != true)) {
+                    this.WorkshopBookingDetailIdField = value;
+                    this.RaisePropertyChanged("WorkshopBookingDetailId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZBookStatus {
+            get {
+                return this.ZZBookStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZBookStatusField, value) != true)) {
+                    this.ZZBookStatusField = value;
+                    this.RaisePropertyChanged("ZZBookStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZPODate {
+            get {
+                return this.ZZPODateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZPODateField, value) != true)) {
+                    this.ZZPODateField = value;
+                    this.RaisePropertyChanged("ZZPODate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZServiceName {
+            get {
+                return this.ZZServiceNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZServiceNameField, value) != true)) {
+                    this.ZZServiceNameField = value;
+                    this.RaisePropertyChanged("ZZServiceName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZUOM {
+            get {
+                return this.ZZUOMField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZUOMField, value) != true)) {
+                    this.ZZUOMField = value;
+                    this.RaisePropertyChanged("ZZUOM");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZUsageDate {
+            get {
+                return this.ZZUsageDateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZUsageDateField, value) != true)) {
+                    this.ZZUsageDateField = value;
+                    this.RaisePropertyChanged("ZZUsageDate");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlBookingDetailAddOnServicesViewFront", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
+    [System.SerializableAttribute()]
+    public partial class returndbmlBookingDetailAddOnServicesViewFront : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlBookingDetailAddOnServicesViewFront> objdbmlBookingDetailAddOnServicesViewFrontField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatusField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlBookingDetailAddOnServicesViewFront> objdbmlBookingDetailAddOnServicesViewFront {
+            get {
+                return this.objdbmlBookingDetailAddOnServicesViewFrontField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlBookingDetailAddOnServicesViewFrontField, value) != true)) {
+                    this.objdbmlBookingDetailAddOnServicesViewFrontField = value;
+                    this.RaisePropertyChanged("objdbmlBookingDetailAddOnServicesViewFront");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatus {
+            get {
+                return this.objdbmlStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlStatusField, value) != true)) {
+                    this.objdbmlStatusField = value;
+                    this.RaisePropertyChanged("objdbmlStatus");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="dbmlBookingDetailAddOnServicesViewFront", Namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate")]
+    [System.SerializableAttribute()]
+    public partial class dbmlBookingDetailAddOnServicesViewFront : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> AmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AuditIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> BPIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int BookingAddOnServiceIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> BookingDayField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> BookingIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> BookingStatusPropIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> CGSTAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> CGSTRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> ConsumptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime CreateDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CreateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> DiscountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> IGSTAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> IGSTRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> POAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> PODateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PONumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> QuotAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> RateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RemarkField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> SGSTAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> SGSTRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> ServiceDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ServiceIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> TaxAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> TaxableAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> TotalAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> UOMPropIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime UpdateDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UpdateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZBookingStatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZServiceDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZServiceNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZUOMField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> Amount {
+            get {
+                return this.AmountField;
+            }
+            set {
+                if ((this.AmountField.Equals(value) != true)) {
+                    this.AmountField = value;
+                    this.RaisePropertyChanged("Amount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AuditId {
+            get {
+                return this.AuditIdField;
+            }
+            set {
+                if ((this.AuditIdField.Equals(value) != true)) {
+                    this.AuditIdField = value;
+                    this.RaisePropertyChanged("AuditId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> BPId {
+            get {
+                return this.BPIdField;
+            }
+            set {
+                if ((this.BPIdField.Equals(value) != true)) {
+                    this.BPIdField = value;
+                    this.RaisePropertyChanged("BPId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BookingAddOnServiceId {
+            get {
+                return this.BookingAddOnServiceIdField;
+            }
+            set {
+                if ((this.BookingAddOnServiceIdField.Equals(value) != true)) {
+                    this.BookingAddOnServiceIdField = value;
+                    this.RaisePropertyChanged("BookingAddOnServiceId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> BookingDay {
+            get {
+                return this.BookingDayField;
+            }
+            set {
+                if ((this.BookingDayField.Equals(value) != true)) {
+                    this.BookingDayField = value;
+                    this.RaisePropertyChanged("BookingDay");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> BookingId {
+            get {
+                return this.BookingIdField;
+            }
+            set {
+                if ((this.BookingIdField.Equals(value) != true)) {
+                    this.BookingIdField = value;
+                    this.RaisePropertyChanged("BookingId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> BookingStatusPropId {
+            get {
+                return this.BookingStatusPropIdField;
+            }
+            set {
+                if ((this.BookingStatusPropIdField.Equals(value) != true)) {
+                    this.BookingStatusPropIdField = value;
+                    this.RaisePropertyChanged("BookingStatusPropId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> CGSTAmount {
+            get {
+                return this.CGSTAmountField;
+            }
+            set {
+                if ((this.CGSTAmountField.Equals(value) != true)) {
+                    this.CGSTAmountField = value;
+                    this.RaisePropertyChanged("CGSTAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> CGSTRate {
+            get {
+                return this.CGSTRateField;
+            }
+            set {
+                if ((this.CGSTRateField.Equals(value) != true)) {
+                    this.CGSTRateField = value;
+                    this.RaisePropertyChanged("CGSTRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> Consumption {
+            get {
+                return this.ConsumptionField;
+            }
+            set {
+                if ((this.ConsumptionField.Equals(value) != true)) {
+                    this.ConsumptionField = value;
+                    this.RaisePropertyChanged("Consumption");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime CreateDate {
+            get {
+                return this.CreateDateField;
+            }
+            set {
+                if ((this.CreateDateField.Equals(value) != true)) {
+                    this.CreateDateField = value;
+                    this.RaisePropertyChanged("CreateDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CreateId {
+            get {
+                return this.CreateIdField;
+            }
+            set {
+                if ((this.CreateIdField.Equals(value) != true)) {
+                    this.CreateIdField = value;
+                    this.RaisePropertyChanged("CreateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> Discount {
+            get {
+                return this.DiscountField;
+            }
+            set {
+                if ((this.DiscountField.Equals(value) != true)) {
+                    this.DiscountField = value;
+                    this.RaisePropertyChanged("Discount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> IGSTAmount {
+            get {
+                return this.IGSTAmountField;
+            }
+            set {
+                if ((this.IGSTAmountField.Equals(value) != true)) {
+                    this.IGSTAmountField = value;
+                    this.RaisePropertyChanged("IGSTAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> IGSTRate {
+            get {
+                return this.IGSTRateField;
+            }
+            set {
+                if ((this.IGSTRateField.Equals(value) != true)) {
+                    this.IGSTRateField = value;
+                    this.RaisePropertyChanged("IGSTRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> POAmount {
+            get {
+                return this.POAmountField;
+            }
+            set {
+                if ((this.POAmountField.Equals(value) != true)) {
+                    this.POAmountField = value;
+                    this.RaisePropertyChanged("POAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> PODate {
+            get {
+                return this.PODateField;
+            }
+            set {
+                if ((this.PODateField.Equals(value) != true)) {
+                    this.PODateField = value;
+                    this.RaisePropertyChanged("PODate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PONumber {
+            get {
+                return this.PONumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PONumberField, value) != true)) {
+                    this.PONumberField = value;
+                    this.RaisePropertyChanged("PONumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> QuotAmount {
+            get {
+                return this.QuotAmountField;
+            }
+            set {
+                if ((this.QuotAmountField.Equals(value) != true)) {
+                    this.QuotAmountField = value;
+                    this.RaisePropertyChanged("QuotAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> Rate {
+            get {
+                return this.RateField;
+            }
+            set {
+                if ((this.RateField.Equals(value) != true)) {
+                    this.RateField = value;
+                    this.RaisePropertyChanged("Rate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remark {
+            get {
+                return this.RemarkField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RemarkField, value) != true)) {
+                    this.RemarkField = value;
+                    this.RaisePropertyChanged("Remark");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> SGSTAmount {
+            get {
+                return this.SGSTAmountField;
+            }
+            set {
+                if ((this.SGSTAmountField.Equals(value) != true)) {
+                    this.SGSTAmountField = value;
+                    this.RaisePropertyChanged("SGSTAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> SGSTRate {
+            get {
+                return this.SGSTRateField;
+            }
+            set {
+                if ((this.SGSTRateField.Equals(value) != true)) {
+                    this.SGSTRateField = value;
+                    this.RaisePropertyChanged("SGSTRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> ServiceDate {
+            get {
+                return this.ServiceDateField;
+            }
+            set {
+                if ((this.ServiceDateField.Equals(value) != true)) {
+                    this.ServiceDateField = value;
+                    this.RaisePropertyChanged("ServiceDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ServiceId {
+            get {
+                return this.ServiceIdField;
+            }
+            set {
+                if ((this.ServiceIdField.Equals(value) != true)) {
+                    this.ServiceIdField = value;
+                    this.RaisePropertyChanged("ServiceId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> TaxAmount {
+            get {
+                return this.TaxAmountField;
+            }
+            set {
+                if ((this.TaxAmountField.Equals(value) != true)) {
+                    this.TaxAmountField = value;
+                    this.RaisePropertyChanged("TaxAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> TaxableAmount {
+            get {
+                return this.TaxableAmountField;
+            }
+            set {
+                if ((this.TaxableAmountField.Equals(value) != true)) {
+                    this.TaxableAmountField = value;
+                    this.RaisePropertyChanged("TaxableAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> TotalAmount {
+            get {
+                return this.TotalAmountField;
+            }
+            set {
+                if ((this.TotalAmountField.Equals(value) != true)) {
+                    this.TotalAmountField = value;
+                    this.RaisePropertyChanged("TotalAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> UOMPropId {
+            get {
+                return this.UOMPropIdField;
+            }
+            set {
+                if ((this.UOMPropIdField.Equals(value) != true)) {
+                    this.UOMPropIdField = value;
+                    this.RaisePropertyChanged("UOMPropId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime UpdateDate {
+            get {
+                return this.UpdateDateField;
+            }
+            set {
+                if ((this.UpdateDateField.Equals(value) != true)) {
+                    this.UpdateDateField = value;
+                    this.RaisePropertyChanged("UpdateDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UpdateId {
+            get {
+                return this.UpdateIdField;
+            }
+            set {
+                if ((this.UpdateIdField.Equals(value) != true)) {
+                    this.UpdateIdField = value;
+                    this.RaisePropertyChanged("UpdateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZBookingStatus {
+            get {
+                return this.ZZBookingStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZBookingStatusField, value) != true)) {
+                    this.ZZBookingStatusField = value;
+                    this.RaisePropertyChanged("ZZBookingStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZServiceDate {
+            get {
+                return this.ZZServiceDateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZServiceDateField, value) != true)) {
+                    this.ZZServiceDateField = value;
+                    this.RaisePropertyChanged("ZZServiceDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZServiceName {
+            get {
+                return this.ZZServiceNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZServiceNameField, value) != true)) {
+                    this.ZZServiceNameField = value;
+                    this.RaisePropertyChanged("ZZServiceName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZUOM {
+            get {
+                return this.ZZUOMField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZUOMField, value) != true)) {
+                    this.ZZUOMField = value;
+                    this.RaisePropertyChanged("ZZUOM");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlLabBookingDetailViewFront", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
+    [System.SerializableAttribute()]
+    public partial class returndbmlLabBookingDetailViewFront : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlLabBookingDetailViewFront> objdbmlLabBookingDetailViewFrontField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatusField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlLabBookingDetailViewFront> objdbmlLabBookingDetailViewFront {
+            get {
+                return this.objdbmlLabBookingDetailViewFrontField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlLabBookingDetailViewFrontField, value) != true)) {
+                    this.objdbmlLabBookingDetailViewFrontField = value;
+                    this.RaisePropertyChanged("objdbmlLabBookingDetailViewFront");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatus {
+            get {
+                return this.objdbmlStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlStatusField, value) != true)) {
+                    this.objdbmlStatusField = value;
+                    this.RaisePropertyChanged("objdbmlStatus");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="dbmlLabBookingDetailViewFront", Namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate")]
+    [System.SerializableAttribute()]
+    public partial class dbmlLabBookingDetailViewFront : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> AmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> AuditIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> BookingDayField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> BookingIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> BookingStatusPropIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> CGSTAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> CGSTRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> CreateDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CreateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> DiscountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> IGSTAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> IGSTRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int LabBookingDetailIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> POAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> PODateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PONumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> QuotAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> RateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> RefServiceBPIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RemarkField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> SGSTAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> SGSTRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ServiceIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> SnoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> TaxAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> TaxableAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> TotalAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> UOMPropIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> UpdateDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> UpdateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> UsageDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> UsageHoursField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> UsageMinutesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> VehCompIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZBookStatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZPODateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZServiceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZServiceNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZUOMField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZUsageDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZVehCompField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> Amount {
+            get {
+                return this.AmountField;
+            }
+            set {
+                if ((this.AmountField.Equals(value) != true)) {
+                    this.AmountField = value;
+                    this.RaisePropertyChanged("Amount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> AuditId {
+            get {
+                return this.AuditIdField;
+            }
+            set {
+                if ((this.AuditIdField.Equals(value) != true)) {
+                    this.AuditIdField = value;
+                    this.RaisePropertyChanged("AuditId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> BookingDay {
+            get {
+                return this.BookingDayField;
+            }
+            set {
+                if ((this.BookingDayField.Equals(value) != true)) {
+                    this.BookingDayField = value;
+                    this.RaisePropertyChanged("BookingDay");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> BookingId {
+            get {
+                return this.BookingIdField;
+            }
+            set {
+                if ((this.BookingIdField.Equals(value) != true)) {
+                    this.BookingIdField = value;
+                    this.RaisePropertyChanged("BookingId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> BookingStatusPropId {
+            get {
+                return this.BookingStatusPropIdField;
+            }
+            set {
+                if ((this.BookingStatusPropIdField.Equals(value) != true)) {
+                    this.BookingStatusPropIdField = value;
+                    this.RaisePropertyChanged("BookingStatusPropId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> CGSTAmount {
+            get {
+                return this.CGSTAmountField;
+            }
+            set {
+                if ((this.CGSTAmountField.Equals(value) != true)) {
+                    this.CGSTAmountField = value;
+                    this.RaisePropertyChanged("CGSTAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> CGSTRate {
+            get {
+                return this.CGSTRateField;
+            }
+            set {
+                if ((this.CGSTRateField.Equals(value) != true)) {
+                    this.CGSTRateField = value;
+                    this.RaisePropertyChanged("CGSTRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> CreateDate {
+            get {
+                return this.CreateDateField;
+            }
+            set {
+                if ((this.CreateDateField.Equals(value) != true)) {
+                    this.CreateDateField = value;
+                    this.RaisePropertyChanged("CreateDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> CreateId {
+            get {
+                return this.CreateIdField;
+            }
+            set {
+                if ((this.CreateIdField.Equals(value) != true)) {
+                    this.CreateIdField = value;
+                    this.RaisePropertyChanged("CreateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> Discount {
+            get {
+                return this.DiscountField;
+            }
+            set {
+                if ((this.DiscountField.Equals(value) != true)) {
+                    this.DiscountField = value;
+                    this.RaisePropertyChanged("Discount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> IGSTAmount {
+            get {
+                return this.IGSTAmountField;
+            }
+            set {
+                if ((this.IGSTAmountField.Equals(value) != true)) {
+                    this.IGSTAmountField = value;
+                    this.RaisePropertyChanged("IGSTAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> IGSTRate {
+            get {
+                return this.IGSTRateField;
+            }
+            set {
+                if ((this.IGSTRateField.Equals(value) != true)) {
+                    this.IGSTRateField = value;
+                    this.RaisePropertyChanged("IGSTRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int LabBookingDetailId {
+            get {
+                return this.LabBookingDetailIdField;
+            }
+            set {
+                if ((this.LabBookingDetailIdField.Equals(value) != true)) {
+                    this.LabBookingDetailIdField = value;
+                    this.RaisePropertyChanged("LabBookingDetailId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> POAmount {
+            get {
+                return this.POAmountField;
+            }
+            set {
+                if ((this.POAmountField.Equals(value) != true)) {
+                    this.POAmountField = value;
+                    this.RaisePropertyChanged("POAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> PODate {
+            get {
+                return this.PODateField;
+            }
+            set {
+                if ((this.PODateField.Equals(value) != true)) {
+                    this.PODateField = value;
+                    this.RaisePropertyChanged("PODate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PONumber {
+            get {
+                return this.PONumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PONumberField, value) != true)) {
+                    this.PONumberField = value;
+                    this.RaisePropertyChanged("PONumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> QuotAmount {
+            get {
+                return this.QuotAmountField;
+            }
+            set {
+                if ((this.QuotAmountField.Equals(value) != true)) {
+                    this.QuotAmountField = value;
+                    this.RaisePropertyChanged("QuotAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> Rate {
+            get {
+                return this.RateField;
+            }
+            set {
+                if ((this.RateField.Equals(value) != true)) {
+                    this.RateField = value;
+                    this.RaisePropertyChanged("Rate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> RefServiceBPId {
+            get {
+                return this.RefServiceBPIdField;
+            }
+            set {
+                if ((this.RefServiceBPIdField.Equals(value) != true)) {
+                    this.RefServiceBPIdField = value;
+                    this.RaisePropertyChanged("RefServiceBPId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remark {
+            get {
+                return this.RemarkField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RemarkField, value) != true)) {
+                    this.RemarkField = value;
+                    this.RaisePropertyChanged("Remark");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> SGSTAmount {
+            get {
+                return this.SGSTAmountField;
+            }
+            set {
+                if ((this.SGSTAmountField.Equals(value) != true)) {
+                    this.SGSTAmountField = value;
+                    this.RaisePropertyChanged("SGSTAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> SGSTRate {
+            get {
+                return this.SGSTRateField;
+            }
+            set {
+                if ((this.SGSTRateField.Equals(value) != true)) {
+                    this.SGSTRateField = value;
+                    this.RaisePropertyChanged("SGSTRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ServiceId {
+            get {
+                return this.ServiceIdField;
+            }
+            set {
+                if ((this.ServiceIdField.Equals(value) != true)) {
+                    this.ServiceIdField = value;
+                    this.RaisePropertyChanged("ServiceId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Sno {
+            get {
+                return this.SnoField;
+            }
+            set {
+                if ((this.SnoField.Equals(value) != true)) {
+                    this.SnoField = value;
+                    this.RaisePropertyChanged("Sno");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> TaxAmount {
+            get {
+                return this.TaxAmountField;
+            }
+            set {
+                if ((this.TaxAmountField.Equals(value) != true)) {
+                    this.TaxAmountField = value;
+                    this.RaisePropertyChanged("TaxAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> TaxableAmount {
+            get {
+                return this.TaxableAmountField;
+            }
+            set {
+                if ((this.TaxableAmountField.Equals(value) != true)) {
+                    this.TaxableAmountField = value;
+                    this.RaisePropertyChanged("TaxableAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> TotalAmount {
+            get {
+                return this.TotalAmountField;
+            }
+            set {
+                if ((this.TotalAmountField.Equals(value) != true)) {
+                    this.TotalAmountField = value;
+                    this.RaisePropertyChanged("TotalAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> UOMPropId {
+            get {
+                return this.UOMPropIdField;
+            }
+            set {
+                if ((this.UOMPropIdField.Equals(value) != true)) {
+                    this.UOMPropIdField = value;
+                    this.RaisePropertyChanged("UOMPropId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> UpdateDate {
+            get {
+                return this.UpdateDateField;
+            }
+            set {
+                if ((this.UpdateDateField.Equals(value) != true)) {
+                    this.UpdateDateField = value;
+                    this.RaisePropertyChanged("UpdateDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> UpdateId {
+            get {
+                return this.UpdateIdField;
+            }
+            set {
+                if ((this.UpdateIdField.Equals(value) != true)) {
+                    this.UpdateIdField = value;
+                    this.RaisePropertyChanged("UpdateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> UsageDate {
+            get {
+                return this.UsageDateField;
+            }
+            set {
+                if ((this.UsageDateField.Equals(value) != true)) {
+                    this.UsageDateField = value;
+                    this.RaisePropertyChanged("UsageDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> UsageHours {
+            get {
+                return this.UsageHoursField;
+            }
+            set {
+                if ((this.UsageHoursField.Equals(value) != true)) {
+                    this.UsageHoursField = value;
+                    this.RaisePropertyChanged("UsageHours");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> UsageMinutes {
+            get {
+                return this.UsageMinutesField;
+            }
+            set {
+                if ((this.UsageMinutesField.Equals(value) != true)) {
+                    this.UsageMinutesField = value;
+                    this.RaisePropertyChanged("UsageMinutes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> VehCompId {
+            get {
+                return this.VehCompIdField;
+            }
+            set {
+                if ((this.VehCompIdField.Equals(value) != true)) {
+                    this.VehCompIdField = value;
+                    this.RaisePropertyChanged("VehCompId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZBookStatus {
+            get {
+                return this.ZZBookStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZBookStatusField, value) != true)) {
+                    this.ZZBookStatusField = value;
+                    this.RaisePropertyChanged("ZZBookStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZPODate {
+            get {
+                return this.ZZPODateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZPODateField, value) != true)) {
+                    this.ZZPODateField = value;
+                    this.RaisePropertyChanged("ZZPODate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZService {
+            get {
+                return this.ZZServiceField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZServiceField, value) != true)) {
+                    this.ZZServiceField = value;
+                    this.RaisePropertyChanged("ZZService");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZServiceName {
+            get {
+                return this.ZZServiceNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZServiceNameField, value) != true)) {
+                    this.ZZServiceNameField = value;
+                    this.RaisePropertyChanged("ZZServiceName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZUOM {
+            get {
+                return this.ZZUOMField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZUOMField, value) != true)) {
+                    this.ZZUOMField = value;
+                    this.RaisePropertyChanged("ZZUOM");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZUsageDate {
+            get {
+                return this.ZZUsageDateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZUsageDateField, value) != true)) {
+                    this.ZZUsageDateField = value;
+                    this.RaisePropertyChanged("ZZUsageDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZVehComp {
+            get {
+                return this.ZZVehCompField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZVehCompField, value) != true)) {
+                    this.ZZVehCompField = value;
+                    this.RaisePropertyChanged("ZZVehComp");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="WCFPGMSRef.IService1")]
     public interface IService1 {
@@ -6293,6 +8387,64 @@ namespace PGMSFront.WCFPGMSRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WorkFlowActivityInsert", ReplyAction="http://tempuri.org/IService1/WorkFlowActivityInsertResponse")]
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBooking> WorkFlowActivityInsertAsync(int intDocId, int intBPId, int intWorkPlowId, int intStatusId, string strRemark, int intCreateId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WorkshopBookingDetailInsertFront", ReplyAction="http://tempuri.org/IService1/WorkshopBookingDetailInsertFrontResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront WorkshopBookingDetailInsertFront(PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront objreturndbmlWorkshopBookingDetailViewFront);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WorkshopBookingDetailInsertFront", ReplyAction="http://tempuri.org/IService1/WorkshopBookingDetailInsertFrontResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront> WorkshopBookingDetailInsertFrontAsync(PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront objreturndbmlWorkshopBookingDetailViewFront);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WorkshopBookingDetailDelete", ReplyAction="http://tempuri.org/IService1/WorkshopBookingDetailDeleteResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront WorkshopBookingDetailDelete(int intDocId, int intWorkshopBookingDetailId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WorkshopBookingDetailDelete", ReplyAction="http://tempuri.org/IService1/WorkshopBookingDetailDeleteResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront> WorkshopBookingDetailDeleteAsync(int intDocId, int intWorkshopBookingDetailId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WorkshopBookingDetailViewFrontGetByBookingId", ReplyAction="http://tempuri.org/IService1/WorkshopBookingDetailViewFrontGetByBookingIdResponse" +
+            "")]
+        PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront WorkshopBookingDetailViewFrontGetByBookingId(int intDocId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WorkshopBookingDetailViewFrontGetByBookingId", ReplyAction="http://tempuri.org/IService1/WorkshopBookingDetailViewFrontGetByBookingIdResponse" +
+            "")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront> WorkshopBookingDetailViewFrontGetByBookingIdAsync(int intDocId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BookingDetailAddOnServicesInsertFront", ReplyAction="http://tempuri.org/IService1/BookingDetailAddOnServicesInsertFrontResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlBookingDetailAddOnServicesViewFront BookingDetailAddOnServicesInsertFront(PGMSFront.WCFPGMSRef.returndbmlBookingDetailAddOnServicesViewFront objreturndbmlBookingDetailAddOnServicesViewFront);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BookingDetailAddOnServicesInsertFront", ReplyAction="http://tempuri.org/IService1/BookingDetailAddOnServicesInsertFrontResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBookingDetailAddOnServicesViewFront> BookingDetailAddOnServicesInsertFrontAsync(PGMSFront.WCFPGMSRef.returndbmlBookingDetailAddOnServicesViewFront objreturndbmlBookingDetailAddOnServicesViewFront);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BookingDetailAddOnServicesDelete", ReplyAction="http://tempuri.org/IService1/BookingDetailAddOnServicesDeleteResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlBookingDetailAddOnServicesViewFront BookingDetailAddOnServicesDelete(int intDocId, int intBookingDetailAddOnServicesId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BookingDetailAddOnServicesDelete", ReplyAction="http://tempuri.org/IService1/BookingDetailAddOnServicesDeleteResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBookingDetailAddOnServicesViewFront> BookingDetailAddOnServicesDeleteAsync(int intDocId, int intBookingDetailAddOnServicesId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BookingDetailAddOnServicesViewFrontGetByBookingId", ReplyAction="http://tempuri.org/IService1/BookingDetailAddOnServicesViewFrontGetByBookingIdRes" +
+            "ponse")]
+        PGMSFront.WCFPGMSRef.returndbmlBookingDetailAddOnServicesViewFront BookingDetailAddOnServicesViewFrontGetByBookingId(int intDocId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BookingDetailAddOnServicesViewFrontGetByBookingId", ReplyAction="http://tempuri.org/IService1/BookingDetailAddOnServicesViewFrontGetByBookingIdRes" +
+            "ponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBookingDetailAddOnServicesViewFront> BookingDetailAddOnServicesViewFrontGetByBookingIdAsync(int intDocId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/LabBookingDetailInsertFront", ReplyAction="http://tempuri.org/IService1/LabBookingDetailInsertFrontResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlLabBookingDetailViewFront LabBookingDetailInsertFront(PGMSFront.WCFPGMSRef.returndbmlLabBookingDetailViewFront objreturndbmlLabBookingDetailViewFront);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/LabBookingDetailInsertFront", ReplyAction="http://tempuri.org/IService1/LabBookingDetailInsertFrontResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlLabBookingDetailViewFront> LabBookingDetailInsertFrontAsync(PGMSFront.WCFPGMSRef.returndbmlLabBookingDetailViewFront objreturndbmlLabBookingDetailViewFront);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/LabBookingDetailDelete", ReplyAction="http://tempuri.org/IService1/LabBookingDetailDeleteResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlLabBookingDetailViewFront LabBookingDetailDelete(int intDocId, int intLabBookingDetailId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/LabBookingDetailDelete", ReplyAction="http://tempuri.org/IService1/LabBookingDetailDeleteResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlLabBookingDetailViewFront> LabBookingDetailDeleteAsync(int intDocId, int intLabBookingDetailId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/LabBookingDetailViewFrontGetByBookingId", ReplyAction="http://tempuri.org/IService1/LabBookingDetailViewFrontGetByBookingIdResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlLabBookingDetailViewFront LabBookingDetailViewFrontGetByBookingId(int intDocId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/LabBookingDetailViewFrontGetByBookingId", ReplyAction="http://tempuri.org/IService1/LabBookingDetailViewFrontGetByBookingIdResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlLabBookingDetailViewFront> LabBookingDetailViewFrontGetByBookingIdAsync(int intDocId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -6488,6 +8640,78 @@ namespace PGMSFront.WCFPGMSRef {
         
         public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBooking> WorkFlowActivityInsertAsync(int intDocId, int intBPId, int intWorkPlowId, int intStatusId, string strRemark, int intCreateId) {
             return base.Channel.WorkFlowActivityInsertAsync(intDocId, intBPId, intWorkPlowId, intStatusId, strRemark, intCreateId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront WorkshopBookingDetailInsertFront(PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront objreturndbmlWorkshopBookingDetailViewFront) {
+            return base.Channel.WorkshopBookingDetailInsertFront(objreturndbmlWorkshopBookingDetailViewFront);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront> WorkshopBookingDetailInsertFrontAsync(PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront objreturndbmlWorkshopBookingDetailViewFront) {
+            return base.Channel.WorkshopBookingDetailInsertFrontAsync(objreturndbmlWorkshopBookingDetailViewFront);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront WorkshopBookingDetailDelete(int intDocId, int intWorkshopBookingDetailId) {
+            return base.Channel.WorkshopBookingDetailDelete(intDocId, intWorkshopBookingDetailId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront> WorkshopBookingDetailDeleteAsync(int intDocId, int intWorkshopBookingDetailId) {
+            return base.Channel.WorkshopBookingDetailDeleteAsync(intDocId, intWorkshopBookingDetailId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront WorkshopBookingDetailViewFrontGetByBookingId(int intDocId) {
+            return base.Channel.WorkshopBookingDetailViewFrontGetByBookingId(intDocId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront> WorkshopBookingDetailViewFrontGetByBookingIdAsync(int intDocId) {
+            return base.Channel.WorkshopBookingDetailViewFrontGetByBookingIdAsync(intDocId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlBookingDetailAddOnServicesViewFront BookingDetailAddOnServicesInsertFront(PGMSFront.WCFPGMSRef.returndbmlBookingDetailAddOnServicesViewFront objreturndbmlBookingDetailAddOnServicesViewFront) {
+            return base.Channel.BookingDetailAddOnServicesInsertFront(objreturndbmlBookingDetailAddOnServicesViewFront);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBookingDetailAddOnServicesViewFront> BookingDetailAddOnServicesInsertFrontAsync(PGMSFront.WCFPGMSRef.returndbmlBookingDetailAddOnServicesViewFront objreturndbmlBookingDetailAddOnServicesViewFront) {
+            return base.Channel.BookingDetailAddOnServicesInsertFrontAsync(objreturndbmlBookingDetailAddOnServicesViewFront);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlBookingDetailAddOnServicesViewFront BookingDetailAddOnServicesDelete(int intDocId, int intBookingDetailAddOnServicesId) {
+            return base.Channel.BookingDetailAddOnServicesDelete(intDocId, intBookingDetailAddOnServicesId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBookingDetailAddOnServicesViewFront> BookingDetailAddOnServicesDeleteAsync(int intDocId, int intBookingDetailAddOnServicesId) {
+            return base.Channel.BookingDetailAddOnServicesDeleteAsync(intDocId, intBookingDetailAddOnServicesId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlBookingDetailAddOnServicesViewFront BookingDetailAddOnServicesViewFrontGetByBookingId(int intDocId) {
+            return base.Channel.BookingDetailAddOnServicesViewFrontGetByBookingId(intDocId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBookingDetailAddOnServicesViewFront> BookingDetailAddOnServicesViewFrontGetByBookingIdAsync(int intDocId) {
+            return base.Channel.BookingDetailAddOnServicesViewFrontGetByBookingIdAsync(intDocId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlLabBookingDetailViewFront LabBookingDetailInsertFront(PGMSFront.WCFPGMSRef.returndbmlLabBookingDetailViewFront objreturndbmlLabBookingDetailViewFront) {
+            return base.Channel.LabBookingDetailInsertFront(objreturndbmlLabBookingDetailViewFront);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlLabBookingDetailViewFront> LabBookingDetailInsertFrontAsync(PGMSFront.WCFPGMSRef.returndbmlLabBookingDetailViewFront objreturndbmlLabBookingDetailViewFront) {
+            return base.Channel.LabBookingDetailInsertFrontAsync(objreturndbmlLabBookingDetailViewFront);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlLabBookingDetailViewFront LabBookingDetailDelete(int intDocId, int intLabBookingDetailId) {
+            return base.Channel.LabBookingDetailDelete(intDocId, intLabBookingDetailId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlLabBookingDetailViewFront> LabBookingDetailDeleteAsync(int intDocId, int intLabBookingDetailId) {
+            return base.Channel.LabBookingDetailDeleteAsync(intDocId, intLabBookingDetailId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlLabBookingDetailViewFront LabBookingDetailViewFrontGetByBookingId(int intDocId) {
+            return base.Channel.LabBookingDetailViewFrontGetByBookingId(intDocId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlLabBookingDetailViewFront> LabBookingDetailViewFrontGetByBookingIdAsync(int intDocId) {
+            return base.Channel.LabBookingDetailViewFrontGetByBookingIdAsync(intDocId);
         }
     }
 }

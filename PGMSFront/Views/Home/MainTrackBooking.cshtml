@@ -280,7 +280,16 @@
                                 @using (Html.BeginForm(new { @class = "form-horizontal" }))
                                 {
                                     @Html.AntiForgeryToken()
-                                    <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
+                                    <table Style="width:100%">
+                                        <tr>
+                                            <td Style="width:50%;text-align:left">
+                                                <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
+                                            </td>
+                                            <td Style="width:50%;text-align:right">
+                                                <input type="submit" id="btnNext" name="btnPrevNext" value="Next" class="btn btn-fill btn-rose btn-sm " />
+                                            </td>
+                                        </tr>
+                                    </table>                                    
                                 }
                             </div>
                         </div>
