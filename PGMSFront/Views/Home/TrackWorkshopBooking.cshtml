@@ -210,6 +210,7 @@
                 });
                 $("#AddMoreTR").find("input[type='text'][id='Date']").each(function () {
                     $(this).val(NullHandle(varWS[0].ZZUsageDate));
+                    $('.datetimepicker').datetimepicker({ theme: 'light', timepicker: false, format: 'd-m-Y', scrollMonth: false, scrollInput: false });
                 });
                 $("#AddMoreTR").find("input[type='text'][id='Unit']").each(function () {
                     $(this).val(NullHandle(varWS[0].ZZUOM));

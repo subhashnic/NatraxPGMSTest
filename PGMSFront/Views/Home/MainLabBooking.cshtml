@@ -1,6 +1,6 @@
 ﻿@model PGMSFront.Models.CommonModel
 @{
-    ViewBag.Title = "Add-On Services";
+    ViewBag.Title = "Lab Booking";
     Layout = "~/Views/Shared/_LayoutTrack.cshtml";
 }
 
@@ -96,9 +96,9 @@
                             <td Style="width:50%;text-align:left">
                                 <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
                             </td>
-                            @*<td Style="width:50%;text-align:right">
-                                    <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm " />
-                                </td>*@
+                            <td Style="width:50%;text-align:right">
+                                <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm " />
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -140,8 +140,7 @@
         });
         $("#AddMoreTR").find("input[type='text'][id='Date']").each(function () {
             $(this).val("");
-           // $(this).addClass("form-control datetimepicker");
-            //$(this).datepicker();
+            $('.datetimepicker').datetimepicker({ theme: 'light', timepicker: false, format: 'd-m-Y', scrollMonth: false, scrollInput: false });
         });
         $("#AddMoreTR").find("input[type='text'][id='Usage']").each(function () {
             $(this).val("");
@@ -236,16 +235,19 @@
 
                     if (varServiceList != undefined && varServiceList.length > 0) {
                         $(this).val(varServiceList[0].ServiceName);
-                    }                    
+                    } 
+                    SetFacility();
                 });
                 $("#AddMoreTR").find("select[id='ServiceType']").each(function () {
                     $(this).val(NullHandle(varWS[0].ServiceId));
+                    SetVehicleComp()
                 });
                 $("#AddMoreTR").find("select[id='VehicleType']").each(function () {
                     $(this).val(NullHandle(varWS[0].VehCompId));
                 });
                 $("#AddMoreTR").find("input[type='text'][id='Date']").each(function () {
                     $(this).val(NullHandle(varWS[0].ZZUsageDate));
+                    $('.datetimepicker').datetimepicker({ theme: 'light', timepicker: false, format: 'd-m-Y', scrollMonth: false, scrollInput: false });
                 });
                 $("#AddMoreTR").find("input[type='text'][id='Usage']").each(function () {
                     $(this).val(NullHandle(varWS[0].UsageHours));
@@ -587,7 +589,7 @@
     function SetFacility() {
         try {
             var varLabType = 0;           
-           
+            debugger;
             $("#AddMoreTR").find("select[id='LabType']").each(function () {
                 varLabType=$(this).val();
             });           

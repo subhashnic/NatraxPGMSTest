@@ -834,6 +834,7 @@ namespace PGMSFront.Common
 
         VehicleGrpPropId = 99,
         CompGrpPropId = 98,
+        CompOptPropId = 97,
 
         OpenStatusId =40,  
         ApproveStatusId =38,

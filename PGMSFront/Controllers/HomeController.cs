@@ -922,7 +922,14 @@ namespace PGMSFront.Controllers
 
                 if (btnPrevNext.ToLower() == "next")
                 {
-                    return RedirectToAction("MainTrackBooking", "Home");
+                    if (Convert.ToInt32(Session["BPId"]) == 21)
+                    {
+                        return RedirectToAction("MainTrackBooking", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Component", "Home");
+                    }
                 }
             }
             catch
@@ -1114,6 +1121,267 @@ namespace PGMSFront.Controllers
                         Items.Add(new SelectListItem { Text = itm.Property, Value = itm.PropertyId.ToString(), Selected = false });
                     }
                 }
+            }
+            catch
+            {
+
+            }
+            return Items;
+        }
+        #endregion
+
+        #region Component
+
+        public ActionResult Component()
+        {
+            CommonModel model = new CommonModel();
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                model.UserId = Convert.ToInt32(Session["UserId"]);
+                model.UserTypePropId = Convert.ToInt32(Session["UserTypePropId"]);
+                model.ZZCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
+                model.UserName = Convert.ToString(Session["UserName"]);
+                model.EmailId = Convert.ToString(Session["EmailId"]);
+                model.LoginId = Convert.ToString(Session["LoginId"]);
+                model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
+                model.UserCode = Convert.ToString(Session["UserCode"]);
+                model.StatusPropId = 0;
+                model.StateId = Convert.ToInt32(Session["StateId"]);
+                ViewBag.VehicleType = GetComponentType();
+
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+                    model.DocDate = objdbmlBooking.ZZBookingDate;
+                    model.DocNo = objdbmlBooking.BookingNo;
+                    model.DocType = objdbmlBooking.ZZBookingType;
+                    model.WorkFlowId = Convert.ToInt32(objdbmlBooking.ZZWorkFlowId);
+                    model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+                    model.StatusPropId = Convert.ToInt32(objdbmlBooking.StatusPropId);
+                    model.BPId = Convert.ToInt32(Session["BPId"]);
+                    model.ReportURL = strRptURL;
+                    model.DocId = objdbmlBooking.BookingId;
+                    model.POURL = strPOURL + objdbmlBooking.PODocPath;
+
+                    //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 10)
+                    //{
+                    //    return RedirectToActionByStatusId(Convert.ToInt32(objdbmlBooking.TabStatusId));
+                    //}
+                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), objdbmlBooking.BookingId);
+                }
+                else
+                {
+                    return RedirectToAction("Basic", "Home");
+                }
+            }
+            catch
+            {
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Component(CommonModel model, string btnPrevNext)
+        {
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                if (btnPrevNext.ToLower() == "prev")
+                {
+                    return RedirectToAction("Vehicle", "Home");
+                }
+
+                if (btnPrevNext.ToLower() == "next")
+                {
+                    return RedirectToAction("MainLabBooking", "Home");
+                }
+            }
+            catch
+            {
+            }
+
+            return RedirectToAction("Vehicle", "Home");
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult LoadComponentInfo()
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlListOfVehicleComponent objreturndbmlVehicle = new returndbmlListOfVehicleComponent();
+            try
+            {
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+
+                    objreturndbmlVehicle = objServiceClient.ListOfVehicleComponentGetByDocId(objdbmlBooking.BookingId);
+                    if (objreturndbmlVehicle.objdbmlStatus.StatusId == 1)
+                    {
+                        objreturndbmlVehicle.objdbmlListOfVehicleComponent = new ObservableCollection<dbmlListOfVehicleComponent>(objreturndbmlVehicle.objdbmlListOfVehicleComponent.Where(itm => itm.GroupId == Convert.ToInt32(HardCodeValues.CompGrpPropId)));
+                        intStatusId = 1;
+                        strStatus = "Success";
+                    }
+                    else
+                    {
+                        strStatus = objreturndbmlVehicle.objdbmlStatus.Status;
+                    }
+                }
+                else
+                {
+                    strStatus = "Booking Details Not Found";
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, VehicleList = objreturndbmlVehicle.objdbmlListOfVehicleComponent }, JsonRequestBehavior.AllowGet);
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult ComponentSave(dbmlListOfVehicleComponent model)
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlListOfVehicleComponent objreturndbmlVehicle = new returndbmlListOfVehicleComponent();
+
+            try
+            {
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+
+                    model.DocId = objdbmlBooking.BookingId;
+                    model.BPId = Convert.ToInt32(Session["BPId"]);
+                    model.GroupId = Convert.ToInt32(HardCodeValues.CompGrpPropId);
+                    model.GroupName = "Component";
+                    model.CreateId = Convert.ToInt32(Session["UserId"]);
+                    model.CreateDate = DateTime.Now;
+                    model.UpdateId = Convert.ToInt32(Session["UserId"]);
+                    model.UpdateDate = DateTime.Now;
+
+                    returndbmlListOfVehicleComponent objreturndbmlVehicleTemp = new returndbmlListOfVehicleComponent();
+                    ObservableCollection<dbmlListOfVehicleComponent> objdbmlVehicle = new ObservableCollection<dbmlListOfVehicleComponent>();
+                    objdbmlVehicle.Add(model);
+                    objreturndbmlVehicleTemp.objdbmlListOfVehicleComponent = objdbmlVehicle;
+
+                    if (model.VehCompId < 0)
+                    {
+                        objreturndbmlVehicle = objServiceClient.ListOfVehicleComponentInsert(objreturndbmlVehicleTemp);
+                    }
+                    else
+                    {
+                        objreturndbmlVehicle = objServiceClient.ListOfVehicleComponentUpdate(objreturndbmlVehicleTemp);
+                    }
+
+                    if (objreturndbmlVehicle != null && objreturndbmlVehicle.objdbmlStatus.StatusId == 1)
+                    {
+                        objreturndbmlVehicle.objdbmlListOfVehicleComponent = new ObservableCollection<dbmlListOfVehicleComponent>(objreturndbmlVehicle.objdbmlListOfVehicleComponent.Where(itm => itm.GroupId == Convert.ToInt32(HardCodeValues.CompGrpPropId)));
+                        intStatusId = 1;
+                        strStatus = "Data Saved Successfully";
+                    }
+                    else
+                    {
+                        strStatus = objreturndbmlVehicle.objdbmlStatus.Status;
+                    }
+                }
+                else
+                {
+                    strStatus = "Booking Details Not Found";
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, VehicleList = objreturndbmlVehicle.objdbmlListOfVehicleComponent }, JsonRequestBehavior.AllowGet);
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult ComponentDelete(int intVehCompId)
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlListOfVehicleComponent objreturndbmlVehicle = new returndbmlListOfVehicleComponent();
+
+            try
+            {
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+
+                    objreturndbmlVehicle = objServiceClient.ListOfVehicleComponentDeleteByDocIdCompId(objdbmlBooking.BookingId, intVehCompId);
+
+                    if (objreturndbmlVehicle != null && objreturndbmlVehicle.objdbmlStatus.StatusId == 1)
+                    {
+                        objreturndbmlVehicle.objdbmlListOfVehicleComponent = new ObservableCollection<dbmlListOfVehicleComponent>(objreturndbmlVehicle.objdbmlListOfVehicleComponent.Where(itm => itm.GroupId == Convert.ToInt32(HardCodeValues.CompGrpPropId)));
+                        intStatusId = 1;
+                        strStatus = "Vehicle Deleted Successfully";
+                    }
+                    else
+                    {
+                        strStatus = objreturndbmlVehicle.objdbmlStatus.Status;
+                    }
+                }
+                else
+                {
+                    strStatus = "Booking Details Not Found";
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, VehicleList = objreturndbmlVehicle.objdbmlListOfVehicleComponent }, JsonRequestBehavior.AllowGet);
+        }
+
+        public List<SelectListItem> GetComponentType()
+        {
+            List<SelectListItem> Items = new List<SelectListItem>();
+            try
+            {
+                returndbmlOptionList objreturndbmlOptionList = objServiceClient.OptionListGetByPropertyId(Convert.ToInt32(HardCodeValues.CompOptPropId));
+                if (objreturndbmlOptionList.objdbmlStatus.StatusId == 1 && objreturndbmlOptionList.objdbmlOptionList.Count > 0)
+                {
+                    foreach (var itm in objreturndbmlOptionList.objdbmlOptionList)
+                    {
+                        Items.Add(new SelectListItem { Text = itm.OptionName, Value = itm.OptionListId.ToString(), Selected = false });
+                    }
+                }               
             }
             catch
             {
@@ -1788,7 +2056,15 @@ namespace PGMSFront.Controllers
 
                 if (btnPrevNext.ToLower() == "prev")
                 {
-                    return RedirectToAction("MainTrackBooking", "Home");
+                    if (Convert.ToInt32(Session["BPId"]) == 21)
+                    {
+                        return RedirectToAction("MainTrackBooking", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToAction("MainLabBooking", "Home");
+                    }
+                    
                 }
 
                 if (btnPrevNext.ToLower() == "next")
@@ -2344,15 +2620,15 @@ namespace PGMSFront.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
-                //if (btnPrevNext.ToLower() == "prev")
-                //{
-                //    return RedirectToAction("TrackWorkshopBooking", "Home");
-                //}
+                if (btnPrevNext.ToLower() == "prev")
+                {
+                    return RedirectToAction("Component", "Home");
+                }
 
-                //if (btnPrevNext.ToLower() == "next")
-                //{
-                //    return RedirectToAction("TrackAddOnServicesBooking", "Home");
-                //}
+                if (btnPrevNext.ToLower() == "next")
+                {
+                    return RedirectToAction("TrackWorkshopBooking", "Home");
+                }
             }
             catch
             {
@@ -2592,12 +2868,6 @@ namespace PGMSFront.Controllers
             };
         }
         #endregion
-
-
-        public ActionResult Component()
-        {
-            return View();
-        }       
 
         public ActionResult LabWorkshopBooking()
         {

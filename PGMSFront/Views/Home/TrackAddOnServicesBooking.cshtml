@@ -123,8 +123,7 @@
         });
         $("#AddMoreTR").find("input[type='text'][id='Date']").each(function () {
             $(this).val("");
-           // $(this).addClass("form-control datetimepicker");
-            //$(this).datepicker();           
+            $('.datetimepicker').datetimepicker({ theme: 'light', timepicker: false, format: 'd-m-Y', scrollMonth: false, scrollInput: false });       
         });
         $("#AddMoreTR").find("input[type='text'][id='Consumption']").each(function () {
             $(this).val("");
@@ -214,6 +213,7 @@
                 });
                 $("#AddMoreTR").find("input[type='text'][id='Date']").each(function () {
                     $(this).val(NullHandle(varWS[0].ZZServiceDate));
+                    $('.datetimepicker').datetimepicker({ theme: 'light', timepicker: false, format: 'd-m-Y', scrollMonth: false, scrollInput: false });
                 });
                 $("#AddMoreTR").find("input[type='text'][id='Consumption']").each(function () {
                     $(this).val(NullHandle(varWS[0].Consumption));

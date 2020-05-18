@@ -857,6 +857,7 @@
     <Content Include="Views\Home\MainLabBooking.cshtml" />
     <Content Include="Views\Home\TrackAddOnServicesBooking - Copy.cshtml" />
     <Content Include="Views\Home\MainLabBooking - Copy.cshtml" />
+    <Content Include="Views\Home\Component - Copy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
