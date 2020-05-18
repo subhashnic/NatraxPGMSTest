@@ -825,6 +825,7 @@ namespace PGMSFront.Common
         ServiceBPIdWorkShop = 13,
         ServiceBPIdAddOn = 37,
         TimeSlotPropId = 9,
+
         BookingBPId = 21,
         RFQConfBPId = 98,
         RFQRegBPId = 46,
@@ -832,7 +833,13 @@ namespace PGMSFront.Common
         RFQConfWFId = 57,
         RFQRegWFId = 29,
 
+        LabBookingBPId = 90,      
+        LabRFQRegBPId = 91,
+        LabBookingWFId = 36,       
+        LabRFQRegWFId = 38,
+
         VehicleGrpPropId = 99,
+        VehicleTypePropId = 14,
         CompGrpPropId = 98,
         CompOptPropId = 97,
 
@@ -842,7 +849,6 @@ namespace PGMSFront.Common
         SubmitStatusId=41,
         RevertStatusId=43,
         RejectStatusId=45
-
 
     };
 

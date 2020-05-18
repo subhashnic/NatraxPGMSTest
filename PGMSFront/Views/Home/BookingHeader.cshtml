@@ -14,24 +14,24 @@
                         </h6>
                     </td>
                     <td style="text-align:right">
-                        @if (Model.WorkFlowId == 6 && Model.DocId > 0)
+                        @if (Model.DocId > 0 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 57 || Model.WorkFlowId == 29 || Model.WorkFlowId == 36 || Model.WorkFlowId == 38))
                         {
                             <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
                             <input type="button" id="btnAcceptPI" value="Accept P.I." onclick="return AcceptPI();" class="btn btn-fill btn-rose btn-sm" />
                         }
-                        else if (Model.WorkFlowId == 8 && Model.DocId > 0)
+                        else if (Model.DocId > 0 && (Model.WorkFlowId == 8 || Model.WorkFlowId == 44))
                         {
-                        <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
+                            <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
                         }
-                        else if (Model.WorkFlowId == 9 && Model.DocId > 0)
+                        else if (Model.DocId > 0 && (Model.WorkFlowId == 9 || Model.WorkFlowId == 45))
                         {
-                        <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
-                        <input type="button" id="btnUploadPO" value="Upload P.O." onclick="return OpenPODialog();" class="btn btn-fill btn-rose btn-sm" />
+                            <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
+                            <input type="button" id="btnUploadPO" value="Upload P.O." onclick="return OpenPODialog();" class="btn btn-fill btn-rose btn-sm" />
                         }
-                        else if (Model.WorkFlowId == 10 && Model.DocId > 0)
+                        else if (Model.DocId > 0 && (Model.WorkFlowId == 10 || Model.WorkFlowId == 46))
                         {
-                        <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
-                        <input type="button" id="btnViewPO" value="View P.O." onclick="return ViewPO();" class="btn btn-fill btn-rose btn-sm" />
+                            <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
+                            <input type="button" id="btnViewPO" value="View P.O." onclick="return ViewPO();" class="btn btn-fill btn-rose btn-sm" />
                         }
 
                     </td>

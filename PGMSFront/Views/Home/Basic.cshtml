@@ -1,7 +1,7 @@
 ﻿@model PGMSFront.Models.CommonModel
 @{
     ViewBag.Title = "Basic";
-    if(Session["SessBookingType"] == "Track")
+    if (Convert.ToString(Session["SessBookingType"]).ToUpper() == "TRACK")
     {
         Layout = "~/Views/Shared/_LayoutTrack.cshtml";
     }
@@ -120,12 +120,12 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     @*<input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm pull-right" />
-                                    <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" id="btnSubmit" onclick="return BookingSave()">Save</button>*@
+                                        <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" id="btnSubmit" onclick="return BookingSave()">Save</button>*@
 
                                     <table Style="width:100%">
                                         <tr>
                                             <td Style="width:50%;text-align:right">
-                                                @if (Model.StatusPropId == 40 && Model.WorkFlowId == 6)
+                                                @if (Model.StatusPropId == 40 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 57 || Model.WorkFlowId == 29 || Model.WorkFlowId == 36 || Model.WorkFlowId == 38))
                                                 {
                                                     <button type="button" class="btn btn-fill btn-rose btn-sm " id="btnSubmit" onclick="return BookingSave()">Save</button>
                                                 }
@@ -158,7 +158,7 @@
 <script>
     var BookingList = '';
 
-        
+
     ///////////////////////////// Load Basic Info  //////////////////////////////////////////////////////
     function LoadBasicInfo() {
         try {
@@ -325,7 +325,7 @@
             $("#Remark").val(NullHandle(data.Remark));
             $("#CreatedBy").val(NullHandle(data.ZZUpdatedBy));
             $("#DocId").val(NullHandle(data.BookingId));
-            
+
         }
         catch (e) {
 
@@ -338,7 +338,7 @@
     ///////////////////////////// Set Button Visibility  //////////////////////////////////////////////////////
     function SetButtonVisibility() {
         try {
-            if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#WorkFlowId").val()) ==6 ) {
+            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6) ) {
                 $("#btnSubmit").attr('disabled', false);
             }
             else {
@@ -354,7 +354,7 @@
     function DisableControls() {
         try {
             var blnStatus = true;
-            if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#WorkFlowId").val()) ==6) {
+            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6)) {
                 blnStatus = false;
             }
             //$("#PartCode").prop("readonly", blnStatus);

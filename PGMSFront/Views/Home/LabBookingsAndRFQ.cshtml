@@ -1,6 +1,6 @@
-﻿@{
-    Session["SessBookingType"] = "Lab";
-    ViewBag.Title = "Booking";
+﻿@model PGMSFront.Models.CommonModel
+@{
+    ViewBag.Title = "Lab Booking & RFQ";
     Layout = "~/Views/Shared/_LayoutLabBookingAndRFQ.cshtml";
 }
 <style>
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <a href="@Url.Action("Basic", "Home")" class='btn btn-info' style="padding: 7px 20px;">New Booking</a>
+                            <a href="@Url.Action("NewBooking", "Home", new { id = UrlParameter.Optional })?dfs,ktgbdas,hdffg.khdfrhdduihdgtymdmpxjidgndlxcmhdgmdpldjn,dlkchgj,d,.dkjdhhdk,dmdhhnd,dkmdndhnndmdmjmd&intBPId=90" class='btn btn-info' style="padding: 7px 20px;">New Booking</a>
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead class="text-warning">
@@ -504,7 +504,7 @@
     function LoadBookingInfo() {
         try {
             LoaderShow();
-            var data = { 'intDepartmentId': 0, 'intBookingTypeId': 21, 'intStatusPropId': 40 };
+            var data = { 'intDepartmentId': 0, 'intBookingTypeId': 90, 'intStatusPropId': 40 };
             var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
             $.ajax({
                 url: '@Url.Action("BookingSearchViewGetByDepartmentBookinStatus", "Home")',

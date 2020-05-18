@@ -1,7 +1,7 @@
 ﻿@model PGMSFront.Models.CommonModel
 @{
     ViewBag.Title = "Vehicle";
-    if(Session["SessBookingType"] == "Track")
+    if (Convert.ToString(Session["SessBookingType"]).ToUpper() == "TRACK")
     {
         Layout = "~/Views/Shared/_LayoutTrack.cshtml";
     }
@@ -45,7 +45,7 @@
                 <div class="card-header">
                     <h4 class="card-title">
                         <label class="card-title">Testing Vehicle Count : </label> <label class="card-title" id="lblVehicleCount"></label>
-                        @if (Model.StatusPropId == 40 && Model.WorkFlowId == 6)
+                        @if (Model.StatusPropId == 40 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 57 || Model.WorkFlowId == 29 || Model.WorkFlowId == 36 || Model.WorkFlowId == 38))
                         {
                             <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="AddMore()" id="btnAdd">Add More</button>
                         }
@@ -417,7 +417,7 @@
                 gridData = gridData + "<td>" + NullHandle(data[i].Description1) + "</td>";
                 gridData = gridData + "<td>" + NullHandle(data[i].Description2) + "</td>";
 
-                if (parseInt(StatusPropId) == 40 && parseInt(WorkFlowId) == 6) {
+                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6)) {
                     gridData = gridData + "<td class='td-actions text-center'>";
                     gridData = gridData + "<a href='#' class='btn btn-info' title='Edit Vehicle : " + NullHandle(data[i].VorC)+"' onclick='return VehicleEdit(" + NullHandle(data[i].VehCompId) + ")' > <i class='material-icons'>edit</i></a>&nbsp;";
                     gridData = gridData + "<a href='#' class='btn btn-danger' title='Delete Vehicle : " + NullHandle(data[i].VorC) +"' onclick='return VehicleDelete(" + NullHandle(data[i].VehCompId)+")'><i class='material-icons'>close</i></a>";
@@ -442,7 +442,7 @@
     ///////////////////////////// Set Button Visibility  //////////////////////////////////////////////////////
     function SetButtonVisibility() {
         try {
-            if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#WorkFlowId").val())==6) {
+            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6)) {
                 $("#btnAdd").attr('disabled', false);
             }
             else {

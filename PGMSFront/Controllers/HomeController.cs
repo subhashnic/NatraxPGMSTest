@@ -233,6 +233,8 @@ namespace PGMSFront.Controllers
             CommonModel model = new CommonModel();
             try
             {
+                Session["SessBookingType"] = "Track";
+
                 if (Session["UserId"] == null)
                 {
                     return RedirectToAction("Index", "Home");
@@ -264,6 +266,8 @@ namespace PGMSFront.Controllers
             CommonModel model = new CommonModel();
             try
             {
+                Session["SessBookingType"] = "Track";
+
                 if (Session["UserId"] == null)
                 {
                     return RedirectToAction("Index", "Home");
@@ -368,6 +372,7 @@ namespace PGMSFront.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+            
             returndbmlBooking objreturndbmlBooking = new returndbmlBooking();
             try
             {
@@ -376,7 +381,27 @@ namespace PGMSFront.Controllers
                 if (objreturndbmlBooking != null && objreturndbmlBooking.objdbmlStatus.StatusId == 1)
                 {
                     Session["objdbmlBooking"] = objreturndbmlBooking.objdbmlBookingList.FirstOrDefault();
+                    Session["BPId"] = objreturndbmlBooking.objdbmlBookingList.FirstOrDefault().BPId;                   
                 }
+            }
+            catch
+            {
+
+            }
+
+            return RedirectToAction("Basic", "Home");
+        }
+
+        public ActionResult NewBooking(int intBPId)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
+            try
+            {
+                Session["BPId"] = intBPId;
             }
             catch
             {
@@ -402,6 +427,21 @@ namespace PGMSFront.Controllers
             return Items;
         }
 
+        public List<SelectListItem> GetLabBookingType()
+        {
+            List<SelectListItem> Items = new List<SelectListItem>();
+            try
+            {
+                Items.Add(new SelectListItem { Text = "Lab Booking", Value = Convert.ToString(Convert.ToInt32(HardCodeValues.LabBookingBPId)) });              
+                Items.Add(new SelectListItem { Text = "Lab RFQ", Value = Convert.ToString(Convert.ToInt32(HardCodeValues.LabRFQRegBPId)) });
+            }
+            catch
+            {
+
+            }
+            return Items;
+        }
+
         public List<SelectListItem> GetBookingStatus()
         {
             List<SelectListItem> Items = new List<SelectListItem>();
@@ -418,6 +458,69 @@ namespace PGMSFront.Controllers
             return Items;
         }
 
+        public ActionResult LabBookingsAndRFQ()
+        {
+            CommonModel model = new CommonModel();
+            try
+            {
+                Session["SessBookingType"] = "Lab";
+
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                Session["objdbmlBooking"] = null;
+
+                model.UserId = Convert.ToInt32(Session["UserId"]);
+                model.UserTypePropId = Convert.ToInt32(Session["UserTypePropId"]);
+                model.ZZCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
+                model.UserName = Convert.ToString(Session["UserName"]);
+                model.EmailId = Convert.ToString(Session["EmailId"]);
+                model.LoginId = Convert.ToString(Session["LoginId"]);
+                model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
+                model.UserCode = Convert.ToString(Session["UserCode"]);
+
+
+            }
+            catch
+            {
+            }
+
+            return View(model);
+    }
+
+        public ActionResult LabBookingHistory()
+        {
+            CommonModel model = new CommonModel();
+            try
+            {
+                Session["SessBookingType"] = "Lab";
+
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                Session["objdbmlBooking"] = null;
+
+                model.UserId = Convert.ToInt32(Session["UserId"]);
+                model.UserTypePropId = Convert.ToInt32(Session["UserTypePropId"]);
+                model.ZZCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
+                model.UserName = Convert.ToString(Session["UserName"]);
+                model.EmailId = Convert.ToString(Session["EmailId"]);
+                model.LoginId = Convert.ToString(Session["LoginId"]);
+                model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
+                model.UserCode = Convert.ToString(Session["UserCode"]);
+
+                ViewBag.CompanyDepartment = CompanyDepartmentGetByCustomerMasterId(Convert.ToInt32(Session["ZZCompanyId"]));
+                ViewBag.BookingType = GetLabBookingType();
+                ViewBag.BookingStatus = GetBookingStatus();
+            }
+            catch
+            {
+            }
+
+            return View(model);
+        }
         #endregion
 
         #region Basic
@@ -438,8 +541,7 @@ namespace PGMSFront.Controllers
                 model.EmailId = Convert.ToString(Session["EmailId"]);
                 model.LoginId = Convert.ToString(Session["LoginId"]);
                 model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
-                model.UserCode = Convert.ToString(Session["UserCode"]);
-                Session["BPId"] = Convert.ToInt32(HardCodeValues.BookingBPId);
+                model.UserCode = Convert.ToString(Session["UserCode"]);             
                 model.StateId = Convert.ToInt32(Session["StateId"]);
                 model.BPId = Convert.ToInt32(Session["BPId"]);
                 model.ReportURL = strRptURL;
@@ -465,7 +567,16 @@ namespace PGMSFront.Controllers
                     model.DocDate = "To be allotted";
                     model.DocNo = "To be allotted";
                     model.DocType = "Booking";
-                    model.WorkFlowId = Convert.ToInt32(HardCodeValues.BookingWFId);
+                    switch(Convert.ToInt32(Session["BPId"]))
+                    {
+                        case 21:
+                            model.WorkFlowId = Convert.ToInt32(HardCodeValues.BookingWFId);
+                            break;
+                        case 90:
+                            model.WorkFlowId = Convert.ToInt32(HardCodeValues.LabBookingWFId);
+                            break;
+                    }
+                   
                     model.StatusPropId = Convert.ToInt32(HardCodeValues.OpenStatusId);
                     model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), 0);
                 }
@@ -770,7 +881,7 @@ namespace PGMSFront.Controllers
                                 string strFileStorage = System.Configuration.ConfigurationManager.AppSettings["strFileStorage"];
 
                                 string strImageName = "PO_" + Convert.ToString(objdbmlBooking.BookingId) + "." + strFileExtention;
-                                string strImageContainerName = "";
+                                string strImageContainerName = "natraximage";
                                 string strImageURL = "";
                                 string strFTPFilePath = "";
                                 if (strFileStorage == "FTP")
@@ -1115,7 +1226,7 @@ namespace PGMSFront.Controllers
 
                 if (objProp != null && objProp.Count > 0)
                 {
-                    ObservableCollection<dbmlProperty> objPropList = new ObservableCollection<dbmlProperty>(objProp.Where(itm => itm.PropertyTypeId == 14));
+                    ObservableCollection<dbmlProperty> objPropList = new ObservableCollection<dbmlProperty>(objProp.Where(itm => itm.PropertyTypeId == Convert.ToInt32(HardCodeValues.VehicleTypePropId)));
                     foreach (var itm in objPropList)
                     {
                         Items.Add(new SelectListItem { Text = itm.Property, Value = itm.PropertyId.ToString(), Selected = false });
@@ -1977,7 +2088,7 @@ namespace PGMSFront.Controllers
 
         #endregion
 
-        #region Track Workshop Booking
+        #region Workshop Booking
 
         public ActionResult TrackWorkshopBooking()
         {
@@ -2264,7 +2375,7 @@ namespace PGMSFront.Controllers
 
         #endregion
 
-        #region Track AddOn Services Booking
+        #region AddOn Services Booking
 
         public ActionResult TrackAddOnServicesBooking()
         {
@@ -2869,12 +2980,7 @@ namespace PGMSFront.Controllers
         }
         #endregion
 
-        public ActionResult LabBookingsAndRFQ()
-        {
-            return View();
-        }
-
-        public ActionResult LabWorkshopBooking()
+       public ActionResult LabWorkshopBooking()
         {
             return View();
         }

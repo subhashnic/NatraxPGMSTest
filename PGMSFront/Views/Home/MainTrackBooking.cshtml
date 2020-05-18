@@ -138,7 +138,7 @@
                             </select>
                         </div>
                         <div class="col-md-1 pull-right">
-                            @if (Model.StatusPropId == 40 && Model.WorkFlowId == 6)
+                            @if (Model.StatusPropId == 40 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 57 || Model.WorkFlowId == 29 || Model.WorkFlowId == 36 || Model.WorkFlowId == 38))
                             {
                                 <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="TrackDetailSave()">Save</button>
                             }
@@ -430,7 +430,7 @@
                             $("#divVehicleTitle").show();
                             $("#divVehicle").show();
 
-                            if (parseInt(varTrackGroupId)==0 && (parseInt($("#StatusPropId").val()) != 40 || parseInt($("#WorkFlowId").val())) != 6) {
+                            if (parseInt(varTrackGroupId) == 0 && (parseInt($("#StatusPropId").val()) != 40 || parseInt($("#WorkFlowId").val()) != 6 || parseInt($("#WorkFlowId").val()) != 57 || parseInt($("#WorkFlowId").val()) != 29)) {
                                 BindServiceLookup(ServicesList, TrackBookingTimeSummaryList);
                             }
 
@@ -568,7 +568,8 @@
 
             for (var i = 0; i < data.length; i++) {
                 gridData = gridData + "<label class='form-check-label'>";
-                if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#WorkFlowId").val()) == 6) {
+
+                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6)) {
                     gridData = gridData + "<input class='form-check-input' type='radio' id='rdoCategory" + data[i].Value + "' name='Category' " + varchecked + " value='" + data[i].Value + "' onclick='BindTrackService()'>" + data[i].Text + "";
                 }
                 else {
@@ -1030,7 +1031,7 @@
 
             for (var i = 0; i < data.length; i++) {
                 gridData = gridData + "<tr>";
-                if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#WorkFlowId").val()) == 6) {
+                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6)) {
                     gridData = gridData + "<td class='td-actions text-center'><button type='button' class='btn btn-info' title='Edit Track Details' onclick='return TrackBookingDetailEdit(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].ZZDate) + '"' + "," + NullHandle(data[i].ZZCategoryId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>edit</i></button></td>";
                 }
                 else {
@@ -1048,7 +1049,7 @@
                // gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].RoundOffHrs) + "</td>";
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].BillingHrs) + "</td>";
                 //gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].Amount) + "</td>";
-                if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#WorkFlowId").val()) == 6) {
+                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6)) {
                     gridData = gridData + "<td class='td-actions text-center'><button type='button' rel='tooltip' class='btn btn-danger' data-original-title='' title='Delete Track Detail' onclick='return TrackBookingDetailDelete(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].ZZDate) + '"' + "," + NullHandle(data[i].ServiceId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>close</i></button></td>";
                 }
                 else {
@@ -1462,7 +1463,7 @@
     function DisableControls() {
         try {
             var blnStatus = true;
-            if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#WorkFlowId").val()) == 6) {
+            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6)) {
                 blnStatus = false;
             }
             $("#lstTrackTimeSlot").attr('disabled', blnStatus);

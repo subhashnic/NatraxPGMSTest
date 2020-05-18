@@ -1,7 +1,7 @@
 ﻿@model PGMSFront.Models.CommonModel
 @{
     ViewBag.Title = "Lab Booking";
-    Layout = "~/Views/Shared/_LayoutTrack.cshtml";
+    Layout = "~/Views/Shared/_LayoutLab.cshtml";
 }
 
 <style>
@@ -35,7 +35,7 @@
                     <div class="card-header">
                         <h4 class="card-title">
                             Lab Booking
-                            @if (Model.StatusPropId == 40 && Model.WorkFlowId == 6)
+                            @if (Model.StatusPropId == 40 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 57 || Model.WorkFlowId == 29 || Model.WorkFlowId == 36 || Model.WorkFlowId == 38))
                             {
                                 <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="AddMore()" id="btnAdd">Add More</button>
                             }
@@ -133,10 +133,10 @@
             $(this).val(0);
         });
         $("#AddMoreTR").find("select[id='ServiceType']").each(function () {
-            $(this).html();
+            $(this).html("");
         });
         $("#AddMoreTR").find("select[id='VehicleType']").each(function () {
-            $(this).html();
+            $(this).html("");
         });
         $("#AddMoreTR").find("input[type='text'][id='Date']").each(function () {
             $(this).val("");
@@ -476,7 +476,7 @@
                 gridData = gridData + "<td style='text-align:right'>" + NullHandle(data[i].Amount) + "</td>";
                 gridData = gridData + "<td>" + NullHandle(data[i].Remark) + "</td>";
 
-                if (parseInt(StatusPropId) == 40 && parseInt(WorkFlowId) == 6) {
+                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6)) {
                     gridData = gridData + "<td class='td-actions text-center'>";
                     gridData = gridData + "<button type='button' rel='tooltip' class='btn btn-info' title='Edit Lab Service : " + NullHandle(data[i].ZZServiceName) + "' onclick='return LabServicesEdit(" + NullHandle(data[i].LabBookingDetailId) + ")' > <i class='material-icons'>edit</i></button>&nbsp;";
                     gridData = gridData + "<button type='button' rel='tooltip' class='btn btn-danger' title='Delete Lab Service : " + NullHandle(data[i].ZZServiceName) + "' onclick='return LabServicesDelete(" + NullHandle(data[i].LabBookingDetailId) +")'><i class='material-icons'>close</i></button>";
@@ -713,7 +713,7 @@
     ///////////////////////////// Set Button Visibility  //////////////////////////////////////////////////////
     function SetButtonVisibility() {
         try {
-            if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#WorkFlowId").val())==6) {
+            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6)) {
                 $("#btnAdd").attr('disabled', false);
             }
             else {
