@@ -22,6 +22,14 @@
     .main-panel > .content {
         margin-top: 0 !important;
     }
+
+    .table{
+        margin-bottom: 10px !important;
+    }
+
+    .card-body{
+        padding-bottom: 0 !important;
+    }
 </style>
 <div class="content">
     @using (Html.BeginForm(new { @class = "form-horizontal" }))
@@ -29,11 +37,11 @@
         @Html.AntiForgeryToken()
         <div class="container-fluid">
             @Html.Partial("~/Views/Home/BookingHeader.cshtml")
-           
+
             <div class="row">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">                           
+                        <h4 class="card-title">
                             <label class="card-title"> Workshop / Storage Count : </label> <label class="card-title" id="lblWSCount"></label>
                             @if (Model.StatusPropId == 40 && Model.WorkFlowId == 6)
                             {
@@ -42,53 +50,53 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead class=" text-primary">
-                                    <tr>
-                                        <th width="26%">Description</th>
-                                        <th width="12%" style="text-align:center">Date</th>
-                                        <th width="12%" style="text-align:center">Unit</th>
-                                        <th width="12%" style="text-align:right">Rate</th>
-                                        <th width="26%">Remark</th>
-                                        <th width="12%" class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbodyWS">
-                                    <tr id="AddMoreTR" style="display: none;">
-                                        <td>                                            
-                                            <select class="form-control" id="ServiceType" onchange="SetRateUnit()">
-                                                <option value="0">-Select-</option>
-                                                @foreach (var itm in ViewBag.ServiveLookup)
-                                                {
-                                                    <option value='@itm.Value'>@itm.Text</option>
-                                                }
-                                            </select>
-                                        </td>
-                                        <td><input id="Date" type="text" style="text-align:center" onblur="SetRateUnit()" class="form-control datetimepicker" value=""></td>
-                                        <td><input id="Unit" disabled="disabled" type="text" style="text-align:center" class="form-control" value=""></td>
-                                        <td><input id="Rate" disabled="disabled" type="text" style="text-align:right" class="form-control" value=""></td>
-                                        <td><textarea id="Remark" class="form-control"></textarea></td>
-                                        <td class='td-actions text-center'>
-                                            <button type='button' rel='tooltip' id="btnSave" onclick="return WorkshopBookingSave()" class='btn btn-info' data-original-title='' title=''><i class='material-icons'>save</i></button>
-                                            <button type='button' rel='tooltip' class='btn btn-danger' data-original-title='' title='' onclick="AddMoreCancel()"><i class='material-icons'>close</i></button>
-                                        </td>
-                                        <td style='display:none'><input type='hidden' id='hdnUOMPropId' /> </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                            <tr>
+                                                <th width="26%">Description</th>
+                                                <th width="12%" style="        text-align: center">Date</th>
+                                                <th width="12%" style="        text-align: center">Unit</th>
+                                                <th width="12%" style="        text-align: right">Rate</th>
+                                                <th width="26%">Remark</th>
+                                                <th width="12%" class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyWS">
+                                            <tr id="AddMoreTR" style="        display: none;">
+                                                <td>
+                                                    <select class="form-control" id="ServiceType" onchange="SetRateUnit()">
+                                                        <option value="0">-Select-</option>
+                                                        @foreach (var itm in ViewBag.ServiveLookup)
+                                                        {
+                                                            <option value='@itm.Value'>@itm.Text</option>
+                                                        }
+                                                    </select>
+                                                </td>
+                                                <td><input id="Date" type="text" style="        text-align: center" onblur="SetRateUnit()" class="form-control datetimepicker" value=""></td>
+                                                <td><input id="Unit" disabled="disabled" type="text" style="        text-align: center" class="form-control" value=""></td>
+                                                <td><input id="Rate" disabled="disabled" type="text" style="        text-align: right" class="form-control" value=""></td>
+                                                <td><textarea id="Remark" class="form-control"></textarea></td>
+                                                <td class='td-actions text-center'>
+                                                    <button type='button' rel='tooltip' id="btnSave" onclick="return WorkshopBookingSave()" class='btn btn-info' data-original-title='' title=''><i class='material-icons'>save</i></button>
+                                                    <button type='button' rel='tooltip' class='btn btn-danger' data-original-title='' title='' onclick="AddMoreCancel()"><i class='material-icons'>close</i></button>
+                                                </td>
+                                                <td style='        display: none'><input type='hidden' id='hdnUOMPropId' /> </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
+                                <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="        display: none" class="btn btn-fill btn-rose btn-sm pull-right " />
+                            </div>
                         </div>
                     </div>
-                    <table Style="width:100%">
-                        <tr>
-                            <td Style="width:50%;text-align:left">
-                                <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
-                            </td>
-                            <td Style="width:50%;text-align:right">
-                                <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm " />
-                            </td>
-                        </tr>
-                    </table>
                 </div>
                 @Html.HiddenFor(m => m.UserId, new { id = "UserId", style = "width:0px;" })
                 @Html.HiddenFor(m => m.UserTypePropId, new { id = "UserTypePropId", style = "width:0px;" })
@@ -120,7 +128,7 @@
         $("#AddMoreTR").find("input[type='text'][id='Date']").each(function () {
             $(this).val("");
             $('.datetimepicker').datetimepicker({ theme: 'light', timepicker: false, format: 'd-m-Y', scrollMonth: false, scrollInput: false });
-        });      
+        });
         $("#AddMoreTR").find("input[type='text'][id='Unit']").each(function () {
             $(this).val("");
         });
@@ -133,7 +141,7 @@
         $("#AddMoreTR").find("input[type='hidden'][id='hdnUOMPropId']").each(function () {
             $(this).val("");
         });
-        
+
         $("#AddMoreTR").show();
         MaskControls();
         $("#ServiceType").focus();
@@ -156,7 +164,7 @@
                 data: dataWithAntiforgeryToken,
                 success: function (data) {
 
-                    LoaderHide();                  
+                    LoaderHide();
                     if (data.StatusId != "99" && data.StatusId != "-99") {
                         WorkshopBookingDetailList = data.WorkshopBookingDetailList;
                         BindWSData(data.WorkshopBookingDetailList);
@@ -245,7 +253,7 @@
 
             $("#AddMoreTR").find("button[id='btnSave']").each(function () {
                 btnSave = $(this);
-            });            
+            });
             $("#AddMoreTR").find("select[id='ServiceType']").each(function () {
                 model.ServiceId = $(this).val().trim();
                 if ($(this).val().trim() == "") {
@@ -259,17 +267,17 @@
                 }
             });
             $("#AddMoreTR").find("input[type='hidden'][id='hdnUOMPropId']").each(function () {
-                model.UOMPropId = $(this).val();               
+                model.UOMPropId = $(this).val();
             });
             $("#AddMoreTR").find("input[type='text'][id='Rate']").each(function () {
-                model.Rate = $(this).val().trim();               
+                model.Rate = $(this).val().trim();
             });
             $("#AddMoreTR").find("textarea[id='Remark']").each(function () {
                 model.Remark = $(this).val().trim();
                 if ($(this).val().trim() == "") {
                     strMSG = strMSG + 'Remark  \n</br>'
                 }
-            });           
+            });
 
             if (strMSG != '') {
                 alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
@@ -431,8 +439,8 @@
     //////////////////////// Set Rate Unit ////////////////////////////////////////////////////////
     function SetRateUnit() {
         try {
-            
-            var varDate = $("#Date").val().trim();           
+
+            var varDate = $("#Date").val().trim();
             var varServiceId = $("#ServiceType").val();
             var varTimeSlotId = 0;
 
@@ -442,10 +450,10 @@
                 return false;
             }
 
-            if (varDate=="") {               
+            if (varDate=="") {
                 return false;
             }
-            
+
 
             if (strMSG != '') {
                 alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
@@ -471,7 +479,7 @@
                 success: function (dataBokkingStatus) {
 
                     LoaderHide();
-                   
+
                     if (dataBokkingStatus.StatusId != "99" && dataBokkingStatus.StatusId != "-99") {
                         var varBookingStatusList = dataBokkingStatus.BookingStatusList;
                         if (varBookingStatusList.length > 0) {
@@ -526,11 +534,11 @@
         try {
             (function ($) {
                 $(function () {
-                    
+
                     //$("#AddMoreTR").find("input[type='text'][id='ServiceType']").each(function () {
                     //    $(this).attr('onkeypress', 'return CheckIsAlpha(event,this);');
                     //});
-                   
+
                 });
             })(jQuery);
         }
