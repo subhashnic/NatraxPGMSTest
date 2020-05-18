@@ -1,9 +1,10 @@
 ﻿@{
-    Session["SessBookingType"] = "Track";
+    Session["SessBookingType"] = "Lab";
     ViewBag.Title = "Booking";
-    Layout = "~/Views/Shared/_LayoutTrackBookingAndRFQ.cshtml";
+    Layout = "~/Views/Shared/_LayoutLabBookingAndRFQ.cshtml";
 }
 <style>
+
     .card {
         margin-bottom: 0px !important;
         margin-top: 10px !important;
@@ -21,7 +22,6 @@
         margin-top: 0 !important;
     }
 </style>
-
 <div class="content">
     <div class="container-fluid">
         @using (Html.BeginForm(new { @class = "form-horizontal" }))
@@ -31,7 +31,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">
-                            Track Booking
+                            Lab Booking
                         </h4>
                     </div>
                     <div class="card" style="        margin-bottom: 10px !important;">

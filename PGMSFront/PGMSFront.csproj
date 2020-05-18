@@ -858,6 +858,9 @@
     <Content Include="Views\Home\TrackAddOnServicesBooking - Copy.cshtml" />
     <Content Include="Views\Home\MainLabBooking - Copy.cshtml" />
     <Content Include="Views\Home\Component - Copy.cshtml" />
+    <Content Include="Views\Shared\_LayoutLab.cshtml" />
+    <Content Include="Views\Home\LabBookingsAndRFQ.cshtml" />
+    <Content Include="Views\Shared\_LayoutLabBookingAndRFQ.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

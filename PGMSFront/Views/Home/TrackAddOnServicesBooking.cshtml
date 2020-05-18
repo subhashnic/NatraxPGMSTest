@@ -1,7 +1,14 @@
 ﻿@model PGMSFront.Models.CommonModel
 @{
     ViewBag.Title = "Add-On Services";
-    Layout = "~/Views/Shared/_LayoutTrack.cshtml";
+    if(Session["SessBookingType"] == "Track")
+    {
+        Layout = "~/Views/Shared/_LayoutTrack.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutLab.cshtml";
+    }
 }
 
 <style>

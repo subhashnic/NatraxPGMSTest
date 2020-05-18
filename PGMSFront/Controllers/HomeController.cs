@@ -19,7 +19,7 @@ namespace PGMSFront.Controllers
         #region Global Variables
         Service1Client objServiceClient = new Service1Client();
         ClassUserFunctions objClassUserFunctions = new ClassUserFunctions();
-        static string strRptURL= System.Configuration.ConfigurationManager.AppSettings["ReportUrl"];
+        static string strRptURL = System.Configuration.ConfigurationManager.AppSettings["ReportUrl"];
         static string strPOURL = System.Configuration.ConfigurationManager.AppSettings["strPOURL"];
         #endregion
 
@@ -458,7 +458,7 @@ namespace PGMSFront.Controllers
                     model.StatusPropId = Convert.ToInt32(objdbmlBooking.StatusPropId);
                     model.DocId = objdbmlBooking.BookingId;
                     model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), objdbmlBooking.BookingId);
-                    model.POURL = strPOURL+ objdbmlBooking.PODocPath;
+                    model.POURL = strPOURL + objdbmlBooking.PODocPath;
                 }
                 else
                 {
@@ -467,8 +467,8 @@ namespace PGMSFront.Controllers
                     model.DocType = "Booking";
                     model.WorkFlowId = Convert.ToInt32(HardCodeValues.BookingWFId);
                     model.StatusPropId = Convert.ToInt32(HardCodeValues.OpenStatusId);
-                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]),0);
-                } 
+                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), 0);
+                }
             }
             catch
             {
@@ -558,7 +558,7 @@ namespace PGMSFront.Controllers
                 model.CreateDate = DateTime.Now;
                 model.UpdateId = Convert.ToInt32(Session["UserId"]);
                 model.UpdateDate = DateTime.Now;
-                model.StatusPropId = Convert.ToInt32(HardCodeValues.OpenStatusId); 
+                model.StatusPropId = Convert.ToInt32(HardCodeValues.OpenStatusId);
                 if (model.BookingId <= 0)
                 {
                     model.BookingNo = "Temp";
@@ -664,11 +664,11 @@ namespace PGMSFront.Controllers
             return Items;
         }
 
-        public ObservableCollection<dbmlWorkFlowView> WorkFlowViewGetByBPId(int intBPId,int intDocId)
+        public ObservableCollection<dbmlWorkFlowView> WorkFlowViewGetByBPId(int intBPId, int intDocId)
         {
             ObservableCollection<dbmlWorkFlowView> objdbmlWorkFlowView = new ObservableCollection<dbmlWorkFlowView>();
             try
-            {               
+            {
                 //if (Session["WorkFlowView"] != null)
                 //{
                 //    GeneralColl<dbmlWorkFlowView>.CopyCollection(Session["WorkFlowView"] as ObservableCollection<dbmlWorkFlowView>, objdbmlWorkFlowView);
@@ -681,7 +681,7 @@ namespace PGMSFront.Controllers
                         Session["WorkFlowView"] = objreturndbmlWorkFlowView.objdbmlWorkFlowView;
                         objdbmlWorkFlowView = objreturndbmlWorkFlowView.objdbmlWorkFlowView;
                     }
-                }               
+                }
             }
             catch
             {
@@ -704,13 +704,13 @@ namespace PGMSFront.Controllers
             returndbmlBooking objreturndbmlBooking = new returndbmlBooking();
 
             try
-            {              
+            {
 
                 if (Session["objdbmlBooking"] != null)
                 {
                     dbmlBookingView objdbmlBooking = new dbmlBookingView();
                     GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
-                   
+
                     objreturndbmlBooking = objServiceClient.WorkFlowActivityInsert(objdbmlBooking.BookingId, Convert.ToInt32(Session["BPId"]), Convert.ToInt32(objdbmlBooking.ZZWorkFlowId), Convert.ToInt32(HardCodeValues.SubmitStatusId), "", Convert.ToInt32(Session["UserId"]));
                     if (objreturndbmlBooking != null && objreturndbmlBooking.objdbmlStatus.StatusId == 1)
                     {
@@ -722,7 +722,7 @@ namespace PGMSFront.Controllers
                     {
                         strStatus = objreturndbmlBooking.objdbmlStatus.Status;
                     }
-                }                           
+                }
             }
             catch (Exception ex)
             {
@@ -740,7 +740,7 @@ namespace PGMSFront.Controllers
             returndbmlBooking objreturndbmlBooking = new returndbmlBooking();
             int intStatusId = 99;
             string strStatus = "Invalid";
-           
+
             try
             {
 
@@ -750,7 +750,7 @@ namespace PGMSFront.Controllers
                     GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
 
                     HttpPostedFileBase file = Request.Files["ImageData"];
-                   if(file.InputStream.Length>0)
+                    if (file.InputStream.Length > 0)
                     {
                         string strFileExtention = file.ContentType;
                         if (strFileExtention.ToLower() == "image/jpeg" || strFileExtention.ToLower() == "application/pdf")
@@ -762,7 +762,7 @@ namespace PGMSFront.Controllers
                                 bool blnStatus = false;
                                 string strFTPUserName = System.Configuration.ConfigurationManager.AppSettings["strFTPUserName"];
                                 string strFTPUserPSW = System.Configuration.ConfigurationManager.AppSettings["strFTPUserPassword"];
-                                string strFTPUrl = System.Configuration.ConfigurationManager.AppSettings["strFTPServer"];                             
+                                string strFTPUrl = System.Configuration.ConfigurationManager.AppSettings["strFTPServer"];
                                 string strFTPRoot = System.Configuration.ConfigurationManager.AppSettings["strFTPRoot"];
 
                                 string strBlobAccount = System.Configuration.ConfigurationManager.AppSettings["strBlobAccount"];
@@ -770,13 +770,13 @@ namespace PGMSFront.Controllers
                                 string strFileStorage = System.Configuration.ConfigurationManager.AppSettings["strFileStorage"];
 
                                 string strImageName = "PO_" + Convert.ToString(objdbmlBooking.BookingId) + "." + strFileExtention;
-                                string strImageContainerName = "";                              
-                                string strImageURL = "";                              
+                                string strImageContainerName = "";
+                                string strImageURL = "";
                                 string strFTPFilePath = "";
                                 if (strFileStorage == "FTP")
                                 {
                                     ////////////////////// For FTP /////////////////////////////////////////////                       
-                                    strFTPFilePath = strFTPRoot + strImageName;                                                               
+                                    strFTPFilePath = strFTPRoot + strImageName;
 
                                     blnStatus = objClassUserFunctions.UploadImageToFTPFromWEBCLIENT(strFTPUrl, strFTPUserName, strFTPUserPSW, byteImage, strFTPFilePath);
                                 }
@@ -790,7 +790,7 @@ namespace PGMSFront.Controllers
                                 if (blnStatus)
                                 {
                                     objdbmlBooking.PODocPath = strImageName;
-                                    objdbmlBooking.UpdateId = Convert.ToInt32(Session["UserId"]);                                   
+                                    objdbmlBooking.UpdateId = Convert.ToInt32(Session["UserId"]);
                                     objdbmlBooking.UpdateDate = DateTime.Now;
 
                                     returndbmlBooking objreturndbmlBookingTemp = new returndbmlBooking();
@@ -804,7 +804,7 @@ namespace PGMSFront.Controllers
                                         Session["objdbmlBooking"] = objreturndbmlBooking.objdbmlBookingList.FirstOrDefault();
                                         intStatusId = 1;
                                         strStatus = "PO Uploaded Successfully";
-                                    }                                                                      
+                                    }
                                     else
                                     {
                                         if (strFileStorage == "FTP")
@@ -834,9 +834,9 @@ namespace PGMSFront.Controllers
                         {
                             strStatus = "Only (JPEG, PDF) format can be accepted!";
                         }
-                    }                    
-                }             
-                
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -874,7 +874,7 @@ namespace PGMSFront.Controllers
                 if (Session["objdbmlBooking"] != null)
                 {
                     dbmlBookingView objdbmlBooking = new dbmlBookingView();
-                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);                 
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
                     model.DocDate = objdbmlBooking.ZZBookingDate;
                     model.DocNo = objdbmlBooking.BookingNo;
                     model.DocType = objdbmlBooking.ZZBookingType;
@@ -882,7 +882,7 @@ namespace PGMSFront.Controllers
                     model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
                     model.StatusPropId = Convert.ToInt32(objdbmlBooking.StatusPropId);
                     model.BPId = Convert.ToInt32(Session["BPId"]);
-                    model.ReportURL = strRptURL;                   
+                    model.ReportURL = strRptURL;
                     model.DocId = objdbmlBooking.BookingId;
                     model.POURL = strPOURL + objdbmlBooking.PODocPath;
 
@@ -961,7 +961,7 @@ namespace PGMSFront.Controllers
                     objreturndbmlVehicle = objServiceClient.ListOfVehicleComponentGetByDocId(objdbmlBooking.BookingId);
                     if (objreturndbmlVehicle.objdbmlStatus.StatusId == 1)
                     {
-                        objreturndbmlVehicle.objdbmlListOfVehicleComponent = new ObservableCollection<dbmlListOfVehicleComponent>(objreturndbmlVehicle.objdbmlListOfVehicleComponent.Where(itm=>itm.GroupId== Convert.ToInt32(HardCodeValues.VehicleGrpPropId)));
+                        objreturndbmlVehicle.objdbmlListOfVehicleComponent = new ObservableCollection<dbmlListOfVehicleComponent>(objreturndbmlVehicle.objdbmlListOfVehicleComponent.Where(itm => itm.GroupId == Convert.ToInt32(HardCodeValues.VehicleGrpPropId)));
                         intStatusId = 1;
                         strStatus = "Success";
                     }
@@ -1381,7 +1381,7 @@ namespace PGMSFront.Controllers
                     {
                         Items.Add(new SelectListItem { Text = itm.OptionName, Value = itm.OptionListId.ToString(), Selected = false });
                     }
-                }               
+                }
             }
             catch
             {
@@ -1513,7 +1513,7 @@ namespace PGMSFront.Controllers
                 model.EmailId = Convert.ToString(Session["EmailId"]);
                 model.LoginId = Convert.ToString(Session["LoginId"]);
                 model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
-                model.UserCode = Convert.ToString(Session["UserCode"]);               
+                model.UserCode = Convert.ToString(Session["UserCode"]);
                 model.TrackGroup = "Track Booking";
                 model.ViewTitle = "Track Booking";
                 model.StateId = Convert.ToInt32(Session["StateId"]);
@@ -1608,7 +1608,7 @@ namespace PGMSFront.Controllers
             ObservableCollection<dbmlServicesView> objdbmlServicesView = new ObservableCollection<dbmlServicesView>();
             if (Session["Services"] != null)
             {
-                GeneralColl<dbmlServicesView>.CopyCollection(Session["Services"] as ObservableCollection<dbmlServicesView>, objdbmlServicesView);                
+                GeneralColl<dbmlServicesView>.CopyCollection(Session["Services"] as ObservableCollection<dbmlServicesView>, objdbmlServicesView);
             }
             if (intTrackGroupId > 0)
             {
@@ -1616,7 +1616,7 @@ namespace PGMSFront.Controllers
             }
             else
             {
-                objdbmlServicesView = new ObservableCollection<dbmlServicesView>(objdbmlServicesView.Where(itm => itm.TrackGroupId >0).OrderBy(itm => itm.SrNo));
+                objdbmlServicesView = new ObservableCollection<dbmlServicesView>(objdbmlServicesView.Where(itm => itm.TrackGroupId > 0).OrderBy(itm => itm.SrNo));
             }
 
             returndbmlTrackBookingDetail objreturndbmlTrackBookingDetail = new returndbmlTrackBookingDetail();
@@ -1717,7 +1717,7 @@ namespace PGMSFront.Controllers
                         if (intGroupRoundHrs < intMinBillHrs)
                         {
                             int intServiceId = Convert.ToInt32(model.OrderByDescending(itm => Convert.ToInt32(itm.TotalHours)).ThenByDescending(itm => Convert.ToInt32(itm.TotalMinutes)).ThenBy(itm => Convert.ToDecimal(itm.Rate)).ThenBy(itm => Convert.ToInt32(itm.SrNo)).First().ServiceId);
-                            model.FirstOrDefault(itm => itm.ServiceId == intServiceId).BillingHrs += (intMinBillHrs - intGroupRoundHrs);                            
+                            model.FirstOrDefault(itm => itm.ServiceId == intServiceId).BillingHrs += (intMinBillHrs - intGroupRoundHrs);
                         }
                     }
                     else
@@ -2006,9 +2006,9 @@ namespace PGMSFront.Controllers
                 {
                     Session["WorkShopServices"] = objreturndbmlServicesView.objdbmlServicesView;
                 }
-                
+
                 ViewBag.ServiveLookup = GetWorkShopServiveLookup(Convert.ToInt32(HardCodeValues.ServiceBPIdWorkShop));
-               
+
                 if (Session["objdbmlBooking"] != null)
                 {
                     dbmlBookingView objdbmlBooking = new dbmlBookingView();
@@ -2064,7 +2064,7 @@ namespace PGMSFront.Controllers
                     {
                         return RedirectToAction("MainLabBooking", "Home");
                     }
-                    
+
                 }
 
                 if (btnPrevNext.ToLower() == "next")
@@ -2249,7 +2249,7 @@ namespace PGMSFront.Controllers
                     {
                         if (Items.FirstOrDefault(itmTrack => Convert.ToInt32(itmTrack.Value) == itm.ServiceId) == null)
                         {
-                            Items.Add(new SelectListItem { Text = itm.ServiceName +" "+itm.ServiceSpecification, Value = itm.ServiceId.ToString(), Selected = false });
+                            Items.Add(new SelectListItem { Text = itm.ServiceName + " " + itm.ServiceSpecification, Value = itm.ServiceId.ToString(), Selected = false });
                         }
                     }
                 }
@@ -2654,12 +2654,12 @@ namespace PGMSFront.Controllers
             returndbmlListOfVehicleComponent objreturndbmlListOfVehicleComponent = new returndbmlListOfVehicleComponent();
 
             try
-            {                
+            {
                 if (Session["LabServices"] != null)
                 {
                     GeneralColl<dbmlServicesView>.CopyCollection(Session["LabServices"] as ObservableCollection<dbmlServicesView>, objdbmlServicesView);
                 }
-               
+
                 if (Session["LablinkVorC"] != null)
                 {
                     GeneralColl<dbmlLablinkVorC>.CopyCollection(Session["LablinkVorC"] as ObservableCollection<dbmlLablinkVorC>, objdbmlLablinkVorC);
@@ -2682,7 +2682,7 @@ namespace PGMSFront.Controllers
                     }
 
                     objreturndbmlListOfVehicleComponent = objServiceClient.ListOfVehicleComponentGetByDocId(objdbmlBooking.BookingId);
-                   
+
                 }
                 else
                 {
@@ -2693,7 +2693,7 @@ namespace PGMSFront.Controllers
             {
                 strStatus = ex.Message;
             }
-            return Json(new { Status = strStatus, StatusId = intStatusId, ServiceList= objdbmlServicesView, LablinkVorCList= objdbmlLablinkVorC, VehicleCompList= objreturndbmlListOfVehicleComponent.objdbmlListOfVehicleComponent, LabServicesList = objreturndbmlLabBookingDetailViewFront.objdbmlLabBookingDetailViewFront }, JsonRequestBehavior.AllowGet);
+            return Json(new { Status = strStatus, StatusId = intStatusId, ServiceList = objdbmlServicesView, LablinkVorCList = objdbmlLablinkVorC, VehicleCompList = objreturndbmlListOfVehicleComponent.objdbmlListOfVehicleComponent, LabServicesList = objreturndbmlLabBookingDetailViewFront.objdbmlLabBookingDetailViewFront }, JsonRequestBehavior.AllowGet);
         }
 
         [ValidateAntiForgeryToken]
@@ -2868,6 +2868,11 @@ namespace PGMSFront.Controllers
             };
         }
         #endregion
+
+        public ActionResult LabBookingsAndRFQ()
+        {
+            return View();
+        }
 
         public ActionResult LabWorkshopBooking()
         {
