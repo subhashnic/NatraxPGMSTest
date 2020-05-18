@@ -97,31 +97,33 @@
     ///////////////////////////// Load Basic Info  //////////////////////////////////////////////////////
     function LoadBookingInfo() {
         try {
-            LoaderShow();
-            var data = { 'intDepartmentId': $("#DepartmentId").val(), 'intBookingTypeId': $("#BookingTypeId").val(), 'intStatusPropId': $("#StatusId").val() };
-            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
-            $.ajax({
-                url: '@Url.Action("BookingSearchViewGetByDepartmentBookinStatus", "Home")',
-                type: 'POST',
-                dataType: 'json',
-                async: true,
-                data: dataWithAntiforgeryToken,
-                success: function (data) {                   
-                    LoaderHide();
-                    if (data.StatusId != "99" && data.StatusId != "-99") {
-                        BookingList = data.BookingList;
-                        BindGridData(data.BookingList);
-                    }
-                    else {
-                        alert(data.Status);
-                    }
-                },
-                error: function (xhr) {
+            if ($("#DepartmentId").val() != undefined && parseInt($("#DepartmentId").val()) != 0) {
+                LoaderShow();
+                var data = { 'intDepartmentId': $("#DepartmentId").val(), 'intBookingTypeId': $("#BookingTypeId").val(), 'intStatusPropId': $("#StatusId").val() };
+                var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+                $.ajax({
+                    url: '@Url.Action("BookingSearchViewGetByDepartmentBookinStatus", "Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    data: dataWithAntiforgeryToken,
+                    success: function (data) {
+                        LoaderHide();
+                        if (data.StatusId != "99" && data.StatusId != "-99") {
+                            BookingList = data.BookingList;
+                            BindGridData(data.BookingList);
+                        }
+                        else {
+                            alert(data.Status);
+                        }
+                    },
+                    error: function (xhr) {
 
-                    LoaderHide();
-                    alert(xhr.responseText);
-                }
-            });
+                        LoaderHide();
+                        alert(xhr.responseText);
+                    }
+                });
+            }
         }
         catch (e) {
 
