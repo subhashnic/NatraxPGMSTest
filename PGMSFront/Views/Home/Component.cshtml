@@ -430,7 +430,7 @@
                 gridData = gridData + "<td>" + NullHandle(data[i].Description2) + "</td>";
                 gridData = gridData + "<td>" + NullHandle(data[i].VorC) + "</td>";
 
-                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6)) {
+                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                     gridData = gridData + "<td class='td-actions text-center'>";
                     gridData = gridData + "<a href='#' class='btn btn-info' title='Edit Component : " + NullHandle(data[i].VorC)+"' onclick='return ComponentEdit(" + NullHandle(data[i].VehCompId) + ")' > <i class='material-icons'>edit</i></a>&nbsp;";
                     gridData = gridData + "<a href='#' class='btn btn-danger' title='Delete Component : " + NullHandle(data[i].VorC) +"' onclick='return ComponentDelete(" + NullHandle(data[i].VehCompId)+")'><i class='material-icons'>close</i></a>";
@@ -455,7 +455,7 @@
     ///////////////////////////// Set Button Visibility  //////////////////////////////////////////////////////
     function SetButtonVisibility() {
         try {
-            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6)) {
+            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                 $("#btnAdd").attr('disabled', false);
             }
             else {

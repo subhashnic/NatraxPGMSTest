@@ -372,7 +372,7 @@ namespace PGMSFront.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            
+
             returndbmlBooking objreturndbmlBooking = new returndbmlBooking();
             try
             {
@@ -381,7 +381,7 @@ namespace PGMSFront.Controllers
                 if (objreturndbmlBooking != null && objreturndbmlBooking.objdbmlStatus.StatusId == 1)
                 {
                     Session["objdbmlBooking"] = objreturndbmlBooking.objdbmlBookingList.FirstOrDefault();
-                    Session["BPId"] = objreturndbmlBooking.objdbmlBookingList.FirstOrDefault().BPId;                   
+                    Session["BPId"] = objreturndbmlBooking.objdbmlBookingList.FirstOrDefault().BPId;
                 }
             }
             catch
@@ -398,7 +398,7 @@ namespace PGMSFront.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            
+
             try
             {
                 Session["BPId"] = intBPId;
@@ -432,7 +432,7 @@ namespace PGMSFront.Controllers
             List<SelectListItem> Items = new List<SelectListItem>();
             try
             {
-                Items.Add(new SelectListItem { Text = "Lab Booking", Value = Convert.ToString(Convert.ToInt32(HardCodeValues.LabBookingBPId)) });              
+                Items.Add(new SelectListItem { Text = "Lab Booking", Value = Convert.ToString(Convert.ToInt32(HardCodeValues.LabBookingBPId)) });
                 Items.Add(new SelectListItem { Text = "Lab RFQ", Value = Convert.ToString(Convert.ToInt32(HardCodeValues.LabRFQRegBPId)) });
             }
             catch
@@ -520,7 +520,7 @@ namespace PGMSFront.Controllers
             }
 
             return View(model);
-    }
+        }
 
         public ActionResult LabBookingHistory()
         {
@@ -574,7 +574,7 @@ namespace PGMSFront.Controllers
                 model.EmailId = Convert.ToString(Session["EmailId"]);
                 model.LoginId = Convert.ToString(Session["LoginId"]);
                 model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
-                model.UserCode = Convert.ToString(Session["UserCode"]);             
+                model.UserCode = Convert.ToString(Session["UserCode"]);
                 model.StateId = Convert.ToInt32(Session["StateId"]);
                 model.BPId = Convert.ToInt32(Session["BPId"]);
                 model.ReportURL = strRptURL;
@@ -600,16 +600,25 @@ namespace PGMSFront.Controllers
                     model.DocDate = "To be allotted";
                     model.DocNo = "To be allotted";
                     model.DocType = "Booking";
-                    switch(Convert.ToInt32(Session["BPId"]))
+                    switch (Convert.ToInt32(Session["BPId"]))
                     {
                         case 21:
                             model.WorkFlowId = Convert.ToInt32(HardCodeValues.BookingWFId);
                             break;
+                        case 98:
+                            model.WorkFlowId = Convert.ToInt32(HardCodeValues.RFQConfWFId);
+                            break;
+                        case 46:
+                            model.WorkFlowId = Convert.ToInt32(HardCodeValues.RFQRegWFId);
+                            break;
                         case 90:
                             model.WorkFlowId = Convert.ToInt32(HardCodeValues.LabBookingWFId);
                             break;
+                        case 91:
+                            model.WorkFlowId = Convert.ToInt32(HardCodeValues.LabRFQRegWFId);
+                            break;
                     }
-                   
+
                     model.StatusPropId = Convert.ToInt32(HardCodeValues.OpenStatusId);
                     model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), 0);
                 }
@@ -835,7 +844,60 @@ namespace PGMSFront.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        public ActionResult AcceptPI()
+        public ActionResult AcceptPI(int intQuotFlag)
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlBooking objreturndbmlBooking = new returndbmlBooking();
+
+            try
+            {
+
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+                    returndbmlStatus objreturndbmlStatus = new returndbmlStatus();
+                    objreturndbmlStatus.objdbmlStatus.StatusId = 1;
+                    if (intQuotFlag == 1)
+                    {
+                        objreturndbmlStatus = objServiceClient.BookingQuotationPIDetailInsertByBookingId(objdbmlBooking.BookingId);
+                    }
+                    if (objreturndbmlStatus.objdbmlStatus.StatusId == 1)
+                    {
+                        objreturndbmlBooking = objServiceClient.WorkFlowActivityInsert(objdbmlBooking.BookingId, Convert.ToInt32(Session["BPId"]), Convert.ToInt32(objdbmlBooking.ZZWorkFlowId), Convert.ToInt32(HardCodeValues.SubmitStatusId), "", Convert.ToInt32(Session["UserId"]));
+                        if (objreturndbmlBooking != null && objreturndbmlBooking.objdbmlStatus.StatusId == 1)
+                        {
+                            Session["objdbmlBooking"] = objreturndbmlBooking.objdbmlBookingList.FirstOrDefault();
+                            intStatusId = 1;
+                            strStatus = "Data Saved Successfully";
+                        }
+                        else
+                        {
+                            strStatus = objreturndbmlBooking.objdbmlStatus.Status;
+                        }
+                    }
+                    else
+                    {
+                        strStatus = objreturndbmlBooking.objdbmlStatus.Status;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, BookingList = objreturndbmlBooking.objdbmlBookingList }, JsonRequestBehavior.AllowGet);
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult BookingQuotationPI()
         {
             if (Session["UserId"] == null)
             {
@@ -855,12 +917,11 @@ namespace PGMSFront.Controllers
                     dbmlBookingView objdbmlBooking = new dbmlBookingView();
                     GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
 
-                    objreturndbmlBooking = objServiceClient.WorkFlowActivityInsert(objdbmlBooking.BookingId, Convert.ToInt32(Session["BPId"]), Convert.ToInt32(objdbmlBooking.ZZWorkFlowId), Convert.ToInt32(HardCodeValues.SubmitStatusId), "", Convert.ToInt32(Session["UserId"]));
-                    if (objreturndbmlBooking != null && objreturndbmlBooking.objdbmlStatus.StatusId == 1)
+                    returndbmlStatus objreturndbmlStatus = objServiceClient.BookingQuotationPIDetailInsertByBookingId(objdbmlBooking.BookingId);
+                    if (objreturndbmlStatus.objdbmlStatus.StatusId == 1)
                     {
-                        Session["objdbmlBooking"] = objreturndbmlBooking.objdbmlBookingList.FirstOrDefault();
                         intStatusId = 1;
-                        strStatus = "Data Saved Successfully";
+                        strStatus = "Success";
                     }
                     else
                     {
@@ -872,7 +933,7 @@ namespace PGMSFront.Controllers
             {
                 strStatus = ex.Message;
             }
-            return Json(new { Status = strStatus, StatusId = intStatusId, BookingList = objreturndbmlBooking.objdbmlBookingList }, JsonRequestBehavior.AllowGet);
+            return Json(new { Status = strStatus, StatusId = intStatusId }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult POUpload()
@@ -1066,13 +1127,13 @@ namespace PGMSFront.Controllers
 
                 if (btnPrevNext.ToLower() == "next")
                 {
-                    if (Convert.ToInt32(Session["BPId"]) == 21)
+                    if (Convert.ToInt32(Session["BPId"]) == 90 || Convert.ToInt32(Session["BPId"]) == 91)
                     {
-                        return RedirectToAction("MainTrackBooking", "Home");
+                        return RedirectToAction("Component", "Home");
                     }
                     else
                     {
-                        return RedirectToAction("Component", "Home");
+                        return RedirectToAction("MainTrackBooking", "Home");
                     }
                 }
             }
@@ -1833,8 +1894,16 @@ namespace PGMSFront.Controllers
                         {
                             itm.BookingId = objdbmlBooking.BookingId;
                             itm.BookingDetailId = 0;
-                            itm.BPId = Convert.ToInt32(Session["BPId"]);
-                            itm.Date = objClassUserFunctions.ToDateTimeNotNull(itm.ZZDate);
+                            itm.BPId = Convert.ToInt32(HardCodeValues.ServiceBPIdTrack);
+                            if (objdbmlBooking.BPId == 46 || objdbmlBooking.BPId == 91)
+                            {
+                                itm.Date = objdbmlBooking.BookingDate.AddDays(Convert.ToInt32(itm.BookingDay) - 1);
+                            }
+                            else
+                            {
+                                itm.Date = objClassUserFunctions.ToDateTimeNotNull(itm.ZZDate);
+                            }
+                            
                             itm.CreateId = Convert.ToInt32(Session["UserId"]);
                             itm.CreateDate = DateTime.Now;
                             itm.UpdateId = Convert.ToInt32(Session["UserId"]);
@@ -1870,8 +1939,15 @@ namespace PGMSFront.Controllers
                         {
                             itm.BookingId = objdbmlBooking.BookingId;
                             itm.BookingDetailId = 0;
-                            itm.BPId = Convert.ToInt32(Session["BPId"]);
-                            itm.Date = objClassUserFunctions.ToDateTimeNotNull(itm.ZZDate);
+                            itm.BPId = Convert.ToInt32(HardCodeValues.ServiceBPIdTrack);
+                            if (objdbmlBooking.BPId == 46 || objdbmlBooking.BPId == 91)
+                            {
+                                itm.Date = objdbmlBooking.BookingDate.AddDays(Convert.ToInt32(itm.BookingDay) - 1);
+                            }
+                            else
+                            {
+                                itm.Date = objClassUserFunctions.ToDateTimeNotNull(itm.ZZDate);
+                            }
                             itm.CreateId = Convert.ToInt32(Session["UserId"]);
                             itm.CreateDate = DateTime.Now;
                             itm.UpdateId = Convert.ToInt32(Session["UserId"]);
@@ -1937,7 +2013,18 @@ namespace PGMSFront.Controllers
 
             try
             {
-                DateTime dtWED = objClassUserFunctions.ToDateTimeNotNull(strWED);
+                dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+
+                DateTime dtWED = DateTime.Now;
+                if (objdbmlBooking.BPId == 46 || objdbmlBooking.BPId == 91)
+                {
+                    dtWED = objdbmlBooking.BookingDate.AddDays(Convert.ToInt32(strWED)-1);
+                }
+                else
+                {
+                    dtWED = objClassUserFunctions.ToDateTimeNotNull(strWED);
+                }               
 
                 objreturndbmlBookingStatusTimeSlotView = objServiceClient.BookingStatusGetByServiceIdTimeSlotPropIdWEFDate(intlstServiceId, intTimeSlotId, dtWED);
 
@@ -2200,13 +2287,13 @@ namespace PGMSFront.Controllers
 
                 if (btnPrevNext.ToLower() == "prev")
                 {
-                    if (Convert.ToInt32(Session["BPId"]) == 21)
+                    if (Convert.ToInt32(Session["BPId"]) == 90 || Convert.ToInt32(Session["BPId"]) == 91)
                     {
-                        return RedirectToAction("MainTrackBooking", "Home");
+                        return RedirectToAction("MainLabBooking", "Home"); 
                     }
                     else
                     {
-                        return RedirectToAction("MainLabBooking", "Home");
+                        return RedirectToAction("MainTrackBooking", "Home");
                     }
 
                 }
@@ -2286,8 +2373,15 @@ namespace PGMSFront.Controllers
                     GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
 
                     model.BookingId = objdbmlBooking.BookingId;
-                    model.RefServiceBPId = Convert.ToInt32(Session["BPId"]);
-                    model.UsageDate = objClassUserFunctions.ToDateTimeNotNull(model.ZZUsageDate);
+                    model.RefServiceBPId = Convert.ToInt32(HardCodeValues.ServiceBPIdWorkShop);
+                    if (objdbmlBooking.BPId == 46 || objdbmlBooking.BPId == 91)
+                    {
+                        model.UsageDate = objdbmlBooking.BookingDate.AddDays(Convert.ToInt32(model.BookingDay) - 1);
+                    }
+                    else
+                    {
+                        model.UsageDate = objClassUserFunctions.ToDateTimeNotNull(model.ZZUsageDate);
+                    }
                     model.CreateId = Convert.ToInt32(Session["UserId"]);
                     model.CreateDate = DateTime.Now;
                     model.UpdateId = Convert.ToInt32(Session["UserId"]);
@@ -2565,8 +2659,15 @@ namespace PGMSFront.Controllers
                     GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
 
                     model.BookingId = objdbmlBooking.BookingId;
-                    model.BPId = Convert.ToInt32(Session["BPId"]);
-                    model.ServiceDate = objClassUserFunctions.ToDateTimeNotNull(model.ZZServiceDate);
+                    model.BPId = Convert.ToInt32(HardCodeValues.ServiceBPIdAddOn);
+                    if (objdbmlBooking.BPId == 46 || objdbmlBooking.BPId == 91)
+                    {
+                        model.ServiceDate = objdbmlBooking.BookingDate.AddDays(Convert.ToInt32(model.BookingDay) - 1);
+                    }
+                    else
+                    {
+                        model.ServiceDate = objClassUserFunctions.ToDateTimeNotNull(model.ZZServiceDate);
+                    }
                     model.CreateId = Convert.ToInt32(Session["UserId"]);
                     model.CreateDate = DateTime.Now;
                     model.UpdateId = Convert.ToInt32(Session["UserId"]);
@@ -2861,8 +2962,16 @@ namespace PGMSFront.Controllers
                     GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
 
                     model.BookingId = objdbmlBooking.BookingId;
-                    model.RefServiceBPId = Convert.ToInt32(Session["BPId"]);
-                    model.UsageDate = objClassUserFunctions.ToDateTimeNotNull(model.ZZUsageDate);
+                    model.RefServiceBPId = Convert.ToInt32(HardCodeValues.ServiceBPIdLab);
+                    if (objdbmlBooking.BPId == 46 || objdbmlBooking.BPId == 91)
+                    {
+                        model.UsageDate = objdbmlBooking.BookingDate.AddDays(Convert.ToInt32(model.BookingDay) - 1);
+                    }
+                    else
+                    {
+                        model.UsageDate = objClassUserFunctions.ToDateTimeNotNull(model.ZZUsageDate);
+                    }
+                   
                     model.CreateId = Convert.ToInt32(Session["UserId"]);
                     model.CreateDate = DateTime.Now;
                     model.UpdateId = Convert.ToInt32(Session["UserId"]);
@@ -3013,7 +3122,7 @@ namespace PGMSFront.Controllers
         }
         #endregion
 
-       public ActionResult LabWorkshopBooking()
+        public ActionResult LabWorkshopBooking()
         {
             return View();
         }

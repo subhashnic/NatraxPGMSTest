@@ -64,9 +64,28 @@
                                         <thead class=" text-primary">
                                             <tr>
                                                 <th width="26%">Description</th>
-                                                <th width="12%" style="        text-align: center">Date</th>
-                                                <th width="12%" style="        text-align: center">Unit</th>
-                                                <th width="12%" style="        text-align: right">Rate</th>
+                                                @if (Model.BPId == 46 || Model.BPId == 91)
+                                                {
+                                                    <th width="12%" style="text-align: center">Day</th>
+                                                }
+                                                else
+                                                {
+                                                    <th width="12%" style="text-align: center">Date</th>
+                                                }                                              
+
+                                                <th width="12%" style="text-align: center">Unit</th>
+                                                @if (Model.WorkFlowId == 57 || Model.WorkFlowId == 58 ||
+                                                    Model.WorkFlowId == 29 || Model.WorkFlowId == 51 ||
+                                                    Model.WorkFlowId == 38 || Model.WorkFlowId == 53)
+                                                {
+                                                    <th width="12%" style="text-align: right;display:none">Rate</th>
+                                                }
+                                                else
+                                                {
+                                                    <th width="12%" style="text-align: right">Rate</th>
+                                                }
+
+
                                                 <th width="26%">Remark</th>
                                                 <th width="12%" class="text-center">Action</th>
                                             </tr>
@@ -82,15 +101,35 @@
                                                         }
                                                     </select>
                                                 </td>
-                                                <td><input id="Date" type="text" style="        text-align: center" onblur="SetRateUnit()" class="form-control datetimepicker" value=""></td>
-                                                <td><input id="Unit" disabled="disabled" type="text" style="        text-align: center" class="form-control" value=""></td>
-                                                <td><input id="Rate" disabled="disabled" type="text" style="        text-align: right" class="form-control" value=""></td>
+                                                @if (Model.BPId == 46 || Model.BPId == 91)
+                                                {
+                                                    <td><input id="Day" type="text" style="text-align: center" onkeypress='return CheckIsNumeric(event,this);' onchange="SetRateUnit()" class="form-control" value=""></td>
+                                                }
+                                                else
+                                                {
+                                                    <td><input id="Date" type="text" style="text-align: center" onblur="SetRateUnit()" class="form-control datetimepicker" value=""></td>
+                                                }
+
+
+                                                <td><input id="Unit" disabled="disabled" type="text" style="text-align: center" class="form-control" value=""></td>
+                                                @if (Model.WorkFlowId == 57 || Model.WorkFlowId == 58 ||
+                                                    Model.WorkFlowId == 29 || Model.WorkFlowId == 51 ||
+                                                    Model.WorkFlowId == 38 || Model.WorkFlowId == 53)
+                                                {
+                                                    <td style="display:none"><input id="Rate" disabled="disabled" type="text" style="text-align: right" class="form-control" value=""></td>
+                                                }
+                                                else
+                                                {
+                                                    <td><input id="Rate" disabled="disabled" type="text" style="text-align: right" class="form-control" value=""></td>
+                                                }
+
+
                                                 <td><textarea id="Remark" class="form-control"></textarea></td>
                                                 <td class='td-actions text-center'>
                                                     <button type='button' rel='tooltip' id="btnSave" onclick="return WorkshopBookingSave()" class='btn btn-info' data-original-title='' title=''><i class='material-icons'>save</i></button>
                                                     <button type='button' rel='tooltip' class='btn btn-danger' data-original-title='' title='' onclick="AddMoreCancel()"><i class='material-icons'>close</i></button>
                                                 </td>
-                                                <td style='        display: none'><input type='hidden' id='hdnUOMPropId' /> </td>
+                                                <td style='display: none'><input type='hidden' id='hdnUOMPropId' /> </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -135,6 +174,9 @@
         $("#AddMoreTR").find("input[type='text'][id='Date']").each(function () {
             $(this).val("");
             $('.datetimepicker').datetimepicker({ theme: 'light', timepicker: false, format: 'd-m-Y', scrollMonth: false, scrollInput: false });
+        });
+        $("#AddMoreTR").find("input[type='text'][id='Day']").each(function () {
+            $(this).val("");
         });
         $("#AddMoreTR").find("input[type='text'][id='Unit']").each(function () {
             $(this).val("");
@@ -219,6 +261,9 @@
                     $(this).val(NullHandle(varWS[0].ZZUsageDate));
                     $('.datetimepicker').datetimepicker({ theme: 'light', timepicker: false, format: 'd-m-Y', scrollMonth: false, scrollInput: false });
                 });
+                $("#AddMoreTR").find("input[type='text'][id='Day']").each(function () {
+                    $(this).val(NullHandle(varWS[0].BookingDay));
+                });
                 $("#AddMoreTR").find("input[type='text'][id='Unit']").each(function () {
                     $(this).val(NullHandle(varWS[0].ZZUOM));
                 });
@@ -268,12 +313,23 @@
                     strMSG = strMSG + 'Select Description \n</br>'
                 }
             });
-            $("#AddMoreTR").find("input[type='text'][id='Date']").each(function () {
-                model.ZZUsageDate = $(this).val().trim();
-                if ($(this).val().trim() == "") {
-                    strMSG = strMSG + 'Select Date \n</br>'
-                }
-            });
+            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                $("#AddMoreTR").find("input[type='text'][id='Day']").each(function () {
+                    model.BookingDay = $(this).val().trim();
+                    if ($(this).val().trim() == "") {
+                        strMSG = strMSG + 'Day \n</br>'
+                    }
+                });
+            }
+            else {
+                $("#AddMoreTR").find("input[type='text'][id='Date']").each(function () {
+                    model.ZZUsageDate = $(this).val().trim();
+                    if ($(this).val().trim() == "") {
+                        strMSG = strMSG + 'Select Date \n</br>'
+                    }
+                });
+            }
+           
             $("#AddMoreTR").find("input[type='hidden'][id='hdnUOMPropId']").each(function () {
                 model.UOMPropId = $(this).val();
             });
@@ -417,12 +473,28 @@
                 gridData = gridData + "<tr >";
 
                 gridData = gridData + "<td>" + NullHandle(data[i].ZZServiceName) + "</td>";
-                gridData = gridData + "<td style='text-align:center'>" + NullHandle(data[i].ZZUsageDate) + "</td>";
+
+                if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                    gridData = gridData + "<td style='text-align:center'>" + NullHandle(data[i].BookingDay) + "</td>";
+                }
+                else {
+                    gridData = gridData + "<td style='text-align:center'>" + NullHandle(data[i].ZZUsageDate) + "</td>";
+                }
+               
                 gridData = gridData + "<td style='text-align:center'>" + NullHandle(data[i].ZZUOM) + "</td>";
-                gridData = gridData + "<td style='text-align:right'>" + NullHandle(data[i].Rate) + "</td>";
+
+                if (parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 58 ||
+                    parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 51 ||
+                    parseInt($("#WorkFlowId").val()) == 38 || parseInt($("#WorkFlowId").val()) == 53) {
+                    gridData = gridData + "<td style='text-align:right;display:none'>" + NullHandle(data[i].Rate) + "</td>";
+                }
+                else {
+                    gridData = gridData + "<td style='text-align:right'>" + NullHandle(data[i].Rate) + "</td>";
+                }
+               
                 gridData = gridData + "<td>" + NullHandle(data[i].Remark) + "</td>";
 
-                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6)) {
+                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                     gridData = gridData + "<td class='td-actions text-center'>";
                     gridData = gridData + "<button type='button' rel='tooltip' class='btn btn-info' title='Edit Workshop : " + NullHandle(data[i].ZZServiceName) + "' onclick='return WorkshopBookingEdit(" + NullHandle(data[i].WorkshopBookingDetailId) + ")' > <i class='material-icons'>edit</i></button>&nbsp;";
                     gridData = gridData + "<button type='button' rel='tooltip' class='btn btn-danger' title='Delete Workshop : " + NullHandle(data[i].ZZServiceName) + "' onclick='return WorkshopBookingDelete(" + NullHandle(data[i].WorkshopBookingDetailId) +")'><i class='material-icons'>close</i></button>";
@@ -448,7 +520,13 @@
     function SetRateUnit() {
         try {
 
-            var varDate = $("#Date").val().trim();
+            var varDate = "";
+            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                varDate = $("#Day").val().trim();
+            }
+            else {
+                varDate = $("#Date").val().trim();
+            }
             var varServiceId = $("#ServiceType").val();
             var varTimeSlotId = 0;
 
@@ -524,7 +602,7 @@
     ///////////////////////////// Set Button Visibility  //////////////////////////////////////////////////////
     function SetButtonVisibility() {
         try {
-            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6)) {
+            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                 $("#btnAdd").attr('disabled', false);
             }
             else {

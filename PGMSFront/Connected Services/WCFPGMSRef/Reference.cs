@@ -2620,6 +2620,9 @@ namespace PGMSFront.WCFPGMSRef {
         private string DepartmentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DepartmentIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> DocNoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2632,13 +2635,16 @@ namespace PGMSFront.WCFPGMSRef {
         private System.Nullable<int> StatusPropIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> WorkFlowIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ZZActivityField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ZZStatusField;
+        private string ZZBookingDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ZZUpdatedByField;
+        private string ZZStatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ZZWorkFlowColorField;
@@ -2748,6 +2754,19 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DepartmentId {
+            get {
+                return this.DepartmentIdField;
+            }
+            set {
+                if ((this.DepartmentIdField.Equals(value) != true)) {
+                    this.DepartmentIdField = value;
+                    this.RaisePropertyChanged("DepartmentId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> DocNo {
             get {
                 return this.DocNoField;
@@ -2800,6 +2819,19 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> WorkFlowId {
+            get {
+                return this.WorkFlowIdField;
+            }
+            set {
+                if ((this.WorkFlowIdField.Equals(value) != true)) {
+                    this.WorkFlowIdField = value;
+                    this.RaisePropertyChanged("WorkFlowId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string ZZActivity {
             get {
                 return this.ZZActivityField;
@@ -2813,6 +2845,19 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZBookingDate {
+            get {
+                return this.ZZBookingDateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZBookingDateField, value) != true)) {
+                    this.ZZBookingDateField = value;
+                    this.RaisePropertyChanged("ZZBookingDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string ZZStatus {
             get {
                 return this.ZZStatusField;
@@ -2821,19 +2866,6 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((object.ReferenceEquals(this.ZZStatusField, value) != true)) {
                     this.ZZStatusField = value;
                     this.RaisePropertyChanged("ZZStatus");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ZZUpdatedBy {
-            get {
-                return this.ZZUpdatedByField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ZZUpdatedByField, value) != true)) {
-                    this.ZZUpdatedByField = value;
-                    this.RaisePropertyChanged("ZZUpdatedBy");
                 }
             }
         }
@@ -8790,6 +8822,12 @@ namespace PGMSFront.WCFPGMSRef {
             "sponse")]
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBookingSearchView> BookingSearchViewGetByCompanyIdFromDateToDateFrontAsync(int intCompanyId, System.DateTime dtFromDate, System.DateTime dtToDate, int intBPId, int intStatusPropId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BookingQuotationPIDetailInsertByBookingId", ReplyAction="http://tempuri.org/IService1/BookingQuotationPIDetailInsertByBookingIdResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlStatus BookingQuotationPIDetailInsertByBookingId(int intDocId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BookingQuotationPIDetailInsertByBookingId", ReplyAction="http://tempuri.org/IService1/BookingQuotationPIDetailInsertByBookingIdResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlStatus> BookingQuotationPIDetailInsertByBookingIdAsync(int intDocId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ListOfVehicleComponentInsert", ReplyAction="http://tempuri.org/IService1/ListOfVehicleComponentInsertResponse")]
         PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent ListOfVehicleComponentInsert(PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent objreturndbmlListOfVehicleComponent);
         
@@ -9040,6 +9078,14 @@ namespace PGMSFront.WCFPGMSRef {
         
         public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBookingSearchView> BookingSearchViewGetByCompanyIdFromDateToDateFrontAsync(int intCompanyId, System.DateTime dtFromDate, System.DateTime dtToDate, int intBPId, int intStatusPropId) {
             return base.Channel.BookingSearchViewGetByCompanyIdFromDateToDateFrontAsync(intCompanyId, dtFromDate, dtToDate, intBPId, intStatusPropId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlStatus BookingQuotationPIDetailInsertByBookingId(int intDocId) {
+            return base.Channel.BookingQuotationPIDetailInsertByBookingId(intDocId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlStatus> BookingQuotationPIDetailInsertByBookingIdAsync(int intDocId) {
+            return base.Channel.BookingQuotationPIDetailInsertByBookingIdAsync(intDocId);
         }
         
         public PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent ListOfVehicleComponentInsert(PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent objreturndbmlListOfVehicleComponent) {

@@ -52,7 +52,7 @@
                     <div class="row">
                         <div class="col-md-3" id="divServiveLookup">
                             <select class="selectpicker" data-style="select-with-transition" id="lstServiceLookup" onchange="LoadTrackInfo()" title="" data-size="7">
-                            @*<select class="form-control" id="lstServiceLookup" onchange="LoadTrackInfo()">*@
+                                @*<select class="form-control" id="lstServiceLookup" onchange="LoadTrackInfo()">*@
                                 <option value="0">- Please Select Track -</option>
                                 @foreach (var itm in ViewBag.ServiveLookup)
                                 {
@@ -76,8 +76,17 @@
                                             <th width="5%">#</th>
                                             <th width="17%">Vehicle No.</th>
                                             <th width="16%">Vehicle Category</th>
-                                            <th class="text-center" width="10%">From Date</th>
-                                            <th class="text-center" width="10%">To Date</th>
+                                            @if (Model.BPId == 46 || Model.BPId == 91)
+                                            {
+                                                <th class="text-center" width="10%">From Day</th>
+                                                <th class="text-center" width="10%">To Day</th>
+                                            }
+                                            else
+                                            {
+                                                <th class="text-center" width="10%">From Date</th>
+                                                <th class="text-center" width="10%">To Date</th>
+                                            }
+
                                             <th class="text-center" width="8%">Test Days</th>
                                             <th class="text-center" width="8%">Usage Hours</th>
                                             <th class="text-center" width="8%">Usage Minutes</th>
@@ -113,11 +122,34 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-1" style="        max-width: 5% !important;">
-                            Date
-                        </div>
-                        <div class="col-md-2" style="        max-width: 12% !important;">
-                            <input disabled="disabled" type="text" id="TrackDate" onchange="ResetCategoryTimeSlot()" class="form-control datetimepicker" placeholder="DD-MM-YYYY">
+
+                        @if (Model.BPId == 46 || Model.BPId == 91)
+                        {
+                            <div class="col-md-1" style="max-width: 5% !important;">
+                                Day
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-md-1" style="max-width: 5% !important;">
+                                Date
+                            </div>
+                        }
+
+
+                        <div class="col-md-2" style="max-width: 12% !important;">
+                            @if (Model.BPId == 46 || Model.BPId == 91)
+                            {
+                                <input disabled="disabled" id="Day" type="text" style="text-align: center" onkeypress='return CheckIsNumeric(event,this);' onchange="ResetCategoryTimeSlot()" class="form-control" value="">
+                                <input disabled="disabled" style="display:none" type="text" id="TrackDate">
+                            }
+                            else
+                            {
+                                <input disabled="disabled" style="display:none" type="text" id="Day">
+                                <input disabled="disabled" type="text" id="TrackDate" onchange="ResetCategoryTimeSlot()" class="form-control datetimepicker" placeholder="DD-MM-YYYY">
+                            }
+
+
                         </div>
                         <div class="col-md-1" id="divCategoryTitle" style='display: none; max-width: 5% !important;'>
                             Type
@@ -145,34 +177,34 @@
                         </div>
                     </div>
                     @*<div class="table-responsive">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td width="4%" style="border-left: 1px solid #DDD;">Date</td>
-                                <td width="10%"><input disabled="disabled" type="text" id="TrackDate" onchange="ResetCategoryTimeSlot()" class="form-control datetimepicker" placeholder="DD-MM-YYYY"></td>
-                                <td width="4%" id="divCategoryTitle" style='display:none;border-left: 1px solid #DDD;'>Type</td>
-                                <td width="12%" id="divCategoryValue" style='display:none'>
-                                    <div class="form-check" id="divCategory"></div>
-                                </td>
-                                <td width="14%" style="border-left: 1px solid #DDD;">Time slot for starting the Test</td>
-                                <td width="10%">
-                                    <select class="form-control" id="lstTrackTimeSlot" onchange="BindBookingStatus()">
-                                        <option value="0">- Select Time Slot -</option>
-                                        @foreach (var itm in ViewBag.TimeSlot)
-                                        {
-                                            <option value='@itm.Value'>@itm.Text</option>
-                                        }
-                                    </select>
-                                </td>
-                                <td align="right" width="10%">
-                                    <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="TrackDetailSave()">Save</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>*@
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td width="4%" style="border-left: 1px solid #DDD;">Date</td>
+                                        <td width="10%"><input disabled="disabled" type="text" id="TrackDate" onchange="ResetCategoryTimeSlot()" class="form-control datetimepicker" placeholder="DD-MM-YYYY"></td>
+                                        <td width="4%" id="divCategoryTitle" style='display:none;border-left: 1px solid #DDD;'>Type</td>
+                                        <td width="12%" id="divCategoryValue" style='display:none'>
+                                            <div class="form-check" id="divCategory"></div>
+                                        </td>
+                                        <td width="14%" style="border-left: 1px solid #DDD;">Time slot for starting the Test</td>
+                                        <td width="10%">
+                                            <select class="form-control" id="lstTrackTimeSlot" onchange="BindBookingStatus()">
+                                                <option value="0">- Select Time Slot -</option>
+                                                @foreach (var itm in ViewBag.TimeSlot)
+                                                {
+                                                    <option value='@itm.Value'>@itm.Text</option>
+                                                }
+                                            </select>
+                                        </td>
+                                        <td align="right" width="10%">
+                                            <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="TrackDetailSave()">Save</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>*@
                 </div>
-                <div class="card-body" id="divCardBody" style="        display: none">
+                <div class="card-body" id="divCardBody" style="display: none">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
@@ -180,7 +212,17 @@
                                     <thead class=" text-primary">
                                         <tr>
                                             <th width="15%">Track</th>
-                                            <th width="5%" class="text-right">Rate</th>
+                                            @if (Model.WorkFlowId == 57 || Model.WorkFlowId == 58 ||
+                                           Model.WorkFlowId == 29 || Model.WorkFlowId == 51 ||
+                                           Model.WorkFlowId == 38 || Model.WorkFlowId == 53)
+                                            {
+                                                <th width="5%"  class="text-right" style="display:none">Rate</th>
+                                            }
+                                            else
+                                            {
+                                                <th width="5%" class="text-right">Rate</th>
+                                            }
+
                                             <th width="4%" class="text-center">Unit</th>
                                             <th width="14%" class="text-center">Estimated Usage Hours</th>
                                             <th width="15%" class="text-center">Estimated Usage Minutes</th>
@@ -189,7 +231,7 @@
                                             <th width="12%" class="text-center">Slot wise Confirmed</th>
                                             <th width="8%" class="text-center">Round Hrs.</th>
                                             @*<th width="9%" class="text-center">Bill Hours</th>
-                                        <th width="9%" class="text-right">Amount</th>*@
+                                                <th width="9%" class="text-right">Amount</th>*@
                                         </tr>
                                     </thead>
                                     <tbody id="tbodyTrack"></tbody>
@@ -213,17 +255,36 @@
                                             <tr>
                                                 <th class="text-center" width="3%">#</th>
                                                 <th width="10%">Vehicle No.</th>
-                                                <th class="text-center" width="10%">Date</th>
+                                                @if (Model.BPId == 46 || Model.BPId == 91)
+                                                {
+                                                    <th class="text-center" width="10%">Day</th>
+                                                }
+                                                else
+                                                {
+                                                    <th class="text-center" width="10%">Date</th>
+                                                }
+
                                                 <th width="15%">Track</th>
                                                 <th width="8%">Category</th>
                                                 <th class="text-center" width="10%">Time Slot</th>
-                                                <th class="text-right" width="7%">Rate</th>
+                                                @if (Model.WorkFlowId == 57 || Model.WorkFlowId == 58 ||
+                                                   Model.WorkFlowId == 29 || Model.WorkFlowId == 51 ||
+                                                   Model.WorkFlowId == 38 || Model.WorkFlowId == 53)
+                                                {
+                                                    <th class="text-right" style="display:none" width="7%">Rate</th>
+                                                }
+                                                else
+                                                {
+                                                    <th class="text-right" width="7%">Rate</th>
+                                                }
+
+
                                                 <th class="text-center" width="7%">Unit</th>
                                                 <th class="text-center" width="8%">Usage Hours</th>
                                                 <th class="text-center" width="10%">Usage Minutes</th>
                                                 <th class="text-center" width="8%">Round Hours</th>
                                                 @*<th class="text-center" width="5%">Bill Hours.</th>
-                                            <th class="text-right" width="10%">Amount</th>*@
+                                                    <th class="text-right" width="10%">Amount</th>*@
                                                 <th class="text-center" width="3%">#</th>
                                             </tr>
                                         </thead>
@@ -235,11 +296,11 @@
                         <div class="row">
                             <div class="col-md-12">
                                 @*<br />
-                            @using (Html.BeginForm(new { @class = "form-horizontal" }))
-                            {
-                                @Html.AntiForgeryToken()
-                                <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
-                            }*@
+                                    @using (Html.BeginForm(new { @class = "form-horizontal" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
+                                    }*@
                             </div>
                         </div>
                     </div>
@@ -260,12 +321,31 @@
                                                 <th width="25%">Biiling Item</th>
                                                 <th width="25%">Specification</th>
                                                 <th class="text-center" width="10%">Vehicle No.</th>
-                                                <th class="text-center" width="8%">Date</th>
+                                                @if (Model.BPId == 46 || Model.BPId == 91)
+                                                {
+                                                    @*<th class="text-center" width="8%">Day</th>*@
+                                                }
+                                                else
+                                                {
+                                                    <th class="text-center" width="8%">Date</th>
+                                                }
+
                                                 <th class="text-center" width="8%">Usage Hours (Rounded)</th>
                                                 <th class="text-center" width="5%">Billing Qty.</th>
-                                                <th class="text-right" width="6%">Rate</th>
                                                 <th class="text-center" width="5%">Unit</th>
-                                                <th class="text-right" width="8%">Amount</th>
+                                                @if (Model.WorkFlowId == 57 || Model.WorkFlowId == 58 ||
+                                                   Model.WorkFlowId == 29 || Model.WorkFlowId == 51 ||
+                                                   Model.WorkFlowId == 38 || Model.WorkFlowId == 53)
+                                                {
+                                                    <th class="text-right" style="display:none" width="6%">Rate</th>
+                                                    <th class="text-right" style="display:none" width="8%">Amount</th>
+                                                }
+                                                else
+                                                {
+                                                    <th class="text-right" width="6%">Rate</th>
+                                                    <th class="text-right" width="8%">Amount</th>
+                                                }
+
 
                                             </tr>
                                         </thead>
@@ -289,7 +369,7 @@
                                                 <input type="submit" id="btnNext" name="btnPrevNext" value="Next" class="btn btn-fill btn-rose btn-sm " />
                                             </td>
                                         </tr>
-                                    </table>                                    
+                                    </table>
                                 }
                             </div>
                         </div>
@@ -310,16 +390,16 @@
             @Html.HiddenFor(m => m.POURL, new { id = "POURL", style = "width:0px;" })
 
             @*@using (Html.BeginForm(new { @class = "form-horizontal" }))
-        {
-            <table Style="width:100%">
-                <tr>
-                    <td Style="width:50%;text-align:left">
-                        <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
-                    </td>
-                    <td Style="width:50%;text-align:right"></td>
-                </tr>
-            </table>
-        }*@
+                {
+                    <table Style="width:100%">
+                        <tr>
+                            <td Style="width:50%;text-align:left">
+                                <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
+                            </td>
+                            <td Style="width:50%;text-align:right"></td>
+                        </tr>
+                    </table>
+                }*@
         </div>
 
 
@@ -381,6 +461,7 @@
 
             LoaderShow();
             $("#TrackDate").attr('disabled', true);
+            $("#Day").attr('disabled', true);
             var varTrackGroupId = $("#lstServiceLookup").val();
 
             //if (varTrackGroupId == undefined || parseInt(varTrackGroupId <= 0)) {
@@ -395,6 +476,7 @@
                 }
                 $("#tbodyVehicle").html("");
                 $("#TrackDate").val("");
+                $("#Day").val("");
                 $("#lstTrackTimeSlot").val(0);
                 $("#tbodyTrack").html("");
                 $("#divCardBody").hide();
@@ -430,7 +512,7 @@
                             $("#divVehicleTitle").show();
                             $("#divVehicle").show();
 
-                            if (parseInt(varTrackGroupId) == 0 && (parseInt($("#StatusPropId").val()) != 40 || parseInt($("#WorkFlowId").val()) != 6 || parseInt($("#WorkFlowId").val()) != 57 || parseInt($("#WorkFlowId").val()) != 29)) {
+                            if (parseInt(varTrackGroupId) == 0 && (parseInt($("#StatusPropId").val()) != 40 && parseInt($("#WorkFlowId").val()) != 6 && parseInt($("#WorkFlowId").val()) != 57 && parseInt($("#WorkFlowId").val()) != 29)) {
                                 BindServiceLookup(ServicesList, TrackBookingTimeSummaryList);
                             }
 
@@ -478,7 +560,7 @@
             //$("#divServiveLookup").html(gridData);
 
             var itemSelectorOption = $('#lstServiceLookup option');
-            itemSelectorOption.remove(); 
+            itemSelectorOption.remove();
             $("#lstServiceLookup").selectpicker("refresh");
 
             $("#lstServiceLookup").append('<option value="0">- Please Select Track -</option>').selectpicker('refresh');
@@ -493,16 +575,16 @@
                     var dataSer = jQuery.grep(TestList, function (obj) {
                         return obj.TrackGroupId == object.TrackGroupId;
                     });
-                  
+
                     if (data.length > 0 && dataSer.length==0) {
                         TestList[i] = new Object(object);
                         $("#lstServiceLookup").append('<option value="' + NullHandle(object.TrackGroupId) + '">' + NullHandle(object.ZZTrackGroup) + '</option>').selectpicker('refresh');
                         dataSer = '';
                         i = i + 1;
-                    }                   
+                    }
                 }
             });
-           
+
         }
         catch (e) {
 
@@ -524,8 +606,16 @@
                 gridData = gridData + "<td>" + NullHandle(data[i].Sno) + "</td>";
                 gridData = gridData + "<td>" + NullHandle(data[i].VehicleNo) + "</td>";
                 gridData = gridData + "<td>" + NullHandle(data[i].VehicleType) + "</td>";
-                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZFromDate) + "</td>";
-                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZToDate) + "</td>";
+
+                if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                    gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].FromDay) + "</td>";
+                    gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ToDay) + "</td>";
+                }
+                else {
+                    gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZFromDate) + "</td>";
+                    gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZToDate) + "</td>";
+                }
+
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].TestDays) + "</td>";
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].UsagesHrs) + "</td>";
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].UsagesMinute) + "</td>";
@@ -569,7 +659,7 @@
             for (var i = 0; i < data.length; i++) {
                 gridData = gridData + "<label class='form-check-label'>";
 
-                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6)) {
+                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                     gridData = gridData + "<input class='form-check-input' type='radio' id='rdoCategory" + data[i].Value + "' name='Category' " + varchecked + " value='" + data[i].Value + "' onclick='BindTrackService()'>" + data[i].Text + "";
                 }
                 else {
@@ -607,6 +697,10 @@
 
             var gridData = "";
             var varDate = $("#TrackDate").val();
+            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                varDate = $("#Day").val();
+            }
+
             var varCategoryId = 0;
             var varTimeSlotId = 0;
             varCategoryId = $("input[name='Category']:checked").val();
@@ -633,15 +727,30 @@
                 alert('Select Vehicle Row');
                 return false;
             }
-            if (varDate.trim() == "") {
-                strMSG = strMSG + 'Date  \n</br>'
-                if (ServiceCategoryList.length > 1) {
-                    $("input[name='Category']:checked").prop('checked', false);
+
+            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                if (varDate.trim() == "") {
+                    strMSG = strMSG + 'Day  \n</br>'
+                    if (ServiceCategoryList.length > 1) {
+                        $("input[name='Category']:checked").prop('checked', false);
+                    }
+                    $("#lstTrackTimeSlot").val(0);
+                    alert('Input Day');
+                    return false;
                 }
-                $("#lstTrackTimeSlot").val(0);
-                alert('Select Date');
-                return false;
             }
+            else {
+                if (varDate.trim() == "") {
+                    strMSG = strMSG + 'Date  \n</br>'
+                    if (ServiceCategoryList.length > 1) {
+                        $("input[name='Category']:checked").prop('checked', false);
+                    }
+                    $("#lstTrackTimeSlot").val(0);
+                    alert('Select Date');
+                    return false;
+                }
+            }
+
 
             if (strMSG != '') {
                 alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
@@ -677,11 +786,21 @@
                     var BookingTimeDtls = '';
 
                     if (TrackBookingTimeDetailList.length > 0) {
-                        BookingTimeDtls = jQuery.grep(TrackBookingTimeDetailList, function (obj) {
-                            return obj.ServiceId == varServiceId && obj.VehicleId == VehicleId
-                                //&& obj.SlotPropId == parseInt(varTimeSlotId)
-                                && ToDate(obj.ZZDate).getTime() == ToDate(varDate).getTime();
-                        });
+                        if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                            BookingTimeDtls = jQuery.grep(TrackBookingTimeDetailList, function (obj) {
+                                return obj.ServiceId == varServiceId && obj.VehicleId == VehicleId
+                                    //&& obj.SlotPropId == parseInt(varTimeSlotId)
+                                    && parseInt(obj.BookingDay) == parseInt(varDate);
+                            });
+                        }
+                        else {
+                            BookingTimeDtls = jQuery.grep(TrackBookingTimeDetailList, function (obj) {
+                                return obj.ServiceId == varServiceId && obj.VehicleId == VehicleId
+                                    //&& obj.SlotPropId == parseInt(varTimeSlotId)
+                                    && ToDate(obj.ZZDate).getTime() == ToDate(varDate).getTime();
+                            });
+                        }
+
 
                         if (BookingTimeDtls.length > 0) {
                             varUsageHrs = NullHandle(BookingTimeDtls[0].TotalHours);
@@ -694,7 +813,16 @@
                     var rowId = "trTrackDtls" + i.toString();
                     gridData = gridData + "<tr class='TypeBDynamic' id='" + rowId + "'>";
                     gridData = gridData + "<td>" + NullHandle(data[i].ServiceSpecification) + "</td>";
-                    gridData = gridData + "<td class='text-right' id='txtRate'>" + NullHandle(varRate) + "</td>";//Rate
+
+                    if (parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 58 ||
+                        parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 51 ||
+                        parseInt($("#WorkFlowId").val()) == 38 || parseInt($("#WorkFlowId").val()) == 53) {
+                        gridData = gridData + "<td class='text-right' style='display:none' id='txtRate'>" + NullHandle(varRate) + "</td>";//Rate
+                    }
+                    else {
+                        gridData = gridData + "<td class='text-right' id='txtRate'>" + NullHandle(varRate) + "</td>";//Rate
+                    }
+
                     gridData = gridData + "<td class='text-center' id='txtUnit'>" + NullHandle(varUnit) + "</td>";//Unit
                     gridData = gridData + "<td class='text-right table-warning'><input id='txtUsageHrs' onchange='ValidateHours(this," + rowId + ");' onkeypress='return CheckIsNumeric(event,this);'  maxlength='2' type='text' value='" + varUsageHrs + "' class='form-control timepicker text-left' placeholder='HH'></td>";//UsageHrs
                     gridData = gridData + "<td class='text-right table-warning'><input id='txtUsageMin' onchange='ValidateMinutes(this," + rowId + ");' onkeypress='return CheckIsNumeric(event,this);' maxlength='2' type='text' value='" + varUsageMin + "' class='form-control timepicker text-left' placeholder='MM'></td>";//UsageMin
@@ -729,6 +857,9 @@
 
             var gridData = "";
             var varDate = $("#TrackDate").val();
+            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                var varDate = $("#Day").val();
+            }
             var varCategoryId = $("input[name='Category']:checked").val();
             var varTimeSlotId = $("#lstTrackTimeSlot").val();
 
@@ -751,15 +882,30 @@
                 alert('Select Vehicle Row');
                 return false;
             }
-            if (varDate.trim() == "") {
-               // strMSG = strMSG + 'Date  \n</br>'
-                if (ServiceCategoryList.length > 1) {
-                    $("input[name='Category']:checked").prop('checked', false);
+
+            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                if (varDate.trim() == "") {
+                    // strMSG = strMSG + 'Date  \n</br>'
+                    if (ServiceCategoryList.length > 1) {
+                        $("input[name='Category']:checked").prop('checked', false);
+                    }
+                    $("#lstTrackTimeSlot").val(0);
+                    alert('Input Day');
+                    return false;
                 }
-                $("#lstTrackTimeSlot").val(0);
-                alert('Select Date');
-                return false;
             }
+            else {
+                if (varDate.trim() == "") {
+                    // strMSG = strMSG + 'Date  \n</br>'
+                    if (ServiceCategoryList.length > 1) {
+                        $("input[name='Category']:checked").prop('checked', false);
+                    }
+                    $("#lstTrackTimeSlot").val(0);
+                    alert('Select Date');
+                    return false;
+                }
+            }
+
             if (varCategoryId==undefined || parseInt(varCategoryId) == 0) {
                // strMSG = strMSG + 'Service Category  \n</br>'
                 alert('Select Service Category');
@@ -889,6 +1035,7 @@
             var indx = 0;
 
             var varDate = $("#TrackDate").val().trim();
+            var varDay= $("#Day").val();
             var varTimeSlotId = $("#lstTrackTimeSlot").val().trim();
             var varCategoryId = $("input[name='Category']:checked").val();
             var varTrackGroupId = $("#lstServiceLookup").val();
@@ -901,9 +1048,17 @@
             if (parseInt(VehicleId) == 0) {
                 strMSG = strMSG + 'Select Vehicle Row  \n</br>'
             }
-            if (varDate == "") {
-                strMSG = strMSG + 'Date  \n</br>'
+            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                if (varDay == "") {
+                    strMSG = strMSG + 'Day  \n</br>'
+                }
             }
+            else {
+                if (varDate == "") {
+                    strMSG = strMSG + 'Date  \n</br>'
+                }
+            }
+
             if (varTimeSlotId == undefined || parseInt(varTimeSlotId) == 0) {
                 strMSG = strMSG + 'Time Slot  \n</br>'
             }
@@ -914,6 +1069,7 @@
                 TimeDtls = {};
                 TimeDtls.TrackBookingTimeDetailId = -1;
                 TimeDtls.ZZDate = varDate;
+                TimeDtls.BookingDay = varDay;
                 TimeDtls.SlotPropId = varTimeSlotId;
                 TimeDtls.VehicleId = VehicleId;
                 TimeDtls.ZZCategoryId = varCategoryId;
@@ -1031,25 +1187,52 @@
 
             for (var i = 0; i < data.length; i++) {
                 gridData = gridData + "<tr>";
-                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6)) {
-                    gridData = gridData + "<td class='td-actions text-center'><button type='button' class='btn btn-info' title='Edit Track Details' onclick='return TrackBookingDetailEdit(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].ZZDate) + '"' + "," + NullHandle(data[i].ZZCategoryId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>edit</i></button></td>";
+                if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                    if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
+                        gridData = gridData + "<td class='td-actions text-center'><button type='button' class='btn btn-info' title='Edit Track Details' onclick='return TrackBookingDetailEdit(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].BookingDay) + '"' + "," + NullHandle(data[i].ZZCategoryId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>edit</i></button></td>";
+                    }
+                    else {
+                        gridData = gridData + "<td class='td-actions text-center'><button type='button' class='btn btn-info' title='View Track Details' onclick='return TrackBookingDetailEdit(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].BookingDay) + '"' + "," + NullHandle(data[i].ZZCategoryId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>trending_up</i></button></td>";
+                    }
                 }
                 else {
-                    gridData = gridData + "<td class='td-actions text-center'><button type='button' class='btn btn-info' title='View Track Details' onclick='return TrackBookingDetailEdit(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].ZZDate) + '"' + "," + NullHandle(data[i].ZZCategoryId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>trending_up</i></button></td>";
+                    if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
+                        gridData = gridData + "<td class='td-actions text-center'><button type='button' class='btn btn-info' title='Edit Track Details' onclick='return TrackBookingDetailEdit(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].ZZDate) + '"' + "," + NullHandle(data[i].ZZCategoryId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>edit</i></button></td>";
+                    }
+                    else {
+                        gridData = gridData + "<td class='td-actions text-center'><button type='button' class='btn btn-info' title='View Track Details' onclick='return TrackBookingDetailEdit(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].ZZDate) + '"' + "," + NullHandle(data[i].ZZCategoryId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>trending_up</i></button></td>";
+                    }
                 }
+
                 gridData = gridData + "<td>" + NullHandle(data[i].VehicleNo) + "</td>";
-                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZDate) + "</td>";
+                if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                    gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].BookingDay) + "</td>";
+                }
+                else {
+                    gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZDate) + "</td>";
+                }
+
+
                 gridData = gridData + "<td>" + NullHandle(data[i].ZZServiceSpecification) + "</td>";
                 gridData = gridData + "<td>" + NullHandle(data[i].ZZCategory) + "</td>";
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZSlot) + "</td>";
-                gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].Rate) + "</td>";
+
+                if (parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 58 ||
+                    parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 51 ||
+                    parseInt($("#WorkFlowId").val()) == 38 || parseInt($("#WorkFlowId").val()) == 53) {
+                    gridData = gridData + "<td class='text-right'style='display:none'>" + NullHandle(data[i].Rate) + "</td>";
+                }
+                else {
+                    gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].Rate) + "</td>";
+                }
+
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZUOM) + "</td>";
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].TotalHours) + "</td>";
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].TotalMinutes) + "</td>";
                // gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].RoundOffHrs) + "</td>";
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].BillingHrs) + "</td>";
                 //gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].Amount) + "</td>";
-                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6)) {
+                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                     gridData = gridData + "<td class='td-actions text-center'><button type='button' rel='tooltip' class='btn btn-danger' data-original-title='' title='Delete Track Detail' onclick='return TrackBookingDetailDelete(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].ZZDate) + '"' + "," + NullHandle(data[i].ServiceId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>close</i></button></td>";
                 }
                 else {
@@ -1082,12 +1265,27 @@
                 gridData = gridData + "<td>" + NullHandle(data[i].BillingItem) + "</td>";
                 gridData = gridData + "<td>" + NullHandle(data[i].Specification) + "</td>";
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].VehicleNo) + "</td>";
-                gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZUsageDate) + "</td>";
+                if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                    //gridData = gridData + "<td class='text-center'></td>";
+                }
+                else {
+                    gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZUsageDate) + "</td>";
+                }
+
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].RoundOffHrs) + "</td>";
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].BillingHrs) + "</td>";
-                gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].Rate) + "</td>";
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZUOM) + "</td>";
-                gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].Amount) + "</td>";
+                if (parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 58 ||
+                    parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 51 ||
+                    parseInt($("#WorkFlowId").val()) == 38 || parseInt($("#WorkFlowId").val()) == 53) {
+                    gridData = gridData + "<td class='text-right'style='display:none'>" + NullHandle(data[i].Rate) + "</td>";
+                    gridData = gridData + "<td class='text-right'style='display:none'>" + NullHandle(data[i].Amount) + "</td>";
+                }
+                else {
+                    gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].Rate) + "</td>";
+                    gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].Amount) + "</td>";
+                }
+
 
                 gridData = gridData + "</tr>";
             }
@@ -1127,10 +1325,17 @@
 
 
             changeColorVehicle(varRowId);
+            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                $("#Day").val(varDate);
+            }
+            else {
+                $("#TrackDate").val(varDate);
+            }
 
-            $("#TrackDate").val(varDate);
-            if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#WorkFlowId").val()) == 6) {
+
+            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                 $("#TrackDate").attr('disabled', false);
+                $("#Day").attr('disabled', false);
             }
             var xx = "#rdoCategory" + varCategoryId;
             $(xx).prop("checked", true);
@@ -1164,11 +1369,21 @@
                 var BookingTimeDtls = '';
 
                 if (TrackBookingTimeDetailList.length > 0) {
-                    BookingTimeDtls = jQuery.grep(TrackBookingTimeDetailList, function (obj) {
-                        return obj.ServiceId == varServiceId && obj.VehicleId == VehicleId
-                            //&& obj.SlotPropId == parseInt(varTimeSlotId)
-                            && ToDate(obj.ZZDate).getTime() == ToDate(varDate).getTime();
-                    });
+                    if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                        BookingTimeDtls = jQuery.grep(TrackBookingTimeDetailList, function (obj) {
+                            return obj.ServiceId == varServiceId && obj.VehicleId == VehicleId
+                                //&& obj.SlotPropId == parseInt(varTimeSlotId)
+                                && parseInt(obj.BookingDay) == parseInt(varDate);
+                        });
+                    }
+                    else {
+                        BookingTimeDtls = jQuery.grep(TrackBookingTimeDetailList, function (obj) {
+                            return obj.ServiceId == varServiceId && obj.VehicleId == VehicleId
+                                //&& obj.SlotPropId == parseInt(varTimeSlotId)
+                                && ToDate(obj.ZZDate).getTime() == ToDate(varDate).getTime();
+                        });
+                    }
+
 
                     if (BookingTimeDtls.length > 0) {
                         varRate = NullHandle(BookingTimeDtls[0].Rate);
@@ -1184,9 +1399,18 @@
                 var rowId = "trTrackDtls" + i.toString();
                 gridData = gridData + "<tr class='TypeBDynamic' id='" + rowId + "'>";
                 gridData = gridData + "<td>" + NullHandle(data[i].ServiceSpecification) + "</td>";
-                gridData = gridData + "<td class='text-right' id='txtRate'>" + NullHandle(varRate) + "</td>";//Rate
+
+                if (parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 58 ||
+                    parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 51 ||
+                    parseInt($("#WorkFlowId").val()) == 38 || parseInt($("#WorkFlowId").val()) == 53) {
+                    gridData = gridData + "<td class='text-right'style='display:none' id='txtRate'>" + NullHandle(varRate) + "</td>";//Rate
+                }
+                else {
+                    gridData = gridData + "<td class='text-right' id='txtRate'>" + NullHandle(varRate) + "</td>";//Rate
+                }
+
                 gridData = gridData + "<td class='text-center' id='txtUnit'>" + NullHandle(varUnit) + "</td>";//Unit
-                if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#WorkFlowId").val()) == 6) {
+                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                     gridData = gridData + "<td class='text-right table-warning'><input id='txtUsageHrs' onchange='ValidateHours(this," + rowId + ");' onkeypress='return CheckIsNumeric(event,this);'  maxlength='2' type='text' value='" + varUsageHrs + "' class='form-control timepicker text-left' placeholder='HH'></td>";//UsageHrs
                     gridData = gridData + "<td class='text-right table-warning'><input id='txtUsageMin' onchange='ValidateMinutes(this," + rowId + ");' onkeypress='return CheckIsNumeric(event,this);' maxlength='2' type='text' value='" + varUsageMin + "' class='form-control timepicker text-left' placeholder='MM'></td>";//UsageMin
                 }
@@ -1430,12 +1654,14 @@
                     $("#tbodyTrack").html("");
                     $("#divCardBody").hide();
                     $("#TrackDate").val("");
+                    $("#Day").val("");
                 }
                 VehicleId = varVehicleId;
                 changeColorVehicle(RowId);
                 BindServiceTimeDetails(VehicleId);
-                if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#WorkFlowId").val()) == 6) {
+                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                     $("#TrackDate").attr('disabled', false);
+                    $("#Day").attr('disabled', false);
                 }
             }
         }
@@ -1463,7 +1689,7 @@
     function DisableControls() {
         try {
             var blnStatus = true;
-            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6)) {
+            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                 blnStatus = false;
             }
             $("#lstTrackTimeSlot").attr('disabled', blnStatus);

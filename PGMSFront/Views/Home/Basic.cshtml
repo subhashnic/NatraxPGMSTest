@@ -76,30 +76,31 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="exampleEmail" class="bmd-label-floating">Project Manager *</label>
-                                    <input type="text" class="form-control" id="ProjectManager">
+                                    <input type="text" class="form-control" id="ProjectManager" onchange="FillCPDetail()">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleEmail" class="bmd-label-floating">Project Manager Email *</label>
-                                    <input type="text" class="form-control" id="PMEmailId">
+                                    <input type="text" class="form-control" id="PMEmailId" onchange="FillCPDetail()">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleEmail" class="bmd-label-floating">Project Manager Mobile No. *</label>
-                                    <input type="text" class="form-control" maxlength="10" id="PMMobileNo">
+                                    <input type="text" class="form-control" maxlength="10" id="PMMobileNo" onchange="FillCPDetail()">
                                 </div>
+                                <input id="chkFillCP" type="checkbox" onchange="FillCPDetail()" /> &nbsp;Copy Project Manager's Details to Contact Person
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="exampleEmail" class="bmd-label-floating">Contact Person *</label>
-                                    <input type="text" class="form-control" id="ContactPerson">
+                                    <input type="text" class="form-control" id="ContactPerson" onchange="CheckCopyCPDetails()">
                                 </div>
                                 <div class="form-group" style="margin-top: 8px;">
                                     <label for="exampleEmail" class="bmd-label-floating">Contact Person Email *</label>
-                                    <input type="text" class="form-control" id="EmailId">
+                                    <input type="text" class="form-control" id="EmailId" onchange="CheckCopyCPDetails()">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleEmail" class="bmd-label-floating">Contact Person Mobile No. *</label>
-                                    <input type="text" class="form-control" maxlength="10" id="MobileNo">
+                                    <input type="text" class="form-control" maxlength="10" id="MobileNo" onchange="CheckCopyCPDetails()">
                                 </div>
                             </div>
                             <div class="col-md-2"></div>
@@ -110,7 +111,7 @@
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="exampleEmail" class="bmd-label-floating">Remark </label>
-                                    <textarea class="form-control" id="Remark" style="height: 80px !important;"></textarea>
+                                    <textarea class="form-control" id="Remark" style="height: 50px !important;"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-2"></div>
@@ -199,6 +200,38 @@
             //  return false;
         }
     }
+
+    //////////////////////////////// FillCPDetail ///////////////////////////////////////////////////
+    function FillCPDetail() {
+        try {
+            if ($("#chkFillCP").prop("checked") == true) {
+                $("#ContactPerson").val($("#ProjectManager").val().trim());
+                $("#EmailId").val($("#PMEmailId").val().trim());
+                $("#MobileNo").val($("#PMMobileNo").val().trim());
+            }
+        }
+        catch (e) {
+           
+            return false;
+        }
+    }
+
+    function CheckCopyCPDetails() {
+        try {
+            if ($("#ContactPerson").val().trim() == $("#ProjectManager").val().trim()
+                && $("#EmailId").val().trim() == $("#PMEmailId").val().trim()
+                && $("#MobileNo").val().trim() == $("#PMMobileNo").val().trim()) {
+                $("#chkFillCP").prop("checked", true);
+            }
+            else {
+                $("#chkFillCP").prop("checked", false);
+            }
+        }
+        catch (e) {
+           
+            return false;
+        }
+    }    
 
     ///////////////////////////// Booking Save  //////////////////////////////////////////////////////
     function BookingSave() {
@@ -326,6 +359,14 @@
             $("#CreatedBy").val(NullHandle(data.ZZUpdatedBy));
             $("#DocId").val(NullHandle(data.BookingId));
 
+            if ($("#ContactPerson").val().trim() == $("#ProjectManager").val().trim()
+                && $("#EmailId").val().trim() == $("#PMEmailId").val().trim()
+                && $("#MobileNo").val().trim() == $("#PMMobileNo").val().trim()) {
+                $("#chkFillCP").prop("checked", true);
+            }
+            else {
+                $("#chkFillCP").prop("checked", false);
+            }
         }
         catch (e) {
 
@@ -338,7 +379,7 @@
     ///////////////////////////// Set Button Visibility  //////////////////////////////////////////////////////
     function SetButtonVisibility() {
         try {
-            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6) ) {
+            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38) ) {
                 $("#btnSubmit").attr('disabled', false);
             }
             else {
@@ -354,7 +395,7 @@
     function DisableControls() {
         try {
             var blnStatus = true;
-            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 6)) {
+            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                 blnStatus = false;
             }
             //$("#PartCode").prop("readonly", blnStatus);
