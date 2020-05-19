@@ -859,6 +859,7 @@
     <Content Include="Views\Home\LabBookingsAndRFQ.cshtml" />
     <Content Include="Views\Shared\_LayoutLabBookingAndRFQ.cshtml" />
     <Content Include="Views\Home\LabBookingHistory.cshtml" />
+    <Content Include="Views\Home\TrackBookingHistory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

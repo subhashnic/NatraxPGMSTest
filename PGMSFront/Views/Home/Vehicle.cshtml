@@ -82,8 +82,8 @@
                                             <td><input type="text" class="form-control" value="" id="VehicleAxel"></td>
                                             <td><input type="text" class="form-control" value="" id="VehicleWeight"></td>
                                             <td class='td-actions text-center'>
-                                                <a type='button' class='btn btn-info' onclick="return VehicleSave()" id="btnSave"><i class='material-icons'>save</i></a>
-                                                <a type='button' class='btn btn-danger' onclick="AddMoreCancel()"><i class='material-icons'>close</i></a>
+                                                <a class='btn btn-info' onclick="return VehicleSave()" id="btnSave"><i class='material-icons'>save</i></a>
+                                                <a class='btn btn-danger' onclick="AddMoreCancel()"><i class='material-icons'>close</i></a>
                                             </td>
                                             @*<td class="text-center">
                                         <a href="#" class="btn btn-link btn-info btn-just-icon remove" onclick="return VehicleSave()" id="btnSave"><i class="material-icons">save</i></a>
@@ -278,9 +278,9 @@
             });
             $("#AddMoreTR").find("input[type='text'][id='VehicleWeight']").each(function () {
                 model.Description2 = $(this).val().trim();
-                if ($(this).val().trim() == "") {
-                    strMSG = strMSG + 'Vehicle Weight  \n</br>'
-                }
+                //if ($(this).val().trim() == "") {
+                //    strMSG = strMSG + 'Vehicle Weight  \n</br>'
+                //}
             });
 
             if (strMSG != '') {

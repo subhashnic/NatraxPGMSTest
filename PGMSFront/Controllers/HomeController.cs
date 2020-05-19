@@ -458,6 +458,39 @@ namespace PGMSFront.Controllers
             return Items;
         }
 
+        public ActionResult TrackBookingHistory()
+        {
+            CommonModel model = new CommonModel();
+            try
+            {
+                Session["SessBookingType"] = "Track";
+
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                Session["objdbmlBooking"] = null;
+
+                model.UserId = Convert.ToInt32(Session["UserId"]);
+                model.UserTypePropId = Convert.ToInt32(Session["UserTypePropId"]);
+                model.ZZCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
+                model.UserName = Convert.ToString(Session["UserName"]);
+                model.EmailId = Convert.ToString(Session["EmailId"]);
+                model.LoginId = Convert.ToString(Session["LoginId"]);
+                model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
+                model.UserCode = Convert.ToString(Session["UserCode"]);
+
+                ViewBag.CompanyDepartment = CompanyDepartmentGetByCustomerMasterId(Convert.ToInt32(Session["ZZCompanyId"]));
+                ViewBag.BookingType = GetBookingType();
+                ViewBag.BookingStatus = GetBookingStatus();
+            }
+            catch
+            {
+            }
+
+            return View(model);
+        }
+
         public ActionResult LabBookingsAndRFQ()
         {
             CommonModel model = new CommonModel();

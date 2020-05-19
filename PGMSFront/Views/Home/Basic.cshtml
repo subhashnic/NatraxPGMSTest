@@ -109,7 +109,7 @@
                             <div class="col-md-2"></div>
                             <div class="col-md-8">
                                 <div class="form-group">
-                                    <label for="exampleEmail" class="bmd-label-floating">Remark *</label>
+                                    <label for="exampleEmail" class="bmd-label-floating">Remark </label>
                                     <textarea class="form-control" id="Remark" style="height: 80px !important;"></textarea>
                                 </div>
                             </div>
@@ -234,9 +234,9 @@
             if ($("#MobileNo").val().trim() == "") {
                 strMSG = strMSG + 'Contact Person Mobile No. \n</br>'
             }
-            if ($("#Remark").val().trim() == "") {
-                strMSG = strMSG + 'Remark \n</br>'
-            }
+            //if ($("#Remark").val().trim() == "") {
+            //    strMSG = strMSG + 'Remark \n</br>'
+            //}
 
             if (strMSG != '') {
                 alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
