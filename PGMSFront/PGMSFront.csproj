@@ -191,6 +191,9 @@
     <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlOptionList.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlRFQBookingDetail.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\WCFPGMSRef\Service1.disco" />
     <None Include="Connected Services\WCFPGMSRef\configuration91.svcinfo" />
     <None Include="Connected Services\WCFPGMSRef\configuration.svcinfo" />
@@ -860,6 +863,10 @@
     <Content Include="Views\Shared\_LayoutLabBookingAndRFQ.cshtml" />
     <Content Include="Views\Home\LabBookingHistory.cshtml" />
     <Content Include="Views\Home\TrackBookingHistory.cshtml" />
+    <Content Include="Views\Home\BookingAgainstRFQ.cshtml" />
+    <Content Include="Views\Home\BookingAgainstRFQConf.cshtml" />
+    <Content Include="Views\Home\BookingAgainstContract.cshtml" />
+    <Content Include="Views\Home\BookingStandard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

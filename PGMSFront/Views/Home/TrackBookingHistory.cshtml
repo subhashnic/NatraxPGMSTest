@@ -41,7 +41,7 @@
                             <div class="col-md-3">
                                 <div class="form-group" style="height: 70px;">
                                     <label for="exampleEmail" class="bmd-label-floating">Booking Type *</label>
-                                    <select class="form-control" id="BookingTypeId" style="margin-top: 34px;">
+                                    <select class="form-control" id="BookingTypeId" onchange="GetBookingWorkFlowStatusGetByBPId(0)" style="margin-top: 34px;">
                                         @foreach (var itm in ViewBag.BookingType)
                                         {
                                             <option value='@itm.Value'>@itm.Text</option>
@@ -51,12 +51,12 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group" style="height: 70px;">
-                                    <label for="exampleEmail" class="bmd-label-floating">Status *</label>
+                                    <label for="exampleEmail" class="bmd-label-floating">WorkFlow Status *</label>
                                     <select class="form-control" id="StatusId" style="margin-top: 34px;">
-                                        @foreach (var itm in ViewBag.BookingStatus)
+                                        @*@foreach (var itm in ViewBag.BookingStatus)
                                         {
                                             <option value='@itm.Value'>@itm.Text</option>
-                                        }
+                                        }*@
                                     </select>
                                 </div>
                             </div>
@@ -73,13 +73,14 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th width="10%">Action</th>
+                                    <th width="3%">Action</th>
                                     @*<th width="5%">#</th>*@
-                                    @*<th width="20%">Company</th>*@
-                                    <th width="30%">Department</th>
-                                    <th width="20%">Date</th>
-                                    <th width="20%">Booking No.</th>
-                                    <th width="20%">Booking Status</th>
+
+                                    <th width="20%">Department</th>
+                                    <th width="12%">Date</th>
+                                    <th width="15%">Booking No.</th>
+                                    <th width="30%">Booking Status</th>
+                                    <th width="15%">Project Manager</th>
 
                                 </tr>
                             </thead>
@@ -93,6 +94,55 @@
 </div>
 <script>
     var BookingList = '';
+     ///////////////////////////// Load Basic Info  //////////////////////////////////////////////////////
+    function GetBookingWorkFlowStatusGetByBPId(CallFlag) {
+        try {
+          
+            if ($("#BookingTypeId").val() != undefined && $("#BookingTypeId").val() != 0) {
+                LoaderShow();
+                var data = { 'intBPId': $("#BookingTypeId").val()};
+                var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+                $.ajax({
+                    url: '@Url.Action("GetBookingWorkFlowStatusGetByBPId", "Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    data: dataWithAntiforgeryToken,
+                    success: function (data) {
+                        LoaderHide();
+                        if (data.StatusId != "99" && data.StatusId != "-99") {
+
+                            $("#StatusId").html("");
+                            var gridData = "";
+                            for (var i = 0; i < data.WorkFlowViewList.length; i++) { 
+                                gridData = gridData + "<option value='" + NullHandle(data.WorkFlowViewList[i].WorkFlowId) + "'>" + NullHandle(data.WorkFlowViewList[i].WorkFlowName) + "</option>";                                
+                            }
+
+                            $("#StatusId").html(gridData);
+
+                            if (parseInt(CallFlag) == 1) {
+                                LoadBookingInfo();
+                            }
+                        }
+                        else {
+                            alert(data.Status);
+                        }
+                    },
+                    error: function (xhr) {
+
+                        LoaderHide();
+                        alert(xhr.responseText);
+                    }
+                });
+            }
+        }
+        catch (e) {
+
+            LoaderHide();
+            alert(e.message);
+            //  return false;
+        }
+    }
 
     ///////////////////////////// Load Basic Info  //////////////////////////////////////////////////////
     function LoadBookingInfo() {
@@ -146,12 +196,12 @@
                 gridData = gridData + "<td class='td-actions'>";
                 gridData = gridData + "<button type='button' rel='tooltip' class='btn btn-info' data-original-title='' title='Select Booking No : " + data[i].BookingNo+"' onclick = 'BookingGetByBookingId(" + NullHandle(data[i].BookingId) + ")'><i class='material-icons'>trending_up</i></button>";
                 gridData = gridData + "</td>";
-
-                //gridData = gridData + "<td>" + NullHandle(data[i].CompanyName) + "</td>";
+                               
                 gridData = gridData + "<td>" + NullHandle(data[i].Department) + "</td>";
                 gridData = gridData + "<td>" + NullHandle(data[i].ZZBookingDate) + "</td>";
                 gridData = gridData + "<td>" + NullHandle(data[i].BookingNo) + "</td>";
                 gridData = gridData + "<td>" + NullHandle(data[i].ZZStatus) + "</td>";
+                gridData = gridData + "<td>" + NullHandle(data[i].ProjectManager) + "</td>";
 
 
                 gridData = gridData + "</tr>";
@@ -171,9 +221,10 @@
         
         //window.location.href = '@Url.Action("BookingGetByBookingId", "Home")?intBookingId='+BookingId+'';
     }
+
     $(document).ready(function () {  
-      
-        LoadBookingInfo();
+        GetBookingWorkFlowStatusGetByBPId(1);
+       // LoadBookingInfo();
         $("#DepartmentId").focus();
     });
 

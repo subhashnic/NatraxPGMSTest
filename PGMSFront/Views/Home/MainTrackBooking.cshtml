@@ -78,21 +78,25 @@
                                             <th width="16%">Vehicle Category</th>
                                             @if (Model.BPId == 46 || Model.BPId == 91)
                                             {
-                                                <th class="text-center" width="10%">From Day</th>
-                                                <th class="text-center" width="10%">To Day</th>
+                                                <th class="text-center" width="8%">From Day</th>
+                                                <th class="text-center" width="8%">To Day</th>
                                             }
                                             else
                                             {
-                                                <th class="text-center" width="10%">From Date</th>
-                                                <th class="text-center" width="10%">To Date</th>
+                                                <th class="text-center" width="8%">From Date</th>
+                                                <th class="text-center" width="8%">To Date</th>
                                             }
 
-                                            <th class="text-center" width="8%">Test Days</th>
+                                            <th class="text-center" width="7%">Test Days</th>
                                             <th class="text-center" width="8%">Usage Hours</th>
-                                            <th class="text-center" width="8%">Usage Minutes</th>
+                                            <th class="text-center" width="9%">Usage Minutes</th>
                                             <th class="text-center" width="8%">Bill Hours</th>
+                                            @if (Model.WorkFlowId == 59 || Model.WorkFlowId == 52 || Model.WorkFlowId == 54)
+                                            {
+                                            <th class="text-right" width="8%">Quot. Amount</th>                                                
+                                            }
                                             @*<th class="text-center" width="8%">Bill Hour</th>
-                                                <th class="text-right" width="10%">Amount</th>*@
+        <th class="text-right" width="10%">Amount</th>*@
                                         </tr>
                                     </thead>
                                     <tbody id="tbodyVehicle">
@@ -607,7 +611,7 @@
                 gridData = gridData + "<td>" + NullHandle(data[i].VehicleNo) + "</td>";
                 gridData = gridData + "<td>" + NullHandle(data[i].VehicleType) + "</td>";
 
-                if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
                     gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].FromDay) + "</td>";
                     gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ToDay) + "</td>";
                 }
@@ -622,6 +626,10 @@
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].BillingHrs) + "</td>";
                 //gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].BillingHrs) + "</td>";
                 //gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].Amount) + "</td>";
+                if (parseInt($("#WorkFlowId").val()) == 59 || parseInt($("#WorkFlowId").val()) == 52 || parseInt($("#WorkFlowId").val()) == 54) {
+                    gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].QuotAmount) + "</td>";
+                }
+
                 gridData = gridData + "<td style='display:none'><input type='hidden' id='hdnVehicleId' value=" + NullHandle(data[i].VehicleId) + " /><input type='hidden' id='hdnRowId' value=" + NullHandle(indx) + " /> </td>";
 
                 gridData = gridData + "</tr>";
@@ -697,7 +705,7 @@
 
             var gridData = "";
             var varDate = $("#TrackDate").val();
-            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
                 varDate = $("#Day").val();
             }
 
@@ -728,7 +736,7 @@
                 return false;
             }
 
-            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
                 if (varDate.trim() == "") {
                     strMSG = strMSG + 'Day  \n</br>'
                     if (ServiceCategoryList.length > 1) {
@@ -786,7 +794,7 @@
                     var BookingTimeDtls = '';
 
                     if (TrackBookingTimeDetailList.length > 0) {
-                        if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                        if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
                             BookingTimeDtls = jQuery.grep(TrackBookingTimeDetailList, function (obj) {
                                 return obj.ServiceId == varServiceId && obj.VehicleId == VehicleId
                                     //&& obj.SlotPropId == parseInt(varTimeSlotId)
@@ -857,7 +865,7 @@
 
             var gridData = "";
             var varDate = $("#TrackDate").val();
-            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
                 var varDate = $("#Day").val();
             }
             var varCategoryId = $("input[name='Category']:checked").val();
@@ -883,7 +891,7 @@
                 return false;
             }
 
-            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
                 if (varDate.trim() == "") {
                     // strMSG = strMSG + 'Date  \n</br>'
                     if (ServiceCategoryList.length > 1) {
@@ -1048,7 +1056,7 @@
             if (parseInt(VehicleId) == 0) {
                 strMSG = strMSG + 'Select Vehicle Row  \n</br>'
             }
-            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
                 if (varDay == "") {
                     strMSG = strMSG + 'Day  \n</br>'
                 }
@@ -1187,7 +1195,7 @@
 
             for (var i = 0; i < data.length; i++) {
                 gridData = gridData + "<tr>";
-                if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
                     if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                         gridData = gridData + "<td class='td-actions text-center'><button type='button' class='btn btn-info' title='Edit Track Details' onclick='return TrackBookingDetailEdit(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].BookingDay) + '"' + "," + NullHandle(data[i].ZZCategoryId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>edit</i></button></td>";
                     }
@@ -1205,7 +1213,7 @@
                 }
 
                 gridData = gridData + "<td>" + NullHandle(data[i].VehicleNo) + "</td>";
-                if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
                     gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].BookingDay) + "</td>";
                 }
                 else {
@@ -1265,7 +1273,7 @@
                 gridData = gridData + "<td>" + NullHandle(data[i].BillingItem) + "</td>";
                 gridData = gridData + "<td>" + NullHandle(data[i].Specification) + "</td>";
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].VehicleNo) + "</td>";
-                if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
                     //gridData = gridData + "<td class='text-center'></td>";
                 }
                 else {
@@ -1325,7 +1333,7 @@
 
 
             changeColorVehicle(varRowId);
-            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+            if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
                 $("#Day").val(varDate);
             }
             else {
@@ -1369,7 +1377,7 @@
                 var BookingTimeDtls = '';
 
                 if (TrackBookingTimeDetailList.length > 0) {
-                    if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 46) {
+                    if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
                         BookingTimeDtls = jQuery.grep(TrackBookingTimeDetailList, function (obj) {
                             return obj.ServiceId == varServiceId && obj.VehicleId == VehicleId
                                 //&& obj.SlotPropId == parseInt(varTimeSlotId)

@@ -16,8 +16,16 @@
                     <td style="text-align:right">
                         @if (Model.DocId > 0 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 36))
                         {
-                            <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
-                            <input type="button" id="btnAcceptPI" value="Accept P.I." onclick="return AcceptPI();" class="btn btn-fill btn-rose btn-sm" />
+                            if (Model.RFQId > 0)
+                            {
+                                <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPIWithQuot();" class="btn btn-fill btn-rose btn-sm" />
+                                <input type="button" id="btnSubmitAgainstRFQ" value="Submit" onclick="return SubmitAgainstRFQ();" class="btn btn-fill btn-rose btn-sm" />
+                            }
+                            else
+                            {
+                                <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPIWithQuot();" class="btn btn-fill btn-rose btn-sm" />
+                                <input type="button" id="btnAcceptPI" value="Accept P.I." onclick="return AcceptPI();" class="btn btn-fill btn-rose btn-sm" />
+                            }
                         }
                         else if (Model.DocId > 0 && (Model.WorkFlowId == 8 || Model.WorkFlowId == 44))
                         {
@@ -35,11 +43,15 @@
                         }
                         else if (Model.DocId > 0 && (Model.WorkFlowId == 57 || Model.WorkFlowId == 29 || Model.WorkFlowId == 38))
                         {
-                            <input type="button" id="btnSubmitRFQ" value="Submit" onclick="return SubmitRFQ;" class="btn btn-fill btn-rose btn-sm" />
+                            <input type="button" id="btnSubmitRFQ" value="Submit" onclick="return SubmitRFQ();" class="btn btn-fill btn-rose btn-sm" />
                         }
                         else if (Model.DocId > 0 && (Model.WorkFlowId == 59 || Model.WorkFlowId == 52 || Model.WorkFlowId == 54))
                         {
-                            <input type="button" id="btnAcceptQuotation" value="Accept Quotation" onclick="return AcceptQuotation();" class="btn btn-fill btn-rose btn-sm" />
+                            <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
+                            if (Model.StatusPropId ==40)
+                            {
+                                <input type="button" id="btnAcceptQuotation" value="Accept Quotation" onclick="return AcceptQuotation(@Model.WorkFlowId);" class="btn btn-fill btn-rose btn-sm" />
+                            }
                         }
 
                     </td>
@@ -235,8 +247,35 @@
         alert("The upload has been canceled by the user or the browser dropped the connection!");
     }
 
-    ///////////////////////////// View P.I.  //////////////////////////////////////////////////////
+     ///////////////////////////// View P.I.  //////////////////////////////////////////////////////
     function ViewPI() {
+        try {
+            var strReportName = "";
+            if (parseInt($("#StateId").val()) == 20)//MP
+            {
+                strReportName = "rptBookingInvoiceGST";
+            }
+            else {
+                strReportName = "rptBookingInvoiceIGST";
+            }
+
+            var strReportViewerUrl = $("#ReportURL").val();
+            var strDocId = $("#DocId").val();
+            var strBPId = $("#BPId").val();
+
+            window.open(strReportViewerUrl + "?rptName=" + strReportName + "&DocId=" + strDocId + "&BPId=" + strBPId, '_blank');
+
+            return false;
+        }
+        catch (e) {
+
+            alert(e.message);
+        }
+        return false;
+    }
+
+    ///////////////////////////// View P.I.  //////////////////////////////////////////////////////
+    function ViewPIWithQuot() {
         try {
             var strReportName = "";
             if (parseInt($("#StateId").val()) == 20)//MP
@@ -327,7 +366,9 @@
                                 success: function (data) {
 
                                     LoaderHide();
+                                   
                                     if (data.StatusId != "99" && data.StatusId != "-99") {
+                                        alert("PI Accepted Successfully");
                                         BookingList = data.BookingList;
                                         window.location.href = '@Url.Action("Basic", "Home")';
                                     }
@@ -374,7 +415,7 @@
                         text: 'OK',
                         action: function () {
                             LoaderShow();
-                            var data = { 'intQuotFlag':1};
+                            var data = { 'intQuotFlag':0};
                             var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                             $.ajax({
                                 url: '@Url.Action("AcceptPI", "Home")',
@@ -386,6 +427,7 @@
 
                                     LoaderHide();
                                     if (data.StatusId != "99" && data.StatusId != "-99") {
+                                        alert("RFQ Submitted Successfully");
                                         BookingList = data.BookingList;
                                         window.location.href = '@Url.Action("Basic", "Home")';
                                     }
@@ -417,11 +459,22 @@
     }
 
     ///////////////////////////// Accept Quotation //////////////////////////////////////////////////////
-    function AcceptQuotation() {
+    function AcceptQuotation(varWorkFlowId) {
         try {
+            var varMenuLink = "";
+            if (parseInt(varWorkFlowId) == 59) {
+                varMenuLink = '"ManageBooking/TrackBookings & RFQ/Booking(New/In-Progress)/Booking against RFQ - Confidential"';
+            }
+            else if (parseInt(varWorkFlowId) == 52) {
+                varMenuLink = '"ManageBooking/TrackBookings & RFQ/Booking(New/In-Progress)/Booking against RFQ - Regular"';
+            }
+            else if (parseInt(varWorkFlowId) == 54) {
+                varMenuLink = '"ManageBooking/LabBookings & RFQ/Booking(New/In-Progress)/Booking against RFQ"';
+            }
+
             $.confirm({
                 title: 'Confirm Alert!',
-                content: 'Thank you for accepting the Quotation Please create booking against this Quotation from Menu - ,......... to set the testing dates OK  "CANCEL".',
+                content: 'Thank you for accepting the Quotation Please create booking against this Quotation from Menu - ' + varMenuLink +' to set the testing dates OK  "CANCEL".',
                 icon: 'fa fa-question',
                 closeIcon: true,
                 animation: 'scale',
@@ -444,6 +497,7 @@
 
                                     LoaderHide();
                                     if (data.StatusId != "99" && data.StatusId != "-99") {
+                                        alert("Quotation Accepted Successfully");
                                         BookingList = data.BookingList;
                                         window.location.href = '@Url.Action("Basic", "Home")';
                                     }
@@ -502,6 +556,7 @@
 
                                     LoaderHide();
                                     if (data.StatusId != "99" && data.StatusId != "-99") {
+                                        alert("PO Submitted Successfully");
                                         BookingList = data.BookingList;
                                         window.location.href = '@Url.Action("Basic", "Home")';
                                     }
@@ -521,6 +576,65 @@
                     }
                 }
             });
+        }
+        catch (e) {
+
+            LoaderHide();
+            alert(e.message);
+            //  return false;
+        }
+    }
+
+     ///////////////////////////// Submit Booking Against RFQ  //////////////////////////////////////////////////////
+    function SubmitAgainstRFQ() {
+        try {
+            $.confirm({
+                title: 'Confirm Alert!',
+                content: 'Further editing of the Booking will be locked when you "Submit" to Natrax for approving your Booking Dates Click "OK to Confirm and "CANCEL" to continue editing.',
+                icon: 'fa fa-question',
+                closeIcon: true,
+                animation: 'scale',
+                type: 'orange',
+                escapeKey: 'cancel',
+                buttons: {
+                    MyFunction: {
+                        text: 'OK',
+                        action: function () {
+                            LoaderShow();
+                            var data = { 'intQuotFlag':1};
+                            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+                            $.ajax({
+                                url: '@Url.Action("AcceptPI", "Home")',
+                                type: 'POST',
+                                dataType: 'json',
+                                async: true,
+                                data: dataWithAntiforgeryToken,
+                                success: function (data) {
+
+                                    LoaderHide();
+                                    if (data.StatusId != "99" && data.StatusId != "-99") {
+                                        alert("Booking Against RFQ Submitted Successfully");
+                                        BookingList = data.BookingList;
+                                        window.location.href = '@Url.Action("Basic", "Home")';
+                                    }
+                                    else {
+                                        alert(data.Status);
+                                    }
+                                },
+                                error: function (xhr) {
+
+                                    LoaderHide();
+                                    alert(xhr.responseText);
+                                }
+                            });
+
+                        }
+                    },
+                    cancel: function () {
+                    }
+                }
+            });
+
         }
         catch (e) {
 

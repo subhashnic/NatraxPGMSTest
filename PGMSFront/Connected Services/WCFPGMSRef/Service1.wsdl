@@ -89,6 +89,24 @@
   <wsdl:message name="IService1_BookingQuotationPIDetailInsertByBookingId_OutputMessage">
     <wsdl:part name="parameters" element="tns:BookingQuotationPIDetailInsertByBookingIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_RFQBookingSearchViewFrontGetByCompanyIdFromDateToDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:RFQBookingSearchViewFrontGetByCompanyIdFromDateToDate" />
+  </wsdl:message>
+  <wsdl:message name="IService1_RFQBookingSearchViewFrontGetByCompanyIdFromDateToDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RFQBookingSearchViewFrontGetByCompanyIdFromDateToDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_RFQBookingDetailGetByBookingIdBPId_InputMessage">
+    <wsdl:part name="parameters" element="tns:RFQBookingDetailGetByBookingIdBPId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_RFQBookingDetailGetByBookingIdBPId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RFQBookingDetailGetByBookingIdBPIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_RFQBookingDetailInsertByBookingIdBPId_InputMessage">
+    <wsdl:part name="parameters" element="tns:RFQBookingDetailInsertByBookingIdBPId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_RFQBookingDetailInsertByBookingIdBPId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RFQBookingDetailInsertByBookingIdBPIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_ListOfVehicleComponentInsert_InputMessage">
     <wsdl:part name="parameters" element="tns:ListOfVehicleComponentInsert" />
   </wsdl:message>
@@ -263,6 +281,18 @@
     <wsdl:operation name="BookingQuotationPIDetailInsertByBookingId">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/BookingQuotationPIDetailInsertByBookingId" message="tns:IService1_BookingQuotationPIDetailInsertByBookingId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/BookingQuotationPIDetailInsertByBookingIdResponse" message="tns:IService1_BookingQuotationPIDetailInsertByBookingId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RFQBookingSearchViewFrontGetByCompanyIdFromDateToDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/RFQBookingSearchViewFrontGetByCompanyIdFromDateToDate" message="tns:IService1_RFQBookingSearchViewFrontGetByCompanyIdFromDateToDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/RFQBookingSearchViewFrontGetByCompanyIdFromDateToDateResponse" message="tns:IService1_RFQBookingSearchViewFrontGetByCompanyIdFromDateToDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RFQBookingDetailGetByBookingIdBPId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/RFQBookingDetailGetByBookingIdBPId" message="tns:IService1_RFQBookingDetailGetByBookingIdBPId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/RFQBookingDetailGetByBookingIdBPIdResponse" message="tns:IService1_RFQBookingDetailGetByBookingIdBPId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RFQBookingDetailInsertByBookingIdBPId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/RFQBookingDetailInsertByBookingIdBPId" message="tns:IService1_RFQBookingDetailInsertByBookingIdBPId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/RFQBookingDetailInsertByBookingIdBPIdResponse" message="tns:IService1_RFQBookingDetailInsertByBookingIdBPId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ListOfVehicleComponentInsert">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/ListOfVehicleComponentInsert" message="tns:IService1_ListOfVehicleComponentInsert_InputMessage" />
@@ -453,6 +483,33 @@
     </wsdl:operation>
     <wsdl:operation name="BookingQuotationPIDetailInsertByBookingId">
       <soap12:operation soapAction="http://tempuri.org/IService1/BookingQuotationPIDetailInsertByBookingId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RFQBookingSearchViewFrontGetByCompanyIdFromDateToDate">
+      <soap12:operation soapAction="http://tempuri.org/IService1/RFQBookingSearchViewFrontGetByCompanyIdFromDateToDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RFQBookingDetailGetByBookingIdBPId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/RFQBookingDetailGetByBookingIdBPId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RFQBookingDetailInsertByBookingIdBPId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/RFQBookingDetailInsertByBookingIdBPId" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
