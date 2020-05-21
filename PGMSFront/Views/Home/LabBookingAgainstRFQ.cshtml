@@ -1,7 +1,7 @@
 ﻿@model PGMSFront.Models.CommonModel
 @{   
-    ViewBag.Title = "Track Booking against Contract";
-    Layout = "~/Views/Shared/_LayoutTrackBookingAndRFQ.cshtml";
+    ViewBag.Title = "Lab Booking against RFQ - Regular";
+    Layout = "~/Views/Shared/_LayoutLabBookingAndRFQ.cshtml";
 }
 <style>
     .card {
@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-header card-header-rose card-header-icon">
                     <div class="card-text">
-                        <h4 class="card-title">Track Booking against Contract</h4>
+                        <h4 class="card-title">Lab Booking against RFQ - Regular</h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -79,7 +79,7 @@
         try {
             if ($("#DepartmentId").val() != undefined && parseInt($("#DepartmentId").val()) != 0) {
                 LoaderShow();
-                var data = { 'intDepartmentId': $("#DepartmentId").val(), 'intBookingTypeId': 46, 'intStatusPropId': 38 };
+                var data = { 'intDepartmentId': $("#DepartmentId").val(), 'intBookingTypeId': 91, 'intStatusPropId': 38 };
                 var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                 $.ajax({
                     url: '@Url.Action("RFQBookingSearchViewGetByDepartmentBookinStatus", "Home")',
@@ -150,7 +150,7 @@
         try {
             $.confirm({
                 title: 'Confirm Alert!',
-                content: 'Are you sure to create Booking against RFQ?',
+                content: 'Are you sure to create Booking against RFQ - Regular?',
                 icon: 'fa fa-question',
                 closeIcon: true,
                 animation: 'scale',
@@ -160,7 +160,7 @@
                     MyFunction: {
                         text: 'OK',
                         action: function () {
-                            location.href = "@Url.Action("RFQBookingDetailInsert", "Home", new { id = UrlParameter.Optional })" + "?" + "dfs,ktgbdas,hdffg.khdfrhdduihdgtymdmpxjidgndlxcmhdgmdpldjn,dlkchgj,d,.dkjdhhdk,dmdhhnd,dkmdndhnndmdmjmd" + "&intRFQBookingId=" + RFQBookingId + "&intRFQBPId=" + RFQBPId + "&intBPId=21";
+                            location.href = "@Url.Action("RFQBookingDetailInsert", "Home", new { id = UrlParameter.Optional })" + "?" + "dfs,ktgbdas,hdffg.khdfrhdduihdgtymdmpxjidgndlxcmhdgmdpldjn,dlkchgj,d,.dkjdhhdk,dmdhhnd,dkmdndhnndmdmjmd" + "&intRFQBookingId=" + RFQBookingId + "&intRFQBPId=" + RFQBPId + "&intBPId=90";
                         }
                     },
                     cancel: function () {

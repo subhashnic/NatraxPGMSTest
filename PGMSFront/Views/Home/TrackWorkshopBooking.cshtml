@@ -50,7 +50,7 @@
                     <div class="card-header">
                         <h4 class="card-title">
                             <label class="card-title"> Workshop / Storage Count : </label> <label class="card-title" id="lblWSCount"></label>
-                            @if (Model.StatusPropId == 40 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 57 || Model.WorkFlowId == 29 || Model.WorkFlowId == 36 || Model.WorkFlowId == 38))
+                            @if (Model.StatusPropId == 40 && Model.RFQId == 0 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 57 || Model.WorkFlowId == 29 || Model.WorkFlowId == 36 || Model.WorkFlowId == 38))
                             {
                                 <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="AddMore()" id="btnAdd">Add More</button>
                             }
@@ -158,6 +158,7 @@
                 @Html.HiddenFor(m => m.DocId, new { id = "DocId", style = "width:0px;" })
                 @Html.HiddenFor(m => m.ReportURL, new { id = "ReportURL", style = "width:0px;" })
                 @Html.HiddenFor(m => m.POURL, new { id = "POURL", style = "width:0px;" })
+                @Html.HiddenFor(m => m.RFQId, new { id = "RFQId", style = "width:0px;" })
             </div>
         </div>
     }
@@ -501,7 +502,7 @@
                 }
                 gridData = gridData + "<td>" + NullHandle(data[i].Remark) + "</td>";
 
-                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
+                if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#RFQId").val()) == 0 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                     gridData = gridData + "<td class='td-actions text-center'>";
                     gridData = gridData + "<button type='button' rel='tooltip' class='btn btn-info' title='Edit Workshop : " + NullHandle(data[i].ZZServiceName) + "' onclick='return WorkshopBookingEdit(" + NullHandle(data[i].WorkshopBookingDetailId) + ")' > <i class='material-icons'>edit</i></button>&nbsp;";
                     gridData = gridData + "<button type='button' rel='tooltip' class='btn btn-danger' title='Delete Workshop : " + NullHandle(data[i].ZZServiceName) + "' onclick='return WorkshopBookingDelete(" + NullHandle(data[i].WorkshopBookingDetailId) +")'><i class='material-icons'>close</i></button>";
@@ -609,7 +610,7 @@
     ///////////////////////////// Set Button Visibility  //////////////////////////////////////////////////////
     function SetButtonVisibility() {
         try {
-            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
+            if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#RFQId").val()) == 0 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                 $("#btnAdd").attr('disabled', false);
             }
             else {

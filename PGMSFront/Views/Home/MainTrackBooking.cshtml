@@ -174,39 +174,39 @@
                             </select>
                         </div>
                         <div class="col-md-1 pull-right">
-                            @if (Model.StatusPropId == 40 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 57 || Model.WorkFlowId == 29 || Model.WorkFlowId == 36 || Model.WorkFlowId == 38))
+                            @if (Model.StatusPropId == 40 && Model.RFQId == 0 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 57 || Model.WorkFlowId == 29 || Model.WorkFlowId == 36 || Model.WorkFlowId == 38))
                             {
                                 <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="TrackDetailSave()">Save</button>
                             }
                         </div>
                     </div>
                     @*<div class="table-responsive">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td width="4%" style="border-left: 1px solid #DDD;">Date</td>
-                                        <td width="10%"><input disabled="disabled" type="text" id="TrackDate" onchange="ResetCategoryTimeSlot()" class="form-control datetimepicker" placeholder="DD-MM-YYYY"></td>
-                                        <td width="4%" id="divCategoryTitle" style='display:none;border-left: 1px solid #DDD;'>Type</td>
-                                        <td width="12%" id="divCategoryValue" style='display:none'>
-                                            <div class="form-check" id="divCategory"></div>
-                                        </td>
-                                        <td width="14%" style="border-left: 1px solid #DDD;">Time slot for starting the Test</td>
-                                        <td width="10%">
-                                            <select class="form-control" id="lstTrackTimeSlot" onchange="BindBookingStatus()">
-                                                <option value="0">- Select Time Slot -</option>
-                                                @foreach (var itm in ViewBag.TimeSlot)
-                                                {
-                                                    <option value='@itm.Value'>@itm.Text</option>
-                                                }
-                                            </select>
-                                        </td>
-                                        <td align="right" width="10%">
-                                            <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="TrackDetailSave()">Save</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>*@
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td width="4%" style="border-left: 1px solid #DDD;">Date</td>
+                                <td width="10%"><input disabled="disabled" type="text" id="TrackDate" onchange="ResetCategoryTimeSlot()" class="form-control datetimepicker" placeholder="DD-MM-YYYY"></td>
+                                <td width="4%" id="divCategoryTitle" style='display:none;border-left: 1px solid #DDD;'>Type</td>
+                                <td width="12%" id="divCategoryValue" style='display:none'>
+                                    <div class="form-check" id="divCategory"></div>
+                                </td>
+                                <td width="14%" style="border-left: 1px solid #DDD;">Time slot for starting the Test</td>
+                                <td width="10%">
+                                    <select class="form-control" id="lstTrackTimeSlot" onchange="BindBookingStatus()">
+                                        <option value="0">- Select Time Slot -</option>
+                                        @foreach (var itm in ViewBag.TimeSlot)
+                                        {
+                                            <option value='@itm.Value'>@itm.Text</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td align="right" width="10%">
+                                    <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="TrackDetailSave()">Save</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>*@
                 </div>
                 <div class="card-body" id="divCardBody" style="display: none">
                     <div class="row">
@@ -220,7 +220,7 @@
                                            Model.WorkFlowId == 29 || Model.WorkFlowId == 51 ||
                                            Model.WorkFlowId == 38 || Model.WorkFlowId == 53)
                                             {
-                                                <th width="5%"  class="text-right" style="display:none">Rate</th>
+                                                <th width="5%" class="text-right" style="display:none">Rate</th>
                                             }
                                             else
                                             {
@@ -235,7 +235,7 @@
                                             <th width="12%" class="text-center">Slot wise Confirmed</th>
                                             <th width="8%" class="text-center">Round Hrs.</th>
                                             @*<th width="9%" class="text-center">Bill Hours</th>
-                                                <th width="9%" class="text-right">Amount</th>*@
+                                        <th width="9%" class="text-right">Amount</th>*@
                                         </tr>
                                     </thead>
                                     <tbody id="tbodyTrack"></tbody>
@@ -288,7 +288,7 @@
                                                 <th class="text-center" width="10%">Usage Minutes</th>
                                                 <th class="text-center" width="8%">Round Hours</th>
                                                 @*<th class="text-center" width="5%">Bill Hours.</th>
-                                                    <th class="text-right" width="10%">Amount</th>*@
+                                            <th class="text-right" width="10%">Amount</th>*@
                                                 <th class="text-center" width="3%">#</th>
                                             </tr>
                                         </thead>
@@ -300,11 +300,11 @@
                         <div class="row">
                             <div class="col-md-12">
                                 @*<br />
-                                    @using (Html.BeginForm(new { @class = "form-horizontal" }))
-                                    {
-                                        @Html.AntiForgeryToken()
-                                        <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
-                                    }*@
+                            @using (Html.BeginForm(new { @class = "form-horizontal" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
+                            }*@
                             </div>
                         </div>
                     </div>
@@ -392,18 +392,19 @@
             @Html.HiddenFor(m => m.DocId, new { id = "DocId", style = "width:0px;" })
             @Html.HiddenFor(m => m.ReportURL, new { id = "ReportURL", style = "width:0px;" })
             @Html.HiddenFor(m => m.POURL, new { id = "POURL", style = "width:0px;" })
+            @Html.HiddenFor(m => m.RFQId, new { id = "RFQId", style = "width:0px;" })
 
             @*@using (Html.BeginForm(new { @class = "form-horizontal" }))
-                {
-                    <table Style="width:100%">
-                        <tr>
-                            <td Style="width:50%;text-align:left">
-                                <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
-                            </td>
-                            <td Style="width:50%;text-align:right"></td>
-                        </tr>
-                    </table>
-                }*@
+        {
+            <table Style="width:100%">
+                <tr>
+                    <td Style="width:50%;text-align:left">
+                        <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
+                    </td>
+                    <td Style="width:50%;text-align:right"></td>
+                </tr>
+            </table>
+        }*@
         </div>
 
 
@@ -667,7 +668,7 @@
             for (var i = 0; i < data.length; i++) {
                 gridData = gridData + "<label class='form-check-label'>";
 
-                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
+                if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#RFQId").val()) == 0 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                     gridData = gridData + "<input class='form-check-input' type='radio' id='rdoCategory" + data[i].Value + "' name='Category' " + varchecked + " value='" + data[i].Value + "' onclick='BindTrackService()'>" + data[i].Text + "";
                 }
                 else {
@@ -1196,7 +1197,7 @@
             for (var i = 0; i < data.length; i++) {
                 gridData = gridData + "<tr>";
                 if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
-                    if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
+                    if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#RFQId").val()) == 0 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                         gridData = gridData + "<td class='td-actions text-center'><button type='button' class='btn btn-info' title='Edit Track Details' onclick='return TrackBookingDetailEdit(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].BookingDay) + '"' + "," + NullHandle(data[i].ZZCategoryId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>edit</i></button></td>";
                     }
                     else {
@@ -1204,7 +1205,7 @@
                     }
                 }
                 else {
-                    if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
+                    if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#RFQId").val()) == 0 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                         gridData = gridData + "<td class='td-actions text-center'><button type='button' class='btn btn-info' title='Edit Track Details' onclick='return TrackBookingDetailEdit(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].ZZDate) + '"' + "," + NullHandle(data[i].ZZCategoryId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>edit</i></button></td>";
                     }
                     else {
@@ -1240,7 +1241,7 @@
                // gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].RoundOffHrs) + "</td>";
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].BillingHrs) + "</td>";
                 //gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].Amount) + "</td>";
-                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
+                if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#RFQId").val()) == 0 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                     gridData = gridData + "<td class='td-actions text-center'><button type='button' rel='tooltip' class='btn btn-danger' data-original-title='' title='Delete Track Detail' onclick='return TrackBookingDetailDelete(" + NullHandle(data[i].VehicleId) + "," + '"' + NullHandle(data[i].ZZDate) + '"' + "," + NullHandle(data[i].ServiceId) + "," + NullHandle(data[i].SlotPropId) + "," + NullHandle(data[i].ZZTrackGroupId) + ")'><i class='material-icons'>close</i></button></td>";
                 }
                 else {
@@ -1341,7 +1342,7 @@
             }
 
 
-            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
+            if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#RFQId").val()) == 0 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                 $("#TrackDate").attr('disabled', false);
                 $("#Day").attr('disabled', false);
             }
@@ -1418,7 +1419,7 @@
                 }
 
                 gridData = gridData + "<td class='text-center' id='txtUnit'>" + NullHandle(varUnit) + "</td>";//Unit
-                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
+                if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#RFQId").val()) == 0 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                     gridData = gridData + "<td class='text-right table-warning'><input id='txtUsageHrs' onchange='ValidateHours(this," + rowId + ");' onkeypress='return CheckIsNumeric(event,this);'  maxlength='2' type='text' value='" + varUsageHrs + "' class='form-control timepicker text-left' placeholder='HH'></td>";//UsageHrs
                     gridData = gridData + "<td class='text-right table-warning'><input id='txtUsageMin' onchange='ValidateMinutes(this," + rowId + ");' onkeypress='return CheckIsNumeric(event,this);' maxlength='2' type='text' value='" + varUsageMin + "' class='form-control timepicker text-left' placeholder='MM'></td>";//UsageMin
                 }
@@ -1667,7 +1668,7 @@
                 VehicleId = varVehicleId;
                 changeColorVehicle(RowId);
                 BindServiceTimeDetails(VehicleId);
-                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
+                if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#RFQId").val()) == 0 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                     $("#TrackDate").attr('disabled', false);
                     $("#Day").attr('disabled', false);
                 }
@@ -1697,7 +1698,7 @@
     function DisableControls() {
         try {
             var blnStatus = true;
-            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
+            if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#RFQId").val()) == 0 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                 blnStatus = false;
             }
             $("#lstTrackTimeSlot").attr('disabled', blnStatus);

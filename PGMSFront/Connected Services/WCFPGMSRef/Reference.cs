@@ -1624,6 +1624,9 @@ namespace PGMSFront.WCFPGMSRef {
         private string ZZCreatedByField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ZZRFQBPIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> ZZStatusPropertyIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2135,6 +2138,19 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((object.ReferenceEquals(this.ZZCreatedByField, value) != true)) {
                     this.ZZCreatedByField = value;
                     this.RaisePropertyChanged("ZZCreatedBy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ZZRFQBPId {
+            get {
+                return this.ZZRFQBPIdField;
+            }
+            set {
+                if ((this.ZZRFQBPIdField.Equals(value) != true)) {
+                    this.ZZRFQBPIdField = value;
+                    this.RaisePropertyChanged("ZZRFQBPId");
                 }
             }
         }
@@ -7348,6 +7364,160 @@ namespace PGMSFront.WCFPGMSRef {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlServiceDateViewFront", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
+    [System.SerializableAttribute()]
+    public partial class returndbmlServiceDateViewFront : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlServiceDateViewFront> objdbmlServiceDateViewFrontField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatusField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlServiceDateViewFront> objdbmlServiceDateViewFront {
+            get {
+                return this.objdbmlServiceDateViewFrontField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlServiceDateViewFrontField, value) != true)) {
+                    this.objdbmlServiceDateViewFrontField = value;
+                    this.RaisePropertyChanged("objdbmlServiceDateViewFront");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatus {
+            get {
+                return this.objdbmlStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlStatusField, value) != true)) {
+                    this.objdbmlStatusField = value;
+                    this.RaisePropertyChanged("objdbmlStatus");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="dbmlServiceDateViewFront", Namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate")]
+    [System.SerializableAttribute()]
+    public partial class dbmlServiceDateViewFront : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> BookingDayField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> BookingIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NewDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ServiceDateField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> BookingDay {
+            get {
+                return this.BookingDayField;
+            }
+            set {
+                if ((this.BookingDayField.Equals(value) != true)) {
+                    this.BookingDayField = value;
+                    this.RaisePropertyChanged("BookingDay");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> BookingId {
+            get {
+                return this.BookingIdField;
+            }
+            set {
+                if ((this.BookingIdField.Equals(value) != true)) {
+                    this.BookingIdField = value;
+                    this.RaisePropertyChanged("BookingId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NewDate {
+            get {
+                return this.NewDateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NewDateField, value) != true)) {
+                    this.NewDateField = value;
+                    this.RaisePropertyChanged("NewDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ServiceDate {
+            get {
+                return this.ServiceDateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ServiceDateField, value) != true)) {
+                    this.ServiceDateField = value;
+                    this.RaisePropertyChanged("ServiceDate");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlListOfVehicleComponent", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
     [System.SerializableAttribute()]
     public partial class returndbmlListOfVehicleComponent : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -9023,6 +9193,18 @@ namespace PGMSFront.WCFPGMSRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RFQBookingDetailInsertByBookingIdBPId", ReplyAction="http://tempuri.org/IService1/RFQBookingDetailInsertByBookingIdBPIdResponse")]
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBooking> RFQBookingDetailInsertByBookingIdBPIdAsync(int intRFQBookingId, int intRFQBPId, int intBPId, int intUserId, int intCompanyId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ServiceDateViewFrontGetByBookingId", ReplyAction="http://tempuri.org/IService1/ServiceDateViewFrontGetByBookingIdResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlServiceDateViewFront ServiceDateViewFrontGetByBookingId(int intBookingId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ServiceDateViewFrontGetByBookingId", ReplyAction="http://tempuri.org/IService1/ServiceDateViewFrontGetByBookingIdResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlServiceDateViewFront> ServiceDateViewFrontGetByBookingIdAsync(int intBookingId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateServiceDateFrontByBookingIdDayDates", ReplyAction="http://tempuri.org/IService1/UpdateServiceDateFrontByBookingIdDayDatesResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlBooking UpdateServiceDateFrontByBookingIdDayDates(PGMSFront.WCFPGMSRef.returndbmlServiceDateViewFront objreturndbmlServiceDateViewFront);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateServiceDateFrontByBookingIdDayDates", ReplyAction="http://tempuri.org/IService1/UpdateServiceDateFrontByBookingIdDayDatesResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBooking> UpdateServiceDateFrontByBookingIdDayDatesAsync(PGMSFront.WCFPGMSRef.returndbmlServiceDateViewFront objreturndbmlServiceDateViewFront);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ListOfVehicleComponentInsert", ReplyAction="http://tempuri.org/IService1/ListOfVehicleComponentInsertResponse")]
         PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent ListOfVehicleComponentInsert(PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent objreturndbmlListOfVehicleComponent);
         
@@ -9305,6 +9487,22 @@ namespace PGMSFront.WCFPGMSRef {
         
         public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBooking> RFQBookingDetailInsertByBookingIdBPIdAsync(int intRFQBookingId, int intRFQBPId, int intBPId, int intUserId, int intCompanyId) {
             return base.Channel.RFQBookingDetailInsertByBookingIdBPIdAsync(intRFQBookingId, intRFQBPId, intBPId, intUserId, intCompanyId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlServiceDateViewFront ServiceDateViewFrontGetByBookingId(int intBookingId) {
+            return base.Channel.ServiceDateViewFrontGetByBookingId(intBookingId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlServiceDateViewFront> ServiceDateViewFrontGetByBookingIdAsync(int intBookingId) {
+            return base.Channel.ServiceDateViewFrontGetByBookingIdAsync(intBookingId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlBooking UpdateServiceDateFrontByBookingIdDayDates(PGMSFront.WCFPGMSRef.returndbmlServiceDateViewFront objreturndbmlServiceDateViewFront) {
+            return base.Channel.UpdateServiceDateFrontByBookingIdDayDates(objreturndbmlServiceDateViewFront);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBooking> UpdateServiceDateFrontByBookingIdDayDatesAsync(PGMSFront.WCFPGMSRef.returndbmlServiceDateViewFront objreturndbmlServiceDateViewFront) {
+            return base.Channel.UpdateServiceDateFrontByBookingIdDayDatesAsync(objreturndbmlServiceDateViewFront);
         }
         
         public PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent ListOfVehicleComponentInsert(PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent objreturndbmlListOfVehicleComponent) {

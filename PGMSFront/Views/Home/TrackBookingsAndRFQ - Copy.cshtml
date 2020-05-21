@@ -1,10 +1,9 @@
 ﻿@model PGMSFront.Models.CommonModel
 @{
-    ViewBag.Title = "Lab Booking & RFQ";
-    Layout = "~/Views/Shared/_LayoutLabBookingAndRFQ.cshtml";
+    ViewBag.Title = "Track Booking & RFQ";
+    Layout = "~/Views/Shared/_LayoutTrackBookingAndRFQ.cshtml";
 }
 <style>
-
     .card {
         margin-bottom: 0px !important;
         margin-top: 10px !important;
@@ -22,20 +21,13 @@
         margin-top: 0 !important;
     }
 </style>
+
 <div class="content">
     <div class="container-fluid">
         @using (Html.BeginForm(new { @class = "form-horizontal" }))
         {
             @Html.AntiForgeryToken()
-        <div class="row">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">
-                       Lab Dashboard
-                    </h4>
-                </div>
-            </div>
-        </div>
+           
 
         }
     </div>
@@ -48,7 +40,7 @@
     function LoadBookingInfo() {
         try {
             LoaderShow();
-            var data = { 'intDepartmentId': 0, 'intBookingTypeId': 90, 'intStatusPropId': 40 };
+            var data = { 'intDepartmentId': 0, 'intBookingTypeId': 21, 'intStatusPropId': 40 };
             var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
             $.ajax({
                 url: '@Url.Action("BookingSearchViewGetByDepartmentBookinStatus", "Home")',

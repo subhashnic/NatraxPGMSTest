@@ -126,9 +126,18 @@
                                     <table Style="width:100%">
                                         <tr>
                                             <td Style="width:50%;text-align:right">
-                                                @if (Model.StatusPropId == 40 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 57 || Model.WorkFlowId == 29 || Model.WorkFlowId == 36 || Model.WorkFlowId == 38))
+                                                @if (Model.StatusPropId == 40 && Model.RFQId == 0 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 57 || Model.WorkFlowId == 29 || Model.WorkFlowId == 36 || Model.WorkFlowId == 38))
                                                 {
                                                     <button type="button" class="btn btn-fill btn-rose btn-sm " id="btnSubmit" onclick="return BookingSave()">Save</button>
+                                                }
+                                                @if (Model.StatusPropId == 40 && Model.RFQId > 0 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 36))
+                                                {
+                                                    if (Model.RFQBPId == 46 || Model.RFQBPId == 91)
+                                                    {
+                                                        <button type="button" class="btn btn-fill btn-rose btn-sm " id="btnServiceDate" onclick="return OpenServiceDatesDialog()">Set Service Dates</button>
+                                                        <label>&nbsp;</label>
+                                                    }
+                                                    <a href="@Url.Action("Vehicle", "Home")" class="btn btn-fill btn-rose btn-sm " id="btnServiceDate" style="padding: 7px 20px;">Change Vehicle Details</a>
                                                 }
                                             </td>
                                             <td Style="width:50%;text-align:right">
@@ -153,12 +162,198 @@
             @Html.HiddenFor(m => m.DocId, new { id = "DocId", style = "width:0px;" })
             @Html.HiddenFor(m => m.ReportURL, new { id = "ReportURL", style = "width:0px;" })
             @Html.HiddenFor(m => m.POURL, new { id = "POURL", style = "width:0px;" })
+            @Html.HiddenFor(m => m.RFQId, new { id = "RFQId", style = "width:0px;" })
+            @Html.HiddenFor(m => m.RFQBPId, new { id = "RFQBPId", style = "width:0px;" })
         }
+    </div>
+</div>
+<div class="modal fade" id="UpdateServiceDateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Update Service Dates</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="material-icons">clear</i>
+                </button>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <div class="row">
+                    <div class="table-responsive">
+                        <table style="width:100%">
+                            <tr>
+                                <td style="width:20%"></td>
+                                <td>
+                                    <table border="1">
+                                        <thead class=" text-primary">
+                                            <tr>
+                                                <th style="text-align:center" width="40%">Day</th>
+                                                <th style="text-align:center" width="60%">Service Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyDates"></tbody>
+                                    </table>
+                                </td>
+                                <td style="width:20%"> </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="updServicedates" class="btn btn-fill btn-rose btn-sm" style="margin-top: 5px;" onclick="UpdateServiceDates()">Save</button>
+                <button type="button" class="btn btn-fill btn-danger btn-sm" data-dismiss="modal" style="margin-left: 5px; margin-top: 5px;">Close</button>
+            </div>
+
+        </div>
     </div>
 </div>
 <script>
     var BookingList = '';
 
+    ///////////////////////////// Open Service dates Dialog /////////////////////////////////
+    function OpenServiceDatesDialog() {
+
+        try {
+            LoaderShow();
+            var data = {};
+            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+            $.ajax({
+                url: '@Url.Action("LoadServiceDates", "Home")',
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                data: dataWithAntiforgeryToken,
+                success: function (data) {
+                    LoaderHide();
+                    if (data.StatusId != "99" && data.StatusId != "-99") {
+                       ///data.ServiceDateList;
+                        $("#UpdateServiceDateModal").modal("show");
+                        $("#tbodyDates").html("");
+
+                        var gridData = "";
+                        for (var i = 0; i < data.ServiceDateList.length; i++) {
+                            gridData = gridData + "<tr >";
+
+                            gridData = gridData + "<td style='text-align: center'> <label id='lblBookingDay'>" + NullHandle(data.ServiceDateList[i].BookingDay) + "</label></td>";
+                            gridData = gridData + "<td style='text-align: center'><input style='text-align: center' type='text' class='form-control datetimepicker' value='" + NullHandle(data.ServiceDateList[i].NewDate) + "' id='NewDate'/></td>";
+                            gridData = gridData + "<td style='display:none'><label id='lblServiceDate'>" + NullHandle(data.ServiceDateList[i].ServiceDate) + "</label></td>";
+                            gridData = gridData + "<td style='display:none'><label id='lblBookingId'>" + NullHandle(data.ServiceDateList[i].BookingId) + "</label></td>";
+
+                            gridData = gridData + "</tr>";
+                        }
+
+                        $("#tbodyDates").html(gridData);
+
+                        $('#tbodyDates').find('tr').each(function (i, el) {
+
+                            $(this).find("input[type='text'][id='NewDate']").each(function () {
+                               $('.datetimepicker').datetimepicker({ theme: 'light', timepicker: false, format: 'd-m-Y', scrollMonth: false, scrollInput: false });
+                            });
+                        });
+
+
+                    }
+                    else {
+                        alert(data.Status);
+                    }
+                },
+                error: function (xhr) {
+
+                    LoaderHide();
+                    alert(xhr.responseText);
+                }
+            });
+        }
+        catch (e) {
+
+            LoaderHide();
+            alert(e.message);
+            //  return false;
+        }
+    }
+
+    ///////////////////////////// Update Service Dates  //////////////////////////////////////////////////////
+    function UpdateServiceDates() {
+        try {
+            var model = [];
+            var indx = 0;
+            var strMSG = "";
+
+            $('#tbodyDates').find('tr').each(function (i, el) {
+                ServiceDates = {};
+
+                $(this).find("label[id='lblBookingDay']").each(function () {
+                    ServiceDates.BookingDay = $(this).text().trim();
+                });
+
+                $(this).find("input[type='text'][id='NewDate']").each(function () {
+                    ServiceDates.NewDate = $(this).val().trim();
+                    if ($(this).val().trim() == "") {
+                        strMSG = strMSG + 'Select Date \n</br>';
+                    }
+                });
+
+                $(this).find("label[id='lblServiceDate']").each(function () {
+                    ServiceDates.ServiceDate = $(this).text().trim();
+                });
+
+                $(this).find("label[id='lblBookingId']").each(function () {
+                    ServiceDates.BookingId = $(this).text().trim();
+                });
+
+
+                if ((strMSG == '')) {
+                    model[indx] = new Object(ServiceDates);
+                    indx++;
+                }
+
+            });
+
+            if (strMSG != '') {
+                alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
+                return false;
+            }
+            else {
+
+                $("#updServicedates").hide();
+                LoaderShow();
+                //'{model: ' + JSON.stringify(model) + '}'
+                var data = { 'model': model};
+                var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+                $.ajax({
+                    url: '@Url.Action("UpdateServiceDates", "Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    data: dataWithAntiforgeryToken,
+                    //contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+
+                        LoaderHide();
+                        if (data.StatusId != "99" && data.StatusId != "-99") {
+
+                        }
+                        $("#updServicedates").show();
+                        alert(data.Status);
+                    },
+                    error: function (xhr) {
+
+                        $("#updServicedates").show();
+                        LoaderHide();
+                        alert(xhr.responseText);
+                    }
+                });
+            }
+        }
+        catch (e) {
+
+            LoaderHide();
+            $("#updServicedates").show();
+            alert(e.message);
+            return false;
+        }
+    }
 
     ///////////////////////////// Load Basic Info  //////////////////////////////////////////////////////
     function LoadBasicInfo() {
@@ -211,7 +406,7 @@
             }
         }
         catch (e) {
-           
+
             return false;
         }
     }
@@ -228,10 +423,10 @@
             }
         }
         catch (e) {
-           
+
             return false;
         }
-    }    
+    }
 
     ///////////////////////////// Booking Save  //////////////////////////////////////////////////////
     function BookingSave() {
@@ -379,7 +574,7 @@
     ///////////////////////////// Set Button Visibility  //////////////////////////////////////////////////////
     function SetButtonVisibility() {
         try {
-            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38) ) {
+            if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#RFQId").val()) == 0 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38) ) {
                 $("#btnSubmit").attr('disabled', false);
             }
             else {
@@ -395,7 +590,7 @@
     function DisableControls() {
         try {
             var blnStatus = true;
-            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
+            if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#RFQId").val()) == 0 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                 blnStatus = false;
             }
             //$("#PartCode").prop("readonly", blnStatus);

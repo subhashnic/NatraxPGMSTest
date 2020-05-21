@@ -194,6 +194,9 @@
     <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlRFQBookingDetail.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlServiceDateViewFront.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\WCFPGMSRef\Service1.disco" />
     <None Include="Connected Services\WCFPGMSRef\configuration91.svcinfo" />
     <None Include="Connected Services\WCFPGMSRef\configuration.svcinfo" />
@@ -863,10 +866,18 @@
     <Content Include="Views\Shared\_LayoutLabBookingAndRFQ.cshtml" />
     <Content Include="Views\Home\LabBookingHistory.cshtml" />
     <Content Include="Views\Home\TrackBookingHistory.cshtml" />
-    <Content Include="Views\Home\BookingAgainstRFQ.cshtml" />
+    <Content Include="Views\Home\LabBookingAgainstRFQ.cshtml" />
     <Content Include="Views\Home\BookingAgainstRFQConf.cshtml" />
     <Content Include="Views\Home\BookingAgainstContract.cshtml" />
     <Content Include="Views\Home\BookingStandard.cshtml" />
+    <Content Include="Views\Home\BookingRFQ.cshtml" />
+    <Content Include="Views\Home\BookingRFQConf.cshtml" />
+    <Content Include="Views\Home\BookingContract.cshtml" />
+    <Content Include="Views\Home\LabBookingStandard.cshtml" />
+    <Content Include="Views\Home\LabBookingRFQ.cshtml" />
+    <Content Include="Views\Home\BookingAgainstRFQ.cshtml" />
+    <Content Include="Views\Home\TrackBookingsAndRFQ - Copy.cshtml" />
+    <Content Include="Views\Home\LabBookingsAndRFQ - Copy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

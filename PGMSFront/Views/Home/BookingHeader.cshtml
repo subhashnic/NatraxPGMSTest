@@ -415,7 +415,7 @@
                         text: 'OK',
                         action: function () {
                             LoaderShow();
-                            var data = { 'intQuotFlag':0};
+                            var data = { 'intQuotFlag':1};
                             var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                             $.ajax({
                                 url: '@Url.Action("AcceptPI", "Home")',

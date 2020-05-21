@@ -158,6 +158,7 @@
       <xs:element minOccurs="0" name="ZZBookingDate" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZBookingType" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZCreatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZRFQBPId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ZZStatusPropertyId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ZZStatusWorkflowId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ZZUpdatedBy" nillable="true" type="xs:string" />
@@ -548,6 +549,21 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlWorkshopBookingDetailViewFront" nillable="true" type="tns:dbmlWorkshopBookingDetailViewFront" />
+  <xs:complexType name="ArrayOfdbmlServiceDateViewFront">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlServiceDateViewFront" nillable="true" type="tns:dbmlServiceDateViewFront" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdbmlServiceDateViewFront" nillable="true" type="tns:ArrayOfdbmlServiceDateViewFront" />
+  <xs:complexType name="dbmlServiceDateViewFront">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BookingDay" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="BookingId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="NewDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceDate" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dbmlServiceDateViewFront" nillable="true" type="tns:dbmlServiceDateViewFront" />
   <xs:complexType name="ArrayOfdbmlServicesView">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlServicesView" nillable="true" type="tns:dbmlServicesView" />

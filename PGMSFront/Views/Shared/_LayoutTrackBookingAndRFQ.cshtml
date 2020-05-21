@@ -108,8 +108,8 @@
         margin-top: 0;
         margin-bottom: 5px;" />
                     <li class="nav-item">
-                        <a class="nav-link" id="TrackLI" href="javascript:void(0)">
-                            <i class="material-icons">policy</i>
+                        <a class="nav-link" id="TrackLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
+                            <i class="material-icons">house</i>
                             <p> RFQ - (NEW - In Progress) </p>
                         </a>
                     </li>
@@ -117,19 +117,19 @@
         margin-top: 0;
         margin-bottom: 5px;" />
                     <li class="nav-item">
-                        <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
+                        <a class="nav-link" id="LabLI" href="@Url.Action("BookingRFQ", "Home")">
                             <i class="material-icons">blank</i>
                             <p> RFQ - Regular Testing <span class="badge pull-right">2</span></p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
+                        <a class="nav-link" id="LabLI" href="@Url.Action("BookingRFQConf", "Home")">
                             <i class="material-icons">blank</i>
                             <p> RFQ - Confidential Testing <span class="badge pull-right">1</span></p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
+                        <a class="nav-link" id="LabLI" href="@Url.Action("BookingContract", "Home")">
                             <i class="material-icons">blank</i>
                             <p> RFQ - Long-Term CONTRACT <span class="badge pull-right">0</span></p>
                         </a>
@@ -138,8 +138,8 @@
         margin-top: 0;
         margin-bottom: 5px;" />
                     <li class="nav-item">
-                        <a class="nav-link" id="TrackLI" href="javascript:void(0)">
-                            <i class="material-icons">policy</i>
+                        <a class="nav-link" id="TrackLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
+                            <i class="material-icons">house</i>
                             <p> Booking   (NEW / In-Progress) </p>
                         </a>
                     </li>
@@ -171,30 +171,26 @@
                             <p> Booking against Contract <span class="badge pull-right">0</span></p>
                         </a>
                     </li>
-                    <hr style="        background: #FFF;
-        margin-top: 0;
-        margin-bottom: 5px;" />
-                    <li class="nav-item">
-                        <a class="nav-link" id="TrackLI" href="javascript:void(0)">
-                            <i class="material-icons">policy</i>
-                            <p> History </p>
-                        </a>
-                    </li>
-                    <hr style="        background: #FFF;
-        margin-top: 0;
-        margin-bottom: 5px;" />
-                    <li class="nav-item">
-                        <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
-                            <i class="material-icons">blank</i>
-                            <p> Track Booking History </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
-                            <i class="material-icons">blank</i>
-                            <p> RFQ History </p>
-                        </a>
-                    </li>
+                    <hr style="background: #FFF;margin-top: 0;margin-bottom: 5px;" />
+                    @*<li class="nav-item">
+            <a class="nav-link" id="TrackLI" href="javascript:void(0)">
+                <i class="material-icons">policy</i>
+                <p> History </p>
+            </a>
+        </li>*@
+                    @*<hr style="background: #FFF;margin-top: 0;margin-bottom: 5px;" />*@
+                    @*<li class="nav-item">
+            <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingHistory", "Home")">
+                <i class="material-icons">blank</i>
+                <p> Track Booking History </p>
+            </a>
+        </li>*@
+                    @*<li class="nav-item">
+            <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
+                <i class="material-icons">blank</i>
+                <p> RFQ History </p>
+            </a>
+        </li>*@
                 </ul>
             </div>
         </div>

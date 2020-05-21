@@ -1,6 +1,6 @@
 ﻿@model PGMSFront.Models.CommonModel
 @{   
-    ViewBag.Title = "Booking - Standard Rates";
+    ViewBag.Title = "Track Booking - Standard Rates";
     Layout = "~/Views/Shared/_LayoutTrackBookingAndRFQ.cshtml";
 }
 <style>
@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-header card-header-rose card-header-icon">
                     <div class="card-text">
-                        <h4 class="card-title">Booking - Standard Rates</h4>
+                        <h4 class="card-title">Track Booking - Standard Rates</h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -80,10 +80,10 @@
         try {
             if ($("#DepartmentId").val() != undefined && parseInt($("#DepartmentId").val()) != 0) {
                 LoaderShow();
-                var data = { 'intDepartmentId': $("#DepartmentId").val(), 'intBookingTypeId': 21, 'intStatusPropId': 40 };
+                var data = { 'intDepartmentId': $("#DepartmentId").val(), 'intBookingTypeId': 21, 'intStatusPropId': 6 };
                 var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                 $.ajax({
-                    url: '@Url.Action("RFQBookingSearchViewGetByDepartmentBookinStatus", "Home")',
+                    url: '@Url.Action("BookingSearchViewGetByDepartmentBookinStatus", "Home")',
                     type: 'POST',
                     dataType: 'json',
                     async: true,

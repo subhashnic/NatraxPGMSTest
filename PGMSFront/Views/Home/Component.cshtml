@@ -38,7 +38,7 @@
                     <div class="card-header">
                         <h4 class="card-title">
                             <label class="card-title">Component Count : </label> <label class="card-title" id="lblVehicleCount"></label>
-                            @if (Model.StatusPropId == 40 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 57 || Model.WorkFlowId == 29 || Model.WorkFlowId == 36 || Model.WorkFlowId == 38))
+                            @if (Model.StatusPropId == 40 && parseInt($("#RFQId").val()) == 0 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 57 || Model.WorkFlowId == 29 || Model.WorkFlowId == 36 || Model.WorkFlowId == 38))
                             {
                                 <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="AddMore()" id="btnAdd">Add More</button>
                             }
@@ -75,9 +75,9 @@
                                                 <td><input type="text" class="form-control" value="" id="VehicleWeight"></td>
                                                 <td><input type="text" disabled="disabled" class="form-control" value="" id="RegistrationNo"></td>
                                                 <td class='td-actions text-center'>
-                                                    <a  class='btn btn-info' onclick="return ComponentSave()" id="btnSave"><i class='material-icons'>save</i></a>
-                                                    <a  class='btn btn-danger' onclick="AddMoreCancel()"><i class='material-icons'>close</i></a>
-                                                </td> 
+                                                    <a class='btn btn-info' onclick="return ComponentSave()" id="btnSave"><i class='material-icons'>save</i></a>
+                                                    <a class='btn btn-danger' onclick="AddMoreCancel()"><i class='material-icons'>close</i></a>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -86,7 +86,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                               
+
                             </div>
                         </div>
                         <br />
@@ -111,6 +111,7 @@
                     @Html.HiddenFor(m => m.DocId, new { id = "DocId", style = "width:0px;" })
                     @Html.HiddenFor(m => m.ReportURL, new { id = "ReportURL", style = "width:0px;" })
                     @Html.HiddenFor(m => m.POURL, new { id = "POURL", style = "width:0px;" })
+                    @Html.HiddenFor(m => m.RFQId, new { id = "RFQId", style = "width:0px;" })
                 </div>
 
             </div>
@@ -430,7 +431,7 @@
                 gridData = gridData + "<td>" + NullHandle(data[i].Description2) + "</td>";
                 gridData = gridData + "<td>" + NullHandle(data[i].VorC) + "</td>";
 
-                if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
+                if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#RFQId").val()) == 0 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                     gridData = gridData + "<td class='td-actions text-center'>";
                     gridData = gridData + "<a href='#' class='btn btn-info' title='Edit Component : " + NullHandle(data[i].VorC)+"' onclick='return ComponentEdit(" + NullHandle(data[i].VehCompId) + ")' > <i class='material-icons'>edit</i></a>&nbsp;";
                     gridData = gridData + "<a href='#' class='btn btn-danger' title='Delete Component : " + NullHandle(data[i].VorC) +"' onclick='return ComponentDelete(" + NullHandle(data[i].VehCompId)+")'><i class='material-icons'>close</i></a>";
@@ -455,7 +456,7 @@
     ///////////////////////////// Set Button Visibility  //////////////////////////////////////////////////////
     function SetButtonVisibility() {
         try {
-            if (parseInt($("#StatusPropId").val()) == 40 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
+            if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#RFQId").val()) == 0 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {
                 $("#btnAdd").attr('disabled', false);
             }
             else {
