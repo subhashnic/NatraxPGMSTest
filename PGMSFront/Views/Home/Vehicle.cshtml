@@ -266,7 +266,7 @@
                 }
             });
             $("#AddMoreTR").find("select[id='VehicleType']").each(function () {
-                model.TypeId = $(this).val().trim();
+                model.TypeId = $(this).val();
                 if ($(this).val().trim() == "") {
                     strMSG = strMSG + 'Vehicle Type \n</br>'
                 }

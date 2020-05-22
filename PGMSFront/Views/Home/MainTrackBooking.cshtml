@@ -520,7 +520,10 @@
                             if (parseInt(varTrackGroupId) == 0 && (parseInt($("#StatusPropId").val()) != 40 && parseInt($("#WorkFlowId").val()) != 6 && parseInt($("#WorkFlowId").val()) != 57 && parseInt($("#WorkFlowId").val()) != 29)) {
                                 BindServiceLookup(ServicesList, TrackBookingTimeSummaryList);
                             }
-
+                            else if (parseInt($("#RFQId").val()) > 0) {
+                                BindServiceLookup(ServicesList, TrackBookingTimeSummaryList);
+                            }
+                                
                         }
                         else {
                             alert(data.Status);

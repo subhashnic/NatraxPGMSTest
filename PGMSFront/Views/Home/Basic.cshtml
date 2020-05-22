@@ -137,7 +137,7 @@
                                                         <button type="button" class="btn btn-fill btn-rose btn-sm " id="btnServiceDate" onclick="return OpenServiceDatesDialog()">Set Service Dates</button>
                                                         <label>&nbsp;</label>
                                                     }
-                                                    <a href="@Url.Action("Vehicle", "Home")" class="btn btn-fill btn-rose btn-sm " id="btnServiceDate" style="padding: 7px 20px;">Change Vehicle Details</a>
+                                                    <a href="@Url.Action("Vehicle", "Home")" class="btn btn-fill btn-rose btn-sm " id="btnChangeVehicle" style="padding: 7px 20px;">Change Vehicle Details</a>
                                                 }
                                             </td>
                                             <td Style="width:50%;text-align:right">
@@ -201,7 +201,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="updServicedates" class="btn btn-fill btn-rose btn-sm" style="margin-top: 5px;" onclick="UpdateServiceDates()">Save</button>
+                <button type="button" id="updServicedates"  class="btn btn-fill btn-rose btn-sm" style="margin-top: 5px;" onclick="UpdateServiceDates()">Save</button>
                 <button type="button" class="btn btn-fill btn-danger btn-sm" data-dismiss="modal" style="margin-left: 5px; margin-top: 5px;">Close</button>
             </div>
 
@@ -210,6 +210,54 @@
 </div>
 <script>
     var BookingList = '';
+
+    function ToDate(strdate) {
+        var parts = strdate.split("-");
+        if (parts.length < 3) {
+            parts = strdate.split("/");
+        }
+        return new Date(parts[2], parts[1] - 1, parts[0])
+    }
+
+    function ToDateDDMMYY(varDate) {
+        var dd = (varDate.getDate() <= 9 ? "0" + varDate.getDate() : varDate.getDate());
+        var mm = (varDate.getMonth() + 1 <= 9 ? "0" + (varDate.getMonth() + 1) : (varDate.getMonth() + 1));
+        var y = varDate.getFullYear();
+        var someFormattedDate = dd + '-' + mm + '-' + y;
+        return someFormattedDate;
+    }
+
+    ///////////////////////////// Set Remaining Dates  //////////////////////////////////////////////////////
+    function SetRemainingDates(varDate) {
+        try { 
+            var varDateFirst = $(varDate).val().trim()
+
+            $('#tbodyDates').find('tr').each(function (i, el) {
+                var varDay = 0;
+
+                $(this).find("label[id='lblBookingDay']").each(function () {
+                    varDay = $(this).text();
+                });
+
+                $(this).find("input[type='text'][id='NewDate']").each(function () {
+                   
+                    if (i > 0) {
+                        var varNewDate = ToDate(varDateFirst);
+                        varNewDate.setDate(varNewDate.getDate() + parseInt(varDay) - 1);
+                        
+                        $(this).val(ToDateDDMMYY(varNewDate));
+                    }
+                    
+                });              
+
+            });
+
+        }
+        catch (e) {           
+            alert(e.message);
+            return false;
+        }
+    }
 
     ///////////////////////////// Open Service dates Dialog /////////////////////////////////
     function OpenServiceDatesDialog() {
@@ -232,23 +280,30 @@
                         $("#tbodyDates").html("");
 
                         var gridData = "";
+                        var varonBlur = "onblur='SetRemainingDates(this)'";
+               
                         for (var i = 0; i < data.ServiceDateList.length; i++) {
                             gridData = gridData + "<tr >";
+                            if (i > 0) {
+                                varonBlur = "disabled='disabled";                                
+                            }
 
-                            gridData = gridData + "<td style='text-align: center'> <label id='lblBookingDay'>" + NullHandle(data.ServiceDateList[i].BookingDay) + "</label></td>";
-                            gridData = gridData + "<td style='text-align: center'><input style='text-align: center' type='text' class='form-control datetimepicker' value='" + NullHandle(data.ServiceDateList[i].NewDate) + "' id='NewDate'/></td>";
-                            gridData = gridData + "<td style='display:none'><label id='lblServiceDate'>" + NullHandle(data.ServiceDateList[i].ServiceDate) + "</label></td>";
-                            gridData = gridData + "<td style='display:none'><label id='lblBookingId'>" + NullHandle(data.ServiceDateList[i].BookingId) + "</label></td>";
+                            gridData = gridData + "<td style='text-align: center'> <label style='color:black'  id='lblBookingDay'>" + NullHandle(data.ServiceDateList[i].BookingDay) + "</label></td>";
+                            gridData = gridData + "<td style='text-align: center'><input style='text-align: center;color:black' type='text' " + varonBlur +" class='form-control datetimepicker' value='" + NullHandle(data.ServiceDateList[i].NewDate) + "' id='NewDate'/></td>";
+                            gridData = gridData + "<td style='display:none'><label  id='lblServiceDate'>" + NullHandle(data.ServiceDateList[i].ServiceDate) + "</label></td>";
+                            gridData = gridData + "<td style='display:none'><label  id='lblBookingId'>" + NullHandle(data.ServiceDateList[i].BookingId) + "</label></td>";
 
                             gridData = gridData + "</tr>";
                         }
 
                         $("#tbodyDates").html(gridData);
 
-                        $('#tbodyDates').find('tr').each(function (i, el) {
-
+                        $('#tbodyDates').find('tr').each(function (i, el) {                                                       
                             $(this).find("input[type='text'][id='NewDate']").each(function () {
                                $('.datetimepicker').datetimepicker({ theme: 'light', timepicker: false, format: 'd-m-Y', scrollMonth: false, scrollInput: false });
+                                if (i == 0) {
+                                    $(this).focus();
+                                }
                             });
                         });
 

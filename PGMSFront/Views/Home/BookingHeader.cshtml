@@ -48,12 +48,13 @@
                         else if (Model.DocId > 0 && (Model.WorkFlowId == 59 || Model.WorkFlowId == 52 || Model.WorkFlowId == 54))
                         {
                             <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
-                            if (Model.StatusPropId ==40)
+                            if (Model.StatusPropId == 40)
                             {
                                 <input type="button" id="btnAcceptQuotation" value="Accept Quotation" onclick="return AcceptQuotation(@Model.WorkFlowId);" class="btn btn-fill btn-rose btn-sm" />
                             }
                         }
 
+                        @*<input type="button" id="btnFilePreView" value="File Preview" onclick="OpenPreviewFileModel();" class="btn btn-fill btn-rose btn-sm" />*@
                     </td>
                 </tr>
             </table>
@@ -158,7 +159,55 @@
     </div>
 </div>
 
+<div class="modal fade" id="iframeFilePreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">File Preview</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="material-icons">clear</i>
+                </button>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <iframe id="iframeFilePreview" src="" frameborder="0" scrolling="auto" style="width:100%;height:400px;display:none" allowtransparency="false"></iframe>
+                <img id="imgFilePreview" src="" frameborder="0" scrolling="auto" style="width:100%;height:400px;display:none" />
+                @*<object id="aaa" data="" type="application/pdf" width="600" height="500">
+                    <a id="aaaa" href="">test.pdf</a>
+                </object>*@
+                @*<embed id="aa"  src="" width="600px" height="500px" />*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-fill btn-danger btn-sm" data-dismiss="modal" style="margin-left: 5px; margin-top: 5px;">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script>
+
+    function OpenPreviewFileModel() {
+        //$("#iframeFilePreview").attr("src", "");
+        //$("#imgFilePreview").hide();
+        //$("#imgFilePreview").attr("src", "");
+        //$("#iframeFilePreview").hide();
+
+        //var varFileURL = "https://natraxpgmsstorage.blob.core.windows.net/natraximage/PO_15.jpeg";        
+       
+        //if (varFileURL.substr(varFileURL.length - 3, 3).toLowerCase() == "pdf") {
+        //    $("#iframeFilePreview").attr("src", varFileURL);
+        //    $("#iframeFilePreview").show();
+        //}
+        //else {
+        //    $("#imgFilePreview").attr("src", varFileURL);
+        //    $("#imgFilePreview").show();
+        //}
+        //$("#aaa").attr("data", "http://pgmsbackoffice.azurewebsites.net/ReportViewer/ReportViewer.aspx?rptName=rptBookingInvoiceIGST&DocId=47&BPId=90");
+       // $("#aaaa").attr("href", "http://pgmsbackoffice.azurewebsites.net/ReportViewer/ReportViewer.aspx?rptName=rptBookingInvoiceIGST&DocId=47&BPId=90");
+        //$("#aa").attr("src", "https://natraxpgmsstorage.blob.core.windows.net/natraximage/SD_1.pdf");
+       // $("#iframeFilePreviewModal").modal("show");
+    }
+
     ///////////////////////////// Upload P.0.  //////////////////////////////////////////////////////
     function OpenPODialog() {
         $("#fileInputClear").click();
@@ -330,8 +379,27 @@
     ///////////////////////////// View P.O.  //////////////////////////////////////////////////////
     function ViewPO() {
         try {
-            var strPOViewerUrl = $("#POURL").val();
-            window.open(strPOViewerUrl, '_blank');
+           
+            $("#iframeFilePreview").attr("src", "");
+            $("#imgFilePreview").hide();
+            $("#imgFilePreview").attr("src", "");
+            $("#iframeFilePreview").hide();
+
+            var varFileURL = $("#POURL").val();
+
+            if (varFileURL.substr(varFileURL.length - 3, 3).toLowerCase() == "pdf") {
+                $("#iframeFilePreview").attr("src", varFileURL);
+                $("#iframeFilePreview").show();
+            }
+            else {
+                $("#imgFilePreview").attr("src", varFileURL);
+                $("#imgFilePreview").show();
+            }
+
+            $("#iframeFilePreviewModal").modal("show");
+
+            //var strPOViewerUrl = $("#POURL").val();
+            //window.open(strPOViewerUrl, '_blank');
         }
         catch (e) {
             alert(e.message);
@@ -366,7 +434,7 @@
                                 success: function (data) {
 
                                     LoaderHide();
-                                   
+
                                     if (data.StatusId != "99" && data.StatusId != "-99") {
                                         alert("PI Accepted Successfully");
                                         BookingList = data.BookingList;
