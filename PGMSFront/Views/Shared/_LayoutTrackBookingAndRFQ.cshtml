@@ -23,44 +23,41 @@
     <script src="~/Templates/assets/js/core/jquery.min.js"></script>
     <script src="~/Templates/assets/js/Load.js"></script>
     <style>
-    .nav-link {
-        padding: 0px 0px 0px 0px !important;
-    }
+        .nav-link {
+            padding: 0px 0px 0px 0px !important;
+        }
 
-    .main-panel > .content {
-        padding: 0px 15px !important;
-    }
+        .main-panel > .content {
+            padding: 0px 15px !important;
+        }
 
-    .sidebar .nav li a, .sidebar .nav li .dropdown-menu a {
-        margin: 5px 0px 0;
-    }
+        .sidebar .nav li a, .sidebar .nav li .dropdown-menu a {
+            margin: 5px 0px 0;
+        }
 
-    .sidebar .nav i {
-        margin-right: 0px;
-        line-height: 26px;
-    }
+        .sidebar .nav i {
+            margin-right: 0px;
+            line-height: 26px;
+        }
 
-    .badge {
-        padding: 2px 5px;
-        font-size: 13px;
-        color: #000;
-        background: #FFF;
-        border-radius: 50%;
-        margin-top: 6px;
-        margin-right: 3px;
-    }
+        .badge {
+            padding: 2px 5px;
+            font-size: 13px;
+            color: #000;
+            background: #FFF;
+            border-radius: 50%;
+            margin-top: 6px;
+            margin-right: 3px;
+        }
 
-    .sidebar .logo:after {
-        background-color: rgba(180, 180, 180, 0) !important;
-    }
+        .sidebar .logo:after {
+            background-color: rgba(180, 180, 180, 0) !important;
+        }
 
-    .sidebar .nav {
-        margin-top: 0px;
-    }
-
-        
-
-  </style>
+        .sidebar .nav {
+            margin-top: 0px;
+        }
+    </style>
 </head>
 
 <body class="">
@@ -93,11 +90,11 @@
                     </div>*@
                 <ul class="nav" id="nav-item">
                     @*<li class="nav-item">
-            <a class="nav-link" id="BasicLI" href="@Url.Action("Dashboard", "Home")">
-                <i class="material-icons">dashboard</i>
-                <p> Dashboard </p>
-            </a>
-        </li>*@
+                            <a class="nav-link" id="BasicLI" href="@Url.Action("Dashboard", "Home")">
+                                <i class="material-icons">dashboard</i>
+                                <p> Dashboard </p>
+                            </a>
+                        </li>*@
                     <li class="nav-item">
                         <a class="nav-link" id="BasicLI" href="@Url.Action("ManageBooking", "Home")" style="margin: 0 0px; padding: 5px 0px 5px 0px !important;">
                             <i class="material-icons">dashboard</i>
@@ -119,19 +116,19 @@
                     <li class="nav-item">
                         <a class="nav-link" id="LabLI" href="@Url.Action("BookingRFQ", "Home")">
                             <i class="material-icons">blank</i>
-                            <p> RFQ - Regular Testing <span class="badge pull-right">2</span></p>
+                            <p> RFQ - Regular Testing <span class="badge pull-right"></span></p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="LabLI" href="@Url.Action("BookingRFQConf", "Home")">
                             <i class="material-icons">blank</i>
-                            <p> RFQ - Confidential Testing <span class="badge pull-right">1</span></p>
+                            <p> RFQ - Confidential Testing <span class="badge pull-right"></span></p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="LabLI" href="@Url.Action("BookingContract", "Home")">
                             <i class="material-icons">blank</i>
-                            <p> RFQ - Long-Term CONTRACT <span class="badge pull-right">0</span></p>
+                            <p> RFQ - Long-Term CONTRACT <span class="badge pull-right"></span></p>
                         </a>
                     </li>
                     <hr style="        background: #FFF;
@@ -149,48 +146,48 @@
                     <li class="nav-item">
                         <a class="nav-link" id="LabLI" href="@Url.Action("BookingStandard", "Home")">
                             <i class="material-icons">blank</i>
-                            <p> Booking - Standard Rates <span class="badge pull-right">2</span></p>
+                            <p> Booking - Standard Rates <span class="badge pull-right"></span></p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="LabLI" href="@Url.Action("BookingAgainstRFQ", "Home")">
                             <i class="material-icons">blank</i>
-                            <p> Booking against RFQ - Regular <span class="badge pull-right">1</span></p>
+                            <p> Booking against RFQ - Regular <span class="badge pull-right"></span></p>
 
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="LabLI" href="@Url.Action("BookingAgainstRFQConf", "Home")">
                             <i class="material-icons">blank</i>
-                            <p> Booking against RFQ - Confident. <span class="badge pull-right">2</span></p>
+                            <p> Booking against RFQ - Confident. <span class="badge pull-right"></span></p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="LabLI" href="@Url.Action("BookingAgainstContract", "Home")">
                             <i class="material-icons">blank</i>
-                            <p> Booking against Contract <span class="badge pull-right">0</span></p>
+                            <p> Booking against Contract <span class="badge pull-right"></span></p>
                         </a>
                     </li>
                     <hr style="background: #FFF;margin-top: 0;margin-bottom: 5px;" />
                     @*<li class="nav-item">
-            <a class="nav-link" id="TrackLI" href="javascript:void(0)">
-                <i class="material-icons">policy</i>
-                <p> History </p>
-            </a>
-        </li>*@
+                            <a class="nav-link" id="TrackLI" href="javascript:void(0)">
+                                <i class="material-icons">policy</i>
+                                <p> History </p>
+                            </a>
+                        </li>*@
                     @*<hr style="background: #FFF;margin-top: 0;margin-bottom: 5px;" />*@
+                    <li class="nav-item">
+                        <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingHistory", "Home")">
+                            <i class="material-icons">blank</i>
+                            <p> Track Booking History </p>
+                        </a>
+                    </li>
                     @*<li class="nav-item">
-            <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingHistory", "Home")">
-                <i class="material-icons">blank</i>
-                <p> Track Booking History </p>
-            </a>
-        </li>*@
-                    @*<li class="nav-item">
-            <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
-                <i class="material-icons">blank</i>
-                <p> RFQ History </p>
-            </a>
-        </li>*@
+                            <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
+                                <i class="material-icons">blank</i>
+                                <p> RFQ History </p>
+                            </a>
+                        </li>*@
                 </ul>
             </div>
         </div>

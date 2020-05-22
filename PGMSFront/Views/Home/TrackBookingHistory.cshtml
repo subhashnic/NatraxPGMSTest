@@ -1,7 +1,15 @@
 ﻿@model PGMSFront.Models.CommonModel
 @{   
+    if (Convert.ToString(Session["SessHistoryType"]).ToUpper() == "RFQ")
+    {
+        Layout = "~/Views/Shared/_LayoutTrackBookingAndRFQ.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutBooking.cshtml";
+    }
     ViewBag.Title = "Track Booking History";
-    Layout = "~/Views/Shared/_LayoutBooking.cshtml";
+
 }
 <style>
     .card {
