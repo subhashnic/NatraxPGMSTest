@@ -197,6 +197,9 @@
     <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlServiceDateViewFront.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlWorkFlowActivityTrackView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\WCFPGMSRef\Service1.disco" />
     <None Include="Connected Services\WCFPGMSRef\configuration91.svcinfo" />
     <None Include="Connected Services\WCFPGMSRef\configuration.svcinfo" />
@@ -858,8 +861,6 @@
     <Content Include="Views\Home\Component.cshtml" />
     <Content Include="Views\Home\TrackWorkshopBooking.cshtml" />
     <Content Include="Views\Home\TrackAddOnServicesBooking.cshtml" />
-    <Content Include="Views\Home\LabWorkshopBooking.cshtml" />
-    <Content Include="Views\Home\LabAddOnServicesBooking.cshtml" />
     <Content Include="Views\Home\MainLabBooking.cshtml" />
     <Content Include="Views\Shared\_LayoutLab.cshtml" />
     <Content Include="Views\Home\LabBookingsAndRFQ.cshtml" />
@@ -878,6 +879,7 @@
     <Content Include="Views\Home\BookingAgainstRFQ.cshtml" />
     <Content Include="Views\Home\TrackBookingsAndRFQ - Copy.cshtml" />
     <Content Include="Views\Home\LabBookingsAndRFQ - Copy.cshtml" />
+    <Content Include="Views\Home\WorkflowActivity.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

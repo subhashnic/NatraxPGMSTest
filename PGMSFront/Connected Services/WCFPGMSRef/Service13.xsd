@@ -159,10 +159,13 @@
       <xs:element minOccurs="0" name="ZZBookingType" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZCreatedBy" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZRFQBPId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ZZRFQBookingDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZRFQBookingNo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZStatusPropertyId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ZZStatusWorkflowId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ZZUpdatedBy" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZWorkFlowId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ZZWorkflowRemark" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlBookingView" nillable="true" type="tns:dbmlBookingView" />
@@ -644,6 +647,32 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlWorkFlowView" nillable="true" type="tns:dbmlWorkFlowView" />
+  <xs:complexType name="ArrayOfdbmlWorkFlowActivityTrackView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlWorkFlowActivityTrackView" nillable="true" type="tns:dbmlWorkFlowActivityTrackView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdbmlWorkFlowActivityTrackView" nillable="true" type="tns:ArrayOfdbmlWorkFlowActivityTrackView" />
+  <xs:complexType name="dbmlWorkFlowActivityTrackView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActivityDesc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ActivityName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BPId" type="xs:int" />
+      <xs:element minOccurs="0" name="DateTime" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocId" type="xs:int" />
+      <xs:element minOccurs="0" name="PriorUserId" type="xs:int" />
+      <xs:element minOccurs="0" name="PriorUserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateDateTime" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserId" type="xs:int" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WorkFlowActivityId" type="xs:int" />
+      <xs:element minOccurs="0" name="WorkFlowName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WorkFlowStatus" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dbmlWorkFlowActivityTrackView" nillable="true" type="tns:dbmlWorkFlowActivityTrackView" />
   <xs:complexType name="ArrayOfdbmlLablinkVorC">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlLablinkVorC" nillable="true" type="tns:dbmlLablinkVorC" />

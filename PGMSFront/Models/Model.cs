@@ -42,6 +42,7 @@ namespace PGMSFront.Models {
         public string POURL { get; set; }
         public int RFQId { get; set; }
         public int RFQBPId{ get; set; }
+        public string RFQBookingNo { get; set; }
 
         public ObservableCollection<dbmlWorkFlowView> WorkFlowView = new ObservableCollection<dbmlWorkFlowView>();
 

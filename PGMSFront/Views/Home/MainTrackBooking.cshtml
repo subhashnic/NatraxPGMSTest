@@ -488,7 +488,7 @@
                 VehicleId = 0;
                 ColourRowId = -1;
                 Holdid = '';
-
+                debugger;
                 var data = { 'intTrackGroupId': varTrackGroupId };
                 var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                 LoaderShow();
@@ -502,6 +502,7 @@
 
                         $(".filter-option").css({"color": "#ec407a", "font-size": "15px", "border-bottom": "2px solid #ec407a"});
                         LoaderHide();
+                        debugger;
                         if (data.StatusId != "99" && data.StatusId != "-99") {
                             ServicesList = data.ServicesList;
                             ServiceCategoryList = data.ServiceCategoryList;
@@ -603,6 +604,7 @@
     ///////////////////////////// Bind Vehicle Info  //////////////////////////////////////////////////////
     function BindVehicleData(data) {
         try {
+            debugger;
             var gridData = "";
 
             $("#tbodyVehicle").html("");

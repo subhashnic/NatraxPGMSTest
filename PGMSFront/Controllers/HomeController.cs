@@ -1018,6 +1018,8 @@ namespace PGMSFront.Controllers
                     model.POURL = strPOURL + objdbmlBooking.PODocPath;
                     model.RFQId = Convert.ToInt32(objdbmlBooking.RFQId);
                     model.RFQBPId = Convert.ToInt32(objdbmlBooking.ZZRFQBPId);
+                    model.RFQBookingNo = objdbmlBooking.ZZRFQBookingNo;
+                    ViewBag.WorkflowRemark = objdbmlBooking.ZZWorkflowRemark;
                     switch (Convert.ToInt32(Session["BPId"]))
                     {
                         case 21:                            
@@ -1080,6 +1082,7 @@ namespace PGMSFront.Controllers
                     model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), 0);
                     model.RFQId = 0;
                     model.RFQBPId = 0;
+                    model.RFQBookingNo = "";
                 }
             }
             catch
@@ -1644,6 +1647,8 @@ namespace PGMSFront.Controllers
                     //}
                     model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), objdbmlBooking.BookingId);
                     model.RFQId = Convert.ToInt32(objdbmlBooking.RFQId);
+                    model.RFQBPId = Convert.ToInt32(objdbmlBooking.ZZRFQBPId);
+                    model.RFQBookingNo = objdbmlBooking.ZZRFQBookingNo;
                 }
                 else
                 {
@@ -1928,6 +1933,8 @@ namespace PGMSFront.Controllers
                     //}
                     model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), objdbmlBooking.BookingId);
                     model.RFQId = Convert.ToInt32(objdbmlBooking.RFQId);
+                    model.RFQBPId = Convert.ToInt32(objdbmlBooking.ZZRFQBPId);
+                    model.RFQBookingNo = objdbmlBooking.ZZRFQBookingNo;
                 }
                 else
                 {
@@ -2305,6 +2312,8 @@ namespace PGMSFront.Controllers
                     //}
                     model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), objdbmlBooking.BookingId);
                     model.RFQId = Convert.ToInt32(objdbmlBooking.RFQId);
+                    model.RFQBPId = Convert.ToInt32(objdbmlBooking.ZZRFQBPId);
+                    model.RFQBookingNo = objdbmlBooking.ZZRFQBookingNo;
                 }
                 else
                 {
@@ -2836,6 +2845,8 @@ namespace PGMSFront.Controllers
                     //}
                     model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), objdbmlBooking.BookingId);
                     model.RFQId = Convert.ToInt32(objdbmlBooking.RFQId);
+                    model.RFQBPId = Convert.ToInt32(objdbmlBooking.ZZRFQBPId);
+                    model.RFQBookingNo = objdbmlBooking.ZZRFQBookingNo;
                 }
                 else
                 {
@@ -3131,6 +3142,8 @@ namespace PGMSFront.Controllers
                     //}
                     model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), objdbmlBooking.BookingId);
                     model.RFQId = Convert.ToInt32(objdbmlBooking.RFQId);
+                    model.RFQBPId = Convert.ToInt32(objdbmlBooking.ZZRFQBPId);
+                    model.RFQBookingNo = objdbmlBooking.ZZRFQBookingNo;
                 }
                 else
                 {
@@ -3161,10 +3174,10 @@ namespace PGMSFront.Controllers
                     return RedirectToAction("TrackWorkshopBooking", "Home");
                 }
 
-                //if (btnPrevNext.ToLower() == "next")
-                //{
-                //    return RedirectToAction("TrackAddOnServicesBooking", "Home");
-                //}
+                if (btnPrevNext.ToLower() == "next")
+                {
+                    return RedirectToAction("WorkflowActivity", "Home");
+                }
             }
             catch
             {
@@ -3418,6 +3431,8 @@ namespace PGMSFront.Controllers
                     //}
                     model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), objdbmlBooking.BookingId);
                     model.RFQId = Convert.ToInt32(objdbmlBooking.RFQId);
+                    model.RFQBPId = Convert.ToInt32(objdbmlBooking.ZZRFQBPId);
+                    model.RFQBookingNo = objdbmlBooking.ZZRFQBookingNo;
                 }
                 else
                 {
@@ -3670,6 +3685,132 @@ namespace PGMSFront.Controllers
 
         #endregion
 
+        #region Workflow Activity Track
+        public ActionResult WorkflowActivity()
+        {
+            CommonModel model = new CommonModel();
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                model.UserId = Convert.ToInt32(Session["UserId"]);
+                model.UserTypePropId = Convert.ToInt32(Session["UserTypePropId"]);
+                model.ZZCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
+                model.UserName = Convert.ToString(Session["UserName"]);
+                model.EmailId = Convert.ToString(Session["EmailId"]);
+                model.LoginId = Convert.ToString(Session["LoginId"]);
+                model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
+                model.UserCode = Convert.ToString(Session["UserCode"]);
+                model.StatusPropId = 0;
+                model.StateId = Convert.ToInt32(Session["StateId"]);
+                ViewBag.VehicleType = GetVehicleType();
+
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+                    model.DocDate = objdbmlBooking.ZZBookingDate;
+                    model.DocNo = objdbmlBooking.BookingNo;
+                    model.DocType = objdbmlBooking.ZZBookingType;
+                    model.WorkFlowId = Convert.ToInt32(objdbmlBooking.ZZWorkFlowId);
+                    model.WorkFlowStatusId = objdbmlBooking.ZZStatusWorkflowId;
+                    model.StatusPropId = Convert.ToInt32(objdbmlBooking.StatusPropId);
+                    model.BPId = Convert.ToInt32(Session["BPId"]);
+                    model.ReportURL = strRptURL;
+                    model.DocId = objdbmlBooking.BookingId;
+                    model.POURL = strPOURL + objdbmlBooking.PODocPath;
+
+                    //if (Convert.ToInt32(objdbmlBooking.TabStatusId) + 10 < 10)
+                    //{
+                    //    return RedirectToActionByStatusId(Convert.ToInt32(objdbmlBooking.TabStatusId));
+                    //}
+                    model.WorkFlowView = WorkFlowViewGetByBPId(Convert.ToInt32(Session["BPId"]), objdbmlBooking.BookingId);
+                    model.RFQId = Convert.ToInt32(objdbmlBooking.RFQId);
+                    model.RFQBPId = Convert.ToInt32(objdbmlBooking.ZZRFQBPId);
+                    model.RFQBookingNo = objdbmlBooking.ZZRFQBookingNo;
+                }
+                else
+                {
+                    return RedirectToAction("Basic", "Home");
+                }
+            }
+            catch
+            {
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult WorkflowActivity(CommonModel model, string btnPrevNext)
+        {
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                if (btnPrevNext.ToLower() == "prev")
+                {
+                    return RedirectToAction("TrackAddOnServicesBooking", "Home");
+                }
+               
+            }
+            catch
+            {
+            }
+
+            return RedirectToAction("Vehicle", "Home");
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult LoadWorkflowActivityInfo()
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlWorkFlowActivityTrackView objreturndbmlWorkFlowActivityTrackView = new returndbmlWorkFlowActivityTrackView();
+            try
+            {
+                if (Session["objdbmlBooking"] != null)
+                {
+                    dbmlBookingView objdbmlBooking = new dbmlBookingView();
+                    GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
+
+                    objreturndbmlWorkFlowActivityTrackView = objServiceClient.WorkFlowActivityTrackGetByBPIdDocId(objdbmlBooking.BPId, objdbmlBooking.BookingId);
+                    if (objreturndbmlWorkFlowActivityTrackView.objdbmlStatus.StatusId == 1)
+                    {                        
+                        intStatusId = 1;
+                        strStatus = "Success";
+                    }
+                    else
+                    {
+                        strStatus = objreturndbmlWorkFlowActivityTrackView.objdbmlStatus.Status;
+                    }
+                }
+                else
+                {
+                    strStatus = "Booking Details Not Found";
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, WorkFlowActivityList = objreturndbmlWorkFlowActivityTrackView.objdbmlWorkFlowActivityTrackView }, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
         #endregion
 
         #region Common
@@ -3699,17 +3840,6 @@ namespace PGMSFront.Controllers
             };
         }
         #endregion
-
-        public ActionResult LabWorkshopBooking()
-        {
-            return View();
-        }
-
-        public ActionResult LabAddOnServicesBooking()
-        {
-            return View();
-        }
-
-
+        
     }
 }

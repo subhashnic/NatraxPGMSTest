@@ -138,9 +138,9 @@
                             <td Style="width:50%;text-align:left">
                                 <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
                             </td>
-                            @*<td Style="width:50%;text-align:right">
-                        <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm " />
-                    </td>*@
+                            <td Style="width:50%;text-align:right">
+                                <input type="submit" id="btnNext" name="btnPrevNext" value="Next" class="btn btn-fill btn-rose btn-sm " />
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -174,7 +174,7 @@
         });
         $("#AddMoreTR").find("input[type='text'][id='Date']").each(function () {
             $(this).val("");
-            $('.datetimepicker').datetimepicker({ theme: 'light', timepicker: false, format: 'd-m-Y', scrollMonth: false, scrollInput: false });       
+            $('.datetimepicker').datetimepicker({ theme: 'light', timepicker: false, format: 'd-m-Y', scrollMonth: false, scrollInput: false });
         });
         $("#AddMoreTR").find("input[type='text'][id='Day']").each(function () {
             $(this).val("");
@@ -201,7 +201,7 @@
         $("#AddMoreTR").show();
         MaskControls();
         $("#ServiceType").focus();
-        
+
     }
     function AddMoreCancel() {
         $("#AddMoreTR").hide();
@@ -225,9 +225,9 @@
                     if (data.StatusId != "99" && data.StatusId != "-99") {
                         LoadAddOnServicesList = data.LoadAddOnServicesList;
                         BindWSData(data.LoadAddOnServicesList);
-                        if (LoadAddOnServicesList.length > 0) {
-                            $("#btnNext").show();
-                        }
+                        //if (LoadAddOnServicesList.length > 0) {
+                        //    $("#btnNext").show();
+                        //}
                     }
                     else {
                        // alert(data.Status);
@@ -343,7 +343,7 @@
                     }
                 });
             }
-           
+
             $("#AddMoreTR").find("input[type='text'][id='Consumption']").each(function () {
                 model.Consumption = $(this).val().trim();
                 if ($(this).val().trim() == "" || parseInt($(this).val().trim()) <= 0) {
@@ -487,7 +487,7 @@
             //var row = $('#tbodyVehicle').find('tr:eq(0)');
 
             gridData = '<tr id="AddMoreTR" style="display: none;">' + $("#AddMoreTR").html() + '</tr>';
-           
+
             $("#lblWSCount").text(NullHandle(data.length));
 
             $("#tbodyWS").html("");
@@ -502,7 +502,7 @@
                 else {
                     gridData = gridData + "<td style='text-align:center'>" + NullHandle(data[i].ZZServiceDate) + "</td>";
                 }
-               
+
                 gridData = gridData + "<td style='text-align:center'>" + NullHandle(data[i].Consumption) + "</td>";
                 gridData = gridData + "<td style='text-align:center'>" + NullHandle(data[i].ZZUOM) + "</td>";
 
@@ -694,8 +694,8 @@
 
                     $("#AddMoreTR").find("input[type='text'][id='Consumption']").each(function () {
                         $(this).attr('onkeypress', 'return CheckIsNumeric(event,this);');
-                    });                    
-                    
+                    });
+
                 });
             })(jQuery);
         }

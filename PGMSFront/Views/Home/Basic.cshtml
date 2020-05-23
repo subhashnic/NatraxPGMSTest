@@ -111,9 +111,13 @@
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="exampleEmail" class="bmd-label-floating">Remark </label>
-                                    <textarea class="form-control" id="Remark" style="height: 50px !important;"></textarea>
+                                    <textarea class="form-control" id="Remark" style="height: 30px !important;"></textarea>
                                 </div>
                             </div>
+                            @if (ViewBag.WorkflowRemark != null && ViewBag.WorkflowRemark.trim() != "")
+                            {
+                                <label>Comment by Natrax : ViewBag.WorkflowRemark.trim()</label>
+                            }
                             <div class="col-md-2"></div>
                         </div>
 
@@ -201,7 +205,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="updServicedates"  class="btn btn-fill btn-rose btn-sm" style="margin-top: 5px;" onclick="UpdateServiceDates()">Save</button>
+                <button type="button" id="updServicedates" class="btn btn-fill btn-rose btn-sm" style="margin-top: 5px;" onclick="UpdateServiceDates()">Save</button>
                 <button type="button" class="btn btn-fill btn-danger btn-sm" data-dismiss="modal" style="margin-left: 5px; margin-top: 5px;">Close</button>
             </div>
 
@@ -229,7 +233,7 @@
 
     ///////////////////////////// Set Remaining Dates  //////////////////////////////////////////////////////
     function SetRemainingDates(varDate) {
-        try { 
+        try {
             var varDateFirst = $(varDate).val().trim()
 
             $('#tbodyDates').find('tr').each(function (i, el) {
@@ -240,20 +244,20 @@
                 });
 
                 $(this).find("input[type='text'][id='NewDate']").each(function () {
-                   
+
                     if (i > 0) {
                         var varNewDate = ToDate(varDateFirst);
                         varNewDate.setDate(varNewDate.getDate() + parseInt(varDay) - 1);
-                        
+
                         $(this).val(ToDateDDMMYY(varNewDate));
                     }
-                    
-                });              
+
+                });
 
             });
 
         }
-        catch (e) {           
+        catch (e) {
             alert(e.message);
             return false;
         }
@@ -281,15 +285,15 @@
 
                         var gridData = "";
                         var varonBlur = "onblur='SetRemainingDates(this)'";
-               
+
                         for (var i = 0; i < data.ServiceDateList.length; i++) {
                             gridData = gridData + "<tr >";
                             if (i > 0) {
-                                varonBlur = "disabled='disabled";                                
+                                varonBlur = "disabled='disabled";
                             }
 
                             gridData = gridData + "<td style='text-align: center'> <label style='color:black'  id='lblBookingDay'>" + NullHandle(data.ServiceDateList[i].BookingDay) + "</label></td>";
-                            gridData = gridData + "<td style='text-align: center'><input style='text-align: center;color:black' type='text' " + varonBlur +" class='form-control datetimepicker' value='" + NullHandle(data.ServiceDateList[i].NewDate) + "' id='NewDate'/></td>";
+                            gridData = gridData + "<td style='text-align: center'><input style='text-align: center;color:black' type='text'  class='form-control datetimepicker' value='" + NullHandle(data.ServiceDateList[i].NewDate) + "' id='NewDate'/></td>";
                             gridData = gridData + "<td style='display:none'><label  id='lblServiceDate'>" + NullHandle(data.ServiceDateList[i].ServiceDate) + "</label></td>";
                             gridData = gridData + "<td style='display:none'><label  id='lblBookingId'>" + NullHandle(data.ServiceDateList[i].BookingId) + "</label></td>";
 
@@ -298,7 +302,7 @@
 
                         $("#tbodyDates").html(gridData);
 
-                        $('#tbodyDates').find('tr').each(function (i, el) {                                                       
+                        $('#tbodyDates').find('tr').each(function (i, el) {
                             $(this).find("input[type='text'][id='NewDate']").each(function () {
                                $('.datetimepicker').datetimepicker({ theme: 'light', timepicker: false, format: 'd-m-Y', scrollMonth: false, scrollInput: false });
                                 if (i == 0) {
@@ -334,7 +338,7 @@
             var model = [];
             var indx = 0;
             var strMSG = "";
-
+            var varEqualDates = 0;
             $('#tbodyDates').find('tr').each(function (i, el) {
                 ServiceDates = {};
 
@@ -357,8 +361,20 @@
                     ServiceDates.BookingId = $(this).text().trim();
                 });
 
+                var varModelTemp = '';
+                if (model.length > 0) {
 
-                if ((strMSG == '')) {
+                    varModelTemp = jQuery.grep(model, function (obj) {
+                        return ToDate(obj.NewDate).getTime() == ToDate(ServiceDates.NewDate).getTime();
+                    });
+
+                    if (varModelTemp.length > 0) {
+                        varEqualDates = 1;
+                    }
+                    }
+
+
+                if (strMSG == '' && varEqualDates==0) {
                     model[indx] = new Object(ServiceDates);
                     indx++;
                 }
@@ -368,6 +384,11 @@
             if (strMSG != '') {
                 alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
                 return false;
+            }
+            else if (varEqualDates == 1) {
+                alert("Number of Testing days provided at the time of RFQ is not same as Total Testing Dates selected now. This will affect the Billing Calculation. Either request a fresh quotation or set dates as per the number of testing days mentioned during RFQ");
+                return false;
+
             }
             else {
 

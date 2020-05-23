@@ -1627,6 +1627,12 @@ namespace PGMSFront.WCFPGMSRef {
         private System.Nullable<int> ZZRFQBPIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZRFQBookingDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZRFQBookingNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> ZZStatusPropertyIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1637,6 +1643,9 @@ namespace PGMSFront.WCFPGMSRef {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> ZZWorkFlowIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZWorkflowRemarkField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -2156,6 +2165,32 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZRFQBookingDate {
+            get {
+                return this.ZZRFQBookingDateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZRFQBookingDateField, value) != true)) {
+                    this.ZZRFQBookingDateField = value;
+                    this.RaisePropertyChanged("ZZRFQBookingDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZRFQBookingNo {
+            get {
+                return this.ZZRFQBookingNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZRFQBookingNoField, value) != true)) {
+                    this.ZZRFQBookingNoField = value;
+                    this.RaisePropertyChanged("ZZRFQBookingNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> ZZStatusPropertyId {
             get {
                 return this.ZZStatusPropertyIdField;
@@ -2203,6 +2238,19 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((this.ZZWorkFlowIdField.Equals(value) != true)) {
                     this.ZZWorkFlowIdField = value;
                     this.RaisePropertyChanged("ZZWorkFlowId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZWorkflowRemark {
+            get {
+                return this.ZZWorkflowRemarkField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZWorkflowRemarkField, value) != true)) {
+                    this.ZZWorkflowRemarkField = value;
+                    this.RaisePropertyChanged("ZZWorkflowRemark");
                 }
             }
         }
@@ -8694,6 +8742,336 @@ namespace PGMSFront.WCFPGMSRef {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlWorkFlowActivityTrackView", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
+    [System.SerializableAttribute()]
+    public partial class returndbmlWorkFlowActivityTrackView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlWorkFlowActivityTrackView> objdbmlWorkFlowActivityTrackViewField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatus {
+            get {
+                return this.objdbmlStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlStatusField, value) != true)) {
+                    this.objdbmlStatusField = value;
+                    this.RaisePropertyChanged("objdbmlStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlWorkFlowActivityTrackView> objdbmlWorkFlowActivityTrackView {
+            get {
+                return this.objdbmlWorkFlowActivityTrackViewField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlWorkFlowActivityTrackViewField, value) != true)) {
+                    this.objdbmlWorkFlowActivityTrackViewField = value;
+                    this.RaisePropertyChanged("objdbmlWorkFlowActivityTrackView");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="dbmlWorkFlowActivityTrackView", Namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate")]
+    [System.SerializableAttribute()]
+    public partial class dbmlWorkFlowActivityTrackView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ActivityDescField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ActivityNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int BPIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DateTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DocIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PriorUserIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PriorUserNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RemarkField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UpdateDateTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int WorkFlowActivityIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WorkFlowNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WorkFlowStatusField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ActivityDesc {
+            get {
+                return this.ActivityDescField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ActivityDescField, value) != true)) {
+                    this.ActivityDescField = value;
+                    this.RaisePropertyChanged("ActivityDesc");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ActivityName {
+            get {
+                return this.ActivityNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ActivityNameField, value) != true)) {
+                    this.ActivityNameField = value;
+                    this.RaisePropertyChanged("ActivityName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BPId {
+            get {
+                return this.BPIdField;
+            }
+            set {
+                if ((this.BPIdField.Equals(value) != true)) {
+                    this.BPIdField = value;
+                    this.RaisePropertyChanged("BPId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DateTime {
+            get {
+                return this.DateTimeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DateTimeField, value) != true)) {
+                    this.DateTimeField = value;
+                    this.RaisePropertyChanged("DateTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DocId {
+            get {
+                return this.DocIdField;
+            }
+            set {
+                if ((this.DocIdField.Equals(value) != true)) {
+                    this.DocIdField = value;
+                    this.RaisePropertyChanged("DocId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PriorUserId {
+            get {
+                return this.PriorUserIdField;
+            }
+            set {
+                if ((this.PriorUserIdField.Equals(value) != true)) {
+                    this.PriorUserIdField = value;
+                    this.RaisePropertyChanged("PriorUserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PriorUserName {
+            get {
+                return this.PriorUserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PriorUserNameField, value) != true)) {
+                    this.PriorUserNameField = value;
+                    this.RaisePropertyChanged("PriorUserName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remark {
+            get {
+                return this.RemarkField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RemarkField, value) != true)) {
+                    this.RemarkField = value;
+                    this.RaisePropertyChanged("Remark");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StatusField, value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UpdateDateTime {
+            get {
+                return this.UpdateDateTimeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UpdateDateTimeField, value) != true)) {
+                    this.UpdateDateTimeField = value;
+                    this.RaisePropertyChanged("UpdateDateTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int WorkFlowActivityId {
+            get {
+                return this.WorkFlowActivityIdField;
+            }
+            set {
+                if ((this.WorkFlowActivityIdField.Equals(value) != true)) {
+                    this.WorkFlowActivityIdField = value;
+                    this.RaisePropertyChanged("WorkFlowActivityId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string WorkFlowName {
+            get {
+                return this.WorkFlowNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WorkFlowNameField, value) != true)) {
+                    this.WorkFlowNameField = value;
+                    this.RaisePropertyChanged("WorkFlowName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string WorkFlowStatus {
+            get {
+                return this.WorkFlowStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WorkFlowStatusField, value) != true)) {
+                    this.WorkFlowStatusField = value;
+                    this.RaisePropertyChanged("WorkFlowStatus");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlWorkshopBookingDetailViewFront", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
     [System.SerializableAttribute()]
     public partial class returndbmlWorkshopBookingDetailViewFront : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -9277,6 +9655,12 @@ namespace PGMSFront.WCFPGMSRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WorkFlowActivityInsert", ReplyAction="http://tempuri.org/IService1/WorkFlowActivityInsertResponse")]
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBooking> WorkFlowActivityInsertAsync(int intDocId, int intBPId, int intWorkPlowId, int intStatusId, string strRemark, int intCreateId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WorkFlowActivityTrackGetByBPIdDocId", ReplyAction="http://tempuri.org/IService1/WorkFlowActivityTrackGetByBPIdDocIdResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlWorkFlowActivityTrackView WorkFlowActivityTrackGetByBPIdDocId(int intBPId, int intDocId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WorkFlowActivityTrackGetByBPIdDocId", ReplyAction="http://tempuri.org/IService1/WorkFlowActivityTrackGetByBPIdDocIdResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlWorkFlowActivityTrackView> WorkFlowActivityTrackGetByBPIdDocIdAsync(int intBPId, int intDocId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WorkshopBookingDetailInsertFront", ReplyAction="http://tempuri.org/IService1/WorkshopBookingDetailInsertFrontResponse")]
         PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront WorkshopBookingDetailInsertFront(PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront objreturndbmlWorkshopBookingDetailViewFront);
         
@@ -9591,6 +9975,14 @@ namespace PGMSFront.WCFPGMSRef {
         
         public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBooking> WorkFlowActivityInsertAsync(int intDocId, int intBPId, int intWorkPlowId, int intStatusId, string strRemark, int intCreateId) {
             return base.Channel.WorkFlowActivityInsertAsync(intDocId, intBPId, intWorkPlowId, intStatusId, strRemark, intCreateId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlWorkFlowActivityTrackView WorkFlowActivityTrackGetByBPIdDocId(int intBPId, int intDocId) {
+            return base.Channel.WorkFlowActivityTrackGetByBPIdDocId(intBPId, intDocId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlWorkFlowActivityTrackView> WorkFlowActivityTrackGetByBPIdDocIdAsync(int intBPId, int intDocId) {
+            return base.Channel.WorkFlowActivityTrackGetByBPIdDocIdAsync(intBPId, intDocId);
         }
         
         public PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront WorkshopBookingDetailInsertFront(PGMSFront.WCFPGMSRef.returndbmlWorkshopBookingDetailViewFront objreturndbmlWorkshopBookingDetailViewFront) {
