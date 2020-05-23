@@ -2439,6 +2439,10 @@ namespace PGMSFront.Controllers
                     {
                         int intMinBillHrs = Convert.ToInt32(model.FirstOrDefault().BillingHrs);
                         int intGroupRoundHrs = 0;
+                        int intItmCount = 0;
+                        int intUsageHrs = -1;
+                        int intUsageMin = -1;
+                        int intFlag = 0;
 
                         foreach (var itm in model)
                         {
@@ -2461,7 +2465,7 @@ namespace PGMSFront.Controllers
 
                             int intRoundOffHrs = Convert.ToInt32(itm.TotalHours);
                             int intRoundOffMin = Convert.ToInt32(itm.TotalMinutes);
-
+                            
                             if ((intRoundOffHrs > 0 && intRoundOffMin >= 30) || (intRoundOffHrs == 0 && intRoundOffMin >= 1))
                             {
                                 intRoundOffHrs = intRoundOffHrs + 1;
@@ -2475,12 +2479,33 @@ namespace PGMSFront.Controllers
 
                             itm.TotalHours = Convert.ToInt32(itm.TotalHours);
                             itm.TotalMinutes = Convert.ToInt32(itm.TotalMinutes);
+
+                            if(intUsageHrs== Convert.ToInt32(itm.TotalHours) && intUsageMin== Convert.ToInt32(itm.TotalMinutes))
+                            {
+                                intFlag = 1;
+                            }
+                            else
+                            {
+                                intFlag = 0;
+                            }
+                            intUsageHrs = Convert.ToInt32(itm.TotalHours);
+                            intUsageMin = Convert.ToInt32(itm.TotalMinutes);
+
+                            intItmCount++;
                         }
 
                         if (intGroupRoundHrs < intMinBillHrs)
                         {
-                            int intServiceId = Convert.ToInt32(model.OrderByDescending(itm => Convert.ToInt32(itm.TotalHours)).ThenByDescending(itm => Convert.ToInt32(itm.TotalMinutes)).ThenBy(itm => Convert.ToDecimal(itm.Rate)).ThenBy(itm => Convert.ToInt32(itm.SrNo)).First().ServiceId);
-                            model.FirstOrDefault(itm => itm.ServiceId == intServiceId).BillingHrs += (intMinBillHrs - intGroupRoundHrs);
+                            if (intItmCount == 2 && intFlag==1 && (intMinBillHrs - intGroupRoundHrs) == 2)
+                            {
+                                model[0].BillingHrs +=1;
+                                model[1].BillingHrs += 1;
+                            }
+                            else
+                            {
+                                int intServiceId = Convert.ToInt32(model.OrderByDescending(itm => Convert.ToInt32(itm.TotalHours)).ThenByDescending(itm => Convert.ToInt32(itm.TotalMinutes)).ThenBy(itm => Convert.ToDecimal(itm.Rate)).ThenBy(itm => Convert.ToInt32(itm.SrNo)).First().ServiceId);
+                                model.FirstOrDefault(itm => itm.ServiceId == intServiceId).BillingHrs += (intMinBillHrs - intGroupRoundHrs);
+                            }
                         }
                     }
                     else

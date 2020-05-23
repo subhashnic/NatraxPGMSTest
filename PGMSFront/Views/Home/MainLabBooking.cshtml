@@ -348,8 +348,8 @@
                 btnSave = $(this);
             });
             $("#AddMoreTR").find("select[id='ServiceType']").each(function () {
-                model.ServiceId = $(this).val().trim();
-                if ($(this).val().trim() == "") {
+                model.ServiceId = $(this).val();
+                if ($(this).val() == "") {
                     strMSG = strMSG + 'Select Facility \n</br>'
                 }
             });
@@ -363,7 +363,7 @@
             if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
                 $("#AddMoreTR").find("input[type='text'][id='Day']").each(function () {
                     model.BookingDay = $(this).val().trim();
-                    if ($(this).val().trim() == "") {
+                    if ($(this).val().trim() == "" || parseInt($(this).val().trim())<=0) {
                         strMSG = strMSG + 'Day \n</br>'
                     }
                 });
@@ -379,7 +379,7 @@
 
             $("#AddMoreTR").find("input[type='text'][id='Usage']").each(function () {
                 model.UsageHours = $(this).val().trim();
-                if ($(this).val().trim() == "") {
+                if ($(this).val().trim() == "" || parseInt($(this).val().trim()) <= 0) {
                     strMSG = strMSG + 'Usage \n</br>'
                 }
             });

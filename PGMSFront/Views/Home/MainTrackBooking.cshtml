@@ -150,7 +150,7 @@
                             else
                             {
                                 <input disabled="disabled" style="display:none" type="text" id="Day">
-                                <input disabled="disabled" type="text" id="TrackDate" onchange="ResetCategoryTimeSlot()" class="form-control datetimepicker" placeholder="DD-MM-YYYY">
+                                <input disabled="disabled" type="text" id="TrackDate" onblur="ResetCategoryTimeSlot()" class="form-control datetimepicker" placeholder="DD-MM-YYYY">
                             }
 
 
@@ -770,6 +770,37 @@
             }
             else {
 
+                var TrackVehDateData = "";
+                if (TrackBookingTimeDetailList.length > 0) {
+
+                    if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
+                        TrackVehDateData = jQuery.grep(TrackBookingTimeDetailList, function (obj) {
+                            return obj.ZZTrackGroupId == parseInt($("#lstServiceLookup").val()) && obj.VehicleId == VehicleId &&
+                                parseInt(obj.BookingDay) == parseInt(varDate) && obj.ZZCategoryId != varCategoryId;
+                        });
+                        if (TrackVehDateData.length > 0) {
+                            $("input[name='Category']:checked").prop('checked', false);
+                            $("#rdoCategory" + TrackVehDateData[0].ZZCategoryId).prop("checked", true);
+                            varCategoryId = TrackVehDateData[0].ZZCategoryId;
+                            alert("Data of this Track/Vehicle/Day already exist for category '" + TrackVehDateData[0].ZZCategory + "', so please delete the data for category '" + TrackVehDateData[0].ZZCategory + "' first");
+                            
+                            //return false;
+                        }
+                    }
+                    else {
+                        TrackVehDateData = jQuery.grep(TrackBookingTimeDetailList, function (obj) {
+                            return obj.ZZTrackGroupId == parseInt($("#lstServiceLookup").val()) && obj.VehicleId == VehicleId &&
+                                ToDate(obj.ZZDate).getTime() == ToDate(varDate).getTime() && obj.ZZCategoryId != varCategoryId;
+                        });
+                        if (TrackVehDateData.length > 0) {
+                            $("input[name='Category']:checked").prop('checked', false);
+                            $("#rdoCategory" + TrackVehDateData[0].ZZCategoryId).prop("checked", true);
+                            varCategoryId = TrackVehDateData[0].ZZCategoryId;
+                            alert("Data of this Track/Vehicle/Date already exist for category '" + TrackVehDateData[0].ZZCategory + "', so please delete the data for category '" + TrackVehDateData[0].ZZCategory+"' first");
+                            //return false;
+                        }
+                    }
+                }
                 var data = '';
 
                 if (ServicesList.length > 0) {
@@ -1061,7 +1092,7 @@
                 strMSG = strMSG + 'Select Vehicle Row  \n</br>'
             }
             if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
-                if (varDay == "") {
+                if (varDay == "" || parseInt(varDay)<=0) {
                     strMSG = strMSG + 'Day  \n</br>'
                 }
             }
@@ -1074,8 +1105,7 @@
             if (varTimeSlotId == undefined || parseInt(varTimeSlotId) == 0) {
                 strMSG = strMSG + 'Time Slot  \n</br>'
             }
-
-
+            
 
             $('#tbodyTrack').find('tr').each(function (i, el) {
                 TimeDtls = {};
