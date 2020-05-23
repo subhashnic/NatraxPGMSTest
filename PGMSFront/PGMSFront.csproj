@@ -880,6 +880,9 @@
     <Content Include="Views\Home\TrackBookingsAndRFQ - Copy.cshtml" />
     <Content Include="Views\Home\LabBookingsAndRFQ - Copy.cshtml" />
     <Content Include="Views\Home\WorkflowActivity.cshtml" />
+    <Content Include="Views\Front\ResetPassword.cshtml" />
+    <Content Include="Views\Home\Department.cshtml" />
+    <Content Include="Views\Home\Users.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

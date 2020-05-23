@@ -14,6 +14,11 @@ namespace PGMSFront.Controllers
             return View();
         }
 
+        public ActionResult ResetPassword()
+        {
+            return View();
+        }
+
         public ActionResult BrakingTrack()
         {
             return View();

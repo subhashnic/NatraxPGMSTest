@@ -1,142 +1,179 @@
 ﻿@{
     ViewBag.Title = "Dashboard";
 }
+<style> .badge
+
+    {
+        padding: 2px 2px;
+        font-size: 13px;
+        color: #FFF;
+        background: #000;
+        border-radius: 50%;
+        margin-top: 6px;
+        margin-right: 3px;
+    }
+
+    .card-stats .card-header .card-category:not([class*="text-"]) {
+        color: #000;
+        font-size: 18px;
+        font-weight: 400;
+    }
+
+    .card-stats .card-header.card-header-icon, .card-stats .card-header.card-header-text {
+        text-align: left;
+    }
+
+    .card [class*="card-header-"] {
+        margin: 0px 5px 0;
+        padding: 0;
+        position: relative;
+    }
+
+    .card-stats .card-header + .card-footer {
+        margin-top: 8px;
+    }
+
+    .card-header{
+        height: 160px;
+    }
+</style>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
+        padding-left: 0px;">
                 <div class="card card-stats">
                     <div class="card-header card-header-warning card-header-icon">
-                        <div class="card-icon"> <i class="material-icons">weekend</i> </div>
-                        <p class="card-category">RFQ</p>
-                        <h3 class="card-title">10</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats"> <i class="material-icons text-danger">warning</i> <a href="#pablo">View More...</a> </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4">
-                <div class="card card-stats">
-                    <div class="card-header card-header-rose card-header-icon">
-                        <div class="card-icon"> <i class="material-icons">equalizer</i> </div>
-                        <p class="card-category">Booking</p>
-                        <h3 class="card-title">20</h3>
+                        <div class="card-icon" style="        padding: 0px;
+        margin-top: -35px;"> <i class="material-icons">equalizer</i> </div>
+                        <p class="card-category">Track - RFQ</p>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Request in progress</a>&nbsp;<span class="badge pull-right">10</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Pending for Conversion to Booking</a>&nbsp;<span class="badge pull-right">20</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Pending for P.O. Upload</a>&nbsp;<span class="badge pull-right">30</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Pending for P.O. Acceptance</a>&nbsp;<span class="badge pull-right">40</span></h5>
                     </div>
                     <div class="card-footer">
                         <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
+        padding-left: 5px;">
                 <div class="card card-stats">
-                    <div class="card-header card-header-success card-header-icon">
-                        <div class="card-icon"> <i class="material-icons">store</i> </div>
-                        <p class="card-category">PO</p>
-                        <h3 class="card-title">6</h3>
+                    <div class="card-header card-header-rose card-header-icon">
+                        <div class="card-icon" style="        padding: 0px;
+        margin-top: -35px;"> <i class="material-icons">equalizer</i> </div>
+                        <p class="card-category">Track - Booking</p>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Booking in progress</a>&nbsp;<span class="badge pull-right">10</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Pending for Natrax Approval</a>&nbsp;<span class="badge pull-right">20</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Pending for P.O. Upload</a>&nbsp;<span class="badge pull-right">30</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Pending for P.O. Acceptance</a>&nbsp;<span class="badge pull-right">40</span></h5>
                     </div>
                     <div class="card-footer">
-                        <div class="stats"> <i class="material-icons">date_range</i>View More </div>
+                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
+        padding-left: 5px;">
+                <div class="card card-stats">
+                    <div class="card-header card-header-success card-header-icon">
+                        <div class="card-icon" style="        padding: 0px;
+        margin-top: -35px;"> <i class="material-icons">equalizer</i> </div>
+                        <p class="card-category">Track - Usages</p>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Upcoming</a>&nbsp;<span class="badge pull-right">10</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">In Progress</a>&nbsp;<span class="badge pull-right">20</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Completed</a>&nbsp;<span class="badge pull-right">30</span></h5>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
+        padding-left: 5px;">
+                <div class="card card-stats">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <div class="card-icon" style="        padding: 0px;
+        margin-top: -35px;"> <i class="material-icons">equalizer</i> </div>
+                        <p class="card-category">Track - Invoicing</p>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Pending for Invoicing</a>&nbsp;<span class="badge pull-right">10</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Pending for Payments</a>&nbsp;<span class="badge pull-right">20</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Payment Done</a>&nbsp;<span class="badge pull-right">30</span></h5>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
+        padding-left: 0px;">
                 <div class="card card-stats">
                     <div class="card-header card-header-warning card-header-icon">
-                        <div class="card-icon"> <i class="material-icons">weekend</i> </div>
-                        <p class="card-category">Invoices</p>
-                        <h3 class="card-title">7</h3>
+                        <div class="card-icon" style="        padding: 0px;
+        margin-top: -35px;"><i class="material-icons">equalizer</i></div>
+                        <p class="card-category">Lab - RFQ</p>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Request in progress</a>&nbsp;<span class="badge pull-right">10</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Pending for Conversion to Booking</a>&nbsp;<span class="badge pull-right">20</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Pending for P.O. Upload</a>&nbsp;<span class="badge pull-right">30</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Pending for P.O. Acceptance</a>&nbsp;<span class="badge pull-right">40</span></h5>
                     </div>
                     <div class="card-footer">
-                        <div class="stats"> <i class="material-icons text-danger">warning</i> <a href="#pablo">View More...</a> </div>
+                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
+        padding-left: 5px;">
                 <div class="card card-stats">
                     <div class="card-header card-header-rose card-header-icon">
-                        <div class="card-icon"> <i class="material-icons">equalizer</i> </div>
-                        <p class="card-category">Payment</p>
-                        <h3 class="card-title">INR 34,245 </h3>
+                        <div class="card-icon" style="        padding: 0px;
+        margin-top: -35px;"><i class="material-icons">equalizer</i></div>
+                        <p class="card-category">Lab - Booking</p>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Booking in progress</a>&nbsp;<span class="badge pull-right">10</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Pending for Natrax Approval</a>&nbsp;<span class="badge pull-right">20</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Pending for P.O. Upload</a>&nbsp;<span class="badge pull-right">30</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Pending for P.O. Acceptance</a>&nbsp;<span class="badge pull-right">40</span></h5>
                     </div>
                     <div class="card-footer">
-                        <div class="stats"> <i class="material-icons">local_offer</i> View More... </div>
+                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
                     </div>
                 </div>
             </div>
-            @*<div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
+        padding-left: 5px;">
                 <div class="card card-stats">
                     <div class="card-header card-header-success card-header-icon">
-                        <div class="card-icon"> <i class="material-icons">store</i> </div>
-                        <p class="card-category">My Invoices</p>
-                        <h3 class="card-title">INR 10245</h3>
+                        <div class="card-icon" style="        padding: 0px;
+        margin-top: -35px;"><i class="material-icons">equalizer</i></div>
+                        <p class="card-category">Lab - Usages</p>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Upcoming</a>&nbsp;<span class="badge pull-right">10</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">In Progress</a>&nbsp;<span class="badge pull-right">20</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Completed</a>&nbsp;<span class="badge pull-right">30</span></h5>
                     </div>
                     <div class="card-footer">
-                        <div class="stats"> <i class="material-icons">date_range</i>View More ...</div>
+                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
                     </div>
                 </div>
-            </div>*@
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
+        padding-left: 5px;">
+                <div class="card card-stats">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <div class="card-icon" style="        padding: 0px;
+        margin-top: -35px;"><i class="material-icons">equalizer</i></div>
+                        <p class="card-category">Lab - Invoicing</p>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Pending for Invoicing</a>&nbsp;<span class="badge pull-right">10</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Pending for Payments</a>&nbsp;<span class="badge pull-right">20</span></h5>
+                        <h5 class="card-title"><a href="#" style="        color: #000;">Payment Done</a>&nbsp;<span class="badge pull-right">30</span></h5>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        @*<div class="row">
-            <div class="col-md-4">
-                <div class="card card-chart">
-                    <div class="card-header card-header-rose" data-header-animation="true">
-                        <div class="ct-chart" id="websiteViewsChart"></div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-actions">
-                            <button type="button" class="btn btn-danger btn-link fix-broken-card"> <i class="material-icons">build</i> Fix Header! </button>
-                            <button type="button" class="btn btn-info btn-link" rel="tooltip" data-placement="bottom" title="Refresh"> <i class="material-icons">refresh</i> </button>
-                            <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom" title="Change Date"> <i class="material-icons">edit</i> </button>
-                        </div>
-                        <h4 class="card-title">Booking Monthwise</h4>
-                        <p class="card-category">Last Campaign Performance</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats"> <i class="material-icons">access_time</i> View More.. </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-chart">
-                    <div class="card-header card-header-success" data-header-animation="true">
-                        <div class="ct-chart" id="dailySalesChart"></div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-actions">
-                            <button type="button" class="btn btn-danger btn-link fix-broken-card"> <i class="material-icons">build</i> Fix Header! </button>
-                            <button type="button" class="btn btn-info btn-link" rel="tooltip" data-placement="bottom" title="Refresh"> <i class="material-icons">refresh</i> </button>
-                            <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom" title="Change Date"> <i class="material-icons">edit</i> </button>
-                        </div>
-                        <h4 class="card-title">Invoices Monthwise</h4>
-                        <p class="card-category"> <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats"> <i class="material-icons">access_time</i> View More.. </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-chart">
-                    <div class="card-header card-header-info" data-header-animation="true">
-                        <div class="ct-chart" id="completedTasksChart"></div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-actions">
-                            <button type="button" class="btn btn-danger btn-link fix-broken-card"> <i class="material-icons">build</i> Fix Header! </button>
-                            <button type="button" class="btn btn-info btn-link" rel="tooltip" data-placement="bottom" title="Refresh"> <i class="material-icons">refresh</i> </button>
-                            <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom" title="Change Date"> <i class="material-icons">edit</i> </button>
-                        </div>
-                        <h4 class="card-title">Payment Monthwise</h4>
-                        <p class="card-category">Last Campaign Performance</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats"> <i class="material-icons">access_time</i> View More...</div>
-                    </div>
-                </div>
-            </div>
-        </div>*@
     </div>
 </div>

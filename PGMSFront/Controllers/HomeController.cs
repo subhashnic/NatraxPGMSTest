@@ -3840,6 +3840,17 @@ namespace PGMSFront.Controllers
             };
         }
         #endregion
-        
+
+        #region Department & Users
+        public ActionResult Department()
+        {
+            return View();
+        }
+        public ActionResult Users()
+        {
+            return View();
+        }
+        #endregion
+
     }
 }
