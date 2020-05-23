@@ -488,7 +488,7 @@
                 VehicleId = 0;
                 ColourRowId = -1;
                 Holdid = '';
-                debugger;
+                
                 var data = { 'intTrackGroupId': varTrackGroupId };
                 var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                 LoaderShow();
@@ -502,7 +502,7 @@
 
                         $(".filter-option").css({"color": "#ec407a", "font-size": "15px", "border-bottom": "2px solid #ec407a"});
                         LoaderHide();
-                        debugger;
+                        
                         if (data.StatusId != "99" && data.StatusId != "-99") {
                             ServicesList = data.ServicesList;
                             ServiceCategoryList = data.ServiceCategoryList;
@@ -521,7 +521,7 @@
                             if (parseInt(varTrackGroupId) == 0 && (parseInt($("#StatusPropId").val()) != 40 && parseInt($("#WorkFlowId").val()) != 6 && parseInt($("#WorkFlowId").val()) != 57 && parseInt($("#WorkFlowId").val()) != 29)) {
                                 BindServiceLookup(ServicesList, TrackBookingTimeSummaryList);
                             }
-                            else if (parseInt($("#RFQId").val()) > 0) {
+                            else if (parseInt(varTrackGroupId) == 0 && parseInt($("#RFQId").val()) > 0) {
                                 BindServiceLookup(ServicesList, TrackBookingTimeSummaryList);
                             }
                                 
@@ -565,7 +565,7 @@
             //    }
             //}
             //gridData = gridData + "</select>";
-            //debugger;
+            //
             //$("#divServiveLookup").html(gridData);
 
             var itemSelectorOption = $('#lstServiceLookup option');
@@ -604,7 +604,7 @@
     ///////////////////////////// Bind Vehicle Info  //////////////////////////////////////////////////////
     function BindVehicleData(data) {
         try {
-            debugger;
+            
             var gridData = "";
 
             $("#tbodyVehicle").html("");
