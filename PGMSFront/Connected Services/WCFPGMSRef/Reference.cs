@@ -973,6 +973,192 @@ namespace PGMSFront.WCFPGMSRef {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlDashBoardWorkFlowViewFront", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
+    [System.SerializableAttribute()]
+    public partial class returndbmlDashBoardWorkFlowViewFront : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlDashBoardWorkFlowViewFront> objdbmlDashBoardWorkFlowViewFrontField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatusField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlDashBoardWorkFlowViewFront> objdbmlDashBoardWorkFlowViewFront {
+            get {
+                return this.objdbmlDashBoardWorkFlowViewFrontField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlDashBoardWorkFlowViewFrontField, value) != true)) {
+                    this.objdbmlDashBoardWorkFlowViewFrontField = value;
+                    this.RaisePropertyChanged("objdbmlDashBoardWorkFlowViewFront");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatus {
+            get {
+                return this.objdbmlStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlStatusField, value) != true)) {
+                    this.objdbmlStatusField = value;
+                    this.RaisePropertyChanged("objdbmlStatus");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="dbmlDashBoardWorkFlowViewFront", Namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate")]
+    [System.SerializableAttribute()]
+    public partial class dbmlDashBoardWorkFlowViewFront : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> BPIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CaptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CountsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> DashBoardIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> StatusPropIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> WorkFlowIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> BPId {
+            get {
+                return this.BPIdField;
+            }
+            set {
+                if ((this.BPIdField.Equals(value) != true)) {
+                    this.BPIdField = value;
+                    this.RaisePropertyChanged("BPId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Caption {
+            get {
+                return this.CaptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CaptionField, value) != true)) {
+                    this.CaptionField = value;
+                    this.RaisePropertyChanged("Caption");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Counts {
+            get {
+                return this.CountsField;
+            }
+            set {
+                if ((this.CountsField.Equals(value) != true)) {
+                    this.CountsField = value;
+                    this.RaisePropertyChanged("Counts");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> DashBoardId {
+            get {
+                return this.DashBoardIdField;
+            }
+            set {
+                if ((this.DashBoardIdField.Equals(value) != true)) {
+                    this.DashBoardIdField = value;
+                    this.RaisePropertyChanged("DashBoardId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> StatusPropId {
+            get {
+                return this.StatusPropIdField;
+            }
+            set {
+                if ((this.StatusPropIdField.Equals(value) != true)) {
+                    this.StatusPropIdField = value;
+                    this.RaisePropertyChanged("StatusPropId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> WorkFlowId {
+            get {
+                return this.WorkFlowIdField;
+            }
+            set {
+                if ((this.WorkFlowIdField.Equals(value) != true)) {
+                    this.WorkFlowIdField = value;
+                    this.RaisePropertyChanged("WorkFlowId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlProperty", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
     [System.SerializableAttribute()]
     public partial class returndbmlProperty : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -9487,6 +9673,12 @@ namespace PGMSFront.WCFPGMSRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CompanyViewGetByCompanyId", ReplyAction="http://tempuri.org/IService1/CompanyViewGetByCompanyIdResponse")]
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCompanyView> CompanyViewGetByCompanyIdAsync(int intCompanyId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DashBoardWorkFlowCount", ReplyAction="http://tempuri.org/IService1/DashBoardWorkFlowCountResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlDashBoardWorkFlowViewFront DashBoardWorkFlowCount(int intUserId, int intCompanyId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DashBoardWorkFlowCount", ReplyAction="http://tempuri.org/IService1/DashBoardWorkFlowCountResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDashBoardWorkFlowViewFront> DashBoardWorkFlowCountAsync(int intUserId, int intCompanyId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/PropertiesGetAll", ReplyAction="http://tempuri.org/IService1/PropertiesGetAllResponse")]
         PGMSFront.WCFPGMSRef.returndbmlProperty PropertiesGetAll();
         
@@ -9767,6 +9959,14 @@ namespace PGMSFront.WCFPGMSRef {
         
         public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCompanyView> CompanyViewGetByCompanyIdAsync(int intCompanyId) {
             return base.Channel.CompanyViewGetByCompanyIdAsync(intCompanyId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlDashBoardWorkFlowViewFront DashBoardWorkFlowCount(int intUserId, int intCompanyId) {
+            return base.Channel.DashBoardWorkFlowCount(intUserId, intCompanyId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDashBoardWorkFlowViewFront> DashBoardWorkFlowCountAsync(int intUserId, int intCompanyId) {
+            return base.Channel.DashBoardWorkFlowCountAsync(intUserId, intCompanyId);
         }
         
         public PGMSFront.WCFPGMSRef.returndbmlProperty PropertiesGetAll() {

@@ -38,7 +38,7 @@
                     <div class="card-header">
                         <h4 class="card-title">
                             <label class="card-title">Component Count : </label> <label class="card-title" id="lblVehicleCount"></label>
-                            @if (Model.StatusPropId == 40 && parseInt($("#RFQId").val()) == 0 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 57 || Model.WorkFlowId == 29 || Model.WorkFlowId == 36 || Model.WorkFlowId == 38))
+                            @if (Model.StatusPropId == 40 && Convert.ToInt32(Model.RFQId) == 0 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 57 || Model.WorkFlowId == 29 || Model.WorkFlowId == 36 || Model.WorkFlowId == 38))
                             {
                                 <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="AddMore()" id="btnAdd">Add More</button>
                             }

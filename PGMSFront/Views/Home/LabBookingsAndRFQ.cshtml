@@ -12,6 +12,52 @@
     .bootstrap-select {
         margin-top: 16px !important;
     }
+
+    .badge {
+        padding: 2px 2px;
+        font-size: 13px;
+        color: #FFF;
+        background: #000;
+        border-radius: 50%;
+        margin-top: 6px;
+        margin-right: 3px;
+    }
+
+    .card-stats .card-header .card-category:not([class*="text-"]) {
+        color: #000;
+        font-size: 18px;
+        font-weight: 400;
+    }
+
+    .card-stats .card-header.card-header-icon, .card-stats .card-header.card-header-text {
+        text-align: left;
+    }
+
+    .card [class*="card-header-"] {
+        margin: 0px 5px 0;
+        padding: 0;
+        position: relative;
+    }
+
+    .card-stats .card-header + .card-footer {
+        margin-top: 8px;
+    }
+
+    .card-header {
+        height: 160px;
+    }
+
+    .card-stats .card-header .card-category:not([class*="text-"]) {
+        color: #FFF;
+    }
+
+    .card .card-header.card-header-icon .card-title, .card .card-header.card-header-text .card-title {
+        color: #FFF;
+    }
+
+    .card .card-body + .card-footer .stats, .card .card-footer .stats {
+        color: #FFF;
+    }
 </style>
 <div class="content">
     <div class="container-fluid">
@@ -23,23 +69,17 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    @using (Html.BeginForm(new { @class = "form-horizontal" }))
+                    @*@using (Html.BeginForm(new { @class = "form-horizontal" }))
                     {
-                        @Html.AntiForgeryToken()
+                        @Html.AntiForgeryToken()*@
                         <br />
-                        
+
                         <div class="row">
                             <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 0px;">
                                 <div class="card card-stats" style="background: #fb8c00;">
-                                    <div class="card-header card-header-warning card-header-icon">
-                                        <div class="card-icon" style="        padding: 0px;
-        margin-top: -35px;"><i class="material-icons">equalizer</i></div>
-                                        <p class="card-category">Lab - RFQ</p>
-                                        <h5 class="card-title"><a href="#">Request in progress</a>&nbsp;<span class="badge pull-right">10</span></h5>
-                                        <h5 class="card-title"><a href="#">Pending for Conversion to Booking</a>&nbsp;<span class="badge pull-right">20</span></h5>
-                                        <h5 class="card-title"><a href="#">Pending for P.O. Upload</a>&nbsp;<span class="badge pull-right">30</span></h5>
-                                        <h5 class="card-title"><a href="#">Pending for P.O. Acceptance</a>&nbsp;<span class="badge pull-right">40</span></h5>
+                                    <div id="divLabRFQ" style="text-align:left" class="card-header card-header-warning card-header-icon">
+
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
@@ -49,14 +89,8 @@
                             <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 5px;">
                                 <div class="card card-stats" style="background: #d81b60;">
-                                    <div class="card-header card-header-rose card-header-icon">
-                                        <div class="card-icon" style="        padding: 0px;
-        margin-top: -35px;"><i class="material-icons">equalizer</i></div>
-                                        <p class="card-category">Lab - Booking</p>
-                                        <h5 class="card-title"><a href="#">Booking in progress</a>&nbsp;<span class="badge pull-right">10</span></h5>
-                                        <h5 class="card-title"><a href="#">Pending for Natrax Approval</a>&nbsp;<span class="badge pull-right">20</span></h5>
-                                        <h5 class="card-title"><a href="#">Pending for P.O. Upload</a>&nbsp;<span class="badge pull-right">30</span></h5>
-                                        <h5 class="card-title"><a href="#">Pending for P.O. Acceptance</a>&nbsp;<span class="badge pull-right">40</span></h5>
+                                    <div id="divLabBooking" style="text-align:left" class="card-header card-header-rose card-header-icon">
+
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
@@ -66,13 +100,8 @@
                             <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 5px;">
                                 <div class="card card-stats" style="background: #43a047;">
-                                    <div class="card-header card-header-success card-header-icon">
-                                        <div class="card-icon" style="        padding: 0px;
-        margin-top: -35px;"><i class="material-icons">equalizer</i></div>
-                                        <p class="card-category">Lab - Usages</p>
-                                        <h5 class="card-title"><a href="#">Upcoming</a>&nbsp;<span class="badge pull-right">10</span></h5>
-                                        <h5 class="card-title"><a href="#">In Progress</a>&nbsp;<span class="badge pull-right">20</span></h5>
-                                        <h5 class="card-title"><a href="#">Completed</a>&nbsp;<span class="badge pull-right">30</span></h5>
+                                    <div id="divLabUsage" style="text-align:left" class="card-header card-header-success card-header-icon">
+
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
@@ -82,13 +111,8 @@
                             <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 5px;">
                                 <div class="card card-stats" style="background: #8e24aa;">
-                                    <div class="card-header card-header-primary card-header-icon">
-                                        <div class="card-icon" style="        padding: 0px;
-        margin-top: -35px;"><i class="material-icons">equalizer</i></div>
-                                        <p class="card-category">Lab - Invoicing</p>
-                                        <h5 class="card-title"><a href="#">Pending for Invoicing</a>&nbsp;<span class="badge pull-right">10</span></h5>
-                                        <h5 class="card-title"><a href="#">Pending for Payments</a>&nbsp;<span class="badge pull-right">20</span></h5>
-                                        <h5 class="card-title"><a href="#">Payment Done</a>&nbsp;<span class="badge pull-right">30</span></h5>
+                                    <div id="divLabInvoice" style="text-align:left" class="card-header card-header-primary card-header-icon">
+
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
@@ -96,9 +120,182 @@
                                 </div>
                             </div>
                         </div>
-                    }
+                    @*}*@
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+      ///////////////////////////// LoadDashboardInfo  //////////////////////////////////////////////////////
+    function LoadDashboardInfo() {
+        try {
+            LoaderShow();
+
+            var data = {};
+            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+
+            $.ajax({
+                url: '@Url.Action("LoadDashboardInfo", "Home")',
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                data: dataWithAntiforgeryToken,
+                success: function (data) {
+
+                    LoaderHide();
+                    if (data.StatusId != "99" && data.StatusId != "-99") {
+                        BindDashboarData(data.DashboardList);
+                    }
+                    else {
+                        alert(data.Status);
+                    }
+                },
+                error: function (xhr) {
+
+                    LoaderHide();
+                    alert(xhr.responseText);
+                }
+            });
+
+        }
+        catch (e) {
+
+            LoaderHide();
+            alert(e.message);
+        }
+        return false;
+    }
+    ///////////////////////////// Bind Dashboard Info  //////////////////////////////////////////////////////
+    function BindDashboarData(data) {
+        try {
+           
+            var gridData = "";
+
+            //////////////////////////// Track - RFQ /////////////////////////////////////////////
+            //var dataList = jQuery.grep(data, function (obj) {
+            //    return obj.BPId == 46;
+            //});
+
+            //gridData = "";
+            //gridData = gridData +  "<div class='card-icon' style='padding:0px; '> <i class='material-icons'>equalizer</i> </div>";
+            //gridData = gridData +  "<p class='card-category'>Track - RFQ</p>";
+            //$("#divTrackRFQ").html("");
+            //for (var i = 0; i < dataList.length; i++) {
+
+            //    gridData = gridData + "<h5 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts)+"</span></h5>";
+            //}
+
+            //$("#divTrackRFQ").html(gridData);
+
+            //////////////////////////// Track - Booking   /////////////////////////////////////////////
+            // dataList = jQuery.grep(data, function (obj) {
+            //    return obj.BPId == 21;
+            //});
+            //gridData = "";
+            //gridData += "<div class='card-icon' style='padding:0px; '> <i class='material-icons'>equalizer</i> </div>";
+            //gridData += "<p class='card-category'>Track - Booking</p>";
+            //$("#divTrackBooking").html("");
+            //for (var i = 0; i < dataList.length; i++) {
+
+            //    gridData = gridData + "<h5 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h5>";
+            //}
+            //$("#divTrackBooking").html(gridData);
+
+            ////////////////////////////   Track Usages /////////////////////////////////////////////
+            // dataList = jQuery.grep(data, function (obj) {
+            //    return obj.BPId == 24;
+            //});
+            //gridData = "";
+            //gridData += "<div class='card-icon' style='padding:0px; '> <i class='material-icons'>equalizer</i> </div>";
+            //gridData += "<p class='card-category'>Track - Usages</p>";
+            //$("#divTrackUsage").html("");
+            //for (var i = 0; i < dataList.length; i++) {
+
+            //    gridData = gridData + "<h5 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h5>";
+            //}
+            //$("#divTrackUsage").html(gridData);
+
+            ////////////////////////////  Track Invoicing /////////////////////////////////////////////
+            // dataList = jQuery.grep(data, function (obj) {
+            //    return obj.BPId == 39;
+            //});
+            //gridData = "";
+            //gridData += "<div class='card-icon' style='padding:0px; '> <i class='material-icons'>equalizer</i> </div>";
+            //gridData += "<p class='card-category'>Track - Invoicing</p>";
+            //$("#divTrackInvoice").html("");
+            //for (var i = 0; i < dataList.length; i++) {
+
+            //    gridData = gridData + "<h5 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h5>";
+            //}
+            //$("#divTrackInvoice").html(gridData);
+
+            //////////////////////////  Lab - RFQ /////////////////////////////////////////////
+             dataList = jQuery.grep(data, function (obj) {
+                return obj.BPId == 91;
+            });
+            gridData = "";
+            gridData += "<div class='card-icon' style='padding:0px; '> <i class='material-icons'>equalizer</i> </div>";
+            gridData += "<p class='card-category'>Track - RFQ</p>";
+            $("#divLabRFQ").html("");
+            for (var i = 0; i < dataList.length; i++) {
+
+                gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+            }
+            $("#divLabRFQ").html(gridData);
+
+            //////////////////////////  Lab Booking /////////////////////////////////////////////
+             dataList = jQuery.grep(data, function (obj) {
+                return obj.BPId == 90;
+            });
+            gridData = "";
+            gridData += "<div class='card-icon' style='padding:0px; '> <i class='material-icons'>equalizer</i> </div>";
+            gridData += "<p class='card-category'>Lab - Booking</p>";
+            $("#divLabBooking").html("");
+            for (var i = 0; i < dataList.length; i++) {
+
+                gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+            }
+            $("#divLabBooking").html(gridData);
+
+            //////////////////////////  Lab /////////////////////////////////////////////
+             dataList = jQuery.grep(data, function (obj) {
+                return obj.BPId == 93;
+            });
+            gridData = "";
+            gridData += "<div class='card-icon' style='padding:0px; '> <i class='material-icons'>equalizer</i> </div>";
+            gridData += "<p class='card-category'>Lab - Usages</p>";
+            $("#divLabUsage").html("");
+            for (var i = 0; i < dataList.length; i++) {
+
+                gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+            }
+            $("#divLabUsage").html(gridData);
+
+            //////////////////////////  Lab Invoicing /////////////////////////////////////////////
+             dataList = jQuery.grep(data, function (obj) {
+                return obj.BPId == 94;
+            });
+            gridData = "";
+            gridData += "<div class='card-icon' style='padding:0px; '> <i class='material-icons'>equalizer</i> </div>";
+            gridData += "<p class='card-category'>Lab - Invoicing</p>";
+            $("#divLabInvoice").html("");
+            for (var i = 0; i < dataList.length; i++) {
+
+                gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+            }
+            $("#divLabInvoice").html(gridData);
+
+
+        }
+        catch (e) {
+
+        }
+    }
+
+
+    $(document).ready(function () {
+        LoadDashboardInfo();
+    });
+
+</script>

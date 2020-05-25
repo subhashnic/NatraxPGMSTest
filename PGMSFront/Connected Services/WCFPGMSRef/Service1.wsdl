@@ -29,6 +29,12 @@
   <wsdl:message name="IService1_CompanyViewGetByCompanyId_OutputMessage">
     <wsdl:part name="parameters" element="tns:CompanyViewGetByCompanyIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_DashBoardWorkFlowCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:DashBoardWorkFlowCount" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DashBoardWorkFlowCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DashBoardWorkFlowCountResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_PropertiesGetAll_InputMessage">
     <wsdl:part name="parameters" element="tns:PropertiesGetAll" />
   </wsdl:message>
@@ -260,6 +266,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CompanyViewGetByCompanyId" message="tns:IService1_CompanyViewGetByCompanyId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/CompanyViewGetByCompanyIdResponse" message="tns:IService1_CompanyViewGetByCompanyId_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="DashBoardWorkFlowCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DashBoardWorkFlowCount" message="tns:IService1_DashBoardWorkFlowCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DashBoardWorkFlowCountResponse" message="tns:IService1_DashBoardWorkFlowCount_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="PropertiesGetAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/PropertiesGetAll" message="tns:IService1_PropertiesGetAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/PropertiesGetAllResponse" message="tns:IService1_PropertiesGetAll_OutputMessage" />
@@ -423,6 +433,15 @@
     </wsdl:operation>
     <wsdl:operation name="CompanyViewGetByCompanyId">
       <soap12:operation soapAction="http://tempuri.org/IService1/CompanyViewGetByCompanyId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DashBoardWorkFlowCount">
+      <soap12:operation soapAction="http://tempuri.org/IService1/DashBoardWorkFlowCount" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

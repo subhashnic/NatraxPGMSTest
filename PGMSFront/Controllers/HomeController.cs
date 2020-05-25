@@ -223,6 +223,30 @@ namespace PGMSFront.Controllers
             return View(model);
         }
 
+        public ActionResult LoadDashboardInfo()
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlDashBoardWorkFlowViewFront objreturndbmlDashBoardWorkFlowViewFront = new returndbmlDashBoardWorkFlowViewFront();
+            try
+            {
+                objreturndbmlDashBoardWorkFlowViewFront = objServiceClient.DashBoardWorkFlowCount(Convert.ToInt32(Session["UserId"]), Convert.ToInt32(Session["ZZCompanyId"]));
+                intStatusId =(int) objreturndbmlDashBoardWorkFlowViewFront.objdbmlStatus.StatusId;
+                strStatus = objreturndbmlDashBoardWorkFlowViewFront.objdbmlStatus.Status;
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, DashboardList = objreturndbmlDashBoardWorkFlowViewFront.objdbmlDashBoardWorkFlowViewFront }, JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
         #region Booking
@@ -2111,7 +2135,7 @@ namespace PGMSFront.Controllers
                     {
                         objreturndbmlVehicle.objdbmlListOfVehicleComponent = new ObservableCollection<dbmlListOfVehicleComponent>(objreturndbmlVehicle.objdbmlListOfVehicleComponent.Where(itm => itm.GroupId == Convert.ToInt32(HardCodeValues.CompGrpPropId)));
                         intStatusId = 1;
-                        strStatus = "Vehicle Deleted Successfully";
+                        strStatus = "Component Deleted Successfully";
                     }
                     else
                     {

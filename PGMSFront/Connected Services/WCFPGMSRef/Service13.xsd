@@ -72,6 +72,23 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlCompanyView" nillable="true" type="tns:dbmlCompanyView" />
+  <xs:complexType name="ArrayOfdbmlDashBoardWorkFlowViewFront">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlDashBoardWorkFlowViewFront" nillable="true" type="tns:dbmlDashBoardWorkFlowViewFront" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdbmlDashBoardWorkFlowViewFront" nillable="true" type="tns:ArrayOfdbmlDashBoardWorkFlowViewFront" />
+  <xs:complexType name="dbmlDashBoardWorkFlowViewFront">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BPId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Caption" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Counts" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DashBoardId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="StatusPropId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="WorkFlowId" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dbmlDashBoardWorkFlowViewFront" nillable="true" type="tns:dbmlDashBoardWorkFlowViewFront" />
   <xs:complexType name="ArrayOfdbmlProperty">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlProperty" nillable="true" type="tns:dbmlProperty" />
