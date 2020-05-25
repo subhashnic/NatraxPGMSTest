@@ -1,9 +1,9 @@
 ﻿@model PGMSFront.Models.CommonModel
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Track Booking & RFQ";
-                Layout = "~/Views/Shared/_LayoutTrackBookingAndRFQ.cshtml";
+    ViewBag.Title = "Track Booking & RFQ";
+    Layout = "~/Views/Shared/_LayoutTrackBookingAndRFQ.cshtml";
 }
 <style>
     .card {
@@ -28,8 +28,77 @@
                     @using (Html.BeginForm(new { @class = "form-horizontal" }))
                     {
                         @Html.AntiForgeryToken()
-                       
-                    }                    
+                        <br />                       
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
+        padding-left: 0px;">
+                                <div class="card card-stats" style="background: #fb8c00;">
+                                    <div class="card-header card-header-warning card-header-icon">
+                                        <div class="card-icon" style="        padding: 0px;
+        margin-top: -35px;"><i class="material-icons">equalizer</i></div>
+                                        <p class="card-category">Track - RFQ</p>
+                                        <h5 class="card-title"><a href="#">Request in progress</a>&nbsp;<span class="badge pull-right">10</span></h5>
+                                        <h5 class="card-title"><a href="#">Pending for Conversion to Booking</a>&nbsp;<span class="badge pull-right">20</span></h5>
+                                        <h5 class="card-title"><a href="#">Pending for P.O. Upload</a>&nbsp;<span class="badge pull-right">30</span></h5>
+                                        <h5 class="card-title"><a href="#">Pending for P.O. Acceptance</a>&nbsp;<span class="badge pull-right">40</span></h5>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
+        padding-left: 5px;">
+                                <div class="card card-stats" style="background: #d81b60;">
+                                    <div class="card-header card-header-rose card-header-icon">
+                                        <div class="card-icon" style="        padding: 0px;
+        margin-top: -35px;"><i class="material-icons">equalizer</i></div>
+                                        <p class="card-category">Track - Booking</p>
+                                        <h5 class="card-title"><a href="#">Booking in progress</a>&nbsp;<span class="badge pull-right">10</span></h5>
+                                        <h5 class="card-title"><a href="#">Pending for Natrax Approval</a>&nbsp;<span class="badge pull-right">20</span></h5>
+                                        <h5 class="card-title"><a href="#">Pending for P.O. Upload</a>&nbsp;<span class="badge pull-right">30</span></h5>
+                                        <h5 class="card-title"><a href="#">Pending for P.O. Acceptance</a>&nbsp;<span class="badge pull-right">40</span></h5>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
+        padding-left: 5px;">
+                                <div class="card card-stats" style="background: #43a047;">
+                                    <div class="card-header card-header-success card-header-icon">
+                                        <div class="card-icon" style="        padding: 0px;
+        margin-top: -35px;"><i class="material-icons">equalizer</i></div>
+                                        <p class="card-category">Track - Usages</p>
+                                        <h5 class="card-title"><a href="#">Upcoming</a>&nbsp;<span class="badge pull-right">10</span></h5>
+                                        <h5 class="card-title"><a href="#">In Progress</a>&nbsp;<span class="badge pull-right">20</span></h5>
+                                        <h5 class="card-title"><a href="#">Completed</a>&nbsp;<span class="badge pull-right">30</span></h5>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
+        padding-left: 5px;">
+                                <div class="card card-stats" style="background: #8e24aa;">
+                                    <div class="card-header card-header-primary card-header-icon">
+                                        <div class="card-icon" style="        padding: 0px;
+        margin-top: -35px;"><i class="material-icons">equalizer</i></div>
+                                        <p class="card-category">Track - Invoicing</p>
+                                        <h5 class="card-title"><a href="#">Pending for Invoicing</a>&nbsp;<span class="badge pull-right">10</span></h5>
+                                        <h5 class="card-title"><a href="#">Pending for Payments</a>&nbsp;<span class="badge pull-right">20</span></h5>
+                                        <h5 class="card-title"><a href="#">Payment Done</a>&nbsp;<span class="badge pull-right">30</span></h5>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
                 </div>
             </div>
         </div>

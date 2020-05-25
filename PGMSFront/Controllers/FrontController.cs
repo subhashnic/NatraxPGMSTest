@@ -8,7 +8,9 @@ namespace PGMSFront.Controllers
 {
     public class FrontController : Controller
     {
-        // GET: Front
+        
+        #region Login
+
         public ActionResult Index()
         {
             return View();
@@ -19,6 +21,16 @@ namespace PGMSFront.Controllers
             return View();
         }
 
+        #endregion
+
+        #region Company Registration
+        public ActionResult CompanyRegistration()
+        {
+            return View();
+        }
+        #endregion
+
+        #region Others - Track/Lab/Storage etc
         public ActionResult BrakingTrack()
         {
             return View();
@@ -123,12 +135,6 @@ namespace PGMSFront.Controllers
         {
             return View();
         }
-
-        public ActionResult CompanyRegistration()
-        {
-            return View();
-        }
-
 
         public ActionResult HighSpeedTrackDetail()
         {
@@ -334,5 +340,7 @@ namespace PGMSFront.Controllers
         {
             return View();
         }
+
+        #endregion
     }
 }
