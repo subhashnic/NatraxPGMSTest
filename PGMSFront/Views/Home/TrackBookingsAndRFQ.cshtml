@@ -23,6 +23,7 @@
         border-radius: 50%;
         margin-top: 6px;
         margin-right: 3px;
+        min-width: 20px;
     }
 
     .card-stats .card-header .card-category:not([class*="text-"]) {
@@ -45,10 +46,6 @@
         margin-top: 8px;
     }
 
-    .card-header {
-        height: 160px;
-    }
-
     .card-stats .card-header .card-category:not([class*="text-"]) {
         color: #FFF;
     }
@@ -59,6 +56,7 @@
 
     .card .card-body + .card-footer .stats, .card .card-footer .stats {
         color: #FFF;
+        line-height: 15px;
     }
 </style>
 <div class="content">
@@ -74,48 +72,47 @@
                     @using (Html.BeginForm(new { @class = "form-horizontal" }))
                     {
                         @Html.AntiForgeryToken()
-                        <br />
                         <div class="row">
                             <div class="col-lg-3 col-md-4 col-sm-4" style="padding-right: 0px;padding-left: 0px;vertical-align:top">
                                 <div class="card card-stats" style="background: #fb8c00;">
-                                    <div id="divTrackRFQ" style="text-align:left" class="card-header card-header-warning card-header-icon">
+                                    <div id="divTrackRFQ" style="text-align:left; height: 160px;" class="card-header card-header-warning card-header-icon">
 
                                     </div>
                                     <div class="card-footer">
-                                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                                        <div class="stats">View More <i class="material-icons">arrow_forward</i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 5px;">
                                 <div class="card card-stats" style="background: #d81b60;">
-                                    <div id="divTrackBooking" style="text-align:left" class="card-header card-header-rose card-header-icon">
+                                    <div id="divTrackBooking" style="text-align:left; height: 160px;" class="card-header card-header-rose card-header-icon">
 
                                     </div>
                                     <div class="card-footer">
-                                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                                        <div class="stats">View More <i class="material-icons">arrow_forward</i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 5px;">
                                 <div class="card card-stats" style="background: #43a047;">
-                                    <div id="divTrackUsage" style="text-align:left" class="card-header card-header-success card-header-icon">
+                                    <div id="divTrackUsage" style="text-align:left; height: 160px;" class="card-header card-header-success card-header-icon">
 
                                     </div>
                                     <div class="card-footer">
-                                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                                        <div class="stats">View More <i class="material-icons">arrow_forward</i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 5px;">
                                 <div class="card card-stats" style="background: #8e24aa;">
-                                    <div id="divTrackInvoice" style="text-align:left" class="card-header card-header-primary card-header-icon">
+                                    <div id="divTrackInvoice" style="text-align:left; height: 160px;" class="card-header card-header-primary card-header-icon">
 
                                     </div>
                                     <div class="card-footer">
-                                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                                        <div class="stats">View More <i class="material-icons">arrow_forward</i></div>
                                     </div>
                                 </div>
                             </div>
@@ -180,7 +177,7 @@
             });
 
             gridData = "";
-            gridData = gridData +  "<div class='card-icon' style='padding:0px;'> <i class='material-icons'>equalizer</i> </div>";
+            gridData = gridData +  "<div class='card-icon' style='padding:0px;'> <i class='material-icons'>emoji_transportation</i> </div>";
             gridData = gridData +  "<p class='card-category'>Track - RFQ</p>";
             $("#divTrackRFQ").html("");
             for (var i = 0; i < dataList.length; i++) {
@@ -195,7 +192,7 @@
                 return obj.BPId == 21;
             });
             gridData = "";
-            gridData += "<div class='card-icon' style='padding:0px;'> <i class='material-icons'>equalizer</i> </div>";
+            gridData += "<div class='card-icon' style='padding:0px;'> <i class='material-icons'>emoji_transportation</i> </div>";
             gridData += "<p class='card-category'>Track - Booking</p>";
             $("#divTrackBooking").html("");
             for (var i = 0; i < dataList.length; i++) {
@@ -209,7 +206,7 @@
                 return obj.BPId == 24;
             });
             gridData = "";
-            gridData += "<div class='card-icon' style='padding:0px;'> <i class='material-icons'>equalizer</i> </div>";
+            gridData += "<div class='card-icon' style='padding:0px;'> <i class='material-icons'>emoji_transportation</i> </div>";
             gridData += "<p class='card-category'>Track - Usages</p>";
             $("#divTrackUsage").html("");
             for (var i = 0; i < dataList.length; i++) {
@@ -223,7 +220,7 @@
                 return obj.BPId == 39;
             });
             gridData = "";
-            gridData += "<div class='card-icon' style='padding:0px;'> <i class='material-icons'>equalizer</i> </div>";
+            gridData += "<div class='card-icon' style='padding:0px;'> <i class='material-icons'>emoji_transportation</i> </div>";
             gridData += "<p class='card-category'>Track - Invoicing</p>";
             $("#divTrackInvoice").html("");
             for (var i = 0; i < dataList.length; i++) {

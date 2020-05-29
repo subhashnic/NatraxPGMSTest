@@ -11,6 +11,7 @@
         border-radius: 50%;
         margin-top: 6px;
         margin-right: 3px;
+        min-width: 20px;
     }
 
     .card-stats .card-header .card-category:not([class*="text-"]) {
@@ -47,6 +48,7 @@
 
     .card .card-body + .card-footer .stats, .card .card-footer .stats {
         color: #FFF;
+        line-height: 15px;
     }
 </style>
 <div class="content">
@@ -59,7 +61,7 @@
 
                     </div>
                     <div class="card-footer">
-                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                        <div class="stats">View More <i class="material-icons">arrow_forward</i></div>
                     </div>
                 </div>
             </div>
@@ -70,7 +72,7 @@
 
                     </div>
                     <div class="card-footer">
-                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                        <div class="stats">View More <i class="material-icons">arrow_forward</i></div>
                     </div>
                 </div>
             </div>
@@ -81,7 +83,7 @@
 
                     </div>
                     <div class="card-footer">
-                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                        <div class="stats">View More <i class="material-icons">arrow_forward</i></div>
                     </div>
                 </div>
             </div>
@@ -92,7 +94,7 @@
 
                     </div>
                     <div class="card-footer">
-                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                        <div class="stats">View More <i class="material-icons">arrow_forward</i></div>
                     </div>
                 </div>
             </div>
@@ -105,7 +107,7 @@
 
                     </div>
                     <div class="card-footer">
-                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                        <div class="stats">View More <i class="material-icons">arrow_forward</i></div>
                     </div>
                 </div>
             </div>
@@ -116,7 +118,7 @@
 
                     </div>
                     <div class="card-footer">
-                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                        <div class="stats">View More <i class="material-icons">arrow_forward</i></div>
                     </div>
                 </div>
             </div>
@@ -127,7 +129,7 @@
 
                     </div>
                     <div class="card-footer">
-                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                        <div class="stats">View More <i class="material-icons">arrow_forward</i></div>
                     </div>
                 </div>
             </div>
@@ -138,7 +140,7 @@
 
                     </div>
                     <div class="card-footer">
-                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                        <div class="stats">View More <i class="material-icons">arrow_forward</i></div>
                     </div>
                 </div>
             </div>
@@ -197,7 +199,7 @@
             });
 
             gridData = "";
-            gridData = gridData +  "<div class='card-icon' style='padding:0px; margin-top:-35px;'> <i class='material-icons'>equalizer</i> </div>";
+            gridData = gridData +  "<div class='card-icon' style='padding:0px; margin-top:-35px;'> <i class='material-icons'>emoji_transportation</i> </div>";
             gridData = gridData +  "<p class='card-category'>Track - RFQ</p>";
             $("#divTrackRFQ").html("");
             for (var i = 0; i < dataList.length; i++) {
@@ -212,7 +214,7 @@
                 return obj.BPId == 21;
             });
             gridData = "";
-            gridData += "<div class='card-icon' style='padding:0px; margin-top:-35px;'> <i class='material-icons'>equalizer</i> </div>";
+            gridData += "<div class='card-icon' style='padding:0px; margin-top:-35px;'> <i class='material-icons'>emoji_transportation</i> </div>";
             gridData += "<p class='card-category'>Track - Booking</p>";
             $("#divTrackBooking").html("");
             for (var i = 0; i < dataList.length; i++) {
@@ -226,7 +228,7 @@
                 return obj.BPId == 24;
             });
             gridData = "";
-            gridData += "<div class='card-icon' style='padding:0px; margin-top:-35px;'> <i class='material-icons'>equalizer</i> </div>";
+            gridData += "<div class='card-icon' style='padding:0px; margin-top:-35px;'> <i class='material-icons'>emoji_transportation</i> </div>";
             gridData += "<p class='card-category'>Track - Usages</p>";
             $("#divTrackUsage").html("");
             for (var i = 0; i < dataList.length; i++) {
@@ -240,7 +242,7 @@
                 return obj.BPId == 39;
             });
             gridData = "";
-            gridData += "<div class='card-icon' style='padding:0px; margin-top:-35px;'> <i class='material-icons'>equalizer</i> </div>";
+            gridData += "<div class='card-icon' style='padding:0px; margin-top:-35px;'> <i class='material-icons'>emoji_transportation</i> </div>";
             gridData += "<p class='card-category'>Track - Invoicing</p>";
             $("#divTrackInvoice").html("");
             for (var i = 0; i < dataList.length; i++) {
@@ -254,7 +256,7 @@
                 return obj.BPId == 91;
             });
             gridData = "";
-            gridData += "<div class='card-icon' style='padding:0px; margin-top:-35px;'> <i class='material-icons'>equalizer</i> </div>";
+            gridData += "<div class='card-icon' style='padding:0px; margin-top:-35px;'> <i class='material-icons'>room_preferences</i> </div>";
             gridData += "<p class='card-category'>Lab - RFQ</p>";
             $("#divLabRFQ").html("");
             for (var i = 0; i < dataList.length; i++) {
@@ -268,7 +270,7 @@
                 return obj.BPId == 90;
             });
             gridData = "";
-            gridData += "<div class='card-icon' style='padding:0px; margin-top:-35px;'> <i class='material-icons'>equalizer</i> </div>";
+            gridData += "<div class='card-icon' style='padding:0px; margin-top:-35px;'> <i class='material-icons'>room_preferences</i> </div>";
             gridData += "<p class='card-category'>Lab - Booking</p>";
             $("#divLabBooking").html("");
             for (var i = 0; i < dataList.length; i++) {
@@ -282,7 +284,7 @@
                 return obj.BPId == 93;
             });
             gridData = "";
-            gridData += "<div class='card-icon' style='padding:0px; margin-top:-35px;'> <i class='material-icons'>equalizer</i> </div>";
+            gridData += "<div class='card-icon' style='padding:0px; margin-top:-35px;'> <i class='material-icons'>room_preferences</i> </div>";
             gridData += "<p class='card-category'>Lab - Usages</p>";
             $("#divLabUsage").html("");
             for (var i = 0; i < dataList.length; i++) {
@@ -296,7 +298,7 @@
                 return obj.BPId == 94;
             });
             gridData = "";
-            gridData += "<div class='card-icon' style='padding:0px; margin-top:-35px;'> <i class='material-icons'>equalizer</i> </div>";
+            gridData += "<div class='card-icon' style='padding:0px; margin-top:-35px;'> <i class='material-icons'>room_preferences</i> </div>";
             gridData += "<p class='card-category'>Lab - Invoicing</p>";
             $("#divLabInvoice").html("");
             for (var i = 0; i < dataList.length; i++) {
