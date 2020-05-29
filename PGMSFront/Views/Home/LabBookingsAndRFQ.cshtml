@@ -21,6 +21,7 @@
         border-radius: 50%;
         margin-top: 6px;
         margin-right: 3px;
+        min-width: 20px;
     }
 
     .card-stats .card-header .card-category:not([class*="text-"]) {
@@ -43,10 +44,6 @@
         margin-top: 8px;
     }
 
-    .card-header {
-        height: 160px;
-    }
-
     .card-stats .card-header .card-category:not([class*="text-"]) {
         color: #FFF;
     }
@@ -57,6 +54,7 @@
 
     .card .card-body + .card-footer .stats, .card .card-footer .stats {
         color: #FFF;
+        line-height: 15px;
     }
 </style>
 <div class="content">
@@ -78,44 +76,44 @@
                             <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 0px;">
                                 <div class="card card-stats" style="background: #fb8c00;">
-                                    <div id="divLabRFQ" style="text-align:left" class="card-header card-header-warning card-header-icon">
+                                    <div id="divLabRFQ" style="text-align:left; height: 160px;" class="card-header card-header-warning card-header-icon">
 
                                     </div>
                                     <div class="card-footer">
-                                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                                        <div class="stats">View More <i class="material-icons">arrow_forward</i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 5px;">
                                 <div class="card card-stats" style="background: #d81b60;">
-                                    <div id="divLabBooking" style="text-align:left" class="card-header card-header-rose card-header-icon">
+                                    <div id="divLabBooking" style="text-align:left; height: 160px;" class="card-header card-header-rose card-header-icon">
 
                                     </div>
                                     <div class="card-footer">
-                                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                                        <div class="stats">View More <i class="material-icons">arrow_forward</i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 5px;">
                                 <div class="card card-stats" style="background: #43a047;">
-                                    <div id="divLabUsage" style="text-align:left" class="card-header card-header-success card-header-icon">
+                                    <div id="divLabUsage" style="text-align:left; height: 160px;" class="card-header card-header-success card-header-icon">
 
                                     </div>
                                     <div class="card-footer">
-                                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                                        <div class="stats">View More <i class="material-icons">arrow_forward</i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 5px;">
                                 <div class="card card-stats" style="background: #8e24aa;">
-                                    <div id="divLabInvoice" style="text-align:left" class="card-header card-header-primary card-header-icon">
+                                    <div id="divLabInvoice" style="text-align:left; height: 160px;" class="card-header card-header-primary card-header-icon">
 
                                     </div>
                                     <div class="card-footer">
-                                        <div class="stats"> <i class="material-icons">local_offer</i> View More </div>
+                                        <div class="stats">View More <i class="material-icons">arrow_forward</i></div>
                                     </div>
                                 </div>
                             </div>
@@ -235,7 +233,7 @@
                 return obj.BPId == 91;
             });
             gridData = "";
-            gridData += "<div class='card-icon' style='padding:0px; '> <i class='material-icons'>equalizer</i> </div>";
+            gridData += "<div class='card-icon' style='padding:0px; '> <i class='material-icons'>room_preferences</i> </div>";
             gridData += "<p class='card-category'>Lab - RFQ</p>";
             $("#divLabRFQ").html("");
             for (var i = 0; i < dataList.length; i++) {
@@ -249,7 +247,7 @@
                 return obj.BPId == 90;
             });
             gridData = "";
-            gridData += "<div class='card-icon' style='padding:0px; '> <i class='material-icons'>equalizer</i> </div>";
+            gridData += "<div class='card-icon' style='padding:0px; '> <i class='material-icons'>room_preferences</i> </div>";
             gridData += "<p class='card-category'>Lab - Booking</p>";
             $("#divLabBooking").html("");
             for (var i = 0; i < dataList.length; i++) {
@@ -263,7 +261,7 @@
                 return obj.BPId == 93;
             });
             gridData = "";
-            gridData += "<div class='card-icon' style='padding:0px; '> <i class='material-icons'>equalizer</i> </div>";
+            gridData += "<div class='card-icon' style='padding:0px; '> <i class='material-icons'>room_preferences</i> </div>";
             gridData += "<p class='card-category'>Lab - Usages</p>";
             $("#divLabUsage").html("");
             for (var i = 0; i < dataList.length; i++) {
@@ -277,7 +275,7 @@
                 return obj.BPId == 94;
             });
             gridData = "";
-            gridData += "<div class='card-icon' style='padding:0px; '> <i class='material-icons'>equalizer</i> </div>";
+            gridData += "<div class='card-icon' style='padding:0px; '> <i class='material-icons'>room_preferences</i> </div>";
             gridData += "<p class='card-category'>Lab - Invoicing</p>";
             $("#divLabInvoice").html("");
             for (var i = 0; i < dataList.length; i++) {
