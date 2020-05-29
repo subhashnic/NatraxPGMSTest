@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCFServiceTemplate" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost/WCFPGMSFront/Service1.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Data.Linq" />
   <xs:complexType name="dbmlStatus">
     <xs:sequence>
       <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
@@ -20,12 +19,17 @@
       <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CreateDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="CreateId" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerDepartmentId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerMasterId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="DbId" type="xs:int" />
       <xs:element minOccurs="0" name="EmailId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailVerify" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="EndDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="LoginId" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MobileNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MobileOTP" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PassWord" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StartDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="UpdateDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="UpdateId" type="xs:int" />
@@ -33,45 +37,18 @@
       <xs:element minOccurs="0" name="UserId" type="xs:int" />
       <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UserTypePropId" type="xs:int" />
-      <xs:element minOccurs="0" name="ZZCompanyId" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="ZZEndDate" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ZZStartDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZAccountId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ZZCompanyName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZDepartment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZDistrictId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ZZGSTNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZPanNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZServiceBPId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ZZStateId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ZZUserType" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlUserView" nillable="true" type="tns:dbmlUserView" />
-  <xs:complexType name="ArrayOfdbmlCompanyView">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlCompanyView" nillable="true" type="tns:dbmlCompanyView" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfdbmlCompanyView" nillable="true" type="tns:ArrayOfdbmlCompanyView" />
-  <xs:complexType name="dbmlCompanyView">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="BankAccountNo" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="BankName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="BranchName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CityId" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="Company" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CompanyEmail" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CompanyFax" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Data.Linq" minOccurs="0" name="CompanyImage" nillable="true" type="q1:Binary" />
-      <xs:element minOccurs="0" name="CompanyPan" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CompanyPhone" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CompanyWeb" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="IFSCode" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Pincode" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ShortName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="StateId" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="UpdateDate" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="UpdateId" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="dbmlCompanyView" nillable="true" type="tns:dbmlCompanyView" />
   <xs:complexType name="ArrayOfdbmlDashBoardWorkFlowViewFront">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlDashBoardWorkFlowViewFront" nillable="true" type="tns:dbmlDashBoardWorkFlowViewFront" />
@@ -84,7 +61,7 @@
       <xs:element minOccurs="0" name="Caption" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Counts" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="DashBoardId" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="StatusPropId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="StatusPropId" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WorkFlowId" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
@@ -129,6 +106,64 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlOptionList" nillable="true" type="tns:dbmlOptionList" />
+  <xs:complexType name="ArrayOfdbmlCompanyView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlCompanyView" nillable="true" type="tns:dbmlCompanyView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdbmlCompanyView" nillable="true" type="tns:ArrayOfdbmlCompanyView" />
+  <xs:complexType name="dbmlCompanyView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApproveId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContactPerson" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerMasterId" type="xs:int" />
+      <xs:element minOccurs="0" name="DistrictId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GSTNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="KnowAboutNatraxOL" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="PANNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PinCode" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Reference" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegistrationCatagory" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceBPId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="StateId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ZZDistrict" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZState" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dbmlCompanyView" nillable="true" type="tns:dbmlCompanyView" />
+  <xs:complexType name="ArrayOfdbmlCompanyDepartment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlCompanyDepartment" nillable="true" type="tns:dbmlCompanyDepartment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdbmlCompanyDepartment" nillable="true" type="tns:ArrayOfdbmlCompanyDepartment" />
+  <xs:complexType name="dbmlCompanyDepartment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyDepartmentId" type="xs:int" />
+      <xs:element minOccurs="0" name="ContactPerson" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerMasterId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Department" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Extention" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Mobile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ZZCompanyName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dbmlCompanyDepartment" nillable="true" type="tns:dbmlCompanyDepartment" />
   <xs:complexType name="ArrayOfdbmlBookingView">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlBookingView" nillable="true" type="tns:dbmlBookingView" />
@@ -186,29 +221,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlBookingView" nillable="true" type="tns:dbmlBookingView" />
-  <xs:complexType name="ArrayOfdbmlCompanyDepartment">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlCompanyDepartment" nillable="true" type="tns:dbmlCompanyDepartment" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfdbmlCompanyDepartment" nillable="true" type="tns:ArrayOfdbmlCompanyDepartment" />
-  <xs:complexType name="dbmlCompanyDepartment">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="CompanyDepartmentId" type="xs:int" />
-      <xs:element minOccurs="0" name="ContactPerson" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CreateDate" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="CreateId" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="CustomerMasterId" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="Department" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Extention" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Mobile" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="PhoneNo" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="UpdateDate" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="UpdateId" nillable="true" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="dbmlCompanyDepartment" nillable="true" type="tns:dbmlCompanyDepartment" />
   <xs:complexType name="ArrayOfdbmlBookingSearchView">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlBookingSearchView" nillable="true" type="tns:dbmlBookingSearchView" />

@@ -13,8 +13,7 @@
       <xsd:import schemaLocation="http://localhost/WCFPGMSFront/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost/WCFPGMSFront/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront" />
       <xsd:import schemaLocation="http://localhost/WCFPGMSFront/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate" />
-      <xsd:import schemaLocation="http://localhost/WCFPGMSFront/Service1.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Data.Linq" />
-      <xsd:import schemaLocation="http://localhost/WCFPGMSFront/Service1.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost/WCFPGMSFront/Service1.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService1_UserGetByLoginId_InputMessage">
@@ -23,17 +22,23 @@
   <wsdl:message name="IService1_UserGetByLoginId_OutputMessage">
     <wsdl:part name="parameters" element="tns:UserGetByLoginIdResponse" />
   </wsdl:message>
-  <wsdl:message name="IService1_CompanyViewGetByCompanyId_InputMessage">
-    <wsdl:part name="parameters" element="tns:CompanyViewGetByCompanyId" />
-  </wsdl:message>
-  <wsdl:message name="IService1_CompanyViewGetByCompanyId_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CompanyViewGetByCompanyIdResponse" />
-  </wsdl:message>
   <wsdl:message name="IService1_DashBoardWorkFlowCount_InputMessage">
     <wsdl:part name="parameters" element="tns:DashBoardWorkFlowCount" />
   </wsdl:message>
   <wsdl:message name="IService1_DashBoardWorkFlowCount_OutputMessage">
     <wsdl:part name="parameters" element="tns:DashBoardWorkFlowCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UserViewFrontGetByCompanyId_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserViewFrontGetByCompanyId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UserViewFrontGetByCompanyId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserViewFrontGetByCompanyIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UserViewFrontGetByDepartmentId_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserViewFrontGetByDepartmentId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UserViewFrontGetByDepartmentId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserViewFrontGetByDepartmentIdResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_PropertiesGetAll_InputMessage">
     <wsdl:part name="parameters" element="tns:PropertiesGetAll" />
@@ -46,6 +51,60 @@
   </wsdl:message>
   <wsdl:message name="IService1_OptionListGetByPropertyId_OutputMessage">
     <wsdl:part name="parameters" element="tns:OptionListGetByPropertyIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CustomerMasterInsertFront_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerMasterInsertFront" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CustomerMasterInsertFront_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerMasterInsertFrontResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UsereMailIdVerification_InputMessage">
+    <wsdl:part name="parameters" element="tns:UsereMailIdVerification" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UsereMailIdVerification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UsereMailIdVerificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UserPaswordReset_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserPaswordReset" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UserPaswordReset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserPaswordResetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CompanyDepartmentInsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:CompanyDepartmentInsert" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CompanyDepartmentInsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CompanyDepartmentInsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CompanyDepartmentUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:CompanyDepartmentUpdate" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CompanyDepartmentUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CompanyDepartmentUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UserInsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserInsert" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UserInsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserInsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UserUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserUpdate" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UserUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CompanyViewGetByCompanyId_InputMessage">
+    <wsdl:part name="parameters" element="tns:CompanyViewGetByCompanyId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CompanyViewGetByCompanyId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CompanyViewGetByCompanyIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CompanyDepartmentGetByCustomerMasterId_InputMessage">
+    <wsdl:part name="parameters" element="tns:CompanyDepartmentGetByCustomerMasterId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CompanyDepartmentGetByCustomerMasterId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CompanyDepartmentGetByCustomerMasterIdResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_BookingInsert_InputMessage">
     <wsdl:part name="parameters" element="tns:BookingInsert" />
@@ -76,12 +135,6 @@
   </wsdl:message>
   <wsdl:message name="IService1_BookingViewGetByCompanyIdStatusPropId_OutputMessage">
     <wsdl:part name="parameters" element="tns:BookingViewGetByCompanyIdStatusPropIdResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService1_CompanyDepartmentGetByCustomerMasterId_InputMessage">
-    <wsdl:part name="parameters" element="tns:CompanyDepartmentGetByCustomerMasterId" />
-  </wsdl:message>
-  <wsdl:message name="IService1_CompanyDepartmentGetByCustomerMasterId_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CompanyDepartmentGetByCustomerMasterIdResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_BookingSearchViewGetByCompanyIdFromDateToDateFront_InputMessage">
     <wsdl:part name="parameters" element="tns:BookingSearchViewGetByCompanyIdFromDateToDateFront" />
@@ -262,13 +315,17 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/UserGetByLoginId" message="tns:IService1_UserGetByLoginId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/UserGetByLoginIdResponse" message="tns:IService1_UserGetByLoginId_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="CompanyViewGetByCompanyId">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CompanyViewGetByCompanyId" message="tns:IService1_CompanyViewGetByCompanyId_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CompanyViewGetByCompanyIdResponse" message="tns:IService1_CompanyViewGetByCompanyId_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="DashBoardWorkFlowCount">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/DashBoardWorkFlowCount" message="tns:IService1_DashBoardWorkFlowCount_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/DashBoardWorkFlowCountResponse" message="tns:IService1_DashBoardWorkFlowCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserViewFrontGetByCompanyId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UserViewFrontGetByCompanyId" message="tns:IService1_UserViewFrontGetByCompanyId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UserViewFrontGetByCompanyIdResponse" message="tns:IService1_UserViewFrontGetByCompanyId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserViewFrontGetByDepartmentId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UserViewFrontGetByDepartmentId" message="tns:IService1_UserViewFrontGetByDepartmentId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UserViewFrontGetByDepartmentIdResponse" message="tns:IService1_UserViewFrontGetByDepartmentId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="PropertiesGetAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/PropertiesGetAll" message="tns:IService1_PropertiesGetAll_InputMessage" />
@@ -277,6 +334,42 @@
     <wsdl:operation name="OptionListGetByPropertyId">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/OptionListGetByPropertyId" message="tns:IService1_OptionListGetByPropertyId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/OptionListGetByPropertyIdResponse" message="tns:IService1_OptionListGetByPropertyId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerMasterInsertFront">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CustomerMasterInsertFront" message="tns:IService1_CustomerMasterInsertFront_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CustomerMasterInsertFrontResponse" message="tns:IService1_CustomerMasterInsertFront_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UsereMailIdVerification">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UsereMailIdVerification" message="tns:IService1_UsereMailIdVerification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UsereMailIdVerificationResponse" message="tns:IService1_UsereMailIdVerification_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserPaswordReset">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UserPaswordReset" message="tns:IService1_UserPaswordReset_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UserPaswordResetResponse" message="tns:IService1_UserPaswordReset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CompanyDepartmentInsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CompanyDepartmentInsert" message="tns:IService1_CompanyDepartmentInsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CompanyDepartmentInsertResponse" message="tns:IService1_CompanyDepartmentInsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CompanyDepartmentUpdate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CompanyDepartmentUpdate" message="tns:IService1_CompanyDepartmentUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CompanyDepartmentUpdateResponse" message="tns:IService1_CompanyDepartmentUpdate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserInsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UserInsert" message="tns:IService1_UserInsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UserInsertResponse" message="tns:IService1_UserInsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserUpdate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UserUpdate" message="tns:IService1_UserUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UserUpdateResponse" message="tns:IService1_UserUpdate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CompanyViewGetByCompanyId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CompanyViewGetByCompanyId" message="tns:IService1_CompanyViewGetByCompanyId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CompanyViewGetByCompanyIdResponse" message="tns:IService1_CompanyViewGetByCompanyId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CompanyDepartmentGetByCustomerMasterId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterId" message="tns:IService1_CompanyDepartmentGetByCustomerMasterId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterIdResponse" message="tns:IService1_CompanyDepartmentGetByCustomerMasterId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="BookingInsert">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/BookingInsert" message="tns:IService1_BookingInsert_InputMessage" />
@@ -297,10 +390,6 @@
     <wsdl:operation name="BookingViewGetByCompanyIdStatusPropId">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/BookingViewGetByCompanyIdStatusPropId" message="tns:IService1_BookingViewGetByCompanyIdStatusPropId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/BookingViewGetByCompanyIdStatusPropIdResponse" message="tns:IService1_BookingViewGetByCompanyIdStatusPropId_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="CompanyDepartmentGetByCustomerMasterId">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterId" message="tns:IService1_CompanyDepartmentGetByCustomerMasterId_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterIdResponse" message="tns:IService1_CompanyDepartmentGetByCustomerMasterId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="BookingSearchViewGetByCompanyIdFromDateToDateFront">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/BookingSearchViewGetByCompanyIdFromDateToDateFront" message="tns:IService1_BookingSearchViewGetByCompanyIdFromDateToDateFront_InputMessage" />
@@ -431,8 +520,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CompanyViewGetByCompanyId">
-      <soap12:operation soapAction="http://tempuri.org/IService1/CompanyViewGetByCompanyId" style="document" />
+    <wsdl:operation name="DashBoardWorkFlowCount">
+      <soap12:operation soapAction="http://tempuri.org/IService1/DashBoardWorkFlowCount" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -440,8 +529,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DashBoardWorkFlowCount">
-      <soap12:operation soapAction="http://tempuri.org/IService1/DashBoardWorkFlowCount" style="document" />
+    <wsdl:operation name="UserViewFrontGetByCompanyId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/UserViewFrontGetByCompanyId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserViewFrontGetByDepartmentId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/UserViewFrontGetByDepartmentId" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -460,6 +558,87 @@
     </wsdl:operation>
     <wsdl:operation name="OptionListGetByPropertyId">
       <soap12:operation soapAction="http://tempuri.org/IService1/OptionListGetByPropertyId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerMasterInsertFront">
+      <soap12:operation soapAction="http://tempuri.org/IService1/CustomerMasterInsertFront" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UsereMailIdVerification">
+      <soap12:operation soapAction="http://tempuri.org/IService1/UsereMailIdVerification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserPaswordReset">
+      <soap12:operation soapAction="http://tempuri.org/IService1/UserPaswordReset" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CompanyDepartmentInsert">
+      <soap12:operation soapAction="http://tempuri.org/IService1/CompanyDepartmentInsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CompanyDepartmentUpdate">
+      <soap12:operation soapAction="http://tempuri.org/IService1/CompanyDepartmentUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserInsert">
+      <soap12:operation soapAction="http://tempuri.org/IService1/UserInsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserUpdate">
+      <soap12:operation soapAction="http://tempuri.org/IService1/UserUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CompanyViewGetByCompanyId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/CompanyViewGetByCompanyId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CompanyDepartmentGetByCustomerMasterId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterId" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -505,15 +684,6 @@
     </wsdl:operation>
     <wsdl:operation name="BookingViewGetByCompanyIdStatusPropId">
       <soap12:operation soapAction="http://tempuri.org/IService1/BookingViewGetByCompanyIdStatusPropId" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CompanyDepartmentGetByCustomerMasterId">
-      <soap12:operation soapAction="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterId" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

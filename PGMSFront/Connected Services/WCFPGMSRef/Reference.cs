@@ -157,10 +157,19 @@ namespace PGMSFront.WCFPGMSRef {
         private int CreateIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CustomerDepartmentIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CustomerMasterIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int DbIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string EmailIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> EmailVerifyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> EndDateField;
@@ -172,7 +181,13 @@ namespace PGMSFront.WCFPGMSRef {
         private string MobileNoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MobileOTPField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PassWordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhoneNoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> StartDateField;
@@ -196,13 +211,28 @@ namespace PGMSFront.WCFPGMSRef {
         private int UserTypePropIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> ZZCompanyIdField;
+        private System.Nullable<int> ZZAccountIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ZZEndDateField;
+        private string ZZCompanyNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ZZStartDateField;
+        private string ZZDepartmentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ZZDistrictIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZGSTNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZPanNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ZZServiceBPIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ZZStateIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ZZUserTypeField;
@@ -270,6 +300,32 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> CustomerDepartmentId {
+            get {
+                return this.CustomerDepartmentIdField;
+            }
+            set {
+                if ((this.CustomerDepartmentIdField.Equals(value) != true)) {
+                    this.CustomerDepartmentIdField = value;
+                    this.RaisePropertyChanged("CustomerDepartmentId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> CustomerMasterId {
+            get {
+                return this.CustomerMasterIdField;
+            }
+            set {
+                if ((this.CustomerMasterIdField.Equals(value) != true)) {
+                    this.CustomerMasterIdField = value;
+                    this.RaisePropertyChanged("CustomerMasterId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int DbId {
             get {
                 return this.DbIdField;
@@ -291,6 +347,19 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((object.ReferenceEquals(this.EmailIdField, value) != true)) {
                     this.EmailIdField = value;
                     this.RaisePropertyChanged("EmailId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> EmailVerify {
+            get {
+                return this.EmailVerifyField;
+            }
+            set {
+                if ((this.EmailVerifyField.Equals(value) != true)) {
+                    this.EmailVerifyField = value;
+                    this.RaisePropertyChanged("EmailVerify");
                 }
             }
         }
@@ -335,6 +404,19 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MobileOTP {
+            get {
+                return this.MobileOTPField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MobileOTPField, value) != true)) {
+                    this.MobileOTPField = value;
+                    this.RaisePropertyChanged("MobileOTP");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string PassWord {
             get {
                 return this.PassWordField;
@@ -343,6 +425,19 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((object.ReferenceEquals(this.PassWordField, value) != true)) {
                     this.PassWordField = value;
                     this.RaisePropertyChanged("PassWord");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PhoneNo {
+            get {
+                return this.PhoneNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhoneNoField, value) != true)) {
+                    this.PhoneNoField = value;
+                    this.RaisePropertyChanged("PhoneNo");
                 }
             }
         }
@@ -439,40 +534,105 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> ZZCompanyId {
+        public System.Nullable<int> ZZAccountId {
             get {
-                return this.ZZCompanyIdField;
+                return this.ZZAccountIdField;
             }
             set {
-                if ((this.ZZCompanyIdField.Equals(value) != true)) {
-                    this.ZZCompanyIdField = value;
-                    this.RaisePropertyChanged("ZZCompanyId");
+                if ((this.ZZAccountIdField.Equals(value) != true)) {
+                    this.ZZAccountIdField = value;
+                    this.RaisePropertyChanged("ZZAccountId");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ZZEndDate {
+        public string ZZCompanyName {
             get {
-                return this.ZZEndDateField;
+                return this.ZZCompanyNameField;
             }
             set {
-                if ((object.ReferenceEquals(this.ZZEndDateField, value) != true)) {
-                    this.ZZEndDateField = value;
-                    this.RaisePropertyChanged("ZZEndDate");
+                if ((object.ReferenceEquals(this.ZZCompanyNameField, value) != true)) {
+                    this.ZZCompanyNameField = value;
+                    this.RaisePropertyChanged("ZZCompanyName");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ZZStartDate {
+        public string ZZDepartment {
             get {
-                return this.ZZStartDateField;
+                return this.ZZDepartmentField;
             }
             set {
-                if ((object.ReferenceEquals(this.ZZStartDateField, value) != true)) {
-                    this.ZZStartDateField = value;
-                    this.RaisePropertyChanged("ZZStartDate");
+                if ((object.ReferenceEquals(this.ZZDepartmentField, value) != true)) {
+                    this.ZZDepartmentField = value;
+                    this.RaisePropertyChanged("ZZDepartment");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ZZDistrictId {
+            get {
+                return this.ZZDistrictIdField;
+            }
+            set {
+                if ((this.ZZDistrictIdField.Equals(value) != true)) {
+                    this.ZZDistrictIdField = value;
+                    this.RaisePropertyChanged("ZZDistrictId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZGSTNo {
+            get {
+                return this.ZZGSTNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZGSTNoField, value) != true)) {
+                    this.ZZGSTNoField = value;
+                    this.RaisePropertyChanged("ZZGSTNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZPanNo {
+            get {
+                return this.ZZPanNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZPanNoField, value) != true)) {
+                    this.ZZPanNoField = value;
+                    this.RaisePropertyChanged("ZZPanNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ZZServiceBPId {
+            get {
+                return this.ZZServiceBPIdField;
+            }
+            set {
+                if ((this.ZZServiceBPIdField.Equals(value) != true)) {
+                    this.ZZServiceBPIdField = value;
+                    this.RaisePropertyChanged("ZZServiceBPId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ZZStateId {
+            get {
+                return this.ZZStateIdField;
+            }
+            set {
+                if ((this.ZZStateIdField.Equals(value) != true)) {
+                    this.ZZStateIdField = value;
+                    this.RaisePropertyChanged("ZZStateId");
                 }
             }
         }
@@ -486,477 +646,6 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((object.ReferenceEquals(this.ZZUserTypeField, value) != true)) {
                     this.ZZUserTypeField = value;
                     this.RaisePropertyChanged("ZZUserType");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlCompanyView", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
-    [System.SerializableAttribute()]
-    public partial class returndbmlCompanyView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlCompanyView> objdbmlCompanyViewField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatusField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlCompanyView> objdbmlCompanyView {
-            get {
-                return this.objdbmlCompanyViewField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.objdbmlCompanyViewField, value) != true)) {
-                    this.objdbmlCompanyViewField = value;
-                    this.RaisePropertyChanged("objdbmlCompanyView");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatus {
-            get {
-                return this.objdbmlStatusField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.objdbmlStatusField, value) != true)) {
-                    this.objdbmlStatusField = value;
-                    this.RaisePropertyChanged("objdbmlStatus");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="dbmlCompanyView", Namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate")]
-    [System.SerializableAttribute()]
-    public partial class dbmlCompanyView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AddressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BankAccountNoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BankNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BranchNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CityField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> CityIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CompanyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CompanyEmailField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CompanyFaxField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CompanyIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private PGMSFront.WCFPGMSRef.Binary CompanyImageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CompanyPanField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CompanyPhoneField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CompanyWebField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string IFSCodeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PincodeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ShortNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string StateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> StateIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime UpdateDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int UpdateIdField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Address {
-            get {
-                return this.AddressField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
-                    this.AddressField = value;
-                    this.RaisePropertyChanged("Address");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string BankAccountNo {
-            get {
-                return this.BankAccountNoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BankAccountNoField, value) != true)) {
-                    this.BankAccountNoField = value;
-                    this.RaisePropertyChanged("BankAccountNo");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string BankName {
-            get {
-                return this.BankNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BankNameField, value) != true)) {
-                    this.BankNameField = value;
-                    this.RaisePropertyChanged("BankName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string BranchName {
-            get {
-                return this.BranchNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BranchNameField, value) != true)) {
-                    this.BranchNameField = value;
-                    this.RaisePropertyChanged("BranchName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string City {
-            get {
-                return this.CityField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CityField, value) != true)) {
-                    this.CityField = value;
-                    this.RaisePropertyChanged("City");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> CityId {
-            get {
-                return this.CityIdField;
-            }
-            set {
-                if ((this.CityIdField.Equals(value) != true)) {
-                    this.CityIdField = value;
-                    this.RaisePropertyChanged("CityId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Company {
-            get {
-                return this.CompanyField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CompanyField, value) != true)) {
-                    this.CompanyField = value;
-                    this.RaisePropertyChanged("Company");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CompanyEmail {
-            get {
-                return this.CompanyEmailField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CompanyEmailField, value) != true)) {
-                    this.CompanyEmailField = value;
-                    this.RaisePropertyChanged("CompanyEmail");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CompanyFax {
-            get {
-                return this.CompanyFaxField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CompanyFaxField, value) != true)) {
-                    this.CompanyFaxField = value;
-                    this.RaisePropertyChanged("CompanyFax");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CompanyId {
-            get {
-                return this.CompanyIdField;
-            }
-            set {
-                if ((this.CompanyIdField.Equals(value) != true)) {
-                    this.CompanyIdField = value;
-                    this.RaisePropertyChanged("CompanyId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public PGMSFront.WCFPGMSRef.Binary CompanyImage {
-            get {
-                return this.CompanyImageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CompanyImageField, value) != true)) {
-                    this.CompanyImageField = value;
-                    this.RaisePropertyChanged("CompanyImage");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CompanyPan {
-            get {
-                return this.CompanyPanField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CompanyPanField, value) != true)) {
-                    this.CompanyPanField = value;
-                    this.RaisePropertyChanged("CompanyPan");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CompanyPhone {
-            get {
-                return this.CompanyPhoneField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CompanyPhoneField, value) != true)) {
-                    this.CompanyPhoneField = value;
-                    this.RaisePropertyChanged("CompanyPhone");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CompanyWeb {
-            get {
-                return this.CompanyWebField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CompanyWebField, value) != true)) {
-                    this.CompanyWebField = value;
-                    this.RaisePropertyChanged("CompanyWeb");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string IFSCode {
-            get {
-                return this.IFSCodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.IFSCodeField, value) != true)) {
-                    this.IFSCodeField = value;
-                    this.RaisePropertyChanged("IFSCode");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Pincode {
-            get {
-                return this.PincodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PincodeField, value) != true)) {
-                    this.PincodeField = value;
-                    this.RaisePropertyChanged("Pincode");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ShortName {
-            get {
-                return this.ShortNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ShortNameField, value) != true)) {
-                    this.ShortNameField = value;
-                    this.RaisePropertyChanged("ShortName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string State {
-            get {
-                return this.StateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StateField, value) != true)) {
-                    this.StateField = value;
-                    this.RaisePropertyChanged("State");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> StateId {
-            get {
-                return this.StateIdField;
-            }
-            set {
-                if ((this.StateIdField.Equals(value) != true)) {
-                    this.StateIdField = value;
-                    this.RaisePropertyChanged("StateId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime UpdateDate {
-            get {
-                return this.UpdateDateField;
-            }
-            set {
-                if ((this.UpdateDateField.Equals(value) != true)) {
-                    this.UpdateDateField = value;
-                    this.RaisePropertyChanged("UpdateDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int UpdateId {
-            get {
-                return this.UpdateIdField;
-            }
-            set {
-                if ((this.UpdateIdField.Equals(value) != true)) {
-                    this.UpdateIdField = value;
-                    this.RaisePropertyChanged("UpdateId");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Binary", Namespace="http://schemas.datacontract.org/2004/07/System.Data.Linq")]
-    [System.SerializableAttribute()]
-    public partial class Binary : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] BytesField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] Bytes {
-            get {
-                return this.BytesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BytesField, value) != true)) {
-                    this.BytesField = value;
-                    this.RaisePropertyChanged("Bytes");
                 }
             }
         }
@@ -1054,7 +743,7 @@ namespace PGMSFront.WCFPGMSRef {
         private System.Nullable<int> DashBoardIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> StatusPropIdField;
+        private string StatusPropIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> WorkFlowIdField;
@@ -1122,12 +811,12 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> StatusPropId {
+        public string StatusPropId {
             get {
                 return this.StatusPropIdField;
             }
             set {
-                if ((this.StatusPropIdField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.StatusPropIdField, value) != true)) {
                     this.StatusPropIdField = value;
                     this.RaisePropertyChanged("StatusPropId");
                 }
@@ -1611,6 +1300,778 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((this.UpdateIdField.Equals(value) != true)) {
                     this.UpdateIdField = value;
                     this.RaisePropertyChanged("UpdateId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlCompanyView", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
+    [System.SerializableAttribute()]
+    public partial class returndbmlCompanyView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlCompanyView> objdbmlCompanyViewField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlUserView> objdbmlUserViewField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlCompanyView> objdbmlCompanyView {
+            get {
+                return this.objdbmlCompanyViewField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlCompanyViewField, value) != true)) {
+                    this.objdbmlCompanyViewField = value;
+                    this.RaisePropertyChanged("objdbmlCompanyView");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatus {
+            get {
+                return this.objdbmlStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlStatusField, value) != true)) {
+                    this.objdbmlStatusField = value;
+                    this.RaisePropertyChanged("objdbmlStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlUserView> objdbmlUserView {
+            get {
+                return this.objdbmlUserViewField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlUserViewField, value) != true)) {
+                    this.objdbmlUserViewField = value;
+                    this.RaisePropertyChanged("objdbmlUserView");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="dbmlCompanyView", Namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate")]
+    [System.SerializableAttribute()]
+    public partial class dbmlCompanyView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> AccountIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ApproveIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CompanyNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContactPersonField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> CreateDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CreateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CustomerMasterIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> DistrictIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GSTNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> KnowAboutNatraxOLField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PANNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhoneNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> PinCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ReferenceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RegistrationCatagoryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ServiceBPIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> StateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> UpdateDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> UpdateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZDistrictField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZStateField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> AccountId {
+            get {
+                return this.AccountIdField;
+            }
+            set {
+                if ((this.AccountIdField.Equals(value) != true)) {
+                    this.AccountIdField = value;
+                    this.RaisePropertyChanged("AccountId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ApproveId {
+            get {
+                return this.ApproveIdField;
+            }
+            set {
+                if ((this.ApproveIdField.Equals(value) != true)) {
+                    this.ApproveIdField = value;
+                    this.RaisePropertyChanged("ApproveId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CompanyName {
+            get {
+                return this.CompanyNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CompanyNameField, value) != true)) {
+                    this.CompanyNameField = value;
+                    this.RaisePropertyChanged("CompanyName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ContactPerson {
+            get {
+                return this.ContactPersonField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContactPersonField, value) != true)) {
+                    this.ContactPersonField = value;
+                    this.RaisePropertyChanged("ContactPerson");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> CreateDate {
+            get {
+                return this.CreateDateField;
+            }
+            set {
+                if ((this.CreateDateField.Equals(value) != true)) {
+                    this.CreateDateField = value;
+                    this.RaisePropertyChanged("CreateDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> CreateId {
+            get {
+                return this.CreateIdField;
+            }
+            set {
+                if ((this.CreateIdField.Equals(value) != true)) {
+                    this.CreateIdField = value;
+                    this.RaisePropertyChanged("CreateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CustomerMasterId {
+            get {
+                return this.CustomerMasterIdField;
+            }
+            set {
+                if ((this.CustomerMasterIdField.Equals(value) != true)) {
+                    this.CustomerMasterIdField = value;
+                    this.RaisePropertyChanged("CustomerMasterId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> DistrictId {
+            get {
+                return this.DistrictIdField;
+            }
+            set {
+                if ((this.DistrictIdField.Equals(value) != true)) {
+                    this.DistrictIdField = value;
+                    this.RaisePropertyChanged("DistrictId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GSTNo {
+            get {
+                return this.GSTNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GSTNoField, value) != true)) {
+                    this.GSTNoField = value;
+                    this.RaisePropertyChanged("GSTNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> KnowAboutNatraxOL {
+            get {
+                return this.KnowAboutNatraxOLField;
+            }
+            set {
+                if ((this.KnowAboutNatraxOLField.Equals(value) != true)) {
+                    this.KnowAboutNatraxOLField = value;
+                    this.RaisePropertyChanged("KnowAboutNatraxOL");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PANNo {
+            get {
+                return this.PANNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PANNoField, value) != true)) {
+                    this.PANNoField = value;
+                    this.RaisePropertyChanged("PANNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PhoneNo {
+            get {
+                return this.PhoneNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhoneNoField, value) != true)) {
+                    this.PhoneNoField = value;
+                    this.RaisePropertyChanged("PhoneNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> PinCode {
+            get {
+                return this.PinCodeField;
+            }
+            set {
+                if ((this.PinCodeField.Equals(value) != true)) {
+                    this.PinCodeField = value;
+                    this.RaisePropertyChanged("PinCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Reference {
+            get {
+                return this.ReferenceField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ReferenceField, value) != true)) {
+                    this.ReferenceField = value;
+                    this.RaisePropertyChanged("Reference");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RegistrationCatagory {
+            get {
+                return this.RegistrationCatagoryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RegistrationCatagoryField, value) != true)) {
+                    this.RegistrationCatagoryField = value;
+                    this.RaisePropertyChanged("RegistrationCatagory");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ServiceBPId {
+            get {
+                return this.ServiceBPIdField;
+            }
+            set {
+                if ((this.ServiceBPIdField.Equals(value) != true)) {
+                    this.ServiceBPIdField = value;
+                    this.RaisePropertyChanged("ServiceBPId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> StateId {
+            get {
+                return this.StateIdField;
+            }
+            set {
+                if ((this.StateIdField.Equals(value) != true)) {
+                    this.StateIdField = value;
+                    this.RaisePropertyChanged("StateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> UpdateDate {
+            get {
+                return this.UpdateDateField;
+            }
+            set {
+                if ((this.UpdateDateField.Equals(value) != true)) {
+                    this.UpdateDateField = value;
+                    this.RaisePropertyChanged("UpdateDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> UpdateId {
+            get {
+                return this.UpdateIdField;
+            }
+            set {
+                if ((this.UpdateIdField.Equals(value) != true)) {
+                    this.UpdateIdField = value;
+                    this.RaisePropertyChanged("UpdateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZDistrict {
+            get {
+                return this.ZZDistrictField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZDistrictField, value) != true)) {
+                    this.ZZDistrictField = value;
+                    this.RaisePropertyChanged("ZZDistrict");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZState {
+            get {
+                return this.ZZStateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZStateField, value) != true)) {
+                    this.ZZStateField = value;
+                    this.RaisePropertyChanged("ZZState");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlCompanyDepartment", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
+    [System.SerializableAttribute()]
+    public partial class returndbmlCompanyDepartment : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlCompanyDepartment> objdbmlCompanyDepartmentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatusField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlCompanyDepartment> objdbmlCompanyDepartment {
+            get {
+                return this.objdbmlCompanyDepartmentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlCompanyDepartmentField, value) != true)) {
+                    this.objdbmlCompanyDepartmentField = value;
+                    this.RaisePropertyChanged("objdbmlCompanyDepartment");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatus {
+            get {
+                return this.objdbmlStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlStatusField, value) != true)) {
+                    this.objdbmlStatusField = value;
+                    this.RaisePropertyChanged("objdbmlStatus");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="dbmlCompanyDepartment", Namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate")]
+    [System.SerializableAttribute()]
+    public partial class dbmlCompanyDepartment : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CompanyDepartmentIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContactPersonField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> CreateDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CreateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CustomerMasterIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DepartmentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ExtentionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MobileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhoneNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> UpdateDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> UpdateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZCompanyNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CompanyDepartmentId {
+            get {
+                return this.CompanyDepartmentIdField;
+            }
+            set {
+                if ((this.CompanyDepartmentIdField.Equals(value) != true)) {
+                    this.CompanyDepartmentIdField = value;
+                    this.RaisePropertyChanged("CompanyDepartmentId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ContactPerson {
+            get {
+                return this.ContactPersonField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContactPersonField, value) != true)) {
+                    this.ContactPersonField = value;
+                    this.RaisePropertyChanged("ContactPerson");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> CreateDate {
+            get {
+                return this.CreateDateField;
+            }
+            set {
+                if ((this.CreateDateField.Equals(value) != true)) {
+                    this.CreateDateField = value;
+                    this.RaisePropertyChanged("CreateDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> CreateId {
+            get {
+                return this.CreateIdField;
+            }
+            set {
+                if ((this.CreateIdField.Equals(value) != true)) {
+                    this.CreateIdField = value;
+                    this.RaisePropertyChanged("CreateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> CustomerMasterId {
+            get {
+                return this.CustomerMasterIdField;
+            }
+            set {
+                if ((this.CustomerMasterIdField.Equals(value) != true)) {
+                    this.CustomerMasterIdField = value;
+                    this.RaisePropertyChanged("CustomerMasterId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Department {
+            get {
+                return this.DepartmentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DepartmentField, value) != true)) {
+                    this.DepartmentField = value;
+                    this.RaisePropertyChanged("Department");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Extention {
+            get {
+                return this.ExtentionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ExtentionField, value) != true)) {
+                    this.ExtentionField = value;
+                    this.RaisePropertyChanged("Extention");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Mobile {
+            get {
+                return this.MobileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MobileField, value) != true)) {
+                    this.MobileField = value;
+                    this.RaisePropertyChanged("Mobile");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PhoneNo {
+            get {
+                return this.PhoneNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhoneNoField, value) != true)) {
+                    this.PhoneNoField = value;
+                    this.RaisePropertyChanged("PhoneNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> UpdateDate {
+            get {
+                return this.UpdateDateField;
+            }
+            set {
+                if ((this.UpdateDateField.Equals(value) != true)) {
+                    this.UpdateDateField = value;
+                    this.RaisePropertyChanged("UpdateDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> UpdateId {
+            get {
+                return this.UpdateIdField;
+            }
+            set {
+                if ((this.UpdateIdField.Equals(value) != true)) {
+                    this.UpdateIdField = value;
+                    this.RaisePropertyChanged("UpdateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZCompanyName {
+            get {
+                return this.ZZCompanyNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZCompanyNameField, value) != true)) {
+                    this.ZZCompanyNameField = value;
+                    this.RaisePropertyChanged("ZZCompanyName");
                 }
             }
         }
@@ -2482,288 +2943,6 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((object.ReferenceEquals(this.objdbmlStatusField, value) != true)) {
                     this.objdbmlStatusField = value;
                     this.RaisePropertyChanged("objdbmlStatus");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlCompanyDepartment", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
-    [System.SerializableAttribute()]
-    public partial class returndbmlCompanyDepartment : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlCompanyDepartment> objdbmlCompanyDepartmentField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatusField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlCompanyDepartment> objdbmlCompanyDepartment {
-            get {
-                return this.objdbmlCompanyDepartmentField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.objdbmlCompanyDepartmentField, value) != true)) {
-                    this.objdbmlCompanyDepartmentField = value;
-                    this.RaisePropertyChanged("objdbmlCompanyDepartment");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatus {
-            get {
-                return this.objdbmlStatusField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.objdbmlStatusField, value) != true)) {
-                    this.objdbmlStatusField = value;
-                    this.RaisePropertyChanged("objdbmlStatus");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="dbmlCompanyDepartment", Namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate")]
-    [System.SerializableAttribute()]
-    public partial class dbmlCompanyDepartment : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CompanyDepartmentIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ContactPersonField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> CreateDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> CreateIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> CustomerMasterIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DepartmentField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EmailField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ExtentionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MobileField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PhoneNoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> UpdateDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> UpdateIdField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CompanyDepartmentId {
-            get {
-                return this.CompanyDepartmentIdField;
-            }
-            set {
-                if ((this.CompanyDepartmentIdField.Equals(value) != true)) {
-                    this.CompanyDepartmentIdField = value;
-                    this.RaisePropertyChanged("CompanyDepartmentId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ContactPerson {
-            get {
-                return this.ContactPersonField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ContactPersonField, value) != true)) {
-                    this.ContactPersonField = value;
-                    this.RaisePropertyChanged("ContactPerson");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> CreateDate {
-            get {
-                return this.CreateDateField;
-            }
-            set {
-                if ((this.CreateDateField.Equals(value) != true)) {
-                    this.CreateDateField = value;
-                    this.RaisePropertyChanged("CreateDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> CreateId {
-            get {
-                return this.CreateIdField;
-            }
-            set {
-                if ((this.CreateIdField.Equals(value) != true)) {
-                    this.CreateIdField = value;
-                    this.RaisePropertyChanged("CreateId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> CustomerMasterId {
-            get {
-                return this.CustomerMasterIdField;
-            }
-            set {
-                if ((this.CustomerMasterIdField.Equals(value) != true)) {
-                    this.CustomerMasterIdField = value;
-                    this.RaisePropertyChanged("CustomerMasterId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Department {
-            get {
-                return this.DepartmentField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DepartmentField, value) != true)) {
-                    this.DepartmentField = value;
-                    this.RaisePropertyChanged("Department");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Email {
-            get {
-                return this.EmailField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
-                    this.EmailField = value;
-                    this.RaisePropertyChanged("Email");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Extention {
-            get {
-                return this.ExtentionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ExtentionField, value) != true)) {
-                    this.ExtentionField = value;
-                    this.RaisePropertyChanged("Extention");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Mobile {
-            get {
-                return this.MobileField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MobileField, value) != true)) {
-                    this.MobileField = value;
-                    this.RaisePropertyChanged("Mobile");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string PhoneNo {
-            get {
-                return this.PhoneNoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PhoneNoField, value) != true)) {
-                    this.PhoneNoField = value;
-                    this.RaisePropertyChanged("PhoneNo");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> UpdateDate {
-            get {
-                return this.UpdateDateField;
-            }
-            set {
-                if ((this.UpdateDateField.Equals(value) != true)) {
-                    this.UpdateDateField = value;
-                    this.RaisePropertyChanged("UpdateDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> UpdateId {
-            get {
-                return this.UpdateIdField;
-            }
-            set {
-                if ((this.UpdateIdField.Equals(value) != true)) {
-                    this.UpdateIdField = value;
-                    this.RaisePropertyChanged("UpdateId");
                 }
             }
         }
@@ -9667,17 +9846,23 @@ namespace PGMSFront.WCFPGMSRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserGetByLoginId", ReplyAction="http://tempuri.org/IService1/UserGetByLoginIdResponse")]
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UserGetByLoginIdAsync(string strLoginId, string strPassword);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CompanyViewGetByCompanyId", ReplyAction="http://tempuri.org/IService1/CompanyViewGetByCompanyIdResponse")]
-        PGMSFront.WCFPGMSRef.returndbmlCompanyView CompanyViewGetByCompanyId(int intCompanyId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CompanyViewGetByCompanyId", ReplyAction="http://tempuri.org/IService1/CompanyViewGetByCompanyIdResponse")]
-        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCompanyView> CompanyViewGetByCompanyIdAsync(int intCompanyId);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DashBoardWorkFlowCount", ReplyAction="http://tempuri.org/IService1/DashBoardWorkFlowCountResponse")]
         PGMSFront.WCFPGMSRef.returndbmlDashBoardWorkFlowViewFront DashBoardWorkFlowCount(int intUserId, int intCompanyId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DashBoardWorkFlowCount", ReplyAction="http://tempuri.org/IService1/DashBoardWorkFlowCountResponse")]
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDashBoardWorkFlowViewFront> DashBoardWorkFlowCountAsync(int intUserId, int intCompanyId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserViewFrontGetByCompanyId", ReplyAction="http://tempuri.org/IService1/UserViewFrontGetByCompanyIdResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlUser UserViewFrontGetByCompanyId(int intCompanyId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserViewFrontGetByCompanyId", ReplyAction="http://tempuri.org/IService1/UserViewFrontGetByCompanyIdResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UserViewFrontGetByCompanyIdAsync(int intCompanyId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserViewFrontGetByDepartmentId", ReplyAction="http://tempuri.org/IService1/UserViewFrontGetByDepartmentIdResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlUser UserViewFrontGetByDepartmentId(int intDepartmentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserViewFrontGetByDepartmentId", ReplyAction="http://tempuri.org/IService1/UserViewFrontGetByDepartmentIdResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UserViewFrontGetByDepartmentIdAsync(int intDepartmentId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/PropertiesGetAll", ReplyAction="http://tempuri.org/IService1/PropertiesGetAllResponse")]
         PGMSFront.WCFPGMSRef.returndbmlProperty PropertiesGetAll();
@@ -9690,6 +9875,60 @@ namespace PGMSFront.WCFPGMSRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/OptionListGetByPropertyId", ReplyAction="http://tempuri.org/IService1/OptionListGetByPropertyIdResponse")]
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlOptionList> OptionListGetByPropertyIdAsync(int intPropertyId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CustomerMasterInsertFront", ReplyAction="http://tempuri.org/IService1/CustomerMasterInsertFrontResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlCompanyView CustomerMasterInsertFront(PGMSFront.WCFPGMSRef.returndbmlCompanyView objreturndbmlCompanyView);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CustomerMasterInsertFront", ReplyAction="http://tempuri.org/IService1/CustomerMasterInsertFrontResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCompanyView> CustomerMasterInsertFrontAsync(PGMSFront.WCFPGMSRef.returndbmlCompanyView objreturndbmlCompanyView);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UsereMailIdVerification", ReplyAction="http://tempuri.org/IService1/UsereMailIdVerificationResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlUser UsereMailIdVerification(int intUserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UsereMailIdVerification", ReplyAction="http://tempuri.org/IService1/UsereMailIdVerificationResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UsereMailIdVerificationAsync(int intUserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserPaswordReset", ReplyAction="http://tempuri.org/IService1/UserPaswordResetResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlUser UserPaswordReset(int intUserId, string strPassword);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserPaswordReset", ReplyAction="http://tempuri.org/IService1/UserPaswordResetResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UserPaswordResetAsync(int intUserId, string strPassword);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CompanyDepartmentInsert", ReplyAction="http://tempuri.org/IService1/CompanyDepartmentInsertResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment CompanyDepartmentInsert(PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment objreturndbmlCompanyDepartment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CompanyDepartmentInsert", ReplyAction="http://tempuri.org/IService1/CompanyDepartmentInsertResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment> CompanyDepartmentInsertAsync(PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment objreturndbmlCompanyDepartment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CompanyDepartmentUpdate", ReplyAction="http://tempuri.org/IService1/CompanyDepartmentUpdateResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment CompanyDepartmentUpdate(PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment objreturndbmlCompanyDepartment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CompanyDepartmentUpdate", ReplyAction="http://tempuri.org/IService1/CompanyDepartmentUpdateResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment> CompanyDepartmentUpdateAsync(PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment objreturndbmlCompanyDepartment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserInsert", ReplyAction="http://tempuri.org/IService1/UserInsertResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlUser UserInsert(PGMSFront.WCFPGMSRef.returndbmlUser objreturndbmlUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserInsert", ReplyAction="http://tempuri.org/IService1/UserInsertResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UserInsertAsync(PGMSFront.WCFPGMSRef.returndbmlUser objreturndbmlUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserUpdate", ReplyAction="http://tempuri.org/IService1/UserUpdateResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlUser UserUpdate(PGMSFront.WCFPGMSRef.returndbmlUser objreturndbmlUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserUpdate", ReplyAction="http://tempuri.org/IService1/UserUpdateResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UserUpdateAsync(PGMSFront.WCFPGMSRef.returndbmlUser objreturndbmlUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CompanyViewGetByCompanyId", ReplyAction="http://tempuri.org/IService1/CompanyViewGetByCompanyIdResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlCompanyView CompanyViewGetByCompanyId(int intCompanyId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CompanyViewGetByCompanyId", ReplyAction="http://tempuri.org/IService1/CompanyViewGetByCompanyIdResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCompanyView> CompanyViewGetByCompanyIdAsync(int intCompanyId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterId", ReplyAction="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterIdResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment CompanyDepartmentGetByCustomerMasterId(int intCustomerMasterId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterId", ReplyAction="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterIdResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment> CompanyDepartmentGetByCustomerMasterIdAsync(int intCustomerMasterId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BookingInsert", ReplyAction="http://tempuri.org/IService1/BookingInsertResponse")]
         PGMSFront.WCFPGMSRef.returndbmlBooking BookingInsert(PGMSFront.WCFPGMSRef.returndbmlBooking objreturndbmlBooking);
@@ -9720,12 +9959,6 @@ namespace PGMSFront.WCFPGMSRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BookingViewGetByCompanyIdStatusPropId", ReplyAction="http://tempuri.org/IService1/BookingViewGetByCompanyIdStatusPropIdResponse")]
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBooking> BookingViewGetByCompanyIdStatusPropIdAsync(int intCompanyId, int intStatusPropId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterId", ReplyAction="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterIdResponse")]
-        PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment CompanyDepartmentGetByCustomerMasterId(int intCustomerMasterId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterId", ReplyAction="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterIdResponse")]
-        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment> CompanyDepartmentGetByCustomerMasterIdAsync(int intCustomerMasterId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BookingSearchViewGetByCompanyIdFromDateToDateFront", ReplyAction="http://tempuri.org/IService1/BookingSearchViewGetByCompanyIdFromDateToDateFrontRe" +
             "sponse")]
@@ -9953,20 +10186,28 @@ namespace PGMSFront.WCFPGMSRef {
             return base.Channel.UserGetByLoginIdAsync(strLoginId, strPassword);
         }
         
-        public PGMSFront.WCFPGMSRef.returndbmlCompanyView CompanyViewGetByCompanyId(int intCompanyId) {
-            return base.Channel.CompanyViewGetByCompanyId(intCompanyId);
-        }
-        
-        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCompanyView> CompanyViewGetByCompanyIdAsync(int intCompanyId) {
-            return base.Channel.CompanyViewGetByCompanyIdAsync(intCompanyId);
-        }
-        
         public PGMSFront.WCFPGMSRef.returndbmlDashBoardWorkFlowViewFront DashBoardWorkFlowCount(int intUserId, int intCompanyId) {
             return base.Channel.DashBoardWorkFlowCount(intUserId, intCompanyId);
         }
         
         public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDashBoardWorkFlowViewFront> DashBoardWorkFlowCountAsync(int intUserId, int intCompanyId) {
             return base.Channel.DashBoardWorkFlowCountAsync(intUserId, intCompanyId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlUser UserViewFrontGetByCompanyId(int intCompanyId) {
+            return base.Channel.UserViewFrontGetByCompanyId(intCompanyId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UserViewFrontGetByCompanyIdAsync(int intCompanyId) {
+            return base.Channel.UserViewFrontGetByCompanyIdAsync(intCompanyId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlUser UserViewFrontGetByDepartmentId(int intDepartmentId) {
+            return base.Channel.UserViewFrontGetByDepartmentId(intDepartmentId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UserViewFrontGetByDepartmentIdAsync(int intDepartmentId) {
+            return base.Channel.UserViewFrontGetByDepartmentIdAsync(intDepartmentId);
         }
         
         public PGMSFront.WCFPGMSRef.returndbmlProperty PropertiesGetAll() {
@@ -9983,6 +10224,78 @@ namespace PGMSFront.WCFPGMSRef {
         
         public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlOptionList> OptionListGetByPropertyIdAsync(int intPropertyId) {
             return base.Channel.OptionListGetByPropertyIdAsync(intPropertyId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlCompanyView CustomerMasterInsertFront(PGMSFront.WCFPGMSRef.returndbmlCompanyView objreturndbmlCompanyView) {
+            return base.Channel.CustomerMasterInsertFront(objreturndbmlCompanyView);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCompanyView> CustomerMasterInsertFrontAsync(PGMSFront.WCFPGMSRef.returndbmlCompanyView objreturndbmlCompanyView) {
+            return base.Channel.CustomerMasterInsertFrontAsync(objreturndbmlCompanyView);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlUser UsereMailIdVerification(int intUserId) {
+            return base.Channel.UsereMailIdVerification(intUserId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UsereMailIdVerificationAsync(int intUserId) {
+            return base.Channel.UsereMailIdVerificationAsync(intUserId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlUser UserPaswordReset(int intUserId, string strPassword) {
+            return base.Channel.UserPaswordReset(intUserId, strPassword);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UserPaswordResetAsync(int intUserId, string strPassword) {
+            return base.Channel.UserPaswordResetAsync(intUserId, strPassword);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment CompanyDepartmentInsert(PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment objreturndbmlCompanyDepartment) {
+            return base.Channel.CompanyDepartmentInsert(objreturndbmlCompanyDepartment);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment> CompanyDepartmentInsertAsync(PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment objreturndbmlCompanyDepartment) {
+            return base.Channel.CompanyDepartmentInsertAsync(objreturndbmlCompanyDepartment);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment CompanyDepartmentUpdate(PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment objreturndbmlCompanyDepartment) {
+            return base.Channel.CompanyDepartmentUpdate(objreturndbmlCompanyDepartment);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment> CompanyDepartmentUpdateAsync(PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment objreturndbmlCompanyDepartment) {
+            return base.Channel.CompanyDepartmentUpdateAsync(objreturndbmlCompanyDepartment);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlUser UserInsert(PGMSFront.WCFPGMSRef.returndbmlUser objreturndbmlUser) {
+            return base.Channel.UserInsert(objreturndbmlUser);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UserInsertAsync(PGMSFront.WCFPGMSRef.returndbmlUser objreturndbmlUser) {
+            return base.Channel.UserInsertAsync(objreturndbmlUser);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlUser UserUpdate(PGMSFront.WCFPGMSRef.returndbmlUser objreturndbmlUser) {
+            return base.Channel.UserUpdate(objreturndbmlUser);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UserUpdateAsync(PGMSFront.WCFPGMSRef.returndbmlUser objreturndbmlUser) {
+            return base.Channel.UserUpdateAsync(objreturndbmlUser);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlCompanyView CompanyViewGetByCompanyId(int intCompanyId) {
+            return base.Channel.CompanyViewGetByCompanyId(intCompanyId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCompanyView> CompanyViewGetByCompanyIdAsync(int intCompanyId) {
+            return base.Channel.CompanyViewGetByCompanyIdAsync(intCompanyId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment CompanyDepartmentGetByCustomerMasterId(int intCustomerMasterId) {
+            return base.Channel.CompanyDepartmentGetByCustomerMasterId(intCustomerMasterId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment> CompanyDepartmentGetByCustomerMasterIdAsync(int intCustomerMasterId) {
+            return base.Channel.CompanyDepartmentGetByCustomerMasterIdAsync(intCustomerMasterId);
         }
         
         public PGMSFront.WCFPGMSRef.returndbmlBooking BookingInsert(PGMSFront.WCFPGMSRef.returndbmlBooking objreturndbmlBooking) {
@@ -10023,14 +10336,6 @@ namespace PGMSFront.WCFPGMSRef {
         
         public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBooking> BookingViewGetByCompanyIdStatusPropIdAsync(int intCompanyId, int intStatusPropId) {
             return base.Channel.BookingViewGetByCompanyIdStatusPropIdAsync(intCompanyId, intStatusPropId);
-        }
-        
-        public PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment CompanyDepartmentGetByCustomerMasterId(int intCustomerMasterId) {
-            return base.Channel.CompanyDepartmentGetByCustomerMasterId(intCustomerMasterId);
-        }
-        
-        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment> CompanyDepartmentGetByCustomerMasterIdAsync(int intCustomerMasterId) {
-            return base.Channel.CompanyDepartmentGetByCustomerMasterIdAsync(intCustomerMasterId);
         }
         
         public PGMSFront.WCFPGMSRef.returndbmlBookingSearchView BookingSearchViewGetByCompanyIdFromDateToDateFront(int intCompanyId, System.DateTime dtFromDate, System.DateTime dtToDate, int intBPId, int intStatusPropId) {

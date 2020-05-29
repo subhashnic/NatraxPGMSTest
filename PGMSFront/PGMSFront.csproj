@@ -519,9 +519,6 @@
     <None Include="Connected Services\WCFPGMSRef\Service14.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\WCFPGMSRef\Service15.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\PGMSFront - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />

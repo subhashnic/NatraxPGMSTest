@@ -27,7 +27,6 @@
     <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="69f60391-e420-4401-adce-959cfd91ab38" SourceId="1" SourceUrl="http://localhost/WCFPGMSFront/Service1.svc?xsd=xsd1" />
     <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="7a8263b9-47ee-4d86-952b-e6beb303cf08" SourceId="1" SourceUrl="http://localhost/WCFPGMSFront/Service1.svc?wsdl" />
     <MetadataFile FileName="Service11.xsd" MetadataType="Schema" ID="dce66c7c-99f2-41e8-94c5-3cebaf1997f6" SourceId="1" SourceUrl="http://localhost/WCFPGMSFront/Service1.svc?xsd=xsd0" />
-    <MetadataFile FileName="Service15.xsd" MetadataType="Schema" ID="8877f941-c2fe-4117-b647-cc741fee5ace" SourceId="1" SourceUrl="http://localhost/WCFPGMSFront/Service1.svc?xsd=xsd5" />
     <MetadataFile FileName="Service12.xsd" MetadataType="Schema" ID="a5d8d85f-31a1-424c-b678-32c3faa9f8db" SourceId="1" SourceUrl="http://localhost/WCFPGMSFront/Service1.svc?xsd=xsd2" />
     <MetadataFile FileName="Service1.disco" MetadataType="Disco" ID="60fbf029-bdfc-4965-9565-8c432cfe9f23" SourceId="1" SourceUrl="http://localhost/WCFPGMSFront/Service1.svc?disco" />
     <MetadataFile FileName="Service13.xsd" MetadataType="Schema" ID="f68ffb0f-3111-4a8b-ab0b-00a24add47ac" SourceId="1" SourceUrl="http://localhost/WCFPGMSFront/Service1.svc?xsd=xsd3" />

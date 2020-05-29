@@ -66,12 +66,13 @@ namespace PGMSFront.Controllers
                         //Create Session Variable for User 
                         Session["UserId"] = objdbmlUserView.UserId;
                         Session["UserTypePropId"] = objdbmlUserView.UserTypePropId;
-                        Session["ZZCompanyId"] = objdbmlUserView.ZZCompanyId;
+                        Session["ZZCompanyId"] = objdbmlUserView.CustomerMasterId;
                         Session["UserName"] = objdbmlUserView.UserName;
                         Session["EmailId"] = objdbmlUserView.EmailId;
                         Session["LoginId"] = objdbmlUserView.LoginId;
                         Session["ZZUserType"] = objdbmlUserView.ZZUserType;
                         Session["UserCode"] = objdbmlUserView.UserCode;
+                        Session["StateId"] = objdbmlUserView.ZZStateId;
 
                         returndbmlProperty objreturndbmlProperty = objServiceClient.PropertiesGetAll();
                         if (objreturndbmlProperty.objdbmlStatus.StatusId == 1 && objreturndbmlProperty.objdbmlProperty.Count > 0)
@@ -85,12 +86,12 @@ namespace PGMSFront.Controllers
                             Session["LablinkVorC"] = objreturndbmlLablinkVorC.objdbmlLablinkVorC;
                         }
 
-                        returndbmlCompanyView objreturndbmlCompanyView = objServiceClient.CompanyViewGetByCompanyId(Convert.ToInt32(objdbmlUserView.ZZCompanyId));
-                        if (objreturndbmlCompanyView.objdbmlStatus.StatusId == 1 && objreturndbmlCompanyView.objdbmlCompanyView.Count > 0)
-                        {
-                            Session["Company"] = objreturndbmlCompanyView.objdbmlCompanyView.FirstOrDefault();
-                            Session["StateId"] = objreturndbmlCompanyView.objdbmlCompanyView.FirstOrDefault().StateId;
-                        }
+                        //returndbmlCompanyView objreturndbmlCompanyView = objServiceClient.CompanyViewGetByCompanyId(Convert.ToInt32(objdbmlUserView.CustomerMasterId));
+                        //if (objreturndbmlCompanyView.objdbmlStatus.StatusId == 1 && objreturndbmlCompanyView.objdbmlCompanyView.Count > 0)
+                        //{
+                        //    Session["Company"] = objreturndbmlCompanyView.objdbmlCompanyView.FirstOrDefault();
+                        //    Session["StateId"] = objreturndbmlCompanyView.objdbmlCompanyView.FirstOrDefault().StateId;
+                        //}
 
                         return RedirectToAction("Dashboard", "Home");
 
