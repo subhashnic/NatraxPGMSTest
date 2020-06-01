@@ -889,7 +889,6 @@
     <Content Include="Views\Home\WorkflowActivity.cshtml" />
     <Content Include="Views\Front\ResetPassword.cshtml" />
     <Content Include="Views\Home\Department.cshtml" />
-    <Content Include="Views\Home\Users.cshtml" />
     <Content Include="Web - Copy.config">
       <SubType>Designer</SubType>
     </Content>
@@ -899,6 +898,8 @@
     <Content Include="Web - Copy.Release.config">
       <DependentUpon>Web - Copy.config</DependentUpon>
     </Content>
+    <Content Include="Views\Home\VerifyeMail.cshtml" />
+    <Content Include="Views\Home\Users.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

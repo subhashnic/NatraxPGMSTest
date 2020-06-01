@@ -100,7 +100,9 @@ namespace PGMSFront.Controllers
                     {
                         string strErrMSG = "Invalid User Name";
 
-                        if (objreturndbmlUser.objdbmlStatus.StatusId == 10)
+                        if (objreturndbmlUser.objdbmlStatus.StatusId == 5)
+                            strErrMSG = objreturndbmlUser.objdbmlStatus.Status;
+                        else if (objreturndbmlUser.objdbmlStatus.StatusId == 10)
                             strErrMSG = "Invalid Password";
 
                         // model.Message = strErrMSG;
@@ -3839,6 +3841,69 @@ namespace PGMSFront.Controllers
         #endregion
 
         #region Company/Department  
+        public ActionResult VerifyeMail(string xyz,string abc, string lmn)
+        {
+            CommonModel model = new CommonModel();
+            model.StatusPropId = -1;
+            try
+            {
+                int intUserId = Convert.ToInt32(abc);
+                returndbmlUser objreturndbmlUser = objServiceClient.UsereMailIdVerification(intUserId);
+                if (objreturndbmlUser != null && objreturndbmlUser.objdbmlStatus.StatusId == 1 && objreturndbmlUser.objdbmlUserView.Count>0)
+                {
+                    Session["UserView"] = objreturndbmlUser.objdbmlUserView.FirstOrDefault();
+                    Session["UserIdTemp"] = objreturndbmlUser.objdbmlUserView.FirstOrDefault().UserId;
+                    model.UserName = objreturndbmlUser.objdbmlUserView.FirstOrDefault().UserName;
+                    model.LoginId = objreturndbmlUser.objdbmlUserView.FirstOrDefault().LoginId;
+                    model.Message = objreturndbmlUser.objdbmlStatus.Status;
+                    model.StatusPropId = 1;
+                }
+                else
+                {
+                    model.Message = objreturndbmlUser.objdbmlStatus.Status;
+                    if(objreturndbmlUser.objdbmlStatus.StatusId==-2)
+                    {
+                        model.StatusPropId = -2;
+                    }
+
+                }
+            }
+            catch
+            {
+                model.Message = "Un-Authrized Access";
+            }
+
+            return View(model);
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult CreatePassword(dbmlUserView model )
+        {
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlUser objreturndbmlUser = new returndbmlUser();
+            try
+            {
+                string strPSW = DecryptStringAES(model.PassWord);
+
+                objreturndbmlUser = objServiceClient.UserPaswordReset(Convert.ToInt32(Session["UserIdTemp"]), strPSW);
+                if (objreturndbmlUser != null && objreturndbmlUser.objdbmlStatus.StatusId == 1)
+                {
+                    intStatusId = 1;
+                    strStatus = "New Password successfully created. Your user activation is pending by Natrax";
+                }
+                else
+                {
+                    strStatus = objreturndbmlUser.objdbmlStatus.Status;
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId }, JsonRequestBehavior.AllowGet);
+        }
 
         public List<SelectListItem> LoadState()
         {
@@ -3886,6 +3951,246 @@ namespace PGMSFront.Controllers
             }
             return Json(new { Status = strStatus, StatusId = intStatusId, DistrictList = objreturndbmlDistrict.objdbmlDistrict }, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult Department()
+        {
+            CommonModel model = new CommonModel();
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                model.UserId = Convert.ToInt32(Session["UserId"]);
+                model.UserTypePropId = Convert.ToInt32(Session["UserTypePropId"]);
+                model.ZZCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
+                model.UserName = Convert.ToString(Session["UserName"]);
+                model.EmailId = Convert.ToString(Session["EmailId"]);
+                model.LoginId = Convert.ToString(Session["LoginId"]);
+                model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
+                model.UserCode = Convert.ToString(Session["UserCode"]);              
+                model.StateId = Convert.ToInt32(Session["StateId"]);
+            }
+            catch
+            {
+            }
+
+            return View(model);
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult LoadDepartmentInfo()
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlCompanyDepartment objreturndbmlCompanyDepartment = new returndbmlCompanyDepartment();
+            try
+            {
+                objreturndbmlCompanyDepartment = objServiceClient.CompanyDepartmentGetByCustomerMasterId(Convert.ToInt32(Session["ZZCompanyId"]));
+                if (objreturndbmlCompanyDepartment.objdbmlStatus.StatusId == 1)
+                {
+                    intStatusId = 1;
+                    strStatus = "Success";
+                }
+                else
+                {
+                    strStatus = objreturndbmlCompanyDepartment.objdbmlStatus.Status;
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, CompanyDepartmentList = objreturndbmlCompanyDepartment.objdbmlCompanyDepartment }, JsonRequestBehavior.AllowGet);
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult DepartmentSave(dbmlCompanyDepartment model)
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlCompanyDepartment objreturndbmlCompanyDepartment = new returndbmlCompanyDepartment();
+
+            try
+            {
+                model.CustomerMasterId = Convert.ToInt32(Session["ZZCompanyId"]);
+                model.CreateId = Convert.ToInt32(Session["UserId"]);
+                model.CreateDate = DateTime.Now;
+                model.UpdateId = Convert.ToInt32(Session["UserId"]);
+                model.UpdateDate = DateTime.Now;
+
+                returndbmlCompanyDepartment objreturndbmlCompanyDepartmentTemp = new returndbmlCompanyDepartment();
+                ObservableCollection<dbmlCompanyDepartment> objdbmlCompanyDepartment = new ObservableCollection<dbmlCompanyDepartment>();
+                objdbmlCompanyDepartment.Add(model);
+                objreturndbmlCompanyDepartmentTemp.objdbmlCompanyDepartment = objdbmlCompanyDepartment;
+                if (model.CompanyDepartmentId <= 0)
+                {
+                    objreturndbmlCompanyDepartment = objServiceClient.CompanyDepartmentInsert(objreturndbmlCompanyDepartmentTemp);
+                }
+                else
+                {
+                    objreturndbmlCompanyDepartment = objServiceClient.CompanyDepartmentUpdate(objreturndbmlCompanyDepartmentTemp);
+                }
+                if (objreturndbmlCompanyDepartment != null && objreturndbmlCompanyDepartment.objdbmlStatus.StatusId == 1)
+                {
+                    intStatusId = 1;
+                    strStatus = "Data Saved Successfully";
+                }
+                else
+                {
+                    strStatus = objreturndbmlCompanyDepartment.objdbmlStatus.Status;
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, CompanyDepartmentList = objreturndbmlCompanyDepartment.objdbmlCompanyDepartment }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Users()
+        {
+            CommonModel model = new CommonModel();
+            try
+            {
+                if (Session["UserId"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                model.UserId = Convert.ToInt32(Session["UserId"]);
+                model.UserTypePropId = Convert.ToInt32(Session["UserTypePropId"]);
+                model.ZZCompanyId = Convert.ToInt32(Session["ZZCompanyId"]);
+                model.UserName = Convert.ToString(Session["UserName"]);
+                model.EmailId = Convert.ToString(Session["EmailId"]);
+                model.LoginId = Convert.ToString(Session["LoginId"]);
+                model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
+                model.UserCode = Convert.ToString(Session["UserCode"]);
+                model.StateId = Convert.ToInt32(Session["StateId"]);
+                ViewBag.Department = LoadDepartment();
+            }
+            catch
+            {
+            }
+
+            return View(model);
+        }
+
+        public List<SelectListItem> LoadDepartment()
+        {
+            List<SelectListItem> Items = new List<SelectListItem>();
+            try
+            {
+                returndbmlCompanyDepartment objreturndbmlCompanyDepartment = objServiceClient.CompanyDepartmentGetByCustomerMasterId(Convert.ToInt32(Session["ZZCompanyId"]));
+                if (objreturndbmlCompanyDepartment != null && objreturndbmlCompanyDepartment.objdbmlStatus.StatusId == 1)
+                {
+                    foreach (var itm in objreturndbmlCompanyDepartment.objdbmlCompanyDepartment)
+                    {
+                        Items.Add(new SelectListItem { Text = itm.Department, Value = itm.CompanyDepartmentId.ToString(), Selected = false });
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            return Items;
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult LoadUserInfo()
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlUser objreturndbmlUser = new returndbmlUser();
+            try
+            {
+                objreturndbmlUser = objServiceClient.UserViewFrontGetByCompanyId(Convert.ToInt32(Session["ZZCompanyId"]));
+                if (objreturndbmlUser.objdbmlStatus.StatusId == 1)
+                {
+                    intStatusId = 1;
+                    strStatus = "Success";
+                }
+                else
+                {
+                    strStatus = objreturndbmlUser.objdbmlStatus.Status;
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, UserList = objreturndbmlUser.objdbmlUserView }, JsonRequestBehavior.AllowGet);
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult UserSave(dbmlUserView model)
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlUser objreturndbmlUser = new returndbmlUser();
+
+            try
+            {
+                model.CustomerMasterId = Convert.ToInt32(Session["ZZCompanyId"]);
+                model.CreateId = Convert.ToInt32(Session["UserId"]);
+                model.CreateDate = DateTime.Now;
+                model.UpdateId = Convert.ToInt32(Session["UserId"]);
+                model.UpdateDate = DateTime.Now;
+
+                returndbmlUser objreturndbmlUserTemp = new returndbmlUser();
+                ObservableCollection<dbmlUserView> objdbmlUserView = new ObservableCollection<dbmlUserView>();
+                objdbmlUserView.Add(model);
+                objreturndbmlUserTemp.objdbmlUserView = objdbmlUserView;
+                if (model.UserId <= 0)
+                {
+                    objreturndbmlUser = objServiceClient.UserInsert(objreturndbmlUserTemp);
+                }
+                else
+                {
+                    objreturndbmlUser = objServiceClient.UserUpdate(objreturndbmlUserTemp);
+                }
+                if (objreturndbmlUser != null && objreturndbmlUser.objdbmlStatus.StatusId == 1)
+                {
+                    intStatusId = 1;
+                    strStatus = "Data Saved Successfully";
+                }
+                else
+                {
+                    strStatus = objreturndbmlUser.objdbmlStatus.Status;
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, UserList = objreturndbmlUser.objdbmlUserView }, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region Common
@@ -3914,18 +4219,7 @@ namespace PGMSFront.Controllers
                 MaxJsonLength = Int32.MaxValue
             };
         }
-        #endregion
-
-        #region Department & Users
-        public ActionResult Department()
-        {
-            return View();
-        }
-        public ActionResult Users()
-        {
-            return View();
-        }
-        #endregion
+        #endregion       
 
     }
 }

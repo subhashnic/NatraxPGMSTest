@@ -1,4 +1,5 @@
-﻿@{
+﻿@model PGMSFront.Models.CommonModel
+@{
     ViewBag.Title = "Department";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -23,67 +24,320 @@
     }
 </style>
 <div class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">
-                        <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="AddMoreOther()">Add More</button>
-                    </h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead class=" text-primary">
-                                <tr>
-                                    <th width="7%">Sr.No.</th>
-                                    <th width="17%">Department</th>
-                                    <th width="18%">HOD</th>
-                                    <th width="16%">Phone No.</th>
-                                    <th width="16%">Mobile No.</th>
-                                    <th width="16%">Email</th>
-                                    <th width="10%" class="text-center">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr id="AddMoreOtherTR" style="        display: none;">
-                                    <td><input type="text" class="form-control" value="2"></td>
-                                    <td><input type="text" class="form-control" value=""></td>
-                                    <td><input type="text" class="form-control" value=""></td>
-                                    <td><input type="text" class="form-control" value=""></td>
-                                    <td><input type="text" class="form-control" value=""></td>
-                                    <td><input type="text" class="form-control" value=""></td>
-                                    <td class='td-actions text-center'>
-                                        <button type='button' rel='tooltip' class='btn btn-info' data-original-title='' title=''><i class='material-icons'>save</i></button>
-                                        <button type='button' rel='tooltip' class='btn btn-danger' data-original-title='' title='' onclick="AddMoreOtherCancel()"><i class='material-icons'>close</i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Sales</td>
-                                    <td>Manish Jain</td>
-                                    <td>0731-559759</td>
-                                    <td>8103779187</td>
-                                    <td>test@test.com</td>
-                                    <td class='td-actions text-center'>
-                                        <button type='button' rel='tooltip' class='btn btn-info' data-original-title='' title=''><i class='material-icons'>edit</i></button>
-                                        <button type='button' rel='tooltip' class='btn btn-danger' data-original-title='' title=''><i class='material-icons'>close</i></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+    @using (Html.BeginForm(new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="container-fluid">   
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            <label class="card-title"> Department Count : </label> <label class="card-title" id="lblWSCount"></label>
+                            <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" onclick="AddMore()" id="btnAdd">Add More</button>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                            <tr>
+                                                <th width="17%">Department</th>
+                                                <th width="18%">Contact Person</th>
+                                                <th width="16%">Phone No.</th>
+                                                <th width="16%">Mobile No.</th>
+                                                <th width="16%">Email</th>
+                                                <th width="10%" class="text-center">Action</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyWS">
+                                            <tr id="AddMoreTR" style="display: none;">
+                                                <td><input id="Department" type="text" style="text-align: left" onkeypress='return CheckIsAlphaNumeric(event,this);' class="form-control" value=""></td>
+                                                <td><input id="ContactPerson" type="text" style="text-align: left" onkeypress='return CheckIsAlphaNumeric(event,this);' class="form-control" value=""></td>
+                                                <td><input id="PhoneNo" type="text" maxlength="15"  style="text-align: left" onkeypress='return CheckIsNumeric(event,this);' class="form-control" value=""></td>
+                                                <td><input id="Mobile" type="text" maxlength="10" style="text-align: left" onkeypress='return CheckIsNumeric(event,this);' class="form-control" value=""></td>
+                                                <td><input id="Email" type="text" style="text-align: left" class="form-control" value=""></td>
+                                                <td class='td-actions text-center'>
+                                                    <button type='button' rel='tooltip' id="btnSave" onclick="return DepartmentSave()" class='btn btn-info' data-original-title='' title=''><i class='material-icons'>save</i></button>
+                                                    <button type='button' rel='tooltip' class='btn btn-danger' data-original-title='' title='' onclick="AddMoreCancel()"><i class='material-icons'>close</i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                @Html.HiddenFor(m => m.UserId, new { id = "UserId", style = "width:0px;" })
+                @Html.HiddenFor(m => m.UserTypePropId, new { id = "UserTypePropId", style = "width:0px;" })
+                @Html.HiddenFor(m => m.ZZCompanyId, new { id = "ZZCompanyId", style = "width:0px;" })
+                @Html.HiddenFor(m => m.WorkFlowId, new { id = "WorkFlowId", style = "width:0px;" })
+                @Html.HiddenFor(m => m.StatusPropId, new { id = "StatusPropId", style = "width:0px;" })
+                @Html.HiddenFor(m => m.StateId, new { id = "StateId", style = "width:0px;" })
+
             </div>
         </div>
-    </div>
+    }
 </div>
 <script>
-    function AddMoreOther() {
-        $("#AddMoreOtherTR").show();
+    var CompanyDepartmentId = 0;
+    var CompanyDepartmentList = '';
+
+    function AddMore() {
+        WorkshopBookingDetailId = 0;
+        $("#AddMoreTR").find("button[id='btnSave']").each(function () {
+            $(this).show();
+        });        
+        $("#AddMoreTR").find("input[type='text'][id='Department']").each(function () {
+            $(this).val("");
+        });
+        $("#AddMoreTR").find("input[type='text'][id='ContactPerson']").each(function () {
+            $(this).val("");
+        });
+        $("#AddMoreTR").find("input[type='text'][id='PhoneNo']").each(function () {
+            $(this).val("");
+        });
+        $("#AddMoreTR").find("input[type='text'][id='Mobile']").each(function () {
+            $(this).val("");
+        });
+        $("#AddMoreTR").find("input[type='text'][id='Email']").each(function () {
+            $(this).val("");
+        });
+       
+
+        $("#AddMoreTR").show();
+        MaskControls();
+        $("#Department").focus();
+    }
+    function AddMoreCancel() {
+        $("#AddMoreTR").hide();
     }
 
-    function AddMoreOtherCancel() {
-        $("#AddMoreOtherTR").hide();
+    ///////////////////////////// Load Vehicle Info  //////////////////////////////////////////////////////
+    function LoadDepartmentInfo() {
+        try {
+            LoaderShow();
+            var data = {};
+            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+            $.ajax({
+                url: '@Url.Action("LoadDepartmentInfo", "Home")',
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                data: dataWithAntiforgeryToken,
+                success: function (data) {
+
+                    LoaderHide();
+                    if (data.StatusId != "99" && data.StatusId != "-99") {
+                        CompanyDepartmentList = data.CompanyDepartmentList;
+                        BindWSData(data.CompanyDepartmentList);                        
+                    }
+                    else {
+                       // alert(data.Status);
+                    }
+                },
+                error: function (xhr) {
+
+                    LoaderHide();
+                    alert(xhr.responseText);
+                }
+            });
+        }
+        catch (e) {
+
+            LoaderHide();
+            alert(e.message);
+            //  return false;
+        }
     }
+
+    //////////////////////// Vehicle Edit ////////////////////////////////////////////////////////////
+    function DepartmentEdit(varCompanyDepartmentId) {
+        try {
+            CompanyDepartmentId = 0;
+            if (CompanyDepartmentList.length > 0) {
+                var varWS = jQuery.grep(CompanyDepartmentList, function (obj) {
+                    return obj.CompanyDepartmentId == varCompanyDepartmentId;
+                });
+
+                CompanyDepartmentId = NullHandle(varWS[0].CompanyDepartmentId);
+
+                $("#AddMoreTR").find("button[id='btnSave']").each(function () {
+                    $(this).show();
+                });
+               
+                $("#AddMoreTR").find("input[type='text'][id='Department']").each(function () {
+                    $(this).val(NullHandle(varWS[0].Department));
+                });
+                $("#AddMoreTR").find("input[type='text'][id='ContactPerson']").each(function () {
+                    $(this).val(NullHandle(varWS[0].ContactPerson));
+                });
+                $("#AddMoreTR").find("input[type='text'][id='PhoneNo']").each(function () {
+                    $(this).val(NullHandle(varWS[0].PhoneNo));
+                });
+                $("#AddMoreTR").find("input[type='text'][id='Mobile']").each(function () {
+                    $(this).val(NullHandle(varWS[0].Mobile));
+                });
+                $("#AddMoreTR").find("input[type='text'][id='Email']").each(function () {
+                    $(this).val(NullHandle(varWS[0].Email));
+                });
+               
+
+                $("#AddMoreTR").show();
+                MaskControls();
+                $("#Department").focus();
+            }
+        }
+        catch (e) {
+
+        }
+    }
+
+    ///////////////////////////// Vehicle Save  //////////////////////////////////////////////////////
+    function DepartmentSave() {
+        try {
+            var model = {};
+            var strMSG = '';
+            var varWS = jQuery.grep(CompanyDepartmentList, function (obj) {
+                return obj.CompanyDepartmentId == CompanyDepartmentId;
+            });
+            var btnSave = "";
+
+            if (parseInt(CompanyDepartmentId) > 0 && varWS != undefined && varWS.length > 0) {
+                model = varWS[0];
+            }
+            else {
+                model.CompanyDepartmentId = -1;
+            }
+
+            $("#AddMoreTR").find("button[id='btnSave']").each(function () {
+                btnSave = $(this);
+            });
+           
+            $("#AddMoreTR").find("input[type='text'][id='Department']").each(function () {
+                model.Department = $(this).val().trim();
+                if ($(this).val().trim() == "") {
+                    strMSG = strMSG + 'Department \n</br>'
+                }
+            });
+            $("#AddMoreTR").find("input[type='text'][id='ContactPerson']").each(function () {
+                model.ContactPerson = $(this).val().trim();
+            });
+            $("#AddMoreTR").find("input[type='text'][id='PhoneNo']").each(function () {
+                model.PhoneNo = $(this).val().trim();
+            });
+            $("#AddMoreTR").find("input[type='text'][id='Mobile']").each(function () {
+                model.Mobile = $(this).val().trim();
+            });
+            $("#AddMoreTR").find("input[type='text'][id='Email']").each(function () {
+                model.Email = $(this).val().trim();
+            });
+           
+            if (strMSG != '') {
+                alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
+                return false;
+            }
+            else {
+
+                btnSave.hide();
+                LoaderShow();
+                var data = {'model': model};
+                var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+                $.ajax({
+                    url: '@Url.Action("DepartmentSave", "Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    data: dataWithAntiforgeryToken,
+                    //contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+
+                        LoaderHide();
+                        if (data.StatusId != "99" && data.StatusId != "-99") {
+                            CompanyDepartmentList = data.CompanyDepartmentList;
+                            BindWSData(data.CompanyDepartmentList);
+
+                        }
+                        btnSave.show();
+                        alert(data.Status);
+                    },
+                    error: function (xhr) {
+
+                        btnSave.show();
+                        LoaderHide();
+                        alert(xhr.responseText);
+                    }
+                });
+            }
+        }
+        catch (e) {
+            LoaderHide();
+            btnSave.show();
+            alert(e.message);
+            return false;
+        }
+    }
+    
+    ///////////////////////////// Bind Info  //////////////////////////////////////////////////////
+    function BindWSData(data) {
+        try {
+            var gridData = "";
+          
+            gridData = "<tr id='AddMoreTR' style='display: none;'>" + $("#AddMoreTR").html() + "</tr>";
+
+            $("#lblWSCount").text(NullHandle(data.length));
+
+            $("#tbodyWS").html("");
+
+            for (var i = 0; i < data.length; i++) {
+                gridData = gridData + "<tr >";
+
+                gridData = gridData + "<td>" + NullHandle(data[i].Department) + "</td>";
+                gridData = gridData + "<td>" + NullHandle(data[i].ContactPerson) + "</td>";
+                gridData = gridData + "<td>" + NullHandle(data[i].PhoneNo) + "</td>";
+                gridData = gridData + "<td>" + NullHandle(data[i].Mobile) + "</td>";
+                gridData = gridData + "<td>" + NullHandle(data[i].Email) + "</td>";
+
+                gridData = gridData + "<td class='td-actions text-center'>";
+                gridData = gridData + "<button type='button' rel='tooltip' class='btn btn-info' title='Edit Department : " + NullHandle(data[i].Department) + "' onclick='return DepartmentEdit(" + NullHandle(data[i].CompanyDepartmentId) + ")' > <i class='material-icons'>edit</i></button>&nbsp;";
+                //gridData = gridData + "<button type='button' rel='tooltip' class='btn btn-danger' title='Delete Workshop : " + NullHandle(data[i].ZZServiceName) + "' onclick='return DepartmentDelete(" + NullHandle(data[i].CompanyDepartmentId) + ")'><i class='material-icons'>close</i></button>";
+                gridData = gridData + "</td>";
+                gridData = gridData + "</tr>";
+            }
+
+            $("#tbodyWS").html(gridData);
+
+
+        }
+        catch (e) {
+
+        }
+    }
+
+    ///////////////////////////// Masking  //////////////////////////////////////////////////////
+    function MaskControls() {
+        try {
+            (function ($) {
+                $(function () {
+
+                    $("#AddMoreTR").find("input[type='text'][id='Email']").each(function () {
+                        $(this).IsEmailOnly();
+                    });
+
+                });
+            })(jQuery);
+        }
+        catch (e) {
+
+        }
+    }
+
+    $(document).ready(function () {
+        MaskControls();       
+        LoadDepartmentInfo();
+    });
+
 </script>

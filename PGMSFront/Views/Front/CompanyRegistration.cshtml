@@ -110,7 +110,7 @@
                                                             <div class="form-group bmd-form-group" style="        height: 30px;">
                                                                 @*<label for="exampleEmail" class="bmd-label-floating">State *</label>*@
                                                                 <select class="form-control select2" id="ddlState" onchange="LoadDistictByStateId()" style="        margin-top: 7px;">
-                                                                    <option>- Select State -</option>
+                                                                    <option value="0">Select State *</option>
                                                                     @foreach (var itm in ViewBag.State)
                                                                     {
                                                                         <option value='@itm.Value'>@itm.Text</option>
@@ -121,8 +121,8 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group bmd-form-group" style="        height: 30px;">
                                                                 @*<label for="exampleEmail" class="bmd-label-floating">City *</label>*@
-                                                                <select class="form-control select2" id="ddlCity" style="        margin-top: 7px;">
-                                                                    <option>- Select City -</option>
+                                                                <select class="form-control select2" id="ddlCity" style="margin-top: 7px;">
+                                                                    <option value="0">Select City *</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -484,7 +484,7 @@
                     success: function (data) {                       
                         LoaderHide();
                         if (data.StatusId != "99" && data.StatusId != "-99") {
-                            var gridData = "<option value='0'>- Select City -</option>";
+                            var gridData = "<option value='0'>Select City *</option>";
 
                             for (var i = 0; i < data.DistrictList.length; i++) {
                                 gridData = gridData + "<option value='" + NullHandle(data.DistrictList[i].DistrictId) + "'>" + NullHandle(data.DistrictList[i].District) + "</option>";
@@ -519,8 +519,7 @@
                 alert("Please enter your Login Id");
             }
             else {
-                LoaderShow();
-                $("#ddlCity").html("");
+                LoaderShow();               
                 var data = { 'strLoginId': $("#txtLoginId").val().trim()};
                 var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                 $.ajax({
@@ -560,17 +559,18 @@
         try {
 
             var strMSG = '';
-
+           
+            var varCity = $("#ddlCity").val();
             if ($("#txtCompanyName").val().trim() == "") {
                 strMSG = strMSG + 'Company Name \n</br>'
             }
             if ($("#txtAddress").val().trim() == "") {
                 strMSG = strMSG + 'Address \n</br>'
             }
-            if ($("#ddlState").val() == "") {
+            if ($("#ddlState").val() == null || $("#ddlState").val()==undefined || parseInt($("#ddlState").val()) ==0) {
                 strMSG = strMSG + 'State \n</br>'
             }
-            if ($("#ddlCity").val() == "") {
+            if (varCity == null || varCity==undefined || parseInt(varCity) == 0) {
                 strMSG = strMSG + 'City \n</br>'
             }
             if ($("#txtPincode").val().trim() == "") {
@@ -595,13 +595,12 @@
             }
             else {
                 var model = {};
-
-                model.CustomerMasterId = -1;
-
+              
+                model.CustomerMasterId = -1;               
                 model.CompanyName = $("#txtCompanyName").val().trim();
                 model.StateId = $("#ddlState").val().trim();
                 model.Address = $("#txtAddress").val();
-                model.DistrictId = $("#ddlCity").val();
+                model.DistrictId = varCity;
                 model.PinCode = $("#txtPincode").val().trim();
                 model.Email = $("#txtEMailId").val().trim();
                 model.ContactPerson=$("#txtContactPerson").val().trim();
@@ -629,6 +628,7 @@
                             alert("Your company registration detail saved successfully.Email verification link mailed to your eMailId '" + $("#txtEMailId").val().trim()+"'. Please click on link to verify your eMail.");
                         }
                         else {
+                            $("#btnReg").show();
                             alert(data.Status);
                         }
                        // $("#btnReg").show();
@@ -664,7 +664,7 @@
                     $("#txtGSTNo").attr('onkeypress', 'return CheckIsAlphaNumeric(event,this);');
                     $("#txtPANNo").attr('onkeypress', 'return CheckIsAlphaNumeric(event,this);');
                     $("#txtContactPerson").attr('onkeypress', 'return CheckIsAlphaNumeric(event,this);');
-                    $("#txtEmailId").IsEmailOnly();
+                    $("#txtEMailId").IsEmailOnly();
                     $("#txtPincode").attr('onkeypress', 'return CheckIsNumeric(event,this);');
                     $("#txtMobileNo").attr('onkeypress', 'return CheckIsNumeric(event,this);');
 
