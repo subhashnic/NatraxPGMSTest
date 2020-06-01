@@ -174,7 +174,7 @@
   <xs:complexType name="dbmlState">
     <xs:sequence>
       <xs:element minOccurs="0" name="ClubedStateId" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="State1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StateId" type="xs:int" />
       <xs:element minOccurs="0" name="UpdateDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="UpdateId" type="xs:int" />

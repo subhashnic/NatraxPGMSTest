@@ -2176,7 +2176,7 @@ namespace PGMSFront.WCFPGMSRef {
         private System.Nullable<int> ClubedStateIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string State1Field;
+        private string StateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int StateIdField;
@@ -2211,14 +2211,14 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string State1 {
+        public string State {
             get {
-                return this.State1Field;
+                return this.StateField;
             }
             set {
-                if ((object.ReferenceEquals(this.State1Field, value) != true)) {
-                    this.State1Field = value;
-                    this.RaisePropertyChanged("State1");
+                if ((object.ReferenceEquals(this.StateField, value) != true)) {
+                    this.StateField = value;
+                    this.RaisePropertyChanged("State");
                 }
             }
         }

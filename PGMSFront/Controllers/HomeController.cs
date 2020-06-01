@@ -3850,7 +3850,7 @@ namespace PGMSFront.Controllers
                 {
                     foreach (var itm in objreturndbmlState.objdbmlState)
                     {
-                        Items.Add(new SelectListItem { Text = itm.State1, Value = itm.StateId.ToString(), Selected = false });
+                        Items.Add(new SelectListItem { Text = itm.State, Value = itm.StateId.ToString(), Selected = false });
                     }
                 }
             }

@@ -51,7 +51,7 @@ namespace PGMSFront.Controllers
                 {
                     foreach (var itm in objreturndbmlState.objdbmlState)
                     {
-                        Items.Add(new SelectListItem { Text = itm.StateId.ToString(), Value = itm.StateId.ToString(), Selected = false });
+                        Items.Add(new SelectListItem { Text = itm.State, Value = itm.StateId.ToString(), Selected = false });
                     }
                 }
             }
@@ -93,13 +93,13 @@ namespace PGMSFront.Controllers
             try
             {
                 objreturndbmlUser = objServiceClient.UserViewGetByLoginIdUserId(strLoginId, 0);
-                if (objreturndbmlUser != null && objreturndbmlUser.objdbmlStatus.StatusId == 1)
+                if (objreturndbmlUser != null && objreturndbmlUser.objdbmlStatus.StatusId == 1 && objreturndbmlUser.objdbmlUserView.Count==0)
                 {
                     intStatusId = 1;
                 }
                 else
                 {
-                    strStatus = objreturndbmlUser.objdbmlStatus.Status;
+                    strStatus = "LoginId already exist";
                 }
             }
             catch (Exception ex)

@@ -481,8 +481,7 @@
                     dataType: 'json',
                     async: true,
                     data: dataWithAntiforgeryToken,
-                    success: function (data) {
-                        debugger;
+                    success: function (data) {                       
                         LoaderHide();
                         if (data.StatusId != "99" && data.StatusId != "-99") {
                             var gridData = "<option value='0'>- Select City -</option>";
@@ -525,19 +524,18 @@
                 var data = { 'strLoginId': $("#txtLoginId").val().trim()};
                 var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                 $.ajax({
-                    url: '@Url.Action("CheckLoginIdAvailability", "Home")',
+                    url: '@Url.Action("CheckLoginIdAvailability", "Front")',
                     type: 'POST',
                     dataType: 'json',
                     async: true,
                     data: dataWithAntiforgeryToken,
-                    success: function (data) {
-
+                    success: function (data) {                      
                         LoaderHide();
                         if (data.StatusId != "99" && data.StatusId != "-99") {
 
                         }
                         else {
-                            $("#txtLoginId").val() = "";
+                            $("#txtLoginId").val("");
                             alert(data.Status);
                         }
                     },
