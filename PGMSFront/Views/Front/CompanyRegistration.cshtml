@@ -130,7 +130,7 @@
                                                                 <label for="examplePass" class="bmd-label-floating">
                                                                     Mobile No. *
                                                                 </label>
-                                                                <input type="text" class="form-control" id="txtMobileNo">
+                                                                <input type="text" maxlength="12"  class="form-control" id="txtMobileNo">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -138,13 +138,13 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group bmd-form-group">
                                                                 <label for="examplePass" class="bmd-label-floating">Pincode *</label>
-                                                                <input type="text" class="form-control" id="txtPincode">
+                                                                <input type="text" maxlength="6"  class="form-control" id="txtPincode">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group bmd-form-group">
                                                                 <label for="examplePass" class="bmd-label-floating">PAN No.</label>
-                                                                <input type="text" class="form-control" id="txtPANNo">
+                                                                <input type="text" maxlength="10"  class="form-control" id="txtPANNo">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -154,7 +154,7 @@
                                                                 <label for="examplePass" class="bmd-label-floating">
                                                                     GST No.
                                                                 </label>
-                                                                <input type="text" class="form-control" id="txtGSTNo">
+                                                                <input type="text" maxlength="18" class="form-control" id="txtGSTNo">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
@@ -587,8 +587,8 @@
                 model.CustomerMasterId = -1;
 
                 model.CompanyName = $("#txtCompanyName").val().trim();
-                model.StateId = $("#txtAddress").val().trim();
-                model.Address = $("#ddlState").val();
+                model.StateId = $("#ddlState").val().trim();
+                model.Address = $("#txtAddress").val();
                 model.DistrictId = $("#ddlCity").val();
                 model.PinCode = $("#txtPincode").val().trim();
                 model.Email = $("#txtEMailId").val().trim();
