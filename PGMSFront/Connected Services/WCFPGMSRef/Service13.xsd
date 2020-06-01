@@ -136,6 +136,7 @@
       <xs:element minOccurs="0" name="UpdateDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="UpdateId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ZZDistrict" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZLoginId" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZState" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
@@ -164,6 +165,38 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlCompanyDepartment" nillable="true" type="tns:dbmlCompanyDepartment" />
+  <xs:complexType name="ArrayOfdbmlState">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlState" nillable="true" type="tns:dbmlState" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdbmlState" nillable="true" type="tns:ArrayOfdbmlState" />
+  <xs:complexType name="dbmlState">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClubedStateId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="State1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StateId" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dbmlState" nillable="true" type="tns:dbmlState" />
+  <xs:complexType name="ArrayOfdbmlDistrict">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlDistrict" nillable="true" type="tns:dbmlDistrict" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdbmlDistrict" nillable="true" type="tns:ArrayOfdbmlDistrict" />
+  <xs:complexType name="dbmlDistrict">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="District" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DistrictId" type="xs:int" />
+      <xs:element minOccurs="0" name="StateId" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dbmlDistrict" nillable="true" type="tns:dbmlDistrict" />
   <xs:complexType name="ArrayOfdbmlBookingView">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlBookingView" nillable="true" type="tns:dbmlBookingView" />

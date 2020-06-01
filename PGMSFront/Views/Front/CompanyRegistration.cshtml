@@ -54,169 +54,167 @@
     <div class="wrapper wrapper-full-page">
         <div class="page-header register-page header-filter" filter-color="black" style="        background-image: url('../Templates/Tracks/Natrax Overall Track Pics.jpg')">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-7 ml-auto mr-auto">
-                        <div class="card card-signup" style="        padding: 0px 0px;">
-                            <div class="col-md-6 ml-auto mr-auto" style="        text-align: center;
+                @using (Html.BeginForm(new { @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-7 ml-auto mr-auto">
+                            <div class="card card-signup" style="        padding: 0px 0px;">
+                                <div class="col-md-6 ml-auto mr-auto" style="        text-align: center;
         max-width: 56%;">
-                                <img src="~/Templates/img/logo.png" alt="">
-                            </div>
-                            <h2 class="card-title text-center" style="        font-size: 20px;
+                                    <img src="~/Templates/img/logo.png" alt="">
+                                </div>
+                                <h2 class="card-title text-center" style="        font-size: 20px;
         margin-bottom: 0px;">
-                                Company Registration
-                            </h2>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="card-body">
-                                        <div class="col-md-12 ml-auto">
-                                            <form>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group bmd-form-group">
-                                                            <label for="exampleEmail" class="bmd-label-floating">Company Name *</label>
-                                                            <input type="text" class="form-control" id="txtCompanyName">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group bmd-form-group">
-                                                            <label for="examplePass" class="bmd-label-floating">Address *</label>
-                                                            <textarea class="form-control" id="txtAddress"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group bmd-form-group">
-                                                            <label for="examplePass" class="bmd-label-floating"></label>
-                                                            <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Select State *">
-                                                                <option>MP</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group bmd-form-group">
-                                                            <label for="examplePass" class="bmd-label-floating"></label>
-                                                            <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Select City *">
-                                                                <option>Indore</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="form-group bmd-form-group">
-                                                            <label for="examplePass" class="bmd-label-floating">Pincode *</label>
-                                                            <input type="text" class="form-control" id="txtPincode">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group bmd-form-group">
-                                                            <label for="examplePass" class="bmd-label-floating">
-                                                                GST No.
-                                                            </label>
-                                                            <input type="text" class="form-control" id="txtGSTNo">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group bmd-form-group">
-                                                            <label for="examplePass" class="bmd-label-floating">PAN No.</label>
-                                                            <input type="text" class="form-control" id="txtPANNo">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group bmd-form-group">
-                                                            <label for="examplePass" class="bmd-label-floating">
-                                                                How did you come to know about NATRAX
-                                                            </label><br />
-                                                            <div class="form-check">
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="radio" name="exampleRadios" value=""> TV
-                                                                    <span class="circle">
-                                                                        <span class="check"></span>
-                                                                    </span>
-                                                                </label>
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="radio" name="exampleRadios" value=""> News Paper
-                                                                    <span class="circle">
-                                                                        <span class="check"></span>
-                                                                    </span>
-                                                                </label>
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="radio" name="exampleRadios" value=""> Internet
-                                                                    <span class="circle">
-                                                                        <span class="check"></span>
-                                                                    </span>
-                                                                </label>
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="radio" name="exampleRadios" value=""> Others
-                                                                    <span class="circle">
-                                                                        <span class="check"></span>
-                                                                    </span>
-                                                                </label>
+                                    Company Registration
+                                </h2>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="card-body">
+                                            <div class="col-md-12 ml-auto">
+                                                <form>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group bmd-form-group">
+                                                                <label for="exampleEmail" class="bmd-label-floating">Company Name *</label>
+                                                                <input type="text" class="form-control" id="txtCompanyName">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group bmd-form-group">
-                                                            <label for="examplePass" class="bmd-label-floating">
-                                                                References, if any
-                                                            </label>
-                                                            <input type="text" class="form-control" id="txtRef">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group bmd-form-group">
+                                                                <label for="examplePass" class="bmd-label-floating">Address *</label>
+                                                                <textarea class="form-control" id="txtAddress"></textarea>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group bmd-form-group">
-                                                            <label for="examplePass" class="bmd-label-floating"></label>
-                                                            <a href="#" class="btn btn-primary btn-round mt-4 pull-right">Cancel</a>
-                                                            <a href="#" class="btn btn-primary btn-round mt-4 pull-right">Register</a>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group bmd-form-group">
+                                                                <label for="examplePass" class="bmd-label-floating"></label>
+                                                                @*<select class="selectpicker" data-size="7" id="ddlState" onchange="LoadDistictByStateId()" data-style="select-with-transition" title="Select State *">*@
+                                                                <select class="form-control" id="ddlState" onchange="LoadDistictByStateId()" >
+                                                                    <option value="0">- Select -</option>
+                                                                    @foreach (var itm in ViewBag.State)
+                                                                    {
+                                                                        <option value='@itm.Value'>@itm.Text</option>
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group bmd-form-group">
+                                                                <label for="examplePass" class="bmd-label-floating"></label>
+                                                                <select class="form-control" id="ddlCity" ></select>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </form>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group bmd-form-group">
+                                                                <label for="examplePass" class="bmd-label-floating">Pincode *</label>
+                                                                <input type="text" class="form-control" id="txtPincode">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group bmd-form-group">
+                                                                <label for="examplePass" class="bmd-label-floating">
+                                                                    GST No.
+                                                                </label>
+                                                                <input type="text" class="form-control" id="txtGSTNo">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group bmd-form-group">
+                                                                <label for="examplePass" class="bmd-label-floating">PAN No.</label>
+                                                                <input type="text" class="form-control" id="txtPANNo">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group bmd-form-group">
+                                                                <label for="examplePass" class="bmd-label-floating">Email *</label>
+                                                                <input type="text" class="form-control" id="txtEMailId">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group bmd-form-group">
+                                                                <label for="examplePass" class="bmd-label-floating">
+                                                                    Mobile No. *
+                                                                </label>
+                                                                <input type="text" class="form-control" id="txtMobileNo">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group bmd-form-group">
+                                                                <label for="examplePass" class="bmd-label-floating">Contact Person</label>
+                                                                <input type="text" class="form-control" id="txtContactPerson">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group bmd-form-group">
+                                                                <label for="examplePass" class="bmd-label-floating">
+                                                                    How did you come to know about NATRAX
+                                                                </label><br />
+                                                                <div class="form-check">
+                                                                    @foreach (var itm in ViewBag.KnowAbout)
+                                                                    {
+                                                                        <label class="form-check-label">
+                                                                            <input class="form-check-input" type="radio" id='rdo+@itm.Value' name="rdoKnowAbout" value='@itm.Value'> @itm.Text
+                                                                            <span class="circle">
+                                                                                <span class="check"></span>
+                                                                            </span>
+                                                                        </label>
+                                                                    }
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group bmd-form-group">
+                                                                <label for="examplePass" class="bmd-label-floating">
+                                                                    References, if any
+                                                                </label>
+                                                                <input type="text" class="form-control" id="txtRef">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group bmd-form-group">
+                                                                <label for="examplePass" class="bmd-label-floating">
+                                                                    Login Id
+                                                                </label>
+                                                                <input type="text" onchange="CheckLoginIdAvailability()" class="form-control" id="txtLoginId">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group bmd-form-group">
+                                                                <label for="examplePass" class="bmd-label-floating"></label>
+                                                                <a href="#" id="btnReg" onclick="CompanyRegistrationSave()" class="btn btn-primary btn-round mt-4 pull-right">Register</a>
+                                                                @*<a href="#" class="btn btn-primary btn-round mt-4 pull-right">Cancel</a>*@
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                }
             </div>
-            @*<footer class="footer">
-                    <div class="container">
-                        <nav class="float-left">
-                            <ul>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        Natrax
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        About Us
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        Licenses
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                        <div class="copyright float-right">
-                            <a href="javascript:void(0)" target="_blank">Copyright &copy; 2020 All rights reserved</a>
-                        </div>
-                    </div>
-                </footer>*@
+
         </div>
     </div>
     <!--   Core JS Files   -->
@@ -239,6 +237,429 @@
     <script src="~/Templates/assets/js/plugins/bootstrap-selectpicker.js"></script>
     <!-- Sharrre libray -->
     <script src="~/Templates/assets/demo/jquery.sharrre.js"></script>
+    @Scripts.Render("~/bundles/MyScripts")
+    <script>
+        function LoaderShow() {
+            //waitingDialog.show('', {
+            //    dialogSize: 'sm', progressType: 'warning'
+            //});
+            $(".Loader").show();
+        }
+
+        function LoaderHide() {
+            //waitingDialog.hide();
+            $(".Loader").hide();
+        }
+
+
+        //document.onreadystatechange = function () {
+        //    if (document.readyState !== "complete") {
+        //        $(".ntx-loader").show();
+        //    } else {
+        //        $(".ntx-loader").hide();
+        //    }
+        //};
+
+        $(document).ready(function () {
+            $().ready(function () {
+                //$('.datetimepicker').datetimepicker({ theme: 'light', timepicker: false, format: 'd-m-Y', scrollMonth: false, scrollInput: false });
+                ////$('.timepicker').datetimepicker({ theme: 'dark', datepicker: false, format: 'H:i', scrollMonth: false, scrollInput: false, maxDate: new Date() });
+                //$(".datetimepicker").attr("placeholder", "DD-MM-YYYY");
+                //$(".datetimepicker").mask("99-99-9999");
+                //$(".timepicker").mask("99:99");
+                //$(".timepicker").attr("placeholder", "HH:MM");
+                $sidebar = $('.sidebar');
+
+                $sidebar_img_container = $sidebar.find('.sidebar-background');
+
+                $full_page = $('.full-page');
+
+                $sidebar_responsive = $('body > .navbar-collapse');
+
+                window_width = $(window).width();
+
+                fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+
+                if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
+                    if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
+                        $('.fixed-plugin .dropdown').addClass('open');
+                    }
+
+                }
+
+                $('.fixed-plugin a').click(function (event) {
+                    // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+                    if ($(this).hasClass('switch-trigger')) {
+                        if (event.stopPropagation) {
+                            event.stopPropagation();
+                        } else if (window.event) {
+                            window.event.cancelBubble = true;
+                        }
+                    }
+                });
+
+                $('.fixed-plugin .active-color span').click(function () {
+                    $full_page_background = $('.full-page-background');
+
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass('active');
+
+                    var new_color = $(this).data('color');
+
+                    if ($sidebar.length != 0) {
+                        $sidebar.attr('data-color', new_color);
+                    }
+
+                    if ($full_page.length != 0) {
+                        $full_page.attr('filter-color', new_color);
+                    }
+
+                    if ($sidebar_responsive.length != 0) {
+                        $sidebar_responsive.attr('data-color', new_color);
+                    }
+                });
+
+                $('.fixed-plugin .background-color .badge').click(function () {
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass('active');
+
+                    var new_color = $(this).data('background-color');
+
+                    if ($sidebar.length != 0) {
+                        $sidebar.attr('data-background-color', new_color);
+                    }
+                });
+
+                $('.fixed-plugin .img-holder').click(function () {
+                    $full_page_background = $('.full-page-background');
+
+                    $(this).parent('li').siblings().removeClass('active');
+                    $(this).parent('li').addClass('active');
+
+
+                    var new_image = $(this).find("img").attr('src');
+
+                    if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+                        $sidebar_img_container.fadeOut('fast', function () {
+                            $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+                            $sidebar_img_container.fadeIn('fast');
+                        });
+                    }
+
+                    if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+                        var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+                        $full_page_background.fadeOut('fast', function () {
+                            $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+                            $full_page_background.fadeIn('fast');
+                        });
+                    }
+
+                    if ($('.switch-sidebar-image input:checked').length == 0) {
+                        var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
+                        var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+                        $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+                        $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+                    }
+
+                    if ($sidebar_responsive.length != 0) {
+                        $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
+                    }
+                });
+
+                $('.switch-sidebar-image input').change(function () {
+                    $full_page_background = $('.full-page-background');
+
+                    $input = $(this);
+
+                    if ($input.is(':checked')) {
+                        if ($sidebar_img_container.length != 0) {
+                            $sidebar_img_container.fadeIn('fast');
+                            $sidebar.attr('data-image', '#');
+                        }
+
+                        if ($full_page_background.length != 0) {
+                            $full_page_background.fadeIn('fast');
+                            $full_page.attr('data-image', '#');
+                        }
+
+                        background_image = true;
+                    } else {
+                        if ($sidebar_img_container.length != 0) {
+                            $sidebar.removeAttr('data-image');
+                            $sidebar_img_container.fadeOut('fast');
+                        }
+
+                        if ($full_page_background.length != 0) {
+                            $full_page.removeAttr('data-image', '#');
+                            $full_page_background.fadeOut('fast');
+                        }
+
+                        background_image = false;
+                    }
+                });
+
+                $('.switch-sidebar-mini input').change(function () {
+                    $body = $('body');
+
+                    $input = $(this);
+
+                    if (md.misc.sidebar_mini_active == true) {
+                        $('body').removeClass('sidebar-mini');
+                        md.misc.sidebar_mini_active = false;
+
+                        $('.sidebar .side bar-wrapper, .main-panel').perfectScrollbar();
+
+                    } else {
+
+                        $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+
+                        setTimeout(function () {
+                            $('body').addClass('sidebar-mini');
+
+                            md.misc.sidebar_mini_active = true;
+                        }, 300);
+                    }
+
+                    // we simulate the window Resize so the charts will get updated in realtime.
+                    var simulateWindowResize = setInterval(function () {
+                        window.dispatchEvent(new Event('resize'));
+                    }, 180);
+
+                    // we stop the simulation of Window Resize after the animations are completed
+                    setTimeout(function () {
+                        clearInterval(simulateWindowResize);
+                    }, 1000);
+
+                });
+            });
+        });
+        $('#nav-item').removeAttr('data-toggle');
+    </script>
 </body>
 </html>
+<script>
 
+    ///////////////////////////// Load District Info  //////////////////////////////////////////////////////
+    function LoadDistictByStateId() {
+        try {
+            var StateId = $("#ddlState").val();
+            if (parseInt(StateId) <= 0) {
+                alert("Please Select State");
+            }
+            else {
+                LoaderShow();
+                $("#ddlCity").html("");
+                var data = { 'intStateId': StateId };
+                var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+                $.ajax({
+                    url: '@Url.Action("LoadDistictByStateId", "Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    data: dataWithAntiforgeryToken,
+                    success: function (data) {
+                        debugger;
+                        LoaderHide();
+                        if (data.StatusId != "99" && data.StatusId != "-99") {
+                            var gridData = "<option value='0'>- Select -</option>";
+
+                            for (var i = 0; i < data.DistrictList.length; i++) {
+                                gridData = gridData + "<option value='" + NullHandle(data.DistrictList[i].DistrictId) + "'>" + NullHandle(data.DistrictList[i].District) + "</option>";
+                            }
+
+                            $("#ddlCity").html(gridData);
+                        }
+                        else {
+                            alert(data.Status);
+                        }
+                    },
+                    error: function (xhr) {
+
+                        LoaderHide();
+                        alert(xhr.responseText);
+                    }
+                });
+            }
+        }
+        catch (e) {
+
+            LoaderHide();
+            alert(e.message);
+        }
+    }
+
+     ///////////////////////////// Check LoginId  //////////////////////////////////////////////////////
+    function CheckLoginIdAvailability() {
+        try {
+            if ($("#txtLoginId").val().trim() == "") {
+                alert("Please enter your Login Id");
+            }
+            else {
+                LoaderShow();
+                $("#ddlCity").html("");
+                var data = { 'strLoginId': $("#txtLoginId").val().trim()};
+                var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+                $.ajax({
+                    url: '@Url.Action("CheckLoginIdAvailability", "Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    data: dataWithAntiforgeryToken,
+                    success: function (data) {
+
+                        LoaderHide();
+                        if (data.StatusId != "99" && data.StatusId != "-99") {
+
+                        }
+                        else {
+                            $("#txtLoginId").val() = "";
+                            alert(data.Status);
+                        }
+                    },
+                    error: function (xhr) {
+
+                        LoaderHide();
+                        alert(xhr.responseText);
+                    }
+                });
+            }
+        }
+        catch (e) {
+
+            LoaderHide();
+            alert(e.message);
+            }
+
+    }
+
+    ///////////////////////////// Registration Save  //////////////////////////////////////////////////////
+    function CompanyRegistrationSave() {
+        try {
+
+            var strMSG = '';
+
+            if ($("#txtCompanyName").val().trim() == "") {
+                strMSG = strMSG + 'Company Name \n</br>'
+            }
+            if ($("#txtAddress").val().trim() == "") {
+                strMSG = strMSG + 'Address \n</br>'
+            }
+            if ($("#ddlState").val() == "") {
+                strMSG = strMSG + 'State \n</br>'
+            }
+            if ($("#ddlCity").val() == "") {
+                strMSG = strMSG + 'City \n</br>'
+            }
+            if ($("#txtPincode").val().trim() == "") {
+                strMSG = strMSG + 'Pincode \n</br>'
+            }
+            if ($("#txtEMailId").val().trim() == "") {
+                strMSG = strMSG + 'EMail \n</br>'
+            }
+            if ($("#txtMobileNo").val().trim() == "") {
+                strMSG = strMSG + 'Contact No. \n</br>'
+            }
+            if ($("input[name='rdoKnowAbout']:checked").val()==undefined || $("input[name='rdoKnowAbout']:checked").val() == "") {
+                strMSG = strMSG + 'Know about NATRAX \n</br>'
+            }
+            if ($("#txtLoginId").val().trim() == "") {
+                strMSG = strMSG + 'Login Id \n</br>'
+            }
+
+            if (strMSG != '') {
+                alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
+                return false;
+            }
+            else {
+                var model = {};
+
+                model.CustomerMasterId = -1;
+
+                model.CompanyName = $("#txtCompanyName").val().trim();
+                model.StateId = $("#txtAddress").val().trim();
+                model.Address = $("#ddlState").val();
+                model.DistrictId = $("#ddlCity").val();
+                model.PinCode = $("#txtPincode").val().trim();
+                model.Email = $("#txtEMailId").val().trim();
+                model.ContactPerson=$("#txtContactPerson").val().trim();
+                model.PhoneNo = $("#txtMobileNo").val().trim();
+                model.GSTNo = $("#txtGSTNo").val().trim();
+                model.PANNo = $("#txtPANNo").val().trim();
+                model.Reference = $("#txtRef").val().trim();
+                model.KnowAboutNatraxOL = $("input[name='rdoKnowAbout']:checked").val();
+                model.ZZLoginId = $("#txtLoginId").val().trim();
+
+                $("#btnReg").hide();
+                LoaderShow();
+                var data = {'model': model};
+                var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+                $.ajax({
+                    url: '@Url.Action("CompanyRegistrationSave", "Front")',
+                    type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    data: dataWithAntiforgeryToken,
+                    //contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                       LoaderHide();
+                        if (data.StatusId != "99" && data.StatusId != "-99") {
+                            alert("Your company registration detail saved successfully.Email verification link mailed to your eMailId '" + $("#txtEMailId").val().trim()+"'. Please click on link to verify your eMail.");
+                        }
+                        else {
+                            alert(data.Status);
+                        }
+                       // $("#btnReg").show();
+
+                    },
+                    error: function (xhr) {
+
+                        $("#btnReg").show();
+                        LoaderHide();
+                        alert(xhr.responseText);
+                    }
+                });
+
+            }
+        }
+        catch (e) {
+
+            LoaderHide();
+            $("#btnReg").show();
+            alert(e.message);
+            return false;
+        }
+    }
+
+
+
+    ///////////////////////////// Masking  //////////////////////////////////////////////////////
+    function MaskControls() {
+        try {
+            (function ($) {
+                $(function () {
+                    $("#txtCompanyName").attr('onkeypress', 'return CheckIsAlphaNumeric(event,this);');
+                    $("#txtGSTNo").attr('onkeypress', 'return CheckIsAlphaNumeric(event,this);');
+                    $("#txtPANNo").attr('onkeypress', 'return CheckIsAlphaNumeric(event,this);');
+                    $("#txtContactPerson").attr('onkeypress', 'return CheckIsAlphaNumeric(event,this);');
+                    $("#txtEmailId").IsEmailOnly();
+                    $("#txtPincode").attr('onkeypress', 'return CheckIsNumeric(event,this);');
+                    $("#txtMobileNo").attr('onkeypress', 'return CheckIsNumeric(event,this);');
+
+
+                });
+            })(jQuery);
+        }
+        catch (e) {
+
+        }
+    }
+
+
+    $(document).ready(function () {
+        MaskControls();
+        $("#txtCompanyName").focus();
+    });
+
+</script>

@@ -40,6 +40,12 @@
   <wsdl:message name="IService1_UserViewFrontGetByDepartmentId_OutputMessage">
     <wsdl:part name="parameters" element="tns:UserViewFrontGetByDepartmentIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_UserViewGetByLoginIdUserId_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserViewGetByLoginIdUserId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UserViewGetByLoginIdUserId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserViewGetByLoginIdUserIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_PropertiesGetAll_InputMessage">
     <wsdl:part name="parameters" element="tns:PropertiesGetAll" />
   </wsdl:message>
@@ -51,6 +57,12 @@
   </wsdl:message>
   <wsdl:message name="IService1_OptionListGetByPropertyId_OutputMessage">
     <wsdl:part name="parameters" element="tns:OptionListGetByPropertyIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_PropertiesGetByPropertyTypeId_InputMessage">
+    <wsdl:part name="parameters" element="tns:PropertiesGetByPropertyTypeId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_PropertiesGetByPropertyTypeId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PropertiesGetByPropertyTypeIdResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_CustomerMasterInsertFront_InputMessage">
     <wsdl:part name="parameters" element="tns:CustomerMasterInsertFront" />
@@ -105,6 +117,24 @@
   </wsdl:message>
   <wsdl:message name="IService1_CompanyDepartmentGetByCustomerMasterId_OutputMessage">
     <wsdl:part name="parameters" element="tns:CompanyDepartmentGetByCustomerMasterIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_StateGetAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:StateGetAll" />
+  </wsdl:message>
+  <wsdl:message name="IService1_StateGetAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StateGetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DistrictGetByStateId_InputMessage">
+    <wsdl:part name="parameters" element="tns:DistrictGetByStateId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DistrictGetByStateId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DistrictGetByStateIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DistrictGetAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:DistrictGetAll" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DistrictGetAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DistrictGetAllResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_BookingInsert_InputMessage">
     <wsdl:part name="parameters" element="tns:BookingInsert" />
@@ -327,6 +357,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/UserViewFrontGetByDepartmentId" message="tns:IService1_UserViewFrontGetByDepartmentId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/UserViewFrontGetByDepartmentIdResponse" message="tns:IService1_UserViewFrontGetByDepartmentId_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="UserViewGetByLoginIdUserId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UserViewGetByLoginIdUserId" message="tns:IService1_UserViewGetByLoginIdUserId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UserViewGetByLoginIdUserIdResponse" message="tns:IService1_UserViewGetByLoginIdUserId_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="PropertiesGetAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/PropertiesGetAll" message="tns:IService1_PropertiesGetAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/PropertiesGetAllResponse" message="tns:IService1_PropertiesGetAll_OutputMessage" />
@@ -334,6 +368,10 @@
     <wsdl:operation name="OptionListGetByPropertyId">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/OptionListGetByPropertyId" message="tns:IService1_OptionListGetByPropertyId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/OptionListGetByPropertyIdResponse" message="tns:IService1_OptionListGetByPropertyId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PropertiesGetByPropertyTypeId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/PropertiesGetByPropertyTypeId" message="tns:IService1_PropertiesGetByPropertyTypeId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/PropertiesGetByPropertyTypeIdResponse" message="tns:IService1_PropertiesGetByPropertyTypeId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CustomerMasterInsertFront">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CustomerMasterInsertFront" message="tns:IService1_CustomerMasterInsertFront_InputMessage" />
@@ -370,6 +408,18 @@
     <wsdl:operation name="CompanyDepartmentGetByCustomerMasterId">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterId" message="tns:IService1_CompanyDepartmentGetByCustomerMasterId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterIdResponse" message="tns:IService1_CompanyDepartmentGetByCustomerMasterId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StateGetAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/StateGetAll" message="tns:IService1_StateGetAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/StateGetAllResponse" message="tns:IService1_StateGetAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DistrictGetByStateId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DistrictGetByStateId" message="tns:IService1_DistrictGetByStateId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DistrictGetByStateIdResponse" message="tns:IService1_DistrictGetByStateId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DistrictGetAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DistrictGetAll" message="tns:IService1_DistrictGetAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DistrictGetAllResponse" message="tns:IService1_DistrictGetAll_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="BookingInsert">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/BookingInsert" message="tns:IService1_BookingInsert_InputMessage" />
@@ -547,6 +597,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UserViewGetByLoginIdUserId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/UserViewGetByLoginIdUserId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="PropertiesGetAll">
       <soap12:operation soapAction="http://tempuri.org/IService1/PropertiesGetAll" style="document" />
       <wsdl:input>
@@ -558,6 +617,15 @@
     </wsdl:operation>
     <wsdl:operation name="OptionListGetByPropertyId">
       <soap12:operation soapAction="http://tempuri.org/IService1/OptionListGetByPropertyId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PropertiesGetByPropertyTypeId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/PropertiesGetByPropertyTypeId" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -639,6 +707,33 @@
     </wsdl:operation>
     <wsdl:operation name="CompanyDepartmentGetByCustomerMasterId">
       <soap12:operation soapAction="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StateGetAll">
+      <soap12:operation soapAction="http://tempuri.org/IService1/StateGetAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DistrictGetByStateId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/DistrictGetByStateId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DistrictGetAll">
+      <soap12:operation soapAction="http://tempuri.org/IService1/DistrictGetAll" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

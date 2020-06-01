@@ -1,14 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PGMSFront.Common;
+using PGMSFront.Models;
+using PGMSFront.WCFPGMSRef;
 
 namespace PGMSFront.Controllers
 {
     public class FrontController : Controller
     {
-        
+        #region Global Variables
+        Service1Client objServiceClient = new Service1Client();
+        ClassUserFunctions objClassUserFunctions = new ClassUserFunctions();
+        static string strRptURL = System.Configuration.ConfigurationManager.AppSettings["ReportUrl"];
+        static string strPOURL = System.Configuration.ConfigurationManager.AppSettings["strPOURL"];
+        #endregion
+
         #region Login
 
         public ActionResult Index()
@@ -26,8 +36,125 @@ namespace PGMSFront.Controllers
         #region Company Registration
         public ActionResult CompanyRegistration()
         {
+            ViewBag.State = LoadState();
+            ViewBag.KnowAbout = LoadKnowAbout();
             return View();
         }
+
+        public List<SelectListItem> LoadState()
+        {
+            List<SelectListItem> Items = new List<SelectListItem>();
+            try
+            {
+                returndbmlState objreturndbmlState = objServiceClient.StateGetAll();
+                if (objreturndbmlState != null && objreturndbmlState.objdbmlStatus.StatusId == 1)
+                {
+                    foreach (var itm in objreturndbmlState.objdbmlState)
+                    {
+                        Items.Add(new SelectListItem { Text = itm.StateId.ToString(), Value = itm.StateId.ToString(), Selected = false });
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            return Items;
+        }
+
+        public List<SelectListItem> LoadKnowAbout()
+        {
+            List<SelectListItem> Items = new List<SelectListItem>();
+            try
+            {
+                returndbmlProperty objreturndbmlProperty = objServiceClient.PropertiesGetByPropertyTypeId(10);
+                if (objreturndbmlProperty != null && objreturndbmlProperty.objdbmlStatus.StatusId == 1)
+                {
+                    foreach (var itm in objreturndbmlProperty.objdbmlProperty)
+                    {
+                        Items.Add(new SelectListItem { Text = itm.Property, Value = itm.PropertyId.ToString(), Selected = false });
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            return Items;
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckLoginIdAvailability(string strLoginId)
+        {
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlUser objreturndbmlUser = new returndbmlUser();
+            try
+            {
+                objreturndbmlUser = objServiceClient.UserViewGetByLoginIdUserId(strLoginId, 0);
+                if (objreturndbmlUser != null && objreturndbmlUser.objdbmlStatus.StatusId == 1)
+                {
+                    intStatusId = 1;
+                }
+                else
+                {
+                    strStatus = objreturndbmlUser.objdbmlStatus.Status;
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId }, JsonRequestBehavior.AllowGet);
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult CompanyRegistrationSave(dbmlCompanyView model)
+        {
+            //if (Session["UserId"] == null)
+            //{
+            //    return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            //}
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlCompanyView objreturndbmlCompanyView = new returndbmlCompanyView();
+
+            try
+            {
+                model.ServiceBPId = 25;
+                model.CreateId = 0;
+                model.CreateDate = DateTime.Now;
+                model.UpdateId = 0;
+                model.UpdateDate = DateTime.Now;
+              
+                returndbmlCompanyView objreturndbmlCompanyViewTemp = new returndbmlCompanyView();
+                ObservableCollection<dbmlCompanyView> objdbmlCompanyViewList = new ObservableCollection<dbmlCompanyView>();
+                objdbmlCompanyViewList.Add(model);
+                objreturndbmlCompanyViewTemp.objdbmlCompanyView = objdbmlCompanyViewList;
+
+                objreturndbmlCompanyView = objServiceClient.CustomerMasterInsertFront(objreturndbmlCompanyViewTemp);
+
+                if (objreturndbmlCompanyView != null && objreturndbmlCompanyView.objdbmlStatus.StatusId == 1)
+                {                    
+                    intStatusId = 1;
+                    strStatus = objreturndbmlCompanyView.objdbmlStatus.Status;
+                }
+                else
+                {
+                    strStatus = objreturndbmlCompanyView.objdbmlStatus.Status;
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId }, JsonRequestBehavior.AllowGet);
+        }
+
+
         #endregion
 
         #region Others - Track/Lab/Storage etc

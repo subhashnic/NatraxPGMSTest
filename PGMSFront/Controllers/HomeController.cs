@@ -3838,6 +3838,56 @@ namespace PGMSFront.Controllers
 
         #endregion
 
+        #region Company/Department  
+
+        public List<SelectListItem> LoadState()
+        {
+            List<SelectListItem> Items = new List<SelectListItem>();
+            try
+            {
+                returndbmlState objreturndbmlState = objServiceClient.StateGetAll();
+                if (objreturndbmlState != null && objreturndbmlState.objdbmlStatus.StatusId == 1)
+                {
+                    foreach (var itm in objreturndbmlState.objdbmlState)
+                    {
+                        Items.Add(new SelectListItem { Text = itm.State1, Value = itm.StateId.ToString(), Selected = false });
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            return Items;
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult LoadDistictByStateId(int intStateId)
+        {
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlDistrict objreturndbmlDistrict = new returndbmlDistrict();
+            try
+            {
+                objreturndbmlDistrict = objServiceClient.DistrictGetByStateId(intStateId);
+                if (objreturndbmlDistrict != null && objreturndbmlDistrict.objdbmlStatus.StatusId == 1)
+                {
+                    intStatusId = 1;
+                }
+                else
+                {
+                    strStatus = objreturndbmlDistrict.objdbmlStatus.Status;
+                }                
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, DistrictList = objreturndbmlDistrict.objdbmlDistrict }, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
         #region Common
         public ActionResult RedirectToActionByStatusId(int intTabStatusId)
         {

@@ -1467,6 +1467,9 @@ namespace PGMSFront.WCFPGMSRef {
         private string ZZDistrictField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZLoginIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ZZStateField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -1761,6 +1764,19 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((object.ReferenceEquals(this.ZZDistrictField, value) != true)) {
                     this.ZZDistrictField = value;
                     this.RaisePropertyChanged("ZZDistrict");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZLoginId {
+            get {
+                return this.ZZLoginIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZLoginIdField, value) != true)) {
+                    this.ZZLoginIdField = value;
+                    this.RaisePropertyChanged("ZZLoginId");
                 }
             }
         }
@@ -2072,6 +2088,346 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((object.ReferenceEquals(this.ZZCompanyNameField, value) != true)) {
                     this.ZZCompanyNameField = value;
                     this.RaisePropertyChanged("ZZCompanyName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlState", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
+    [System.SerializableAttribute()]
+    public partial class returndbmlState : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlState> objdbmlStateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatusField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlState> objdbmlState {
+            get {
+                return this.objdbmlStateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlStateField, value) != true)) {
+                    this.objdbmlStateField = value;
+                    this.RaisePropertyChanged("objdbmlState");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatus {
+            get {
+                return this.objdbmlStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlStatusField, value) != true)) {
+                    this.objdbmlStatusField = value;
+                    this.RaisePropertyChanged("objdbmlStatus");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="dbmlState", Namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate")]
+    [System.SerializableAttribute()]
+    public partial class dbmlState : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ClubedStateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string State1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime UpdateDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UpdateIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ClubedStateId {
+            get {
+                return this.ClubedStateIdField;
+            }
+            set {
+                if ((this.ClubedStateIdField.Equals(value) != true)) {
+                    this.ClubedStateIdField = value;
+                    this.RaisePropertyChanged("ClubedStateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string State1 {
+            get {
+                return this.State1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.State1Field, value) != true)) {
+                    this.State1Field = value;
+                    this.RaisePropertyChanged("State1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StateId {
+            get {
+                return this.StateIdField;
+            }
+            set {
+                if ((this.StateIdField.Equals(value) != true)) {
+                    this.StateIdField = value;
+                    this.RaisePropertyChanged("StateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime UpdateDate {
+            get {
+                return this.UpdateDateField;
+            }
+            set {
+                if ((this.UpdateDateField.Equals(value) != true)) {
+                    this.UpdateDateField = value;
+                    this.RaisePropertyChanged("UpdateDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UpdateId {
+            get {
+                return this.UpdateIdField;
+            }
+            set {
+                if ((this.UpdateIdField.Equals(value) != true)) {
+                    this.UpdateIdField = value;
+                    this.RaisePropertyChanged("UpdateId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlDistrict", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
+    [System.SerializableAttribute()]
+    public partial class returndbmlDistrict : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlDistrict> objdbmlDistrictField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatusField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlDistrict> objdbmlDistrict {
+            get {
+                return this.objdbmlDistrictField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlDistrictField, value) != true)) {
+                    this.objdbmlDistrictField = value;
+                    this.RaisePropertyChanged("objdbmlDistrict");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatus {
+            get {
+                return this.objdbmlStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlStatusField, value) != true)) {
+                    this.objdbmlStatusField = value;
+                    this.RaisePropertyChanged("objdbmlStatus");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="dbmlDistrict", Namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate")]
+    [System.SerializableAttribute()]
+    public partial class dbmlDistrict : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DistrictField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DistrictIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime UpdateDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UpdateIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string District {
+            get {
+                return this.DistrictField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DistrictField, value) != true)) {
+                    this.DistrictField = value;
+                    this.RaisePropertyChanged("District");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DistrictId {
+            get {
+                return this.DistrictIdField;
+            }
+            set {
+                if ((this.DistrictIdField.Equals(value) != true)) {
+                    this.DistrictIdField = value;
+                    this.RaisePropertyChanged("DistrictId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StateId {
+            get {
+                return this.StateIdField;
+            }
+            set {
+                if ((this.StateIdField.Equals(value) != true)) {
+                    this.StateIdField = value;
+                    this.RaisePropertyChanged("StateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime UpdateDate {
+            get {
+                return this.UpdateDateField;
+            }
+            set {
+                if ((this.UpdateDateField.Equals(value) != true)) {
+                    this.UpdateDateField = value;
+                    this.RaisePropertyChanged("UpdateDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UpdateId {
+            get {
+                return this.UpdateIdField;
+            }
+            set {
+                if ((this.UpdateIdField.Equals(value) != true)) {
+                    this.UpdateIdField = value;
+                    this.RaisePropertyChanged("UpdateId");
                 }
             }
         }
@@ -9864,6 +10220,12 @@ namespace PGMSFront.WCFPGMSRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserViewFrontGetByDepartmentId", ReplyAction="http://tempuri.org/IService1/UserViewFrontGetByDepartmentIdResponse")]
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UserViewFrontGetByDepartmentIdAsync(int intDepartmentId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserViewGetByLoginIdUserId", ReplyAction="http://tempuri.org/IService1/UserViewGetByLoginIdUserIdResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlUser UserViewGetByLoginIdUserId(string strLoginId, int intUserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserViewGetByLoginIdUserId", ReplyAction="http://tempuri.org/IService1/UserViewGetByLoginIdUserIdResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UserViewGetByLoginIdUserIdAsync(string strLoginId, int intUserId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/PropertiesGetAll", ReplyAction="http://tempuri.org/IService1/PropertiesGetAllResponse")]
         PGMSFront.WCFPGMSRef.returndbmlProperty PropertiesGetAll();
         
@@ -9875,6 +10237,12 @@ namespace PGMSFront.WCFPGMSRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/OptionListGetByPropertyId", ReplyAction="http://tempuri.org/IService1/OptionListGetByPropertyIdResponse")]
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlOptionList> OptionListGetByPropertyIdAsync(int intPropertyId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/PropertiesGetByPropertyTypeId", ReplyAction="http://tempuri.org/IService1/PropertiesGetByPropertyTypeIdResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlProperty PropertiesGetByPropertyTypeId(int intPropertyTypeId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/PropertiesGetByPropertyTypeId", ReplyAction="http://tempuri.org/IService1/PropertiesGetByPropertyTypeIdResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlProperty> PropertiesGetByPropertyTypeIdAsync(int intPropertyTypeId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CustomerMasterInsertFront", ReplyAction="http://tempuri.org/IService1/CustomerMasterInsertFrontResponse")]
         PGMSFront.WCFPGMSRef.returndbmlCompanyView CustomerMasterInsertFront(PGMSFront.WCFPGMSRef.returndbmlCompanyView objreturndbmlCompanyView);
@@ -9929,6 +10297,24 @@ namespace PGMSFront.WCFPGMSRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterId", ReplyAction="http://tempuri.org/IService1/CompanyDepartmentGetByCustomerMasterIdResponse")]
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment> CompanyDepartmentGetByCustomerMasterIdAsync(int intCustomerMasterId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/StateGetAll", ReplyAction="http://tempuri.org/IService1/StateGetAllResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlState StateGetAll();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/StateGetAll", ReplyAction="http://tempuri.org/IService1/StateGetAllResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlState> StateGetAllAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DistrictGetByStateId", ReplyAction="http://tempuri.org/IService1/DistrictGetByStateIdResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlDistrict DistrictGetByStateId(int intStateId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DistrictGetByStateId", ReplyAction="http://tempuri.org/IService1/DistrictGetByStateIdResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDistrict> DistrictGetByStateIdAsync(int intStateId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DistrictGetAll", ReplyAction="http://tempuri.org/IService1/DistrictGetAllResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlDistrict DistrictGetAll();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DistrictGetAll", ReplyAction="http://tempuri.org/IService1/DistrictGetAllResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDistrict> DistrictGetAllAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BookingInsert", ReplyAction="http://tempuri.org/IService1/BookingInsertResponse")]
         PGMSFront.WCFPGMSRef.returndbmlBooking BookingInsert(PGMSFront.WCFPGMSRef.returndbmlBooking objreturndbmlBooking);
@@ -10210,6 +10596,14 @@ namespace PGMSFront.WCFPGMSRef {
             return base.Channel.UserViewFrontGetByDepartmentIdAsync(intDepartmentId);
         }
         
+        public PGMSFront.WCFPGMSRef.returndbmlUser UserViewGetByLoginIdUserId(string strLoginId, int intUserId) {
+            return base.Channel.UserViewGetByLoginIdUserId(strLoginId, intUserId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UserViewGetByLoginIdUserIdAsync(string strLoginId, int intUserId) {
+            return base.Channel.UserViewGetByLoginIdUserIdAsync(strLoginId, intUserId);
+        }
+        
         public PGMSFront.WCFPGMSRef.returndbmlProperty PropertiesGetAll() {
             return base.Channel.PropertiesGetAll();
         }
@@ -10224,6 +10618,14 @@ namespace PGMSFront.WCFPGMSRef {
         
         public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlOptionList> OptionListGetByPropertyIdAsync(int intPropertyId) {
             return base.Channel.OptionListGetByPropertyIdAsync(intPropertyId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlProperty PropertiesGetByPropertyTypeId(int intPropertyTypeId) {
+            return base.Channel.PropertiesGetByPropertyTypeId(intPropertyTypeId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlProperty> PropertiesGetByPropertyTypeIdAsync(int intPropertyTypeId) {
+            return base.Channel.PropertiesGetByPropertyTypeIdAsync(intPropertyTypeId);
         }
         
         public PGMSFront.WCFPGMSRef.returndbmlCompanyView CustomerMasterInsertFront(PGMSFront.WCFPGMSRef.returndbmlCompanyView objreturndbmlCompanyView) {
@@ -10296,6 +10698,30 @@ namespace PGMSFront.WCFPGMSRef {
         
         public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCompanyDepartment> CompanyDepartmentGetByCustomerMasterIdAsync(int intCustomerMasterId) {
             return base.Channel.CompanyDepartmentGetByCustomerMasterIdAsync(intCustomerMasterId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlState StateGetAll() {
+            return base.Channel.StateGetAll();
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlState> StateGetAllAsync() {
+            return base.Channel.StateGetAllAsync();
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlDistrict DistrictGetByStateId(int intStateId) {
+            return base.Channel.DistrictGetByStateId(intStateId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDistrict> DistrictGetByStateIdAsync(int intStateId) {
+            return base.Channel.DistrictGetByStateIdAsync(intStateId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlDistrict DistrictGetAll() {
+            return base.Channel.DistrictGetAll();
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDistrict> DistrictGetAllAsync() {
+            return base.Channel.DistrictGetAllAsync();
         }
         
         public PGMSFront.WCFPGMSRef.returndbmlBooking BookingInsert(PGMSFront.WCFPGMSRef.returndbmlBooking objreturndbmlBooking) {

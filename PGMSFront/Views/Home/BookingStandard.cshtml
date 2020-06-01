@@ -148,7 +148,9 @@
     }
 
     function BookingGetByBookingId(BookingId) {
-        location.href = "@Url.Action("BookingGetByBookingId", "Home", new { id = UrlParameter.Optional })" + "?" + "dfs,ktgbdas,hdffg.khdfrhdduihdgtymdmpxjidgndlxcmhdgmdpldjn,dlkchgj,d,.dkjdhhdk,dmdhhnd,dkmdndhnndmdmjmd" + "&" + "intBookingId=" + BookingId
+        debugger;
+         var dddd = "@Url.Action("BookingGetByBookingId", "Home", new { id = UrlParameter.Optional })" + "?" + "dfs,ktgbdas,hdffg.khdfrhdduihdgtymdmpxjidgndlxcmhdgmdpldjn,dlkchgj,d,.dkjdhhdk,dmdhhnd,dkmdndhnndmdmjmd" + "&" + "intBookingId=" + BookingId;
+        location.href = "@Url.Action("BookingGetByBookingId", "Home", new { id = UrlParameter.Optional })" + "?" + "dfs,ktgbdas,hdffg.khdfrhdduihdgtymdmpxjidgndlxcmhdgmdpldjn,dlkchgj,d,.dkjdhhdk,dmdhhnd,dkmdndhnndmdmjmd" + "&" + "intBookingId=" + BookingId;
 
         //window.location.href = '@Url.Action("BookingGetByBookingId", "Home")?intBookingId='+BookingId+'';
     }
