@@ -104,6 +104,8 @@ namespace PGMSFront.Controllers
                             strErrMSG = objreturndbmlUser.objdbmlStatus.Status;
                         else if (objreturndbmlUser.objdbmlStatus.StatusId == 10)
                             strErrMSG = "Invalid Password";
+                        else if (objreturndbmlUser.objdbmlStatus.StatusId == 20)
+                            strErrMSG = objreturndbmlUser.objdbmlStatus.Status;
 
                         // model.Message = strErrMSG;
                         ViewData["MSG"] = strErrMSG;
