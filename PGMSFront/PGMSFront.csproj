@@ -443,6 +443,9 @@
     <Content Include="Templates\js\popper.js" />
     <Content Include="Templates\js\stellar.js" />
     <Content Include="Templates\js\theme.js" />
+    <Content Include="Templates\select2\Code.txt" />
+    <Content Include="Templates\select2\css\select2.min.css" />
+    <Content Include="Templates\select2\js\select2.min.js" />
     <Content Include="Templates\Tracks\Control Tower.jpg" />
     <Content Include="Templates\Tracks\Damper Test Rig.JPG" />
     <Content Include="Templates\Tracks\Elastomer test rig.JPG" />
