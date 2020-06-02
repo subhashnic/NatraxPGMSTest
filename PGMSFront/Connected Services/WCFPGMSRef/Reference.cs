@@ -8287,6 +8287,256 @@ namespace PGMSFront.WCFPGMSRef {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlDashBoardDocumentViewFront", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
+    [System.SerializableAttribute()]
+    public partial class returndbmlDashBoardDocumentViewFront : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlDashBoardDocumentViewFront> objdbmlDashBoardDocumentViewFrontField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatusField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlDashBoardDocumentViewFront> objdbmlDashBoardDocumentViewFront {
+            get {
+                return this.objdbmlDashBoardDocumentViewFrontField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlDashBoardDocumentViewFrontField, value) != true)) {
+                    this.objdbmlDashBoardDocumentViewFrontField = value;
+                    this.RaisePropertyChanged("objdbmlDashBoardDocumentViewFront");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatus {
+            get {
+                return this.objdbmlStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlStatusField, value) != true)) {
+                    this.objdbmlStatusField = value;
+                    this.RaisePropertyChanged("objdbmlStatus");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="dbmlDashBoardDocumentViewFront", Namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate")]
+    [System.SerializableAttribute()]
+    public partial class dbmlDashBoardDocumentViewFront : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int BPIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BPNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CompanyIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CompanyNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DepartmentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DocDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DocIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DocNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZStatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZWorkFlowColorField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BPId {
+            get {
+                return this.BPIdField;
+            }
+            set {
+                if ((this.BPIdField.Equals(value) != true)) {
+                    this.BPIdField = value;
+                    this.RaisePropertyChanged("BPId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BPName {
+            get {
+                return this.BPNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BPNameField, value) != true)) {
+                    this.BPNameField = value;
+                    this.RaisePropertyChanged("BPName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CompanyId {
+            get {
+                return this.CompanyIdField;
+            }
+            set {
+                if ((this.CompanyIdField.Equals(value) != true)) {
+                    this.CompanyIdField = value;
+                    this.RaisePropertyChanged("CompanyId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CompanyName {
+            get {
+                return this.CompanyNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CompanyNameField, value) != true)) {
+                    this.CompanyNameField = value;
+                    this.RaisePropertyChanged("CompanyName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Department {
+            get {
+                return this.DepartmentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DepartmentField, value) != true)) {
+                    this.DepartmentField = value;
+                    this.RaisePropertyChanged("Department");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DocDate {
+            get {
+                return this.DocDateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DocDateField, value) != true)) {
+                    this.DocDateField = value;
+                    this.RaisePropertyChanged("DocDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DocId {
+            get {
+                return this.DocIdField;
+            }
+            set {
+                if ((this.DocIdField.Equals(value) != true)) {
+                    this.DocIdField = value;
+                    this.RaisePropertyChanged("DocId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DocNo {
+            get {
+                return this.DocNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DocNoField, value) != true)) {
+                    this.DocNoField = value;
+                    this.RaisePropertyChanged("DocNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZStatus {
+            get {
+                return this.ZZStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZStatusField, value) != true)) {
+                    this.ZZStatusField = value;
+                    this.RaisePropertyChanged("ZZStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZWorkFlowColor {
+            get {
+                return this.ZZWorkFlowColorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZWorkFlowColorField, value) != true)) {
+                    this.ZZWorkFlowColorField = value;
+                    this.RaisePropertyChanged("ZZWorkFlowColor");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlListOfVehicleComponent", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
     [System.SerializableAttribute()]
     public partial class returndbmlListOfVehicleComponent : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -10394,6 +10644,26 @@ namespace PGMSFront.WCFPGMSRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateServiceDateFrontByBookingIdDayDates", ReplyAction="http://tempuri.org/IService1/UpdateServiceDateFrontByBookingIdDayDatesResponse")]
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBooking> UpdateServiceDateFrontByBookingIdDayDatesAsync(PGMSFront.WCFPGMSRef.returndbmlServiceDateViewFront objreturndbmlServiceDateViewFront);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ToDoBookingSearchViewGetByCompanyIdFromDateToDateFro" +
+            "nt", ReplyAction="http://tempuri.org/IService1/ToDoBookingSearchViewGetByCompanyIdFromDateToDateFro" +
+            "ntResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlBookingSearchView ToDoBookingSearchViewGetByCompanyIdFromDateToDateFront(int intCompanyId, int intUserId, System.DateTime dtFromDate, System.DateTime dtToDate, int intBPId, int intStatusPropId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ToDoBookingSearchViewGetByCompanyIdFromDateToDateFro" +
+            "nt", ReplyAction="http://tempuri.org/IService1/ToDoBookingSearchViewGetByCompanyIdFromDateToDateFro" +
+            "ntResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBookingSearchView> ToDoBookingSearchViewGetByCompanyIdFromDateToDateFrontAsync(int intCompanyId, int intUserId, System.DateTime dtFromDate, System.DateTime dtToDate, int intBPId, int intStatusPropId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId" +
+            "", ReplyAction="http://tempuri.org/IService1/DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId" +
+            "Response")]
+        PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(int intBPId, int intWorkflowId, int intStatusPropId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId" +
+            "", ReplyAction="http://tempuri.org/IService1/DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId" +
+            "Response")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront> DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyIdAsync(int intBPId, int intWorkflowId, int intStatusPropId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ListOfVehicleComponentInsert", ReplyAction="http://tempuri.org/IService1/ListOfVehicleComponentInsertResponse")]
         PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent ListOfVehicleComponentInsert(PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent objreturndbmlListOfVehicleComponent);
         
@@ -10818,6 +11088,22 @@ namespace PGMSFront.WCFPGMSRef {
         
         public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBooking> UpdateServiceDateFrontByBookingIdDayDatesAsync(PGMSFront.WCFPGMSRef.returndbmlServiceDateViewFront objreturndbmlServiceDateViewFront) {
             return base.Channel.UpdateServiceDateFrontByBookingIdDayDatesAsync(objreturndbmlServiceDateViewFront);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlBookingSearchView ToDoBookingSearchViewGetByCompanyIdFromDateToDateFront(int intCompanyId, int intUserId, System.DateTime dtFromDate, System.DateTime dtToDate, int intBPId, int intStatusPropId) {
+            return base.Channel.ToDoBookingSearchViewGetByCompanyIdFromDateToDateFront(intCompanyId, intUserId, dtFromDate, dtToDate, intBPId, intStatusPropId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlBookingSearchView> ToDoBookingSearchViewGetByCompanyIdFromDateToDateFrontAsync(int intCompanyId, int intUserId, System.DateTime dtFromDate, System.DateTime dtToDate, int intBPId, int intStatusPropId) {
+            return base.Channel.ToDoBookingSearchViewGetByCompanyIdFromDateToDateFrontAsync(intCompanyId, intUserId, dtFromDate, dtToDate, intBPId, intStatusPropId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(int intBPId, int intWorkflowId, int intStatusPropId) {
+            return base.Channel.DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(intBPId, intWorkflowId, intStatusPropId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront> DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyIdAsync(int intBPId, int intWorkflowId, int intStatusPropId) {
+            return base.Channel.DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyIdAsync(intBPId, intWorkflowId, intStatusPropId);
         }
         
         public PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent ListOfVehicleComponentInsert(PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent objreturndbmlListOfVehicleComponent) {

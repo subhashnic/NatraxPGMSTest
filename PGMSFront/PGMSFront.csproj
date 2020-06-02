@@ -209,6 +209,9 @@
     <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlState.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\WCFPGMSRef\Service1.disco" />
     <None Include="Connected Services\WCFPGMSRef\configuration91.svcinfo" />
     <None Include="Connected Services\WCFPGMSRef\configuration.svcinfo" />

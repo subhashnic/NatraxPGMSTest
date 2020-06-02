@@ -629,6 +629,27 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlServiceDateViewFront" nillable="true" type="tns:dbmlServiceDateViewFront" />
+  <xs:complexType name="ArrayOfdbmlDashBoardDocumentViewFront">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlDashBoardDocumentViewFront" nillable="true" type="tns:dbmlDashBoardDocumentViewFront" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdbmlDashBoardDocumentViewFront" nillable="true" type="tns:ArrayOfdbmlDashBoardDocumentViewFront" />
+  <xs:complexType name="dbmlDashBoardDocumentViewFront">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BPId" type="xs:int" />
+      <xs:element minOccurs="0" name="BPName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Department" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocId" type="xs:int" />
+      <xs:element minOccurs="0" name="DocNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZWorkFlowColor" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dbmlDashBoardDocumentViewFront" nillable="true" type="tns:dbmlDashBoardDocumentViewFront" />
   <xs:complexType name="ArrayOfdbmlServicesView">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlServicesView" nillable="true" type="tns:dbmlServicesView" />
