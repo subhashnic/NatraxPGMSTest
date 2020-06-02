@@ -216,10 +216,11 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-12">
-                                                            <div class="form-group bmd-form-group">
+                                                            <div class="form-group bmd-form-group" style="text-align:center">
                                                                 <label for="examplePass" class="bmd-label-floating"></label>
-                                                                <a typr="button" id="btnReg" onclick="CompanyRegistrationSave()" class="btn btn-primary btn-round mt-4 pull-right" style="        color: #FFF;">Register</a>
-                                                                @*<a href="#" class="btn btn-primary btn-round mt-4 pull-right">Cancel</a>*@
+                                                                <a id="btnReg" onclick="CompanyRegistrationSave()" class="btn btn-primary btn-round mt-4" style="color: #FFF;text-align:center">Register</a>
+                                                                <label id="lblRegisterMSG" style="color:black;text-align:center"></label>
+                                                                <a href="@Url.Action("Index", "Home")" id="btnCancel" class="btn btn-primary btn-round mt-4" style="color: #FFF;text-align:center">Cancel</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -556,8 +557,7 @@
 
     ///////////////////////////// Registration Save  //////////////////////////////////////////////////////
     function CompanyRegistrationSave() {
-        try {
-
+        try { 
             var strMSG = '';
            
             var varCity = $("#ddlCity").val();
@@ -624,8 +624,11 @@
                     //contentType: "application/json; charset=utf-8",
                     success: function (data) {
                        LoaderHide();
-                        if (data.StatusId != "99" && data.StatusId != "-99") {
-                            alert("Your company registration detail saved successfully.Email verification link mailed to your eMailId '" + $("#txtEMailId").val().trim()+"'. Please click on link to verify your eMail.");
+                        if (data.StatusId != "99" && data.StatusId != "-99") {   
+                            $("#btnReg").hide();
+                            $("#btnCancel").text("BACK");
+                            $("#lblRegisterMSG").text(data.Status);
+                            alert(data.Status);
                         }
                         else {
                             $("#btnReg").show();

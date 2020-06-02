@@ -99,7 +99,7 @@ namespace PGMSFront.Controllers
                 }
                 else
                 {
-                    strStatus = "LoginId already exist";
+                    strStatus = "Login ID "+ strLoginId + " is already taken by some other user";
                 }
             }
             catch (Exception ex)
@@ -140,7 +140,7 @@ namespace PGMSFront.Controllers
                 if (objreturndbmlCompanyView != null && objreturndbmlCompanyView.objdbmlStatus.StatusId == 1)
                 {                    
                     intStatusId = 1;
-                    strStatus = objreturndbmlCompanyView.objdbmlStatus.Status;
+                    strStatus = "Company registration process for "+ model .CompanyName+ " shall be initiated upon verification of your email-ID.\nVerification link has been sent to '" + model.Email + "'.\nPlease click on link to verify and create password for Login ID - " + model.ZZLoginId + ".";
                 }
                 else
                 {
