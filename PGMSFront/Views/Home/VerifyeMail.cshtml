@@ -89,44 +89,45 @@
                                             <div class="col-md-12 ml-auto">
                                                 <form>
 
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group bmd-form-group">
-                                                                <label for="exampleEmail" class="bmd-label-floating">Company</label>
-                                                                <input type="text" style="color:black" disabled="disabled" value="@Model.UserName" class="form-control">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group bmd-form-group">
+                                                                    <label for="exampleEmail" class="bmd-label-floating">Login Administrator</label>
+                                                                    <input type="text" style="color:black" disabled="disabled" value="@Model.UserName" class="form-control">
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group bmd-form-group">
-                                                                <label for="exampleEmail" class="bmd-label-floating">Login Id</label>
-                                                                <input type="text" style="color:black" disabled="disabled" value="@Model.LoginId" class="form-control">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group bmd-form-group">
+                                                                    <label for="exampleEmail" class="bmd-label-floating">Login Id</label>
+                                                                    <input type="text" style="color:black" disabled="disabled" value="@Model.LoginId" class="form-control">
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group bmd-form-group">
-                                                                <label for="exampleEmail" class="bmd-label-floating">New Password *</label>
-                                                                <input type="password" class="form-control" id="txtPSW">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group bmd-form-group">
+                                                                    <label for="exampleEmail" class="bmd-label-floating">New Password *</label>
+                                                                    <input type="password" class="form-control" id="txtPSW">
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group bmd-form-group">
-                                                                <label for="examplePass" class="bmd-label-floating">Confirm Password *</label>
-                                                                <input type="password" class="form-control" id="txtConfirmPSW">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group bmd-form-group">
+                                                                    <label for="examplePass" class="bmd-label-floating">Confirm Password *</label>
+                                                                    <input type="password" class="form-control" id="txtConfirmPSW">
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group bmd-form-group">
                                                                 <label for="examplePass" class="bmd-label-floating"></label>
                                                                 <a typr="button" style="color: #FFF;text-align:center" id="btnPSW" onclick="CreatePassword()" class="btn btn-primary btn-round mt-4">Submit</a>
+                                                                <a style="text-align:center;display:none" href="@Url.Action("Index", "Home")" id="btnGTLogin" class="btn btn-primary btn-round mt-4">Go to Login Page</a>
                                                                 @*<a href="#" class="btn btn-primary btn-round mt-4 pull-right">Cancel</a>*@
                                                             </div>
                                                         </div>
@@ -437,6 +438,7 @@
                         if (data.StatusId != "99" && data.StatusId != "-99") {
                             alert(data.Status);
                             $("#btnPSW").hide();
+                            $("#btnGTLogin").show();
                         }
                         else {
                             $('#txtPSW').val('');

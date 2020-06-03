@@ -326,7 +326,7 @@
                     <label style="color:black;text-align:center">@ViewData["MSG"]</label>
                     <br />
                     <br />
-                    <button type="button" class="btn btn-fill btn-danger btn-sm" data-dismiss="modal" style="margin-left: 5px; margin-top: 5px;text-align:center">OK</button>
+                    <button type="button" class="btn btn-fill btn-danger btn-sm" id="btnOk" data-dismiss="modal" style="margin-left: 5px; margin-top: 5px;text-align:center">OK</button>
                     <button type="button" class="btn btn-fill btn-danger btn-sm" id="btnResend" onclick="ResendVerifyLink()" style="margin-left: 5px; margin-top: 5px;text-align:center">RESEND</button>
                 </div>
                 @*<div class="modal-footer" >
@@ -430,7 +430,10 @@
                     //contentType: "application/json; charset=utf-8",
                     success: function (data) {
                         $("#btnResend").show();
-                       LoaderHide();
+                        LoaderHide();
+                        if (data.StatusId != "99" && data.StatusId != "-99") {                          
+                            $("#btnOk").click();
+                        }
                         alert(data.Status);
                     },
                     error: function (xhr) {    

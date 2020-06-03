@@ -168,7 +168,8 @@ namespace PGMSFront.Controllers
                     strBody += "<br /><br /><span style='font-weight:bold;font-family:Trebuchet MS;font-style:italic'>Natrax Administrator</span>";
 
                     bool blnSentMail = objClassUserFunctions.SendMailMessage(strFrom, "test@dem0", strTo, strReplyTo, strBcc, strCc, strSubject, strBody, null, "");
-
+                    strStatus = "eMail has been resent successfully";
+                    intStatusId = 1;
                 }
 
             }

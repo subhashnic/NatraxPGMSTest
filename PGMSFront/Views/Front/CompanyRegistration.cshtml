@@ -128,22 +128,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group bmd-form-group">
-                                                            <label for="examplePass" class="bmd-label-floating">Email *</label>
-                                                            <input type="text" class="form-control" id="txtEMailId">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group bmd-form-group">
-                                                            <label for="examplePass" class="bmd-label-floating">
-                                                                Mobile No. *
-                                                            </label>
-                                                            <input type="text" maxlength="12" class="form-control" id="txtMobileNo">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group bmd-form-group">
                                                             <label for="examplePass" class="bmd-label-floating">Address *</label>
@@ -201,7 +185,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group bmd-form-group">
-                                                            <label for="examplePass" class="bmd-label-floating">Administrator Name</label>
+                                                            <label for="examplePass" class="bmd-label-floating">Login Administrator *</label>
                                                             <input type="text" class="form-control" id="txtContactPerson">
                                                         </div>
                                                     </div>
@@ -210,7 +194,23 @@
                                                             <label for="examplePass" class="bmd-label-floating">
                                                                 Login Id
                                                             </label>
-                                                            <input type="text" onchange="CheckLoginIdAvailability()" class="form-control" id="txtLoginId">
+                                                            <input type="text" class="form-control" id="txtLoginId">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group bmd-form-group">
+                                                            <label for="examplePass" class="bmd-label-floating">Email *</label>
+                                                            <input type="text" class="form-control" id="txtEMailId">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group bmd-form-group">
+                                                            <label for="examplePass" class="bmd-label-floating">
+                                                                Mobile No. *
+                                                            </label>
+                                                            <input type="text" maxlength="12" class="form-control" id="txtMobileNo">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -544,7 +544,9 @@
 
      ///////////////////////////// Check LoginId  //////////////////////////////////////////////////////
     function CheckLoginIdAvailability() {
+        var varrtFlag = 0;
         try {
+
             if ($("#txtLoginId").val().trim() == "") {
                 alert("Please enter your Login Id");
             }
@@ -556,15 +558,15 @@
                     url: '@Url.Action("CheckLoginIdAvailability", "Front")',
                     type: 'POST',
                     dataType: 'json',
-                    async: true,
+                    async: false,
                     data: dataWithAntiforgeryToken,
                     success: function (data) {
                         LoaderHide();
                         if (data.StatusId != "99" && data.StatusId != "-99") {
-
+                            varrtFlag = 1;
                         }
                         else {
-                            $("#txtLoginId").val("");
+                            //$("#txtLoginId").val("");
                             alert(data.Status);
                         }
                     },
@@ -581,7 +583,7 @@
             LoaderHide();
             alert(e.message);
             }
-
+        return varrtFlag;
     }
 
     ///////////////////////////// Registration Save  //////////////////////////////////////////////////////
@@ -596,33 +598,37 @@
             if ($("#txtAddress").val().trim() == "") {
                 strMSG = strMSG + 'Address \n</br>'
             }
+            if ($("#txtPincode").val().trim() == "") {
+                strMSG = strMSG + 'Pincode \n</br>'
+            }  
             if ($("#ddlState").val() == null || $("#ddlState").val()==undefined || parseInt($("#ddlState").val()) ==0) {
                 strMSG = strMSG + 'State \n</br>'
             }
             if (varCity == null || varCity==undefined || parseInt(varCity) == 0) {
                 strMSG = strMSG + 'District \n</br>'
+            }      
+            if ($("#txtContactPerson").val().trim() == "") {
+                strMSG = strMSG + 'Login Administrator \n</br>'
             }
-            if ($("#txtPincode").val().trim() == "") {
-                strMSG = strMSG + 'Pincode \n</br>'
+            if ($("#txtLoginId").val().trim() == "") {
+                strMSG = strMSG + 'Login Id \n</br>'
             }
             if ($("#txtEMailId").val().trim() == "") {
                 strMSG = strMSG + 'EMail \n</br>'
             }
             if ($("#txtMobileNo").val().trim() == "") {
-                strMSG = strMSG + 'Contact No. \n</br>'
-            }
-            if ($("input[name='rdoKnowAbout']:checked").val()==undefined || $("input[name='rdoKnowAbout']:checked").val() == "") {
+                strMSG = strMSG + 'Mobile No. \n</br>'
+            }  
+            if ($("input[name='rdoKnowAbout']:checked").val() == undefined || $("input[name='rdoKnowAbout']:checked").val() == "") {
                 strMSG = strMSG + 'Know about NATRAX \n</br>'
             }
-            if ($("#txtLoginId").val().trim() == "") {
-                strMSG = strMSG + 'Login Id \n</br>'
-            }
+
 
             if (strMSG != '') {
                 alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
                 return false;
             }
-            else {
+            else if (CheckLoginIdAvailability()==1) {
                 var model = {};
 
                 model.CustomerMasterId = -1;
