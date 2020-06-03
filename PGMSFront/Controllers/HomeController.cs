@@ -180,8 +180,22 @@ namespace PGMSFront.Controllers
             return Json(new { Status = strStatus, StatusId = intStatusId }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult ForgotPassword()
+        {
+            LoginModel model = new LoginModel();
+            try
+            {
+               
+            }
+            catch
+            {
+            }
+
+            return View(model);
+        }
+
         [ValidateAntiForgeryToken]
-        public ActionResult ForgotPassword(dbmlUserView model)
+        public ActionResult ForgotPasswordReset(dbmlUserView model)
         {
             int intStatusId = 99;
             string strStatus = "Invalid";
