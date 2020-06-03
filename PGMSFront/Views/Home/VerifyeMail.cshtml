@@ -86,14 +86,13 @@
                                     </h2>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="card-body">
-                                                <div class="col-md-12 ml-auto">
-                                                    <form>
+                                            <div class="col-md-12 ml-auto">
+                                                <form>
 
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group bmd-form-group">
-                                                                    <label for="exampleEmail" class="bmd-label-floating">Login Administrator</label>
+                                                                    <label for="exampleEmail" class="bmd-label-floating">Company</label>
                                                                     <input type="text" style="color:black" disabled="disabled" value="@Model.UserName" class="form-control">
                                                                 </div>
                                                             </div>
@@ -123,18 +122,17 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group bmd-form-group">
-                                                                    <label for="examplePass" class="bmd-label-floating"></label>
-                                                                    <a typr="button" style="color: #FFF;text-align:center" id="btnPSW" onclick="CreatePassword()" class="btn btn-primary btn-round mt-4" >Submit</a>
-                                                                    @*<a href="#" class="btn btn-primary btn-round mt-4 pull-right">Cancel</a>*@
-                                                                </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group bmd-form-group">
+                                                                <label for="examplePass" class="bmd-label-floating"></label>
+                                                                <a typr="button" style="color: #FFF;text-align:center" id="btnPSW" onclick="CreatePassword()" class="btn btn-primary btn-round mt-4">Submit</a>
+                                                                @*<a href="#" class="btn btn-primary btn-round mt-4 pull-right">Cancel</a>*@
                                                             </div>
                                                         </div>
+                                                    </div>
 
-                                                    </form>
-                                                </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -159,7 +157,6 @@
                     </div>
                 }
             </div>
-
         </div>
     </div>
     <!--   Core JS Files   -->
@@ -412,7 +409,7 @@
                 alert("Please enter data for Mandatory fields  \n</br>" + strMSG);
                 return false;
             }
-            else {               
+            else {
                 var key = CryptoJS.enc.Utf8.parse('A51f7e2h2j58r2d5');
                 var iv = CryptoJS.enc.Utf8.parse('A51f7e2h2j58r2d5');
 
@@ -421,11 +418,11 @@
 
                 $('#txtPSW').val(encryptedpassword);
                 $('#txtConfirmPSW').val(encryptedpassword);
-                var model = {};               
-                model.PassWord = $('#txtPSW').val();                
-               
+                var model = {};
+                model.PassWord = $('#txtPSW').val();
+
                 $("#btnPSW").hide();
-                LoaderShow();              
+                LoaderShow();
                 var data = { 'model': model };
                 var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                 $.ajax({
@@ -438,7 +435,7 @@
                     success: function (data) {
                        LoaderHide();
                         if (data.StatusId != "99" && data.StatusId != "-99") {
-                            alert(data.Status);                            
+                            alert(data.Status);
                             $("#btnPSW").hide();
                         }
                         else {
@@ -494,6 +491,6 @@
         catch (e) {
 
         }
-    }   
+    }
 
 </script>

@@ -19,6 +19,29 @@ function alert(msg) {
     });
 }
 
+function alertSuccess(msg) {
+    $.confirm({
+        title: 'Success!',
+        content: msg,
+        icon: 'fa fa-check',
+        closeIcon: true,
+        animation: 'zoom',
+        animationBounce: 2,
+        closeAnimation: 'scale',
+        type: 'green',
+        autoClose: 'MyFunction|10000',
+        escapeKey: 'MyFunction',
+        buttons: {
+            MyFunction: {
+                text: 'Ok',
+                action: function () {
+                    //$.alert('Deleted the user!');
+                }
+            }
+        }
+    });
+}
+
 /////////////////////// Loader Show & Hide Start ////////////////////////////////
 function LoaderShow() {
     waitingDialog.show('', {

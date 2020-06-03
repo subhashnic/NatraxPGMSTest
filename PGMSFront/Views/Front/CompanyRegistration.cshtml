@@ -23,41 +23,68 @@
     <link href="~/Templates/select2/css/select2.min.css" rel="stylesheet" />
     <link href="~/Templates/assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
     <style>
-    .register-page .card-signup {
-        margin-top: 0;
-        margin-bottom: 50px;
-        padding: 10px 0px;
-    }
+        .register-page .card-signup {
+            margin-top: 0;
+            margin-bottom: 0;
+            padding: 10px 0px;
+        }
 
-    .form-control {
-        height: 30px !important;
-    }
+        .form-control {
+            height: 30px !important;
+        }
 
-    .off-canvas-sidebar .wrapper-full-page .page-header {
-        padding: 5vh 0 !important;
-    }
+        .off-canvas-sidebar .wrapper-full-page .page-header {
+            padding: 5vh 0 !important;
+        }
 
-    .register-page .card-signup .form-check {
-        margin-top: 20px;
-        margin-bottom: 0;
-    }
+        .register-page .card-signup .form-check {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
 
-    .card-signup .form-check {
-        padding-top: 10px;
-    }
+        .card-signup .form-check {
+            padding-top: 10px;
+        }
 
-    .form-check-label {
-        padding-top: 2px;
-    }
+        .form-check-label {
+            padding-top: 2px;
+        }
 
-    .select2-container--default .select2-selection--single {
-        background-color: #fff;
-        border: none;
-        border-bottom: 1px solid #aaa;
-        border-radius: 0px;
-    }
+        .select2-container--default .select2-selection--single {
+            background-color: #fff;
+            border: none;
+            border-bottom: 1px solid #aaa;
+            border-radius: 0px;
+        }
 
-  </style>
+        .register-page .card-signup .form-group {
+            margin: 16px 0 0 7px;
+            padding-bottom: 0;
+        }
+
+        .card-signup .card-header {
+            margin-left: 0;
+            margin-right: 0;
+            margin-top: 0px;
+            padding: 0px 0;
+            margin-bottom: 0px;
+            background: #115a86;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #3c4858;
+            line-height: 28px;
+            font-weight: 400;
+        }
+
+        .select2-container .select2-selection--single .select2-selection__rendered {
+            padding-left: 0px;
+        }
+
+        .select2-results__option {
+            padding: 1px 5px 1px 5px;
+        }
+    </style>
 </head>
 
 <body class="off-canvas-sidebar">
@@ -75,157 +102,160 @@
                     @Html.AntiForgeryToken()
                     <div class="row">
                         <div class="col-md-7 ml-auto mr-auto">
-                            <div class="card card-signup" style="        padding: 0px 0px;">
-                                <div class="col-md-6 ml-auto mr-auto" style="        text-align: center;
-        max-width: 56%;">
-                                    <img src="~/Templates/img/logo.png" alt="">
+                            <div class="card card-signup" style="padding: 0px 0px;">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-6 ml-auto mr-auto">
+                                            <img src="~/Templates/img/logo.png" alt="">
+                                        </div>
+                                        <div class="col-md-6 ml-auto mr-auto">
+                                            <h2 class="card-title text-center" style="font-size: 20px; margin-bottom: 0px; margin-top: 18px; color: #FFF; font-weight: 700;">
+                                                Company Registration
+                                            </h2>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h2 class="card-title text-center" style="        font-size: 20px;
-        margin-bottom: 0px;">
-                                    Company Registration
-                                </h2>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="card-body">
-                                            <div class="col-md-12 ml-auto">
-                                                <form>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group bmd-form-group">
-                                                                <label for="exampleEmail" class="bmd-label-floating">Company Name *</label>
-                                                                <input type="text" class="form-control" id="txtCompanyName">
-                                                            </div>
+                                        <div class="col-md-12 ml-auto">
+                                            <form>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group bmd-form-group">
+                                                            <label for="exampleEmail" class="bmd-label-floating">Company Name *</label>
+                                                            <input type="text" class="form-control" id="txtCompanyName">
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group bmd-form-group">
-                                                                <label for="examplePass" class="bmd-label-floating">Address *</label>
-                                                                <textarea class="form-control" id="txtAddress"></textarea>
-                                                            </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group bmd-form-group">
+                                                            <label for="examplePass" class="bmd-label-floating">Email *</label>
+                                                            <input type="text" class="form-control" id="txtEMailId">
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group bmd-form-group" style="        height: 30px;">
-                                                                @*<label for="exampleEmail" class="bmd-label-floating">State *</label>*@
-                                                                <select class="form-control select2" id="ddlState" onchange="LoadDistictByStateId()" style="        margin-top: 7px;">
-                                                                    <option value="0">Select State *</option>
-                                                                    @foreach (var itm in ViewBag.State)
-                                                                    {
-                                                                        <option value='@itm.Value'>@itm.Text</option>
-                                                                    }
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group bmd-form-group" style="        height: 30px;">
-                                                                @*<label for="exampleEmail" class="bmd-label-floating">City *</label>*@
-                                                                <select class="form-control select2" id="ddlCity" style="margin-top: 7px;">
-                                                                    <option value="0">Select City *</option>
-                                                                </select>
-                                                            </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group bmd-form-group">
+                                                            <label for="examplePass" class="bmd-label-floating">
+                                                                Mobile No. *
+                                                            </label>
+                                                            <input type="text" maxlength="12" class="form-control" id="txtMobileNo">
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group bmd-form-group">
-                                                                <label for="examplePass" class="bmd-label-floating">Email *</label>
-                                                                <input type="text" class="form-control" id="txtEMailId">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group bmd-form-group">
-                                                                <label for="examplePass" class="bmd-label-floating">
-                                                                    Mobile No. *
-                                                                </label>
-                                                                <input type="text" maxlength="12"  class="form-control" id="txtMobileNo">
-                                                            </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group bmd-form-group">
+                                                            <label for="examplePass" class="bmd-label-floating">Address *</label>
+                                                            <textarea class="form-control" id="txtAddress"></textarea>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group bmd-form-group">
-                                                                <label for="examplePass" class="bmd-label-floating">Pincode *</label>
-                                                                <input type="text" maxlength="6"  class="form-control" id="txtPincode">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group bmd-form-group">
-                                                                <label for="examplePass" class="bmd-label-floating">PAN No.</label>
-                                                                <input type="text" maxlength="10"  class="form-control" id="txtPANNo">
-                                                            </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group bmd-form-group">
+                                                            <label for="examplePass" class="bmd-label-floating">Pincode *</label>
+                                                            <input type="text" maxlength="6" class="form-control" id="txtPincode">
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group bmd-form-group">
-                                                                <label for="examplePass" class="bmd-label-floating">
-                                                                    GST No.
-                                                                </label>
-                                                                <input type="text" maxlength="18" class="form-control" id="txtGSTNo">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group bmd-form-group">
-                                                                <label for="examplePass" class="bmd-label-floating">Contact Person</label>
-                                                                <input type="text" class="form-control" id="txtContactPerson">
-                                                            </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group bmd-form-group" style="        height: 30px;">
+                                                            @*<label for="exampleEmail" class="bmd-label-floating">State *</label>*@
+                                                            <select class="form-control select2" id="ddlState" onchange="LoadDistictByStateId()" style="        margin-top: 7px;">
+                                                                <option value="0">Select State *</option>
+                                                                @foreach (var itm in ViewBag.State)
+                                                                {
+                                                                    <option value='@itm.Value'>@itm.Text</option>
+                                                                }
+                                                            </select>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group bmd-form-group">
-                                                                <label for="examplePass" class="bmd-label-floating">
-                                                                    How did you come to know about NATRAX
-                                                                </label><br />
-                                                                <div class="form-check">
-                                                                    @foreach (var itm in ViewBag.KnowAbout)
-                                                                    {
-                                                                        <label class="form-check-label">
-                                                                            <input class="form-check-input" type="radio" id='rdo+@itm.Value' name="rdoKnowAbout" value='@itm.Value'> @itm.Text
-                                                                            <span class="circle">
-                                                                                <span class="check"></span>
-                                                                            </span>
-                                                                        </label>
-                                                                    }
+                                                    <div class="col-md-6">
+                                                        <div class="form-group bmd-form-group" style="        height: 30px;">
+                                                            @*<label for="exampleEmail" class="bmd-label-floating">District *</label>*@
+                                                            <select class="form-control select2" id="ddlCity" style="margin-top: 7px;">
+                                                                <option value="0">Select District *</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group bmd-form-group">
+                                                            <label for="examplePass" class="bmd-label-floating">PAN No.</label>
+                                                            <input type="text" maxlength="10" class="form-control" id="txtPANNo">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group bmd-form-group">
+                                                            <label for="examplePass" class="bmd-label-floating">
+                                                                GST No.
+                                                            </label>
+                                                            <input type="text" maxlength="18" class="form-control" id="txtGSTNo">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group bmd-form-group">
+                                                            <label for="examplePass" class="bmd-label-floating">Administrator Name</label>
+                                                            <input type="text" class="form-control" id="txtContactPerson">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group bmd-form-group">
+                                                            <label for="examplePass" class="bmd-label-floating">
+                                                                Login Id
+                                                            </label>
+                                                            <input type="text" onchange="CheckLoginIdAvailability()" class="form-control" id="txtLoginId">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group bmd-form-group">
+                                                            <label for="examplePass" class="bmd-label-floating">
+                                                                How did you come to know about NATRAX
+                                                            </label><br />
+                                                            <div class="form-check">
+                                                                @foreach (var itm in ViewBag.KnowAbout)
+                                                                {
+                                                                    <label class="form-check-label">
+                                                                        <input class="form-check-input" type="radio" id='rdo+@itm.Value' name="rdoKnowAbout" value='@itm.Value'> @itm.Text
+                                                                        <span class="circle">
+                                                                            <span class="check"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                }
+
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group bmd-form-group">
-                                                                <label for="examplePass" class="bmd-label-floating">
-                                                                    References, if any
-                                                                </label>
-                                                                <input type="text" class="form-control" id="txtRef">
-                                                            </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group bmd-form-group">
+                                                            <label for="examplePass" class="bmd-label-floating">
+                                                                References, if any
+                                                            </label>
+                                                            <input type="text" class="form-control" id="txtRef">
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group bmd-form-group">
-                                                                <label for="examplePass" class="bmd-label-floating">
-                                                                    Login Id
-                                                                </label>
-                                                                <input type="text" onchange="CheckLoginIdAvailability()" class="form-control" id="txtLoginId">
-                                                            </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group bmd-form-group" style="text-align:center">
+                                                            <label for="examplePass" class="bmd-label-floating"></label>
+                                                            <a id="btnReg" onclick="CompanyRegistrationSave()" class="btn btn-primary btn-round mt-4" style="color: #FFF;text-align:center">Register</a>
+                                                            <label id="lblRegisterMSG" style="color:black;text-align:center"></label>
+                                                            <a href="@Url.Action("Index", "Home")" id="btnCancel" class="btn btn-primary btn-round mt-4" style="color: #FFF;text-align:center">Cancel</a>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group bmd-form-group" style="text-align:center">
-                                                                <label for="examplePass" class="bmd-label-floating"></label>
-                                                                <a id="btnReg" onclick="CompanyRegistrationSave()" class="btn btn-primary btn-round mt-4" style="color: #FFF;text-align:center">Register</a>
-                                                                <label id="lblRegisterMSG" style="color:black;text-align:center"></label>
-                                                                <a href="@Url.Action("Index", "Home")" id="btnCancel" class="btn btn-primary btn-round mt-4" style="color: #FFF;text-align:center">Cancel</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -482,11 +512,10 @@
                     dataType: 'json',
                     async: true,
                     data: dataWithAntiforgeryToken,
-                    success: function (data) {                       
+                    success: function (data) {
                         LoaderHide();
                         if (data.StatusId != "99" && data.StatusId != "-99") {
-                            var gridData = "<option value='0'>Select City *</option>";
-
+                            var gridData = "<option value='0'>Select District *</option>";
                             for (var i = 0; i < data.DistrictList.length; i++) {
                                 gridData = gridData + "<option value='" + NullHandle(data.DistrictList[i].DistrictId) + "'>" + NullHandle(data.DistrictList[i].District) + "</option>";
                             }
@@ -520,7 +549,7 @@
                 alert("Please enter your Login Id");
             }
             else {
-                LoaderShow();               
+                LoaderShow();
                 var data = { 'strLoginId': $("#txtLoginId").val().trim()};
                 var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                 $.ajax({
@@ -529,7 +558,7 @@
                     dataType: 'json',
                     async: true,
                     data: dataWithAntiforgeryToken,
-                    success: function (data) {                      
+                    success: function (data) {
                         LoaderHide();
                         if (data.StatusId != "99" && data.StatusId != "-99") {
 
@@ -557,9 +586,9 @@
 
     ///////////////////////////// Registration Save  //////////////////////////////////////////////////////
     function CompanyRegistrationSave() {
-        try { 
+        try {
             var strMSG = '';
-           
+
             var varCity = $("#ddlCity").val();
             if ($("#txtCompanyName").val().trim() == "") {
                 strMSG = strMSG + 'Company Name \n</br>'
@@ -571,7 +600,7 @@
                 strMSG = strMSG + 'State \n</br>'
             }
             if (varCity == null || varCity==undefined || parseInt(varCity) == 0) {
-                strMSG = strMSG + 'City \n</br>'
+                strMSG = strMSG + 'District \n</br>'
             }
             if ($("#txtPincode").val().trim() == "") {
                 strMSG = strMSG + 'Pincode \n</br>'
@@ -595,8 +624,8 @@
             }
             else {
                 var model = {};
-              
-                model.CustomerMasterId = -1;               
+
+                model.CustomerMasterId = -1;
                 model.CompanyName = $("#txtCompanyName").val().trim();
                 model.StateId = $("#ddlState").val().trim();
                 model.Address = $("#txtAddress").val();
@@ -624,7 +653,7 @@
                     //contentType: "application/json; charset=utf-8",
                     success: function (data) {
                        LoaderHide();
-                        if (data.StatusId != "99" && data.StatusId != "-99") {   
+                        if (data.StatusId != "99" && data.StatusId != "-99") {
                             $("#btnReg").hide();
                             $("#btnCancel").text("BACK");
                             $("#lblRegisterMSG").text(data.Status);
