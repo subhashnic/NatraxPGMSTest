@@ -10657,12 +10657,12 @@ namespace PGMSFront.WCFPGMSRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId" +
             "", ReplyAction="http://tempuri.org/IService1/DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId" +
             "Response")]
-        PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(int intBPId, int intWorkflowId, int intStatusPropId);
+        PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(int intBPId, int intWorkflowId, string strStatusPropId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId" +
             "", ReplyAction="http://tempuri.org/IService1/DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId" +
             "Response")]
-        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront> DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyIdAsync(int intBPId, int intWorkflowId, int intStatusPropId);
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront> DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyIdAsync(int intBPId, int intWorkflowId, string strStatusPropId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ListOfVehicleComponentInsert", ReplyAction="http://tempuri.org/IService1/ListOfVehicleComponentInsertResponse")]
         PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent ListOfVehicleComponentInsert(PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent objreturndbmlListOfVehicleComponent);
@@ -11098,12 +11098,12 @@ namespace PGMSFront.WCFPGMSRef {
             return base.Channel.ToDoBookingSearchViewGetByCompanyIdFromDateToDateFrontAsync(intCompanyId, intUserId, dtFromDate, dtToDate, intBPId, intStatusPropId);
         }
         
-        public PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(int intBPId, int intWorkflowId, int intStatusPropId) {
-            return base.Channel.DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(intBPId, intWorkflowId, intStatusPropId);
+        public PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(int intBPId, int intWorkflowId, string strStatusPropId) {
+            return base.Channel.DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(intBPId, intWorkflowId, strStatusPropId);
         }
         
-        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront> DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyIdAsync(int intBPId, int intWorkflowId, int intStatusPropId) {
-            return base.Channel.DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyIdAsync(intBPId, intWorkflowId, intStatusPropId);
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront> DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyIdAsync(int intBPId, int intWorkflowId, string strStatusPropId) {
+            return base.Channel.DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyIdAsync(intBPId, intWorkflowId, strStatusPropId);
         }
         
         public PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent ListOfVehicleComponentInsert(PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent objreturndbmlListOfVehicleComponent) {

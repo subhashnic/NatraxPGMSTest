@@ -5,7 +5,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
+    <!-- Required meta tags -->   
+    <meta http-equiv="Page-Enter" content="Alpha(opacity=100)">
+    <meta http-equiv="Page-Enter" content="blendTrans(Duration=0)">
+    <meta http-equiv="Page-Exit" content="blendTrans(Duration=0)">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="~/Templates/img/favicon.png" type="image/png">
@@ -164,6 +167,7 @@
                                 <h4>Customer Login</h4>
                                 @using (Html.BeginForm())
                                 {
+                                    @Html.AntiForgeryToken()
                                     <div class="form-group bmd-form-group is-filled">
                                         <label for="exampleEmail" class="bmd-label-floating">User Name</label>
                                         @*<input type="text" class="form-control" placeholder="Enter User Name" id="LoginId">*@
@@ -309,6 +313,29 @@
     </footer>
     <!--================ End footer Area  =================-->
 
+    <div class="modal fade" id="eMailResendModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<h4 class="modal-title" style="text-align:center">eMail Resend</h4>*@
+                    @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="material-icons">clear</i>
+                    </button>*@
+                </div>
+                <div class="modal-body" style="text-align:center">
+                    <label style="color:black;text-align:center">@ViewData["MSG"]</label>
+                    <br />
+                    <br />
+                    <button type="button" class="btn btn-fill btn-danger btn-sm" data-dismiss="modal" style="margin-left: 5px; margin-top: 5px;text-align:center">OK</button>
+                    <button type="button" class="btn btn-fill btn-danger btn-sm" id="btnResend" onclick="ResendVerifyLink()" style="margin-left: 5px; margin-top: 5px;text-align:center">RESEND</button>
+                </div>
+                @*<div class="modal-footer" >
+                    <button type="button" class="btn btn-fill btn-danger btn-sm" data-dismiss="modal" style="margin-left: 5px; margin-top: 5px;">Close</button>
+                </div>*@
+
+            </div>
+        </div>
+    </div>
 
     <script type="text/javascript">
         //document.getElementById("myButton").onclick = function () {
@@ -350,7 +377,7 @@
         };
 
         function validate() {
-            try {               
+            try {
                 var strMSG = '';
                 //alert("Due to urgent data migration activity, portal boschrewards.in and boschserviceportal.com and all mobile applications will remain closed till further update.");
                 //return false;
@@ -385,16 +412,58 @@
                 return false;
             }
         }
+
+        ///////////////////////////// ResendVerifyLink  //////////////////////////////////////////////////////
+        function ResendVerifyLink() {
+        try {
+
+            $("#btnResend").hide();
+                LoaderShow();              
+                var data = {};
+                var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+                $.ajax({
+                    url: '@Url.Action("ResendVerifyLink", "Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    data: dataWithAntiforgeryToken,
+                    //contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        $("#btnResend").show();
+                       LoaderHide();
+                        alert(data.Status);
+                    },
+                    error: function (xhr) {    
+                        $("#btnResend").show();
+                        LoaderHide();
+                        alert(xhr.responseText);
+                    }
+                });
+           
+        }
+        catch (e) {
+            $("#btnResend").show();
+            LoaderHide();           
+            alert(e.message);
+            return false;
+        }
+    }
     </script>
 
 
-    @if (!string.IsNullOrEmpty(ViewData["MSG"] + ""))
+    @if (!string.IsNullOrEmpty(ViewData["MSG"] + "") && Convert.ToInt32(ViewData["Resend"]) == 0)
     {
         <div>
             <script>
                 alert('@ViewData["MSG"]');
             </script>
         </div>
+    }
+    else if (Convert.ToInt32(ViewData["Resend"]) == 1)
+    {
+        <script>
+            $("#eMailResendModal").modal("show");
+        </script>
     }
 
     @*@if (Model != null && @Model.Message != null && @Model.Message.Trim() != "")

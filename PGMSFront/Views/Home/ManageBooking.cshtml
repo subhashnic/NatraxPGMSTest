@@ -26,50 +26,63 @@
                     @using (Html.BeginForm(new { @class = "form-horizontal" }))
                     {
                         @Html.AntiForgeryToken()
-                    <div>
-                        Alerts for Revert or Reject and ToDo list
+                        <div>
+                            Alerts for Revert or Reject and ToDo list
 
+                        </div>
+                    }
+                    <hr />
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th width="3%">Action</th>
+                                    <th width="20%">Department</th>
+                                    <th width="12%">Date</th>
+                                    <th width="15%">Booking No.</th>
+                                    <th width="30%">Booking Status</th>
+                                    <th width="15%">Project Manager</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyBooking"></tbody>
+                        </table>
                     </div>
-                    }                   
-                   
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script>
-    var BookingList = '';
+<script>   
 
     ///////////////////////////// Load Basic Info  //////////////////////////////////////////////////////
     function LoadBookingInfo() {
         try {
-            if ($("#DepartmentId").val() != undefined && parseInt($("#DepartmentId").val()) != 0) {
-                LoaderShow();
-                var data = { 'intDepartmentId': $("#DepartmentId").val(), 'intBookingTypeId': $("#BookingTypeId").val(), 'intStatusPropId': $("#StatusId").val() };
-                var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
-                $.ajax({
-                    url: '@Url.Action("BookingSearchViewGetByDepartmentBookinStatus", "Home")',
-                    type: 'POST',
-                    dataType: 'json',
-                    async: true,
-                    data: dataWithAntiforgeryToken,
-                    success: function (data) {
-                        LoaderHide();
-                        if (data.StatusId != "99" && data.StatusId != "-99") {
-                            BookingList = data.BookingList;
-                            BindGridData(data.BookingList);
-                        }
-                        else {
-                            alert(data.Status);
-                        }
-                    },
-                    error: function (xhr) {
 
-                        LoaderHide();
-                        alert(xhr.responseText);
+            LoaderShow();
+            var data = {};
+            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+            $.ajax({
+                url: '@Url.Action("ToDoBookingSearchViewGetByCompanyIdFromDateToDateFront", "Home")',
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                data: dataWithAntiforgeryToken,
+                success: function (data) {
+                    LoaderHide();
+                    if (data.StatusId != "99" && data.StatusId != "-99") {                      
+                        BindGridData(data.BookingList);
                     }
-                });
-            }
+                    else {
+                        alert(data.Status);
+                    }
+                },
+                error: function (xhr) {
+
+                    LoaderHide();
+                    alert(xhr.responseText);
+                }
+            });
         }
         catch (e) {
 
@@ -113,14 +126,11 @@
     }
 
     function BookingGetByBookingId(BookingId) {
-        location.href = "@Url.Action("BookingGetByBookingId", "Home", new { id = UrlParameter.Optional })" + "?" + "dfs,ktgbdas,hdffg.khdfrhdduihdgtymdmpxjidgndlxcmhdgmdpldjn,dlkchgj,d,.dkjdhhdk,dmdhhnd,dkmdndhnndmdmjmd" + "&" + "intBookingId=" + BookingId;
-        
-        //window.location.href = '@Url.Action("BookingGetByBookingId", "Home")?intBookingId='+BookingId+'';
+        location.href = "@Url.Action("BookingGetByBookingId", "Home", new { id = UrlParameter.Optional })" + "?" + "dfs,ktgbdas,hdffg.khdfrhdduihdgtymdmpxjidgndlxcmhdgmdpldjn,dlkchgj,d,.dkjdhhdk,dmdhhnd,dkmdndhnndmdmjmd" + "&" + "intBookingId=" + BookingId;        
+       
     }
-    $(document).ready(function () {  
-      
-        LoadBookingInfo();
-        $("#DepartmentId").focus();
+    $(document).ready(function () {        
+        LoadBookingInfo();        
     });
 
 </script>

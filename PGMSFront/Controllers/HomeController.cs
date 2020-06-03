@@ -40,10 +40,12 @@ namespace PGMSFront.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(LoginModel model)
         {
             try
             {
+                ViewData["Resend"] = 0;
                 string strMSG = "";
                 if (model.LoginId == null || model.LoginId.Trim() == "")
                     strMSG = strMSG + "User Name \n";
@@ -98,16 +100,17 @@ namespace PGMSFront.Controllers
                     }
                     else
                     {
-                        string strErrMSG = "Invalid User Name";
+                        string strErrMSG = objreturndbmlUser.objdbmlStatus.Status;
 
-                        if (objreturndbmlUser.objdbmlStatus.StatusId == 5)
-                            strErrMSG = objreturndbmlUser.objdbmlStatus.Status;
-                        else if (objreturndbmlUser.objdbmlStatus.StatusId == 10)
-                            strErrMSG = "Invalid Password";
-                        else if (objreturndbmlUser.objdbmlStatus.StatusId == 20)
-                            strErrMSG = objreturndbmlUser.objdbmlStatus.Status;
+                        if (objreturndbmlUser.objdbmlStatus.StatusId == 20 || objreturndbmlUser.objdbmlStatus.StatusId == 30)
+                        {
+                            ViewData["Resend"] = 1;
+                            dbmlUserView objdbmlUserView = objreturndbmlUser.objdbmlUserView.FirstOrDefault();
+                            Session["dbmlUserView"] = objdbmlUserView;
+                            strErrMSG += "\nClick 'OK' to go back to Login Page or 'RESEND' if you have not received the verification link";
+                        }
 
-                        // model.Message = strErrMSG;
+                        //model.Message = strErrMSG;
                         ViewData["MSG"] = strErrMSG;
                     }
                 }
@@ -124,6 +127,56 @@ namespace PGMSFront.Controllers
             }
 
             return View(model);
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult ResendVerifyLink()
+        {
+            int intStatusId = 99;
+            string strStatus = "Invalid User Details";
+            try
+            {
+                if (Session["dbmlUserView"] != null)
+                {
+                    dbmlUserView objdbmlUserView = new dbmlUserView();
+                    GeneralColl<dbmlUserView>.CopyObject(Session["dbmlUserView"] as dbmlUserView, objdbmlUserView);
+
+                    string strHost = System.Configuration.ConfigurationManager.AppSettings["strHostName"]; //"https://localhost:44307/";
+                    string strLink = strHost + "Home/VerifyeMail?xyz=0dfs,ktgbdas,hdffg.khdfrhdduihdgtymdmpxjidgndlxcmhdgmdpldjn,dlkchgj,d,.fddfyre,hjlhhjhjlhjljhjlhdkjdhhdk,dmdhhnd,dkmdndhnndmdkkfbhjyhnhhfssdfgngfgfghgfjfgjgffbgfhfhfhdffdsfdgfdfhfhgfhgfjfwrtwfghkyredcbnmkiufssfgyhvgdrfrthhhjhmjmd&abc="
+                                        + objdbmlUserView.UserId
+                                        + "&lmn=0dshffn56tgrehbncv6nwyuwgkliurscvjl'ljugbmkl;lkitgn;''lkjhhhjl;llkyhfcfbmkkdfhdfgffhf561g4d5bvgdf1bbdfbdvfgbnvbncvncvbbnxcdgfcbcb";
+                    string strFrom = "testdemo052020@gmail.com", strReplyTo = "",
+                        strTo = objdbmlUserView.EmailId,
+                        strBcc = string.Empty,
+                        strCc = string.Empty,
+                        strSubject = string.Empty, strBody = string.Empty;
+
+
+                    strSubject = "Natrax - Verify email";
+                    strBody = "Hello, ";
+
+                    strBody += "<br /><br /><b>" + objdbmlUserView.UserName + "</b>";
+                    strBody += "<br /><b>" + objdbmlUserView.ZZCompanyName + "</b>";
+
+                    strBody += "<br /><br />You have successfully registered on Natrax with Login-ID <b> '" + objdbmlUserView.LoginId + "</b>'";
+                    strBody += ", please click on the below link to verify your email and create passwords";
+                    strBody += "<br />" + strLink;
+
+
+
+                    strBody += "<br /><br /><br />Regards";
+                    strBody += "<br /><br /><span style='font-weight:bold;font-family:Trebuchet MS;font-style:italic'>Natrax Administrator</span>";
+
+                    bool blnSentMail = objClassUserFunctions.SendMailMessage(strFrom, "test@dem0", strTo, strReplyTo, strBcc, strCc, strSubject, strBody, null, "");
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId }, JsonRequestBehavior.AllowGet);
         }
 
         public static string DecryptStringAES(string cipherText)
@@ -242,7 +295,7 @@ namespace PGMSFront.Controllers
             try
             {
                 objreturndbmlDashBoardWorkFlowViewFront = objServiceClient.DashBoardWorkFlowCount(Convert.ToInt32(Session["UserId"]), Convert.ToInt32(Session["ZZCompanyId"]));
-                intStatusId =(int) objreturndbmlDashBoardWorkFlowViewFront.objdbmlStatus.StatusId;
+                intStatusId = (int)objreturndbmlDashBoardWorkFlowViewFront.objdbmlStatus.StatusId;
                 strStatus = objreturndbmlDashBoardWorkFlowViewFront.objdbmlStatus.Status;
             }
             catch (Exception ex)
@@ -506,7 +559,7 @@ namespace PGMSFront.Controllers
 
             return View(model);
         }
-        
+
         public ActionResult LabBookingHistory()
         {
             CommonModel model = new CommonModel();
@@ -554,12 +607,12 @@ namespace PGMSFront.Controllers
             ObservableCollection<dbmlWorkFlowView> objdbmlWorkFlowView = WorkFlowViewGetByBPId(intBPId, 0);
             intStatusId = 1;
             strStatus = "Success";
-           
+
             return Json(new { Status = strStatus, StatusId = intStatusId, WorkFlowViewList = objdbmlWorkFlowView }, JsonRequestBehavior.AllowGet);
         }
 
         #endregion
-                
+
         #region Track/Lab RFQ
         public ActionResult TrackBookingsAndRFQ()
         {
@@ -594,7 +647,7 @@ namespace PGMSFront.Controllers
 
             return View(model);
         }
-        
+
         public ActionResult LabBookingsAndRFQ()
         {
             CommonModel model = new CommonModel();
@@ -754,7 +807,7 @@ namespace PGMSFront.Controllers
 
             return View(model);
         }
-        
+
         [ValidateAntiForgeryToken]
         public ActionResult RFQBookingSearchViewGetByDepartmentBookinStatus(int intDepartmentId, int intBookingTypeId, int intStatusPropId)
         {
@@ -1005,6 +1058,73 @@ namespace PGMSFront.Controllers
             return View(model);
         }
 
+        [ValidateAntiForgeryToken]
+        public ActionResult DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(int intBPId, int intWorkFlowId, string strStatusPropId)
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlDashBoardDocumentViewFront objreturndbmlDashBoardDocumentViewFront = new returndbmlDashBoardDocumentViewFront();
+
+            try
+            {
+                objreturndbmlDashBoardDocumentViewFront = objServiceClient.DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(intBPId, intWorkFlowId, strStatusPropId);
+
+                if (objreturndbmlDashBoardDocumentViewFront != null && objreturndbmlDashBoardDocumentViewFront.objdbmlStatus.StatusId == 1)
+                {
+                    intStatusId = 1;
+                    strStatus = "Success";
+                }
+                else
+                {
+                    strStatus = objreturndbmlDashBoardDocumentViewFront.objdbmlStatus.Status;
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, DashBoardDocumentList = objreturndbmlDashBoardDocumentViewFront.objdbmlDashBoardDocumentViewFront }, JsonRequestBehavior.AllowGet);
+        }
+        
+        [ValidateAntiForgeryToken]
+        public ActionResult ToDoBookingSearchViewGetByCompanyIdFromDateToDateFront()
+        {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlBookingSearchView objreturndbmlBookingSearchView = new returndbmlBookingSearchView();
+
+            try
+            {
+                objreturndbmlBookingSearchView = objServiceClient.ToDoBookingSearchViewGetByCompanyIdFromDateToDateFront(0, 0,DateTime.Now.Date, DateTime.Now.Date, 0, 0);
+
+                if (objreturndbmlBookingSearchView != null && objreturndbmlBookingSearchView.objdbmlStatus.StatusId == 1)
+                {
+                    intStatusId = 1;
+                    strStatus = "Success";
+                }
+                else
+                {
+                    strStatus = objreturndbmlBookingSearchView.objdbmlStatus.Status;
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, BookingList = objreturndbmlBookingSearchView.objdbmlBookingSearchView }, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region Basic
@@ -1051,23 +1171,23 @@ namespace PGMSFront.Controllers
                     ViewBag.WorkflowRemark = objdbmlBooking.ZZWorkflowRemark;
                     switch (Convert.ToInt32(Session["BPId"]))
                     {
-                        case 21:                            
+                        case 21:
                             model.DocType = "Track Booking";
                             Session["SessBookingType"] = "Track";
                             break;
-                        case 98:                           
+                        case 98:
                             model.DocType = "Track RFQ - Confidential";
                             Session["SessBookingType"] = "Track";
                             break;
-                        case 46:                         
+                        case 46:
                             model.DocType = "Track RFQ - Regular";
                             Session["SessBookingType"] = "Track";
                             break;
-                        case 90:                           
+                        case 90:
                             model.DocType = "Lab Booking";
                             Session["SessBookingType"] = "Lab";
                             break;
-                        case 91:                           
+                        case 91:
                             model.DocType = "Lab RFQ - Regular";
                             Session["SessBookingType"] = "Lab";
                             break;
@@ -1564,7 +1684,7 @@ namespace PGMSFront.Controllers
 
                     objreturndbmlServiceDateViewFront = objServiceClient.ServiceDateViewFrontGetByBookingId(objdbmlBooking.BookingId);
                     if (objreturndbmlServiceDateViewFront.objdbmlStatus.StatusId == 1)
-                    {                       
+                    {
                         intStatusId = 1;
                         strStatus = "Success";
                     }
@@ -1600,7 +1720,7 @@ namespace PGMSFront.Controllers
             objreturndbmlServiceDateViewFront.objdbmlServiceDateViewFront = model;
             try
             {
-                if (Session["objdbmlBooking"] != null && model!=null && model.Count>0)
+                if (Session["objdbmlBooking"] != null && model != null && model.Count > 0)
                 {
                     dbmlBookingView objdbmlBooking = new dbmlBookingView();
                     GeneralColl<dbmlBookingView>.CopyObject(Session["objdbmlBooking"] as dbmlBookingView, objdbmlBooking);
@@ -1626,7 +1746,7 @@ namespace PGMSFront.Controllers
             {
                 strStatus = ex.Message;
             }
-            return Json(new { Status = strStatus, StatusId = intStatusId}, JsonRequestBehavior.AllowGet);
+            return Json(new { Status = strStatus, StatusId = intStatusId }, JsonRequestBehavior.AllowGet);
         }
 
         #endregion
@@ -2503,7 +2623,7 @@ namespace PGMSFront.Controllers
 
                             int intRoundOffHrs = Convert.ToInt32(itm.TotalHours);
                             int intRoundOffMin = Convert.ToInt32(itm.TotalMinutes);
-                            
+
                             if ((intRoundOffHrs > 0 && intRoundOffMin >= 30) || (intRoundOffHrs == 0 && intRoundOffMin >= 1))
                             {
                                 intRoundOffHrs = intRoundOffHrs + 1;
@@ -2518,7 +2638,7 @@ namespace PGMSFront.Controllers
                             itm.TotalHours = Convert.ToInt32(itm.TotalHours);
                             itm.TotalMinutes = Convert.ToInt32(itm.TotalMinutes);
 
-                            if(intUsageHrs== Convert.ToInt32(itm.TotalHours) && intUsageMin== Convert.ToInt32(itm.TotalMinutes))
+                            if (intUsageHrs == Convert.ToInt32(itm.TotalHours) && intUsageMin == Convert.ToInt32(itm.TotalMinutes))
                             {
                                 intFlag = 1;
                             }
@@ -2534,9 +2654,9 @@ namespace PGMSFront.Controllers
 
                         if (intGroupRoundHrs < intMinBillHrs)
                         {
-                            if (intItmCount == 2 && intFlag==1 && (intMinBillHrs - intGroupRoundHrs) == 2)
+                            if (intItmCount == 2 && intFlag == 1 && (intMinBillHrs - intGroupRoundHrs) == 2)
                             {
-                                model[0].BillingHrs +=1;
+                                model[0].BillingHrs += 1;
                                 model[1].BillingHrs += 1;
                             }
                             else
@@ -3788,7 +3908,7 @@ namespace PGMSFront.Controllers
                 {
                     return RedirectToAction("TrackAddOnServicesBooking", "Home");
                 }
-               
+
             }
             catch
             {
@@ -3818,7 +3938,7 @@ namespace PGMSFront.Controllers
 
                     objreturndbmlWorkFlowActivityTrackView = objServiceClient.WorkFlowActivityTrackGetByBPIdDocId(objdbmlBooking.BPId, objdbmlBooking.BookingId);
                     if (objreturndbmlWorkFlowActivityTrackView.objdbmlStatus.StatusId == 1)
-                    {                        
+                    {
                         intStatusId = 1;
                         strStatus = "Success";
                     }
@@ -3843,7 +3963,7 @@ namespace PGMSFront.Controllers
         #endregion
 
         #region Company/Department  
-        public ActionResult VerifyeMail(string xyz,string abc, string lmn)
+        public ActionResult VerifyeMail(string xyz, string abc, string lmn)
         {
             CommonModel model = new CommonModel();
             model.StatusPropId = -1;
@@ -3851,7 +3971,7 @@ namespace PGMSFront.Controllers
             {
                 int intUserId = Convert.ToInt32(abc);
                 returndbmlUser objreturndbmlUser = objServiceClient.UsereMailIdVerification(intUserId);
-                if (objreturndbmlUser != null && objreturndbmlUser.objdbmlStatus.StatusId == 1 && objreturndbmlUser.objdbmlUserView.Count>0)
+                if (objreturndbmlUser != null && objreturndbmlUser.objdbmlStatus.StatusId == 1 && objreturndbmlUser.objdbmlUserView.Count > 0)
                 {
                     Session["UserView"] = objreturndbmlUser.objdbmlUserView.FirstOrDefault();
                     Session["UserIdTemp"] = objreturndbmlUser.objdbmlUserView.FirstOrDefault().UserId;
@@ -3863,7 +3983,7 @@ namespace PGMSFront.Controllers
                 else
                 {
                     model.Message = objreturndbmlUser.objdbmlStatus.Status;
-                    if(objreturndbmlUser.objdbmlStatus.StatusId==-2)
+                    if (objreturndbmlUser.objdbmlStatus.StatusId == -2)
                     {
                         model.StatusPropId = -2;
                     }
@@ -3879,7 +3999,7 @@ namespace PGMSFront.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        public ActionResult CreatePassword(dbmlUserView model )
+        public ActionResult CreatePassword(dbmlUserView model)
         {
             int intStatusId = 99;
             string strStatus = "Invalid";
@@ -3945,7 +4065,7 @@ namespace PGMSFront.Controllers
                 else
                 {
                     strStatus = objreturndbmlDistrict.objdbmlStatus.Status;
-                }                
+                }
             }
             catch (Exception ex)
             {
@@ -3971,7 +4091,7 @@ namespace PGMSFront.Controllers
                 model.EmailId = Convert.ToString(Session["EmailId"]);
                 model.LoginId = Convert.ToString(Session["LoginId"]);
                 model.ZZUserType = Convert.ToString(Session["ZZUserType"]);
-                model.UserCode = Convert.ToString(Session["UserCode"]);              
+                model.UserCode = Convert.ToString(Session["UserCode"]);
                 model.StateId = Convert.ToInt32(Session["StateId"]);
             }
             catch
