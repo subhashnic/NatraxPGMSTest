@@ -903,6 +903,7 @@
     <Content Include="Web - Copy.Release.config">
       <DependentUpon>Web - Copy.config</DependentUpon>
     </Content>
+    <Content Include="Views\Home\ForgotPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,8 +1,8 @@
 ﻿
 /* ///////////////// Alert /////////////////////////////////*/
-function alert(msg) {
+function alertError(msg) {
     $.confirm({
-        title: 'Alert!',
+        title: 'Error!',
         content: msg,
         icon: 'fa fa-warning',
         closeIcon: false,
@@ -19,9 +19,9 @@ function alert(msg) {
     });
 }
 
-function alertSuccess(msg) {
+function alert(msg) {
     $.confirm({
-        title: 'Success!',
+        title: 'Information!',
         content: msg,
         icon: 'fa fa-check',
         closeIcon: true,

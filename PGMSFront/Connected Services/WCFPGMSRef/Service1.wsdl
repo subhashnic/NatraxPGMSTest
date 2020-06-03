@@ -46,6 +46,12 @@
   <wsdl:message name="IService1_UserViewGetByLoginIdUserId_OutputMessage">
     <wsdl:part name="parameters" element="tns:UserViewGetByLoginIdUserIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_UserPaswordForgot_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserPaswordForgot" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UserPaswordForgot_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserPaswordForgotResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_PropertiesGetAll_InputMessage">
     <wsdl:part name="parameters" element="tns:PropertiesGetAll" />
   </wsdl:message>
@@ -373,6 +379,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/UserViewGetByLoginIdUserId" message="tns:IService1_UserViewGetByLoginIdUserId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/UserViewGetByLoginIdUserIdResponse" message="tns:IService1_UserViewGetByLoginIdUserId_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="UserPaswordForgot">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UserPaswordForgot" message="tns:IService1_UserPaswordForgot_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UserPaswordForgotResponse" message="tns:IService1_UserPaswordForgot_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="PropertiesGetAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/PropertiesGetAll" message="tns:IService1_PropertiesGetAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/PropertiesGetAllResponse" message="tns:IService1_PropertiesGetAll_OutputMessage" />
@@ -619,6 +629,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserViewGetByLoginIdUserId">
       <soap12:operation soapAction="http://tempuri.org/IService1/UserViewGetByLoginIdUserId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserPaswordForgot">
+      <soap12:operation soapAction="http://tempuri.org/IService1/UserPaswordForgot" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

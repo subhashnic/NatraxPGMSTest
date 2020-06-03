@@ -10476,6 +10476,12 @@ namespace PGMSFront.WCFPGMSRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserViewGetByLoginIdUserId", ReplyAction="http://tempuri.org/IService1/UserViewGetByLoginIdUserIdResponse")]
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UserViewGetByLoginIdUserIdAsync(string strLoginId, int intUserId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserPaswordForgot", ReplyAction="http://tempuri.org/IService1/UserPaswordForgotResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlUser UserPaswordForgot(string strLoginId, string strEMail);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserPaswordForgot", ReplyAction="http://tempuri.org/IService1/UserPaswordForgotResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UserPaswordForgotAsync(string strLoginId, string strEMail);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/PropertiesGetAll", ReplyAction="http://tempuri.org/IService1/PropertiesGetAllResponse")]
         PGMSFront.WCFPGMSRef.returndbmlProperty PropertiesGetAll();
         
@@ -10872,6 +10878,14 @@ namespace PGMSFront.WCFPGMSRef {
         
         public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UserViewGetByLoginIdUserIdAsync(string strLoginId, int intUserId) {
             return base.Channel.UserViewGetByLoginIdUserIdAsync(strLoginId, intUserId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlUser UserPaswordForgot(string strLoginId, string strEMail) {
+            return base.Channel.UserPaswordForgot(strLoginId, strEMail);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlUser> UserPaswordForgotAsync(string strLoginId, string strEMail) {
+            return base.Channel.UserPaswordForgotAsync(strLoginId, strEMail);
         }
         
         public PGMSFront.WCFPGMSRef.returndbmlProperty PropertiesGetAll() {

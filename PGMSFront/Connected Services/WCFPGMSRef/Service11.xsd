@@ -75,6 +75,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="UserPaswordForgot">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strLoginId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strEMail" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserPaswordForgotResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="UserPaswordForgotResult" nillable="true" type="q6:returndbmlUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="PropertiesGetAll">
     <xs:complexType>
       <xs:sequence />
@@ -83,7 +98,7 @@
   <xs:element name="PropertiesGetAllResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="PropertiesGetAllResult" nillable="true" type="q6:returndbmlProperty" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="PropertiesGetAllResult" nillable="true" type="q7:returndbmlProperty" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -97,7 +112,7 @@
   <xs:element name="OptionListGetByPropertyIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="OptionListGetByPropertyIdResult" nillable="true" type="q7:returndbmlOptionList" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="OptionListGetByPropertyIdResult" nillable="true" type="q8:returndbmlOptionList" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -111,21 +126,21 @@
   <xs:element name="PropertiesGetByPropertyTypeIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="PropertiesGetByPropertyTypeIdResult" nillable="true" type="q8:returndbmlProperty" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="PropertiesGetByPropertyTypeIdResult" nillable="true" type="q9:returndbmlProperty" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CustomerMasterInsertFront">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlCompanyView" nillable="true" type="q9:returndbmlCompanyView" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlCompanyView" nillable="true" type="q10:returndbmlCompanyView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CustomerMasterInsertFrontResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="CustomerMasterInsertFrontResult" nillable="true" type="q10:returndbmlCompanyView" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="CustomerMasterInsertFrontResult" nillable="true" type="q11:returndbmlCompanyView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -139,7 +154,7 @@
   <xs:element name="UsereMailIdVerificationResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="UsereMailIdVerificationResult" nillable="true" type="q11:returndbmlUser" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="UsereMailIdVerificationResult" nillable="true" type="q12:returndbmlUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -154,63 +169,63 @@
   <xs:element name="UserPaswordResetResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="UserPaswordResetResult" nillable="true" type="q12:returndbmlUser" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="UserPaswordResetResult" nillable="true" type="q13:returndbmlUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CompanyDepartmentInsert">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlCompanyDepartment" nillable="true" type="q13:returndbmlCompanyDepartment" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlCompanyDepartment" nillable="true" type="q14:returndbmlCompanyDepartment" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CompanyDepartmentInsertResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="CompanyDepartmentInsertResult" nillable="true" type="q14:returndbmlCompanyDepartment" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="CompanyDepartmentInsertResult" nillable="true" type="q15:returndbmlCompanyDepartment" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CompanyDepartmentUpdate">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlCompanyDepartment" nillable="true" type="q15:returndbmlCompanyDepartment" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlCompanyDepartment" nillable="true" type="q16:returndbmlCompanyDepartment" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CompanyDepartmentUpdateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="CompanyDepartmentUpdateResult" nillable="true" type="q16:returndbmlCompanyDepartment" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="CompanyDepartmentUpdateResult" nillable="true" type="q17:returndbmlCompanyDepartment" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UserInsert">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlUser" nillable="true" type="q17:returndbmlUser" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlUser" nillable="true" type="q18:returndbmlUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UserInsertResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="UserInsertResult" nillable="true" type="q18:returndbmlUser" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="UserInsertResult" nillable="true" type="q19:returndbmlUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UserUpdate">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlUser" nillable="true" type="q19:returndbmlUser" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlUser" nillable="true" type="q20:returndbmlUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UserUpdateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="UserUpdateResult" nillable="true" type="q20:returndbmlUser" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="UserUpdateResult" nillable="true" type="q21:returndbmlUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -224,7 +239,7 @@
   <xs:element name="CompanyViewGetByCompanyIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="CompanyViewGetByCompanyIdResult" nillable="true" type="q21:returndbmlCompanyView" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="CompanyViewGetByCompanyIdResult" nillable="true" type="q22:returndbmlCompanyView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -238,7 +253,7 @@
   <xs:element name="CompanyDepartmentGetByCustomerMasterIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="CompanyDepartmentGetByCustomerMasterIdResult" nillable="true" type="q22:returndbmlCompanyDepartment" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="CompanyDepartmentGetByCustomerMasterIdResult" nillable="true" type="q23:returndbmlCompanyDepartment" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -250,7 +265,7 @@
   <xs:element name="StateGetAllResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="StateGetAllResult" nillable="true" type="q23:returndbmlState" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="StateGetAllResult" nillable="true" type="q24:returndbmlState" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -264,7 +279,7 @@
   <xs:element name="DistrictGetByStateIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="DistrictGetByStateIdResult" nillable="true" type="q24:returndbmlDistrict" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="DistrictGetByStateIdResult" nillable="true" type="q25:returndbmlDistrict" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -276,35 +291,35 @@
   <xs:element name="DistrictGetAllResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="DistrictGetAllResult" nillable="true" type="q25:returndbmlDistrict" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="DistrictGetAllResult" nillable="true" type="q26:returndbmlDistrict" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="BookingInsert">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlBooking" nillable="true" type="q26:returndbmlBooking" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlBooking" nillable="true" type="q27:returndbmlBooking" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="BookingInsertResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingInsertResult" nillable="true" type="q27:returndbmlBooking" />
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingInsertResult" nillable="true" type="q28:returndbmlBooking" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="BookingUpdate">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlBooking" nillable="true" type="q28:returndbmlBooking" />
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlBooking" nillable="true" type="q29:returndbmlBooking" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="BookingUpdateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingUpdateResult" nillable="true" type="q29:returndbmlBooking" />
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingUpdateResult" nillable="true" type="q30:returndbmlBooking" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -318,7 +333,7 @@
   <xs:element name="BookingDeleteAllByBookingIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingDeleteAllByBookingIdResult" nillable="true" type="q30:returndbmlStatus" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingDeleteAllByBookingIdResult" nillable="true" type="q31:returndbmlStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -332,7 +347,7 @@
   <xs:element name="BookingViewGetByBookingIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingViewGetByBookingIdResult" nillable="true" type="q31:returndbmlBooking" />
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingViewGetByBookingIdResult" nillable="true" type="q32:returndbmlBooking" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -347,7 +362,7 @@
   <xs:element name="BookingViewGetByCompanyIdStatusPropIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingViewGetByCompanyIdStatusPropIdResult" nillable="true" type="q32:returndbmlBooking" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingViewGetByCompanyIdStatusPropIdResult" nillable="true" type="q33:returndbmlBooking" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -365,7 +380,7 @@
   <xs:element name="BookingSearchViewGetByCompanyIdFromDateToDateFrontResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingSearchViewGetByCompanyIdFromDateToDateFrontResult" nillable="true" type="q33:returndbmlBookingSearchView" />
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingSearchViewGetByCompanyIdFromDateToDateFrontResult" nillable="true" type="q34:returndbmlBookingSearchView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -379,7 +394,7 @@
   <xs:element name="BookingQuotationPIDetailInsertByBookingIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingQuotationPIDetailInsertByBookingIdResult" nillable="true" type="q34:returndbmlStatus" />
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingQuotationPIDetailInsertByBookingIdResult" nillable="true" type="q35:returndbmlStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -397,7 +412,7 @@
   <xs:element name="RFQBookingSearchViewFrontGetByCompanyIdFromDateToDateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="RFQBookingSearchViewFrontGetByCompanyIdFromDateToDateResult" nillable="true" type="q35:returndbmlBookingSearchView" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="RFQBookingSearchViewFrontGetByCompanyIdFromDateToDateResult" nillable="true" type="q36:returndbmlBookingSearchView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -412,7 +427,7 @@
   <xs:element name="RFQBookingDetailGetByBookingIdBPIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="RFQBookingDetailGetByBookingIdBPIdResult" nillable="true" type="q36:returndbmlRFQBookingDetail" />
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="RFQBookingDetailGetByBookingIdBPIdResult" nillable="true" type="q37:returndbmlRFQBookingDetail" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -430,7 +445,7 @@
   <xs:element name="RFQBookingDetailInsertByBookingIdBPIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="RFQBookingDetailInsertByBookingIdBPIdResult" nillable="true" type="q37:returndbmlBooking" />
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="RFQBookingDetailInsertByBookingIdBPIdResult" nillable="true" type="q38:returndbmlBooking" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -444,21 +459,21 @@
   <xs:element name="ServiceDateViewFrontGetByBookingIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="ServiceDateViewFrontGetByBookingIdResult" nillable="true" type="q38:returndbmlServiceDateViewFront" />
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="ServiceDateViewFrontGetByBookingIdResult" nillable="true" type="q39:returndbmlServiceDateViewFront" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateServiceDateFrontByBookingIdDayDates">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlServiceDateViewFront" nillable="true" type="q39:returndbmlServiceDateViewFront" />
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlServiceDateViewFront" nillable="true" type="q40:returndbmlServiceDateViewFront" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateServiceDateFrontByBookingIdDayDatesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="UpdateServiceDateFrontByBookingIdDayDatesResult" nillable="true" type="q40:returndbmlBooking" />
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="UpdateServiceDateFrontByBookingIdDayDatesResult" nillable="true" type="q41:returndbmlBooking" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -477,7 +492,7 @@
   <xs:element name="ToDoBookingSearchViewGetByCompanyIdFromDateToDateFrontResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="ToDoBookingSearchViewGetByCompanyIdFromDateToDateFrontResult" nillable="true" type="q41:returndbmlBookingSearchView" />
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="ToDoBookingSearchViewGetByCompanyIdFromDateToDateFrontResult" nillable="true" type="q42:returndbmlBookingSearchView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -493,35 +508,35 @@
   <xs:element name="DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyIdResult" nillable="true" type="q42:returndbmlDashBoardDocumentViewFront" />
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyIdResult" nillable="true" type="q43:returndbmlDashBoardDocumentViewFront" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ListOfVehicleComponentInsert">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlListOfVehicleComponent" nillable="true" type="q43:returndbmlListOfVehicleComponent" />
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlListOfVehicleComponent" nillable="true" type="q44:returndbmlListOfVehicleComponent" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ListOfVehicleComponentInsertResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="ListOfVehicleComponentInsertResult" nillable="true" type="q44:returndbmlListOfVehicleComponent" />
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="ListOfVehicleComponentInsertResult" nillable="true" type="q45:returndbmlListOfVehicleComponent" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ListOfVehicleComponentUpdate">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlListOfVehicleComponent" nillable="true" type="q45:returndbmlListOfVehicleComponent" />
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlListOfVehicleComponent" nillable="true" type="q46:returndbmlListOfVehicleComponent" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ListOfVehicleComponentUpdateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="ListOfVehicleComponentUpdateResult" nillable="true" type="q46:returndbmlListOfVehicleComponent" />
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="ListOfVehicleComponentUpdateResult" nillable="true" type="q47:returndbmlListOfVehicleComponent" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -536,7 +551,7 @@
   <xs:element name="ListOfVehicleComponentDeleteByDocIdCompIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="ListOfVehicleComponentDeleteByDocIdCompIdResult" nillable="true" type="q47:returndbmlListOfVehicleComponent" />
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="ListOfVehicleComponentDeleteByDocIdCompIdResult" nillable="true" type="q48:returndbmlListOfVehicleComponent" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -550,7 +565,7 @@
   <xs:element name="ListOfVehicleComponentGetByDocIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="ListOfVehicleComponentGetByDocIdResult" nillable="true" type="q48:returndbmlListOfVehicleComponent" />
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="ListOfVehicleComponentGetByDocIdResult" nillable="true" type="q49:returndbmlListOfVehicleComponent" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -564,7 +579,7 @@
   <xs:element name="ServicesGetByBPIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="ServicesGetByBPIdResult" nillable="true" type="q49:returndbmlServicesView" />
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="ServicesGetByBPIdResult" nillable="true" type="q50:returndbmlServicesView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -579,14 +594,14 @@
   <xs:element name="TrackBookingDetailGetByBookingIdTrackGroupIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="TrackBookingDetailGetByBookingIdTrackGroupIdResult" nillable="true" type="q50:returndbmlTrackBookingDetail" />
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="TrackBookingDetailGetByBookingIdTrackGroupIdResult" nillable="true" type="q51:returndbmlTrackBookingDetail" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="BookingStatusGetByServiceIdTimeSlotPropIdWEFDate">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q51="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="intlstServiceId" nillable="true" type="q51:ArrayOfint" />
+        <xs:element xmlns:q52="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="intlstServiceId" nillable="true" type="q52:ArrayOfint" />
         <xs:element minOccurs="0" name="intTimeSlotId" type="xs:int" />
         <xs:element minOccurs="0" name="dtWED" type="xs:dateTime" />
       </xs:sequence>
@@ -595,21 +610,21 @@
   <xs:element name="BookingStatusGetByServiceIdTimeSlotPropIdWEFDateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingStatusGetByServiceIdTimeSlotPropIdWEFDateResult" nillable="true" type="q52:returndbmlBookingStatusTimeSlotView" />
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingStatusGetByServiceIdTimeSlotPropIdWEFDateResult" nillable="true" type="q53:returndbmlBookingStatusTimeSlotView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="TrackBookingDetailInsertFront">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlTrackBookingDetail" nillable="true" type="q53:returndbmlTrackBookingDetail" />
+        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlTrackBookingDetail" nillable="true" type="q54:returndbmlTrackBookingDetail" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="TrackBookingDetailInsertFrontResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="TrackBookingDetailInsertFrontResult" nillable="true" type="q54:returndbmlTrackBookingDetail" />
+        <xs:element xmlns:q55="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="TrackBookingDetailInsertFrontResult" nillable="true" type="q55:returndbmlTrackBookingDetail" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -628,7 +643,7 @@
   <xs:element name="TrackBookingTimeDetailDeleteFrontByServiceIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q55="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="TrackBookingTimeDetailDeleteFrontByServiceIdResult" nillable="true" type="q55:returndbmlTrackBookingDetail" />
+        <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="TrackBookingTimeDetailDeleteFrontByServiceIdResult" nillable="true" type="q56:returndbmlTrackBookingDetail" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -643,7 +658,7 @@
   <xs:element name="WorkFlowViewGetByBPIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="WorkFlowViewGetByBPIdResult" nillable="true" type="q56:returndbmlWorkFlowView" />
+        <xs:element xmlns:q57="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="WorkFlowViewGetByBPIdResult" nillable="true" type="q57:returndbmlWorkFlowView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -662,7 +677,7 @@
   <xs:element name="WorkFlowActivityInsertResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q57="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="WorkFlowActivityInsertResult" nillable="true" type="q57:returndbmlBooking" />
+        <xs:element xmlns:q58="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="WorkFlowActivityInsertResult" nillable="true" type="q58:returndbmlBooking" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -677,21 +692,21 @@
   <xs:element name="WorkFlowActivityTrackGetByBPIdDocIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q58="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="WorkFlowActivityTrackGetByBPIdDocIdResult" nillable="true" type="q58:returndbmlWorkFlowActivityTrackView" />
+        <xs:element xmlns:q59="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="WorkFlowActivityTrackGetByBPIdDocIdResult" nillable="true" type="q59:returndbmlWorkFlowActivityTrackView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="WorkshopBookingDetailInsertFront">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q59="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlWorkshopBookingDetailViewFront" nillable="true" type="q59:returndbmlWorkshopBookingDetailViewFront" />
+        <xs:element xmlns:q60="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlWorkshopBookingDetailViewFront" nillable="true" type="q60:returndbmlWorkshopBookingDetailViewFront" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="WorkshopBookingDetailInsertFrontResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q60="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="WorkshopBookingDetailInsertFrontResult" nillable="true" type="q60:returndbmlWorkshopBookingDetailViewFront" />
+        <xs:element xmlns:q61="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="WorkshopBookingDetailInsertFrontResult" nillable="true" type="q61:returndbmlWorkshopBookingDetailViewFront" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -706,7 +721,7 @@
   <xs:element name="WorkshopBookingDetailDeleteResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q61="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="WorkshopBookingDetailDeleteResult" nillable="true" type="q61:returndbmlWorkshopBookingDetailViewFront" />
+        <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="WorkshopBookingDetailDeleteResult" nillable="true" type="q62:returndbmlWorkshopBookingDetailViewFront" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -720,21 +735,21 @@
   <xs:element name="WorkshopBookingDetailViewFrontGetByBookingIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="WorkshopBookingDetailViewFrontGetByBookingIdResult" nillable="true" type="q62:returndbmlWorkshopBookingDetailViewFront" />
+        <xs:element xmlns:q63="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="WorkshopBookingDetailViewFrontGetByBookingIdResult" nillable="true" type="q63:returndbmlWorkshopBookingDetailViewFront" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="BookingDetailAddOnServicesInsertFront">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q63="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlBookingDetailAddOnServicesViewFront" nillable="true" type="q63:returndbmlBookingDetailAddOnServicesViewFront" />
+        <xs:element xmlns:q64="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlBookingDetailAddOnServicesViewFront" nillable="true" type="q64:returndbmlBookingDetailAddOnServicesViewFront" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="BookingDetailAddOnServicesInsertFrontResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q64="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingDetailAddOnServicesInsertFrontResult" nillable="true" type="q64:returndbmlBookingDetailAddOnServicesViewFront" />
+        <xs:element xmlns:q65="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingDetailAddOnServicesInsertFrontResult" nillable="true" type="q65:returndbmlBookingDetailAddOnServicesViewFront" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -749,7 +764,7 @@
   <xs:element name="BookingDetailAddOnServicesDeleteResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q65="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingDetailAddOnServicesDeleteResult" nillable="true" type="q65:returndbmlBookingDetailAddOnServicesViewFront" />
+        <xs:element xmlns:q66="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingDetailAddOnServicesDeleteResult" nillable="true" type="q66:returndbmlBookingDetailAddOnServicesViewFront" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -763,21 +778,21 @@
   <xs:element name="BookingDetailAddOnServicesViewFrontGetByBookingIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q66="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingDetailAddOnServicesViewFrontGetByBookingIdResult" nillable="true" type="q66:returndbmlBookingDetailAddOnServicesViewFront" />
+        <xs:element xmlns:q67="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="BookingDetailAddOnServicesViewFrontGetByBookingIdResult" nillable="true" type="q67:returndbmlBookingDetailAddOnServicesViewFront" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="LabBookingDetailInsertFront">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q67="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlLabBookingDetailViewFront" nillable="true" type="q67:returndbmlLabBookingDetailViewFront" />
+        <xs:element xmlns:q68="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="objreturndbmlLabBookingDetailViewFront" nillable="true" type="q68:returndbmlLabBookingDetailViewFront" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="LabBookingDetailInsertFrontResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q68="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="LabBookingDetailInsertFrontResult" nillable="true" type="q68:returndbmlLabBookingDetailViewFront" />
+        <xs:element xmlns:q69="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="LabBookingDetailInsertFrontResult" nillable="true" type="q69:returndbmlLabBookingDetailViewFront" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -792,7 +807,7 @@
   <xs:element name="LabBookingDetailDeleteResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q69="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="LabBookingDetailDeleteResult" nillable="true" type="q69:returndbmlLabBookingDetailViewFront" />
+        <xs:element xmlns:q70="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="LabBookingDetailDeleteResult" nillable="true" type="q70:returndbmlLabBookingDetailViewFront" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -806,7 +821,7 @@
   <xs:element name="LabBookingDetailViewFrontGetByBookingIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q70="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="LabBookingDetailViewFrontGetByBookingIdResult" nillable="true" type="q70:returndbmlLabBookingDetailViewFront" />
+        <xs:element xmlns:q71="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="LabBookingDetailViewFrontGetByBookingIdResult" nillable="true" type="q71:returndbmlLabBookingDetailViewFront" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -818,7 +833,7 @@
   <xs:element name="LablinkVorCGetAllResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q71="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="LablinkVorCGetAllResult" nillable="true" type="q71:returndbmlLablinkVorC" />
+        <xs:element xmlns:q72="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="LablinkVorCGetAllResult" nillable="true" type="q72:returndbmlLablinkVorC" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

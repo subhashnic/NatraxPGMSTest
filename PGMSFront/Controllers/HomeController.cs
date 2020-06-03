@@ -180,6 +180,34 @@ namespace PGMSFront.Controllers
             return Json(new { Status = strStatus, StatusId = intStatusId }, JsonRequestBehavior.AllowGet);
         }
 
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgotPassword(dbmlUserView model)
+        {
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlUser objreturndbmlUser = new returndbmlUser();
+            try
+            {                
+
+                objreturndbmlUser = objServiceClient.UserPaswordForgot(model.LoginId,model.EmailId);
+                if (objreturndbmlUser != null && objreturndbmlUser.objdbmlStatus.StatusId == 1)
+                {
+                    intStatusId = 1;
+                    strStatus = objreturndbmlUser.objdbmlStatus.Status;
+                }
+                else
+                {
+                    strStatus = objreturndbmlUser.objdbmlStatus.Status;
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId }, JsonRequestBehavior.AllowGet);
+        }
+
         public static string DecryptStringAES(string cipherText)
         {
 
