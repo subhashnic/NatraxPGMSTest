@@ -1,5 +1,5 @@
 ﻿@model PGMSFront.Models.CommonModel
-@{   
+@{
     ViewBag.Title = "Alerts & ToDo List";
     Layout = "~/Views/Shared/_LayoutBooking.cshtml";
 }
@@ -31,20 +31,18 @@
 
                         </div>
                     }
-                    <hr />
                     <div class="table-responsive">
-                        <table class="table">
+                        <table id="datatables" class="table table-striped table-no-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th width="3%">Action</th>
-                                    <th width="20%">Department</th>
-                                    <th width="12%">Date</th>
-                                    <th width="15%">Booking No.</th>
-                                    <th width="30%">Booking Status</th>
-                                    <th width="15%">Project Manager</th>
-
+                                    <th width="10%">Action</th>
+                                    <th width="22%">Department</th>
+                                    <th width="10%">Date</th>
+                                    <th width="22%">Booking No.</th>
+                                    <th width="18%">Booking Status</th>
+                                    <th width="18%">Project Manager</th>
                                 </tr>
-                            </thead>                            
+                            </thead>
                             <tbody id="tbodyBooking"></tbody>
                         </table>
                     </div>
@@ -53,12 +51,17 @@
         </div>
     </div>
 </div>
-<script>   
-
+<script>
+    function DataTable() {
+        $('#datatables').DataTable({
+        scrollY: '65vh',
+        scrollCollapse: true,
+        paging: false
+      });
+    }
     ///////////////////////////// Load Basic Info  //////////////////////////////////////////////////////
     function LoadBookingInfo() {
         try {
-
             LoaderShow();
             var data = {};
             var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
@@ -70,7 +73,7 @@
                 data: dataWithAntiforgeryToken,
                 success: function (data) {
                     LoaderHide();
-                    if (data.StatusId != "99" && data.StatusId != "-99") {                      
+                    if (data.StatusId != "99" && data.StatusId != "-99") {
                         BindGridData(data.BookingList);
                     }
                     else {
@@ -118,7 +121,7 @@
             }
 
             $("#tbodyBooking").html(gridData);
-
+            DataTable();
 
         }
         catch (e) {
@@ -127,11 +130,11 @@
     }
 
     function BookingGetByBookingId(BookingId) {
-        location.href = "@Url.Action("BookingGetByBookingId", "Home", new { id = UrlParameter.Optional })" + "?" + "dfs,ktgbdas,hdffg.khdfrhdduihdgtymdmpxjidgndlxcmhdgmdpldjn,dlkchgj,d,.dkjdhhdk,dmdhhnd,dkmdndhnndmdmjmd" + "&" + "intBookingId=" + BookingId;        
-       
+        location.href = "@Url.Action("BookingGetByBookingId", "Home", new { id = UrlParameter.Optional })" + "?" + "dfs,ktgbdas,hdffg.khdfrhdduihdgtymdmpxjidgndlxcmhdgmdpldjn,dlkchgj,d,.dkjdhhdk,dmdhhnd,dkmdndhnndmdmjmd" + "&" + "intBookingId=" + BookingId;
+
     }
-    $(document).ready(function () {        
-        LoadBookingInfo();        
+    $(document).ready(function () {
+        LoadBookingInfo();
     });
 
 </script>

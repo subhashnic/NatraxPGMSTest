@@ -38,6 +38,12 @@
             <img src="~/Templates/img/loader.gif" alt="natrax_loader">
         </div>
     </div>
+    <div class="Loader" id="divLoading" style="display: none;">
+        <div id="preloading" class="preloading">
+            <img src="@Url.Content("~/Templates/assets/img/load.gif")" style="width: 100px;">
+        </div>
+        <div id="overlay"></div>
+    </div>
     <div class="wrapper ">
         <div class="sidebar" data-color="rose" data-background-color="black" data-image="~/Templates/assets/img/sidebar-1.jpg">
             <div class="logo"> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-mini"> </a> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-normal"> NATRAX </a> </div>
