@@ -78,7 +78,7 @@
                     }
                     <hr />
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" id="datatables">
                             <thead>
                                 <tr>
                                     <th width="3%">Action</th>
@@ -101,6 +101,13 @@
     </div>
 </div>
 <script>
+    function DataTable() {
+        $('#datatables').DataTable({
+        scrollY: '50vh',
+        scrollCollapse: true,
+        paging: false
+      });
+    }
     var BookingList = '';
      ///////////////////////////// Load Basic Info  //////////////////////////////////////////////////////
     function GetBookingWorkFlowStatusGetByBPId(CallFlag) {
@@ -216,7 +223,7 @@
             }
 
             $("#tbodyBooking").html(gridData);
-
+            DataTable()
 
         }
         catch (e) {
