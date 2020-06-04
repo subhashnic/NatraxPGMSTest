@@ -72,6 +72,35 @@
         </div>
         <div id="overlay"></div>
     </div>
+    @{
+        var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
+        var actionName = this.ViewContext.RouteData.Values["action"].ToString();
+        string url = "/" + controllerName + "/" + actionName; ;
+        string LabBookingRFQ = "";
+        string LabBookingStandard = "";
+        string LabBookingAgainstRFQ = "";
+        string LabBookingHistory = "";
+       
+        switch (url)
+        {
+            case "/Home/LabBookingRFQ":
+                LabBookingRFQ = "class = active";
+                break;
+
+            case "/Home/LabBookingStandard":
+                LabBookingStandard = "class = active";
+                break;
+
+            case "/Home/LabBookingAgainstRFQ":
+                LabBookingAgainstRFQ = "class = active";
+                break;
+
+
+            case "/Home/LabBookingHistory":
+                LabBookingHistory = "class = active";
+                break;
+        }
+    }
     <div class="wrapper ">
         <div class="sidebar" data-color="rose" data-background-color="black" data-image="~/Templates/assets/img/sidebar-1.jpg">
             <div class="logo"> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-mini"> </a> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-normal"> NATRAX </a> </div>
@@ -113,24 +142,24 @@
                     <hr style="        background: #FFF;
         margin-top: 0;
         margin-bottom: 5px;" />
-                    <li class="nav-item">
+                    <li class="nav-item @LabBookingRFQ">
                         <a class="nav-link" id="LabLI" href="@Url.Action("LabBookingRFQ", "Home")">
                             <i class="material-icons">blank</i>
                             <p> RFQ - Regular Testing <span class="badge pull-right"></span></p>
                         </a>
                     </li>
                     @*<li class="nav-item">
-                        <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
-                            <i class="material-icons">blank</i>
-                            <p> RFQ - Confidential Testing <span class="badge pull-right">1</span></p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
-                            <i class="material-icons">blank</i>
-                            <p> RFQ - Long-Term CONTRACT <span class="badge pull-right">0</span></p>
-                        </a>
-                    </li>*@
+                            <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
+                                <i class="material-icons">blank</i>
+                                <p> RFQ - Confidential Testing <span class="badge pull-right">1</span></p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
+                                <i class="material-icons">blank</i>
+                                <p> RFQ - Long-Term CONTRACT <span class="badge pull-right">0</span></p>
+                            </a>
+                        </li>*@
                     <hr style="        background: #FFF;
         margin-top: 0;
         margin-bottom: 5px;" />
@@ -143,13 +172,13 @@
                     <hr style="        background: #FFF;
         margin-top: 0;
         margin-bottom: 5px;" />
-                    <li class="nav-item">
+                    <li class="nav-item @LabBookingStandard">
                         <a class="nav-link" id="LabLI" href="@Url.Action("LabBookingStandard", "Home")">
                             <i class="material-icons">blank</i>
                             <p> Booking - Standard Rates <span class="badge pull-right"></span></p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @LabBookingAgainstRFQ">
                         <a class="nav-link" id="LabLI" href="@Url.Action("LabBookingAgainstRFQ", "Home")">
                             <i class="material-icons">blank</i>
                             <p> Booking against RFQ - Regular <span class="badge pull-right"></span></p>
@@ -157,37 +186,37 @@
                         </a>
                     </li>
                     @*<li class="nav-item">
-                        <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
-                            <i class="material-icons">blank</i>
-                            <p> Booking against RFQ - Confident. <span class="badge pull-right">2</span></p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
-                            <i class="material-icons">blank</i>
-                            <p> Booking against Contract <span class="badge pull-right">0</span></p>
-                        </a>
-                    </li>*@
+                            <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
+                                <i class="material-icons">blank</i>
+                                <p> Booking against RFQ - Confident. <span class="badge pull-right">2</span></p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
+                                <i class="material-icons">blank</i>
+                                <p> Booking against Contract <span class="badge pull-right">0</span></p>
+                            </a>
+                        </li>*@
                     <hr style="background: #FFF;margin-top: 0;margin-bottom: 5px;" />
                     @*<li class="nav-item">
-                        <a class="nav-link" id="TrackLI" href="javascript:void(0)">
-                            <i class="material-icons">policy</i>
-                            <p> History </p>
-                        </a>
-                    </li>*@
+                            <a class="nav-link" id="TrackLI" href="javascript:void(0)">
+                                <i class="material-icons">policy</i>
+                                <p> History </p>
+                            </a>
+                        </li>*@
                     @*<hr style="ackground: #FFF;margin-top: 0;margin-bottom: 5px;" />*@
-                    <li class="nav-item">
+                    <li class="nav-item @LabBookingHistory">
                         <a class="nav-link" id="LabLI" href="@Url.Action("LabBookingHistory", "Home")">
                             <i class="material-icons">policy</i>
                             <p> Lab Booking History </p>
                         </a>
                     </li>
                     @*<li class="nav-item">
-                        <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
-                            <i class="material-icons">blank</i>
-                            <p> RFQ History </p>
-                        </a>
-                    </li>*@
+                            <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingsAndRFQ", "Home")">
+                                <i class="material-icons">blank</i>
+                                <p> RFQ History </p>
+                            </a>
+                        </li>*@
                 </ul>
             </div>
         </div>

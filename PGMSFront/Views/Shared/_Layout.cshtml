@@ -44,6 +44,84 @@
         </div>
         <div id="overlay"></div>
     </div>
+    @{
+        var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
+        var actionName = this.ViewContext.RouteData.Values["action"].ToString();
+        string url = "/" + controllerName + "/" + actionName;
+        string Dashboard = "";
+        string Department = "";
+        string Users = "";
+        string Track = "";
+        string Workshop = "";
+        string Storage = "";
+        string InstrumentationLab = "";
+        string VehicleDynamicsLab = "";
+        string PowerTrainLab = "";
+        string CADCAELab = "";
+        string ElectricalBatteryTestingFacilities = "";
+        string ElectricalVehicleTestingLab = "";
+        string AddOnServices = "";
+
+        switch (url)
+        {
+            case "/Home/Dashboard":
+                    Dashboard = "class = active";
+                    break;
+
+            case "/Home/Department":
+                Department = "class = active";
+                break;
+
+            case "/Home/Users":
+                Users = "class = active";
+                break;
+
+            case "/Front/Track":
+                Track = "class = active";
+                break;
+
+
+            case "/Front/Workshop":
+                Workshop = "class = active";
+                break;
+
+                case "/Front/Storage":
+                Storage = "class = active";
+                break;
+
+                case "/Front/InstrumentationLab":
+                InstrumentationLab = "class = active";
+                break;
+
+                case "/Front/VehicleDynamicsLab":
+                VehicleDynamicsLab = "class = active";
+                break;
+
+                case "/Front/PowerTrainLab":
+                PowerTrainLab = "class = active";
+                break;
+
+                case "/Front/CADCAELab":
+                CADCAELab = "class = active";
+                break;
+
+                case "/Front/ElectricalBatteryTestingFacilities":
+                ElectricalBatteryTestingFacilities = "class = active";
+                break;
+
+                case "/Front/ElectricalVehicleTestingLab":
+                ElectricalVehicleTestingLab = "class = active";
+                break;
+
+                case "/Front/AddOnServices":
+                AddOnServices = "class = active";
+                break;
+
+                
+                
+                
+        }
+    }
     <div class="wrapper ">
         <div class="sidebar" data-color="rose" data-background-color="black" data-image="~/Templates/assets/img/sidebar-1.jpg">
             <div class="logo"> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-mini"> </a> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-normal"> NATRAX </a> </div>
@@ -61,19 +139,19 @@
                         </div>
                     </div>*@
                 <ul class="nav" id="nav-item">
-                    <li class="nav-item">
+                    <li class="nav-item @Dashboard">
                         <a class="nav-link" href="@Url.Action("Dashboard", "Home")">
                             <i class="material-icons">dashboard</i>
                             <p> Dashboard </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @Department">
                         <a class="nav-link" href="@Url.Action("Department", "Home")">
                             <i class="material-icons">work_outline</i>
                             <p> Manage Departments </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @Users">
                         <a class="nav-link" href="@Url.Action("Users", "Home")">
                             <i class="material-icons">people</i>
                             <p> Manage Users </p>
@@ -86,70 +164,70 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item @Track">
                         <a class="nav-link" href="@Url.Action("Track", "Front")">
                             <i class="material-icons">emoji_transportation</i>
                             <p> Track </p>
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item @Workshop">
                         <a class="nav-link" href="@Url.Action("Workshop", "Front")">
                             <i class="material-icons">apartment</i>
                             <p> Workshop </p>
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item @Storage">
                         <a class="nav-link" href="@Url.Action("Storage", "Front")">
                             <i class="material-icons">battery_full</i>
                             <p> Storage </p>
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item @InstrumentationLab">
                         <a class="nav-link" href="@Url.Action("InstrumentationLab", "Front")">
                             <i class="material-icons">room_preferences</i>
                             <p> Instrumentation Lab </p>
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item @VehicleDynamicsLab">
                         <a class="nav-link" href="@Url.Action("VehicleDynamicsLab", "Front")">
                             <i class="material-icons">room_preferences</i>
                             <p> Vehicle Dynamics Lab </p>
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item @PowerTrainLab">
                         <a class="nav-link" href="@Url.Action("PowerTrainLab", "Front")">
                             <i class="material-icons">room_preferences</i>
                             <p> Power Train Lab </p>
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item @CADCAELab">
                         <a class="nav-link" href="@Url.Action("CADCAELab", "Front")">
                             <i class="material-icons">room_preferences</i>
                             <p> CAD CAE Lab </p>
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item @ElectricalBatteryTestingFacilities">
                         <a class="nav-link" href="@Url.Action("ElectricalBatteryTestingFacilities", "Front")">
                             <i class="material-icons">room_preferences</i>
                             <p> Electrical Battery Testing Facilities </p>
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item @ElectricalVehicleTestingLab">
                         <a class="nav-link" href="@Url.Action("ElectricalVehicleTestingLab", "Front")">
                             <i class="material-icons">room_preferences</i>
                             <p> Electrical Vehicle Testing Lab </p>
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item @AddOnServices">
                         <a class="nav-link" href="@Url.Action("AddOnServices", "Front")">
                             <i class="material-icons">image</i>
                             <p> Add-On Services </p>

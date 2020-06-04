@@ -72,6 +72,55 @@
         </div>
         <div id="overlay"></div>
     </div>
+    @{
+        var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
+        var actionName = this.ViewContext.RouteData.Values["action"].ToString();
+        string url = "/" + controllerName + "/" + actionName; ;
+        string BookingRFQ = "";
+        string BookingRFQConf = "";
+        string BookingContract = "";
+        string BookingStandard = "";
+        string BookingAgainstRFQ = "";
+        string BookingAgainstRFQConf = "";
+        string BookingAgainstContract = "";
+        string TrackBookingHistory = "";
+
+        switch (url)
+        {
+            case "/Home/BookingRFQ":
+                BookingRFQ = "class = active";
+                break;
+
+            case "/Home/BookingRFQConf":
+                BookingRFQConf = "class = active";
+                break;
+
+            case "/Home/BookingContract":
+                BookingContract = "class = active";
+                break;
+
+
+            case "/Home/BookingStandard":
+                BookingStandard = "class = active";
+                break;
+
+            case "/Home/BookingAgainstRFQ":
+                BookingAgainstRFQ = "class = active";
+                break;
+
+            case "/Home/BookingAgainstRFQConf":
+                BookingAgainstRFQConf = "class = active";
+                break;
+
+            case "/Home/BookingAgainstContract":
+                BookingAgainstContract = "class = active";
+                break;
+
+            case "/Home/TrackBookingHistory":
+                TrackBookingHistory = "class = active";
+                break;
+        }
+    }
     <div class="wrapper ">
         <div class="sidebar" data-color="rose" data-background-color="black" data-image="~/Templates/assets/img/sidebar-1.jpg">
             <div class="logo"> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-mini"> </a> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-normal"> NATRAX </a> </div>
@@ -113,19 +162,19 @@
                     <hr style="        background: #FFF;
         margin-top: 0;
         margin-bottom: 5px;" />
-                    <li class="nav-item">
+                    <li class="nav-item @BookingRFQ">
                         <a class="nav-link" id="LabLI" href="@Url.Action("BookingRFQ", "Home")">
                             <i class="material-icons">blank</i>
                             <p> RFQ - Regular Testing <span class="badge pull-right"></span></p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @BookingRFQConf">
                         <a class="nav-link" id="LabLI" href="@Url.Action("BookingRFQConf", "Home")">
                             <i class="material-icons">blank</i>
                             <p> RFQ - Confidential Testing <span class="badge pull-right"></span></p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @BookingContract">
                         <a class="nav-link" id="LabLI" href="@Url.Action("BookingContract", "Home")">
                             <i class="material-icons">blank</i>
                             <p> RFQ - Long-Term CONTRACT <span class="badge pull-right"></span></p>
@@ -143,26 +192,26 @@
                     <hr style="        background: #FFF;
         margin-top: 0;
         margin-bottom: 5px;" />
-                    <li class="nav-item">
+                    <li class="nav-item @BookingStandard">
                         <a class="nav-link" id="LabLI" href="@Url.Action("BookingStandard", "Home")">
                             <i class="material-icons">blank</i>
                             <p> Booking - Standard Rates <span class="badge pull-right"></span></p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @BookingAgainstRFQ">
                         <a class="nav-link" id="LabLI" href="@Url.Action("BookingAgainstRFQ", "Home")">
                             <i class="material-icons">blank</i>
                             <p> Booking against RFQ - Regular <span class="badge pull-right"></span></p>
 
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @BookingAgainstRFQConf">
                         <a class="nav-link" id="LabLI" href="@Url.Action("BookingAgainstRFQConf", "Home")">
                             <i class="material-icons">blank</i>
                             <p> Booking against RFQ - Confident. <span class="badge pull-right"></span></p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @BookingAgainstContract">
                         <a class="nav-link" id="LabLI" href="@Url.Action("BookingAgainstContract", "Home")">
                             <i class="material-icons">blank</i>
                             <p> Booking against Contract <span class="badge pull-right"></span></p>
@@ -176,7 +225,7 @@
                             </a>
                         </li>*@
                     @*<hr style="background: #FFF;margin-top: 0;margin-bottom: 5px;" />*@
-                    <li class="nav-item">
+                    <li class="nav-item @TrackBookingHistory">
                         <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingHistory", "Home")">
                             <i class="material-icons">policy</i>
                             <p> Track Booking History </p>

@@ -43,6 +43,45 @@
         </div>
         <div id="overlay"></div>
     </div>
+    @{
+        var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
+        var actionName = this.ViewContext.RouteData.Values["action"].ToString();
+        string url = "/" + controllerName + "/" + actionName; ;
+        string Basic = "";
+        string Vehicle = "";
+        string MainTrackBooking = "";
+        string TrackWorkshopBooking = "";
+        string TrackAddOnServicesBooking = "";
+        string WorkflowActivity = "";
+
+        switch (url)
+        {
+            case "/Home/Basic":
+                Basic = "class = active";
+                break;
+
+            case "/Home/Vehicle":
+                Vehicle = "class = active";
+                break;
+
+            case "/Home/MainTrackBooking":
+                MainTrackBooking = "class = active";
+                break;
+
+
+            case "/Home/TrackWorkshopBooking":
+                TrackWorkshopBooking = "class = active";
+                break;
+
+                case "/Home/TrackAddOnServicesBooking":
+                TrackAddOnServicesBooking = "class = active";
+                break;
+
+                case "/Home/WorkflowActivity":
+                WorkflowActivity = "class = active";
+                break;
+        }
+    }
     <div class="wrapper ">
         <div class="sidebar" data-color="rose" data-background-color="black" data-image="~/Templates/assets/img/sidebar-1.jpg">
             <div class="logo"> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-mini"> </a> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-normal"> NATRAX </a> </div>
@@ -72,49 +111,49 @@
                             <p> Manage Booking </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @Basic">
                         <a class="nav-link" id="BasicLI" href="@Url.Action("Basic", "Home")">
                             <i class="material-icons">info</i>
                             <p> Basic </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @Vehicle">
                         <a class="nav-link" id="BasicLI" href="@Url.Action("Vehicle", "Home")">
                             <i class="material-icons">airport_shuttle</i>
                             <p> Vehicle </p>
                         </a>
                     </li>
                     @*<li class="nav-item">
-            <a class="nav-link" id="BasicLI" href="@Url.Action("Driver", "Home")">
-                <i class="material-icons">person_pin</i>
-                <p> Driver </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="BasicLI" href="@Url.Action("Attendee", "Home")">
-                <i class="material-icons">peoples</i>
-                <p> Attendee </p>
-            </a>
-        </li>*@
-                    <li class="nav-item">
+                            <a class="nav-link" id="BasicLI" href="@Url.Action("Driver", "Home")">
+                                <i class="material-icons">person_pin</i>
+                                <p> Driver </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="BasicLI" href="@Url.Action("Attendee", "Home")">
+                                <i class="material-icons">peoples</i>
+                                <p> Attendee </p>
+                            </a>
+                        </li>*@
+                    <li class="nav-item @MainTrackBooking">
                         <a class="nav-link" id="BasicLI" href="@Url.Action("MainTrackBooking", "Home")">
                             <i class="material-icons">emoji_transportation</i>
                             <p> Tracks </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @TrackWorkshopBooking">
                         <a class="nav-link" id="BasicLI" href="@Url.Action("TrackWorkshopBooking", "Home")">
                             <i class="material-icons">apartment</i>
                             <p> Workshop / Storage </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @TrackAddOnServicesBooking">
                         <a class="nav-link" href="@Url.Action("TrackAddOnServicesBooking", "Home")">
                             <i class="material-icons">image</i>
                             <p> Add-On Services </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @WorkflowActivity">
                         <a class="nav-link" href="@Url.Action("WorkflowActivity", "Home")">
                             <i class="material-icons">info</i>
                             <p> Workflow Activity </p>

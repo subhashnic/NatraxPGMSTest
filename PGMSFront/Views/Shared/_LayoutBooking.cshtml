@@ -45,6 +45,29 @@
         </div>
         <div id="overlay"></div>
     </div>
+    @{
+        var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
+        var actionName = this.ViewContext.RouteData.Values["action"].ToString();
+        string url = "/" + controllerName + "/" + actionName;
+        string ManageBooking = "";
+        string TrackBookingHistory = "";
+        string LabBookingHistory = "";
+
+        switch (url)
+        {
+            case "/Home/ManageBooking":
+                ManageBooking = "class = active";
+                break;
+
+            case "/Home/TrackBookingHistory":
+                TrackBookingHistory = "class = active";
+                break;
+
+            case "/Home/LabBookingHistory":
+                LabBookingHistory = "class = active";
+                break;
+        }
+    }
     <div class="wrapper ">
         <div class="sidebar" data-color="rose" data-background-color="black" data-image="~/Templates/assets/img/sidebar-1.jpg">
             <div class="logo"> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-mini"> </a> <a href="@Url.Action("Dashboard", "Home")" class="simple-text logo-normal"> NATRAX </a> </div>
@@ -68,7 +91,7 @@
                             <p> Dashboard </p>
                         </a>
                     </li>
-                      <li class="nav-item">
+                    <li class="nav-item @ManageBooking">
                         <a class="nav-link" id="TrackLI" href="@Url.Action("ManageBooking", "Home")">
                             <i class="material-icons">notification_important</i>
                             <p> Alerts & ToDo List </p>
@@ -86,13 +109,13 @@
                             <p> Lab Booking / RFQ </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @TrackBookingHistory">
                         <a class="nav-link" id="LabLI" href="@Url.Action("TrackBookingHistory", "Home")">
                             <i class="material-icons">policy</i>
                             <p> Track Booking History </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @LabBookingHistory">
                         <a class="nav-link" id="LabLI" href="@Url.Action("LabBookingHistory", "Home")">
                             <i class="material-icons">policy</i>
                             <p> Lab Booking History </p>
