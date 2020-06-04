@@ -4056,7 +4056,7 @@ namespace PGMSFront.Controllers
                 if (objreturndbmlUser != null && objreturndbmlUser.objdbmlStatus.StatusId == 1)
                 {
                     intStatusId = 1;
-                    strStatus = "New Password successfully created. Your user activation is pending by Natrax";
+                    strStatus = objreturndbmlUser.objdbmlStatus.Status;
                 }
                 else
                 {
