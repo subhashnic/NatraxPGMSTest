@@ -251,7 +251,8 @@
                             }
                             else {
                                 $("#LoginId").val("");
-                                alert(data.Status);
+                                $("#LoginId").focus(); 
+                                alert(data.Status); 
                             }
                         },
                         error: function (xhr) {
@@ -354,6 +355,9 @@
                             UserList = data.UserList;
                             BindWSData(data.UserList);
 
+                        }
+                        else {
+                            $("#LoginId").focus(); 
                         }
                         btnSave.show();
                         alert(data.Status);
