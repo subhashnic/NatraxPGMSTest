@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
@@ -1150,7 +1151,7 @@ namespace PGMSFront.Controllers
 
             try
             {
-                objreturndbmlBookingSearchView = objServiceClient.ToDoBookingSearchViewGetByCompanyIdFromDateToDateFront(0, 0,DateTime.Now.Date, DateTime.Now.Date, 0, 0);
+                objreturndbmlBookingSearchView = objServiceClient.ToDoBookingSearchViewGetByCompanyIdFromDateToDateFront(Convert.ToInt32(Session["ZZCompanyId"]), Convert.ToInt32(Session["UserId"]), DateTime.Now.Date, DateTime.Now.Date, 0, 0);
 
                 if (objreturndbmlBookingSearchView != null && objreturndbmlBookingSearchView.objdbmlStatus.StatusId == 1)
                 {
