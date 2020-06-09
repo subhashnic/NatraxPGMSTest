@@ -1540,7 +1540,7 @@ namespace PGMSFront.Controllers
                     }
                     else
                     {
-                        strStatus = objreturndbmlBooking.objdbmlStatus.Status;
+                        strStatus = objreturndbmlStatus.objdbmlStatus.Status;
                     }
                 }
             }
@@ -1580,7 +1580,7 @@ namespace PGMSFront.Controllers
                     }
                     else
                     {
-                        strStatus = objreturndbmlBooking.objdbmlStatus.Status;
+                        strStatus = objreturndbmlStatus.objdbmlStatus.Status;
                     }
                 }
             }
