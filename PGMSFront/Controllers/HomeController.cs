@@ -1117,7 +1117,7 @@ namespace PGMSFront.Controllers
 
             try
             {
-                objreturndbmlDashBoardDocumentViewFront = objServiceClient.DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(intBPId, intWorkFlowId, strStatusPropId);
+                objreturndbmlDashBoardDocumentViewFront = objServiceClient.DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(intBPId, intWorkFlowId, strStatusPropId,Convert.ToInt32(Session["UserId"]));
 
                 if (objreturndbmlDashBoardDocumentViewFront != null && objreturndbmlDashBoardDocumentViewFront.objdbmlStatus.StatusId == 1)
                 {
@@ -1499,7 +1499,7 @@ namespace PGMSFront.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        public ActionResult AcceptPI(int intQuotFlag)
+        public ActionResult SubmitDoc(int intQuotFlag)
         {
             if (Session["UserId"] == null)
             {

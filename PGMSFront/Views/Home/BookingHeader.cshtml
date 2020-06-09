@@ -30,13 +30,18 @@
                             }
                             else
                             {
-                                <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPIWithQuot();" class="btn btn-fill btn-rose btn-sm" />
-                                <input type="button" id="btnAcceptPI" value="Accept P.I." onclick="return AcceptPI();" class="btn btn-fill btn-rose btn-sm" />
+                                @*<input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPIWithQuot();" class="btn btn-fill btn-rose btn-sm" />
+                                    <input type="button" id="btnAcceptPI" value="Accept P.I." onclick="return AcceptPI();" class="btn btn-fill btn-rose btn-sm" />*@
+                                <input type="button" id="btnSubmit" value="Submit" onclick="return SubmitDoc();" class="btn btn-fill btn-rose btn-sm" />
                             }
                         }
-                        else if (Model.DocId > 0 && (Model.WorkFlowId == 8 || Model.WorkFlowId == 44))
+                        else if (Model.DocId > 0 && Model.RFQId != null && Model.RFQId > 0 && (Model.WorkFlowId == 8 || Model.WorkFlowId == 44))
                         {
                             <input type="button" id="btnViewPI" value="View P.I." onclick="return ViewPI();" class="btn btn-fill btn-rose btn-sm" />
+                        }
+                        else if (Model.DocId > 0 && (Model.WorkFlowId == 7 || Model.WorkFlowId == 37))
+                        {
+                            <input type="button" id="btnAcceptPI" value="Accept P.I." onclick="return AcceptPI();" class="btn btn-fill btn-rose btn-sm" />
                         }
                         else if (Model.DocId > 0 && (Model.WorkFlowId == 9 || Model.WorkFlowId == 45))
                         {
@@ -414,12 +419,73 @@
         return false;
     }
 
+    
+    ///////////////////////////// Submit Doc  //////////////////////////////////////////////////////
+    function SubmitDoc() {
+        try {
+            $.confirm({
+                title: 'Confirm Alert!',
+                content: 'Further editing of the Booking will be locked when you "Submit" as it will be forwarded to Natrax for approving your Booking Dates Click "OK" to Confirm and "CANCEL" to continue editing.',
+                icon: 'fa fa-question',
+                closeIcon: true,
+                animation: 'scale',
+                type: 'orange',
+                escapeKey: 'cancel',
+                buttons: {
+                    MyFunction: {
+                        text: 'OK',
+                        action: function () {
+                            LoaderShow();
+                            var data = { 'intQuotFlag':0};
+                            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+                            $.ajax({
+                                url: '@Url.Action("SubmitDoc", "Home")',
+                                type: 'POST',
+                                dataType: 'json',
+                                async: true,
+                                data: dataWithAntiforgeryToken,
+                                success: function (data) {
+
+                                    LoaderHide();
+
+                                    if (data.StatusId != "99" && data.StatusId != "-99") {
+                                        alert("PI Accepted Successfully");
+                                        BookingList = data.BookingList;
+                                        window.location.href = '@Url.Action("Basic", "Home")';
+                                    }
+                                    else {
+                                        alert(data.Status);
+                                    }
+                                },
+                                error: function (xhr) {
+
+                                    LoaderHide();
+                                    alert(xhr.responseText);
+                                }
+                            });
+
+                        }
+                    },
+                    cancel: function () {
+                    }
+                }
+            });
+
+        }
+        catch (e) {
+
+            LoaderHide();
+            alert(e.message);
+            //  return false;
+        }
+    }
+
     ///////////////////////////// Accept P.I.  //////////////////////////////////////////////////////
     function AcceptPI() {
         try {
             $.confirm({
                 title: 'Confirm Alert!',
-                content: 'Further editing of the Booking will be locked when you "Accept P.I." as it will be forwarded to Natrax for approving your Booking Dates Click "OK" to Confirm and "CANCEL" to continue editing.',
+                content: 'It will be forwarded for upload PO Click "OK" to Confirm',
                 icon: 'fa fa-question',
                 closeIcon: true,
                 animation: 'scale',
@@ -433,7 +499,7 @@
                             var data = { 'intQuotFlag':1};
                             var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                             $.ajax({
-                                url: '@Url.Action("AcceptPI", "Home")',
+                                url: '@Url.Action("SubmitDoc", "Home")',
                                 type: 'POST',
                                 dataType: 'json',
                                 async: true,
@@ -493,7 +559,7 @@
                             var data = { 'intQuotFlag':1};
                             var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                             $.ajax({
-                                url: '@Url.Action("AcceptPI", "Home")',
+                                url: '@Url.Action("SubmitDoc", "Home")',
                                 type: 'POST',
                                 dataType: 'json',
                                 async: true,
@@ -544,7 +610,7 @@
                 varMenuLink = '"ManageBooking/TrackBookings & RFQ/Booking(New/In-Progress)/Booking against RFQ - Regular"';
             }
             else if (parseInt(varWorkFlowId) == 54) {
-                varMenuLink = '"ManageBooking/LabBookings & RFQ/Booking(New/In-Progress)/Booking against RFQ"';
+                varMenuLink = '"ManageBooking/LabBookings & RFQ/Booking(New/In-Progress)/Booking against RFQ - Regular"';
             }
 
             $.confirm({
@@ -563,7 +629,7 @@
                             var data = { 'intQuotFlag':0};
                             var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                             $.ajax({
-                                url: '@Url.Action("AcceptPI", "Home")',
+                                url: '@Url.Action("SubmitDoc", "Home")',
                                 type: 'POST',
                                 dataType: 'json',
                                 async: true,
@@ -622,7 +688,7 @@
                             var data = { 'intQuotFlag': 0};
                             var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                             $.ajax({
-                                url: '@Url.Action("AcceptPI", "Home")',
+                                url: '@Url.Action("SubmitDoc", "Home")',
                                 type: 'POST',
                                 dataType: 'json',
                                 async: true,
@@ -679,7 +745,7 @@
                             var data = { 'intQuotFlag':1};
                             var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                             $.ajax({
-                                url: '@Url.Action("AcceptPI", "Home")',
+                                url: '@Url.Action("SubmitDoc", "Home")',
                                 type: 'POST',
                                 dataType: 'json',
                                 async: true,
