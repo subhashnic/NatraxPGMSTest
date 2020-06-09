@@ -179,7 +179,7 @@
                     if (data.StatusId != "99" && data.StatusId != "-99") {
                         VehicleList = data.VehicleList;
                         BindVehicleData(data.VehicleList);
-                        if (VehicleList.length > 0) {
+                        if (VehicleList.length > 0 || parseInt($("#BPId").val()) == 90 || parseInt($("#BPId").val())==91) {
                             $("#btnNext").show();
                         }
                     }

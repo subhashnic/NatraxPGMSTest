@@ -167,9 +167,10 @@
                     if (data.StatusId != "99" && data.StatusId != "-99") {
                         VehicleList = data.VehicleList;
                         BindVehicleData(data.VehicleList);
-                        if (VehicleList.length > 0) {
-                            $("#btnNext").show();
-                        }
+                        $("#btnNext").show();
+                        //if (VehicleList.length > 0) {
+                        //    $("#btnNext").show();
+                        //}
                     }
                     else {
                        // alert(data.Status);

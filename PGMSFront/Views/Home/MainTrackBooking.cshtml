@@ -654,7 +654,7 @@
     ///////////////////////////// Bind Servive Category  //////////////////////////////////////////////////////
     function BindServiceCategory(data) {
         try {
-
+           
             var gridData = "";
 
             $("#divCategory").html("");
@@ -708,7 +708,7 @@
     //////////////////////// Bind Track Service Grid ////////////////////////////////////////////////////////
     function BindTrackService() {
         try {
-
+           
             var gridData = "";
             var varDate = $("#TrackDate").val();
             if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
@@ -1548,7 +1548,7 @@
     /////////////////////// Date Selection Changed ////////////////////////////////////////
     function ResetCategoryTimeSlot() {
         try {
-
+            debugger;
             if (parseInt($("#lstServiceLookup").val()) == 0) {
                 $("#TrackDate").val("");
                 $("#lstServiceLookup").focus();
@@ -1557,7 +1557,11 @@
 
             }
             else {
-                if ($("#TrackDate").val().trim() != "") {
+                var varDate = $("#TrackDate").val();
+                if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
+                    varDate = $("#Day").val();
+                }
+                if (varDate.trim() != "") {
                     if (ServiceCategoryList.length > 1) {
                         $("input[name='Category']:checked").prop('checked', false);
                         $("#tbodyTrack").html("");
