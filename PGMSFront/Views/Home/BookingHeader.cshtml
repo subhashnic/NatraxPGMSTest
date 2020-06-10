@@ -604,18 +604,18 @@
         try {
             var varMenuLink = "";
             if (parseInt(varWorkFlowId) == 59) {
-                varMenuLink = '"ManageBooking/TrackBookings & RFQ/Booking(New/In-Progress)/Booking against RFQ - Confidential"';
+                varMenuLink = '"ManageBooking<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TrackBookings & RFQ<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Booking(New/In-Progress)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Booking against RFQ - Confidential"';
             }
             else if (parseInt(varWorkFlowId) == 52) {
-                varMenuLink = '"ManageBooking/TrackBookings & RFQ/Booking(New/In-Progress)/Booking against RFQ - Regular"';
+                varMenuLink = '"ManageBooking<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TrackBookings & RFQ<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Booking(New/In-Progress)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Booking against RFQ - Regular"';
             }
             else if (parseInt(varWorkFlowId) == 54) {
-                varMenuLink = '"ManageBooking/LabBookings & RFQ/Booking(New/In-Progress)/Booking against RFQ - Regular"';
+                varMenuLink = '"ManageBooking<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LabBookings & RFQ<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Booking(New/In-Progress)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Booking against RFQ - Regular"';
             }
 
             $.confirm({
                 title: 'Confirm Alert!',
-                content: 'Thank you for accepting the Quotation Please create booking against this Quotation from Menu - ' + varMenuLink +' to set the testing dates OK  "CANCEL".',
+                content: '"Thank you for accepting the Quotation.<br>Please create booking against this Quotation to set the testing dates from Menu -<br><br>'+ varMenuLink,
                 icon: 'fa fa-question',
                 closeIcon: true,
                 animation: 'scale',
