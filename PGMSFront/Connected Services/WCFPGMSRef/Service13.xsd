@@ -266,6 +266,7 @@
       <xs:element minOccurs="0" name="BookingDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="BookingId" type="xs:int" />
       <xs:element minOccurs="0" name="BookingNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BookingType" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
       <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Department" nillable="true" type="xs:string" />

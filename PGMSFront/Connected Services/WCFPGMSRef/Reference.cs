@@ -3396,6 +3396,9 @@ namespace PGMSFront.WCFPGMSRef {
         private string BookingNoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BookingTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int CompanyIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3495,6 +3498,19 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((object.ReferenceEquals(this.BookingNoField, value) != true)) {
                     this.BookingNoField = value;
                     this.RaisePropertyChanged("BookingNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BookingType {
+            get {
+                return this.BookingTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BookingTypeField, value) != true)) {
+                    this.BookingTypeField = value;
+                    this.RaisePropertyChanged("BookingType");
                 }
             }
         }
