@@ -1631,7 +1631,7 @@ namespace PGMSFront.Controllers
                                 string strFileStorage = System.Configuration.ConfigurationManager.AppSettings["strFileStorage"];
 
                                 string strImageName = "PO_" + Convert.ToString(objdbmlBooking.BookingId) + "." + strFileExtention;
-                                string strImageContainerName = "natraximage";
+                                string strImageContainerName = "booking";
                                 string strImageURL = "";
                                 string strFTPFilePath = "";
                                 if (strFileStorage == "FTP")
