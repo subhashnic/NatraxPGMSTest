@@ -73,16 +73,7 @@
             padding-top: 5px;
         }
 
-        .bmd-form-group .bmd-label-floating, .bmd-form-group .bmd-label-placeholder {
-    top: 17px;
-}
-
-        .form-control {
-    height: 35px !important;
-}
-.form-control {
-    padding: 0px 0px 23px 0px !important;
-}
+        
     </style>
 </head>
 
@@ -302,7 +293,7 @@
 
     <script src="~/Templates/assets/js/core/popper.min.js"></script>
     <script src="~/Templates/assets/js/core/bootstrap-material-design.min.js"></script>
-    @*<script src="~/Templates/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>*@
+    <script src="~/Templates/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <!-- Plugin for the momentJs  -->
     <script src="~/Templates/assets/js/plugins/moment.min.js"></script>
     <!--  Plugin for Sweet Alert -->
@@ -736,10 +727,12 @@
         try {
             var strMSG = '';
 
-            if (DocList == undefined || DocList == "" || DocList.length < 3) {
-                alert("Please upload above 3 mandatory documents and then create password");
-                strMSG = strMSG + 'Please upload above 3 mandatory documents and then create password \n</br>'
-                return;
+            if (parseInt($("#DocId").val()) == 0) {
+                if (DocList == undefined || DocList == "" || DocList.length < 3) {
+                    alert("Please upload above 3 mandatory documents and then create password");
+                    strMSG = strMSG + 'Please upload above 3 mandatory documents and then create password \n</br>'
+                    return;
+                }
             }
 
             if ($("#txtPSW").val().trim() == "") {
