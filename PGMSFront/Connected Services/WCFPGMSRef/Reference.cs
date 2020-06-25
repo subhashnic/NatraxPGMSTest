@@ -731,22 +731,22 @@ namespace PGMSFront.WCFPGMSRef {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> BPIdField;
+        private int BPIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string CaptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> CountsField;
+        private int CountsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> DashBoardIdField;
+        private int DashBoardIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string StatusPropIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> WorkFlowIdField;
+        private string WorkFlowIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -759,7 +759,7 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> BPId {
+        public int BPId {
             get {
                 return this.BPIdField;
             }
@@ -785,7 +785,7 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> Counts {
+        public int Counts {
             get {
                 return this.CountsField;
             }
@@ -798,7 +798,7 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> DashBoardId {
+        public int DashBoardId {
             get {
                 return this.DashBoardIdField;
             }
@@ -824,12 +824,12 @@ namespace PGMSFront.WCFPGMSRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> WorkFlowId {
+        public string WorkFlowId {
             get {
                 return this.WorkFlowIdField;
             }
             set {
-                if ((this.WorkFlowIdField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.WorkFlowIdField, value) != true)) {
                     this.WorkFlowIdField = value;
                     this.RaisePropertyChanged("WorkFlowId");
                 }
@@ -2428,6 +2428,192 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((this.UpdateIdField.Equals(value) != true)) {
                     this.UpdateIdField = value;
                     this.RaisePropertyChanged("UpdateId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlCustomerMasterPhoto", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
+    [System.SerializableAttribute()]
+    public partial class returndbmlCustomerMasterPhoto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlCustomerMasterPhoto> objdbmlCustomerMasterPhotoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatusField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlCustomerMasterPhoto> objdbmlCustomerMasterPhoto {
+            get {
+                return this.objdbmlCustomerMasterPhotoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlCustomerMasterPhotoField, value) != true)) {
+                    this.objdbmlCustomerMasterPhotoField = value;
+                    this.RaisePropertyChanged("objdbmlCustomerMasterPhoto");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatus {
+            get {
+                return this.objdbmlStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlStatusField, value) != true)) {
+                    this.objdbmlStatusField = value;
+                    this.RaisePropertyChanged("objdbmlStatus");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="dbmlCustomerMasterPhoto", Namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate")]
+    [System.SerializableAttribute()]
+    public partial class dbmlCustomerMasterPhoto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> CreateDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CreateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CustomerMasterIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ImageNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ImageSerialNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RemarkField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> CreateDate {
+            get {
+                return this.CreateDateField;
+            }
+            set {
+                if ((this.CreateDateField.Equals(value) != true)) {
+                    this.CreateDateField = value;
+                    this.RaisePropertyChanged("CreateDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> CreateId {
+            get {
+                return this.CreateIdField;
+            }
+            set {
+                if ((this.CreateIdField.Equals(value) != true)) {
+                    this.CreateIdField = value;
+                    this.RaisePropertyChanged("CreateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CustomerMasterId {
+            get {
+                return this.CustomerMasterIdField;
+            }
+            set {
+                if ((this.CustomerMasterIdField.Equals(value) != true)) {
+                    this.CustomerMasterIdField = value;
+                    this.RaisePropertyChanged("CustomerMasterId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ImageName {
+            get {
+                return this.ImageNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImageNameField, value) != true)) {
+                    this.ImageNameField = value;
+                    this.RaisePropertyChanged("ImageName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ImageSerialNo {
+            get {
+                return this.ImageSerialNoField;
+            }
+            set {
+                if ((this.ImageSerialNoField.Equals(value) != true)) {
+                    this.ImageSerialNoField = value;
+                    this.RaisePropertyChanged("ImageSerialNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remark {
+            get {
+                return this.RemarkField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RemarkField, value) != true)) {
+                    this.RemarkField = value;
+                    this.RaisePropertyChanged("Remark");
                 }
             }
         }
@@ -8398,9 +8584,6 @@ namespace PGMSFront.WCFPGMSRef {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ZZStatusField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ZZWorkFlowColorField;
-        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -8524,19 +8707,6 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((object.ReferenceEquals(this.ZZStatusField, value) != true)) {
                     this.ZZStatusField = value;
                     this.RaisePropertyChanged("ZZStatus");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ZZWorkFlowColor {
-            get {
-                return this.ZZWorkFlowColorField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ZZWorkFlowColorField, value) != true)) {
-                    this.ZZWorkFlowColorField = value;
-                    this.RaisePropertyChanged("ZZWorkFlowColor");
                 }
             }
         }
@@ -10588,6 +10758,24 @@ namespace PGMSFront.WCFPGMSRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DistrictGetAll", ReplyAction="http://tempuri.org/IService1/DistrictGetAllResponse")]
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDistrict> DistrictGetAllAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CustomerMasterPhotoGetByCustomerMasterId", ReplyAction="http://tempuri.org/IService1/CustomerMasterPhotoGetByCustomerMasterIdResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlCustomerMasterPhoto CustomerMasterPhotoGetByCustomerMasterId(int intCustomerMasterId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CustomerMasterPhotoGetByCustomerMasterId", ReplyAction="http://tempuri.org/IService1/CustomerMasterPhotoGetByCustomerMasterIdResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCustomerMasterPhoto> CustomerMasterPhotoGetByCustomerMasterIdAsync(int intCustomerMasterId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CustomerMasterPhotoInsert", ReplyAction="http://tempuri.org/IService1/CustomerMasterPhotoInsertResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlCustomerMasterPhoto CustomerMasterPhotoInsert(PGMSFront.WCFPGMSRef.returndbmlCustomerMasterPhoto objreturndbmlCustomerMasterPhoto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CustomerMasterPhotoInsert", ReplyAction="http://tempuri.org/IService1/CustomerMasterPhotoInsertResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCustomerMasterPhoto> CustomerMasterPhotoInsertAsync(PGMSFront.WCFPGMSRef.returndbmlCustomerMasterPhoto objreturndbmlCustomerMasterPhoto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CustomerMasterPhotoDelete", ReplyAction="http://tempuri.org/IService1/CustomerMasterPhotoDeleteResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlCustomerMasterPhoto CustomerMasterPhotoDelete(int intCustomerMasterId, int intIamgeSerialNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CustomerMasterPhotoDelete", ReplyAction="http://tempuri.org/IService1/CustomerMasterPhotoDeleteResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCustomerMasterPhoto> CustomerMasterPhotoDeleteAsync(int intCustomerMasterId, int intIamgeSerialNo);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BookingInsert", ReplyAction="http://tempuri.org/IService1/BookingInsertResponse")]
         PGMSFront.WCFPGMSRef.returndbmlBooking BookingInsert(PGMSFront.WCFPGMSRef.returndbmlBooking objreturndbmlBooking);
         
@@ -10679,12 +10867,12 @@ namespace PGMSFront.WCFPGMSRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId" +
             "", ReplyAction="http://tempuri.org/IService1/DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId" +
             "Response")]
-        PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(int intBPId, int intWorkflowId, string strStatusPropId, int intUserId);
+        PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(int intBPId, string strWorkflowId, string strStatusPropId, int intUserId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId" +
             "", ReplyAction="http://tempuri.org/IService1/DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId" +
             "Response")]
-        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront> DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyIdAsync(int intBPId, int intWorkflowId, string strStatusPropId, int intUserId);
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront> DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyIdAsync(int intBPId, string strWorkflowId, string strStatusPropId, int intUserId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ListOfVehicleComponentInsert", ReplyAction="http://tempuri.org/IService1/ListOfVehicleComponentInsertResponse")]
         PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent ListOfVehicleComponentInsert(PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent objreturndbmlListOfVehicleComponent);
@@ -11024,6 +11212,30 @@ namespace PGMSFront.WCFPGMSRef {
             return base.Channel.DistrictGetAllAsync();
         }
         
+        public PGMSFront.WCFPGMSRef.returndbmlCustomerMasterPhoto CustomerMasterPhotoGetByCustomerMasterId(int intCustomerMasterId) {
+            return base.Channel.CustomerMasterPhotoGetByCustomerMasterId(intCustomerMasterId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCustomerMasterPhoto> CustomerMasterPhotoGetByCustomerMasterIdAsync(int intCustomerMasterId) {
+            return base.Channel.CustomerMasterPhotoGetByCustomerMasterIdAsync(intCustomerMasterId);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlCustomerMasterPhoto CustomerMasterPhotoInsert(PGMSFront.WCFPGMSRef.returndbmlCustomerMasterPhoto objreturndbmlCustomerMasterPhoto) {
+            return base.Channel.CustomerMasterPhotoInsert(objreturndbmlCustomerMasterPhoto);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCustomerMasterPhoto> CustomerMasterPhotoInsertAsync(PGMSFront.WCFPGMSRef.returndbmlCustomerMasterPhoto objreturndbmlCustomerMasterPhoto) {
+            return base.Channel.CustomerMasterPhotoInsertAsync(objreturndbmlCustomerMasterPhoto);
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlCustomerMasterPhoto CustomerMasterPhotoDelete(int intCustomerMasterId, int intIamgeSerialNo) {
+            return base.Channel.CustomerMasterPhotoDelete(intCustomerMasterId, intIamgeSerialNo);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlCustomerMasterPhoto> CustomerMasterPhotoDeleteAsync(int intCustomerMasterId, int intIamgeSerialNo) {
+            return base.Channel.CustomerMasterPhotoDeleteAsync(intCustomerMasterId, intIamgeSerialNo);
+        }
+        
         public PGMSFront.WCFPGMSRef.returndbmlBooking BookingInsert(PGMSFront.WCFPGMSRef.returndbmlBooking objreturndbmlBooking) {
             return base.Channel.BookingInsert(objreturndbmlBooking);
         }
@@ -11128,12 +11340,12 @@ namespace PGMSFront.WCFPGMSRef {
             return base.Channel.ToDoBookingSearchViewGetByCompanyIdFromDateToDateFrontAsync(intCompanyId, intUserId, dtFromDate, dtToDate, intBPId, intStatusPropId);
         }
         
-        public PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(int intBPId, int intWorkflowId, string strStatusPropId, int intUserId) {
-            return base.Channel.DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(intBPId, intWorkflowId, strStatusPropId, intUserId);
+        public PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(int intBPId, string strWorkflowId, string strStatusPropId, int intUserId) {
+            return base.Channel.DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(intBPId, strWorkflowId, strStatusPropId, intUserId);
         }
         
-        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront> DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyIdAsync(int intBPId, int intWorkflowId, string strStatusPropId, int intUserId) {
-            return base.Channel.DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyIdAsync(intBPId, intWorkflowId, strStatusPropId, intUserId);
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront> DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyIdAsync(int intBPId, string strWorkflowId, string strStatusPropId, int intUserId) {
+            return base.Channel.DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyIdAsync(intBPId, strWorkflowId, strStatusPropId, intUserId);
         }
         
         public PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent ListOfVehicleComponentInsert(PGMSFront.WCFPGMSRef.returndbmlListOfVehicleComponent objreturndbmlListOfVehicleComponent) {

@@ -212,6 +212,9 @@
     <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlDashBoardDocumentViewFront.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlCustomerMasterPhoto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\WCFPGMSRef\Service1.disco" />
     <None Include="Connected Services\WCFPGMSRef\configuration91.svcinfo" />
     <None Include="Connected Services\WCFPGMSRef\configuration.svcinfo" />
@@ -412,6 +415,8 @@
     <Content Include="Templates\css\breadcrumb.css" />
     <Content Include="Templates\css\font-awesome.min.css" />
     <Content Include="Templates\css\style.css" />
+    <Content Include="Templates\fileupload\bootstrap-fileupload.css" />
+    <Content Include="Templates\fileupload\bootstrap-fileupload.js" />
     <Content Include="Templates\img\author1.png" />
     <Content Include="Templates\img\banner\banner-2.jpg" />
     <Content Include="Templates\img\banner\banner-map.png" />
@@ -904,6 +909,7 @@
       <DependentUpon>Web - Copy.config</DependentUpon>
     </Content>
     <Content Include="Views\Home\ForgotPassword.cshtml" />
+    <Content Include="Views\Home\PasswordReset.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -57,12 +57,12 @@
   <xs:element name="ArrayOfdbmlDashBoardWorkFlowViewFront" nillable="true" type="tns:ArrayOfdbmlDashBoardWorkFlowViewFront" />
   <xs:complexType name="dbmlDashBoardWorkFlowViewFront">
     <xs:sequence>
-      <xs:element minOccurs="0" name="BPId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="BPId" type="xs:int" />
       <xs:element minOccurs="0" name="Caption" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Counts" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="DashBoardId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Counts" type="xs:int" />
+      <xs:element minOccurs="0" name="DashBoardId" type="xs:int" />
       <xs:element minOccurs="0" name="StatusPropId" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="WorkFlowId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="WorkFlowId" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlDashBoardWorkFlowViewFront" nillable="true" type="tns:dbmlDashBoardWorkFlowViewFront" />
@@ -197,6 +197,23 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlDistrict" nillable="true" type="tns:dbmlDistrict" />
+  <xs:complexType name="ArrayOfdbmlCustomerMasterPhoto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlCustomerMasterPhoto" nillable="true" type="tns:dbmlCustomerMasterPhoto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdbmlCustomerMasterPhoto" nillable="true" type="tns:ArrayOfdbmlCustomerMasterPhoto" />
+  <xs:complexType name="dbmlCustomerMasterPhoto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreateDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerMasterId" type="xs:int" />
+      <xs:element minOccurs="0" name="ImageName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImageSerialNo" type="xs:int" />
+      <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dbmlCustomerMasterPhoto" nillable="true" type="tns:dbmlCustomerMasterPhoto" />
   <xs:complexType name="ArrayOfdbmlBookingView">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlBookingView" nillable="true" type="tns:dbmlBookingView" />
@@ -647,7 +664,6 @@
       <xs:element minOccurs="0" name="DocId" type="xs:int" />
       <xs:element minOccurs="0" name="DocNo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ZZStatus" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ZZWorkFlowColor" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlDashBoardDocumentViewFront" nillable="true" type="tns:dbmlDashBoardDocumentViewFront" />

@@ -161,7 +161,7 @@ namespace PGMSFront.Controllers
 
                     strBody += "<br /><br />You have successfully registered on Natrax with Login-ID <b> '" + objdbmlUserView.LoginId + "</b>'";
                     strBody += ", please click on the below link to verify your email and create passwords";
-                    strBody += "<br />" + strLink;
+                    strBody += "<br /><b><a href='" + strLink + "'>Click Here</a></b>";
 
 
 
@@ -295,6 +295,7 @@ namespace PGMSFront.Controllers
 
             return plaintext;
         }
+               
         #endregion
 
         #region Dashboard
@@ -1103,7 +1104,7 @@ namespace PGMSFront.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        public ActionResult DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(int intBPId, int intWorkFlowId, string strStatusPropId)
+        public ActionResult DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(int intBPId, string strWorkFlowId, string strStatusPropId)
         {
             if (Session["UserId"] == null)
             {
@@ -1117,7 +1118,7 @@ namespace PGMSFront.Controllers
 
             try
             {
-                objreturndbmlDashBoardDocumentViewFront = objServiceClient.DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(intBPId, intWorkFlowId, strStatusPropId,Convert.ToInt32(Session["UserId"]));
+                objreturndbmlDashBoardDocumentViewFront = objServiceClient.DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(intBPId, strWorkFlowId, strStatusPropId,Convert.ToInt32(Session["UserId"]));
 
                 if (objreturndbmlDashBoardDocumentViewFront != null && objreturndbmlDashBoardDocumentViewFront.objdbmlStatus.StatusId == 1)
                 {
@@ -4013,6 +4014,7 @@ namespace PGMSFront.Controllers
             model.StatusPropId = -1;
             try
             {
+                model.POURL = strPOURL;
                 int intUserId = Convert.ToInt32(abc);
                 returndbmlUser objreturndbmlUser = objServiceClient.UsereMailIdVerification(intUserId);
                 if (objreturndbmlUser != null && objreturndbmlUser.objdbmlStatus.StatusId == 1 && objreturndbmlUser.objdbmlUserView.Count > 0)
@@ -4023,6 +4025,7 @@ namespace PGMSFront.Controllers
                     model.LoginId = objreturndbmlUser.objdbmlUserView.FirstOrDefault().LoginId;
                     model.Message = objreturndbmlUser.objdbmlStatus.Status;
                     model.StatusPropId = 1;
+                    model.DocId = objreturndbmlUser.objdbmlUserView.FirstOrDefault().EmailVerify==true?1:0;
                 }
                 else
                 {
@@ -4036,7 +4039,7 @@ namespace PGMSFront.Controllers
             }
             catch
             {
-                model.Message = "Un-Authrized Access";
+                model.Message = "Un-Authorized Access";
             }
 
             return View(model);
@@ -4069,6 +4072,168 @@ namespace PGMSFront.Controllers
                 strStatus = ex.Message;
             }
             return Json(new { Status = strStatus, StatusId = intStatusId }, JsonRequestBehavior.AllowGet);
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult LoadVerifyeMailInfo()
+        {
+            if (Session["UserIdTemp"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            returndbmlCustomerMasterPhoto objreturndbmlCustomerMasterPhoto = new returndbmlCustomerMasterPhoto();
+            try
+            {
+                if (Session["UserView"] != null)
+                {
+                    dbmlUserView objdbmlUserView = new dbmlUserView();
+                    GeneralColl<dbmlUserView>.CopyObject(Session["UserView"] as dbmlUserView, objdbmlUserView);
+
+                    objreturndbmlCustomerMasterPhoto = objServiceClient.CustomerMasterPhotoGetByCustomerMasterId(Convert.ToInt32(objdbmlUserView.CustomerMasterId));
+                    if (objreturndbmlCustomerMasterPhoto.objdbmlStatus.StatusId == 1)
+                    {
+                        intStatusId = 1;
+                        strStatus = "Success";
+                    }
+                    else
+                    {
+                        strStatus = objreturndbmlCustomerMasterPhoto.objdbmlStatus.Status;
+                    }
+                }
+                else
+                {
+                    strStatus = "Booking Details Not Found";
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, DocList = objreturndbmlCustomerMasterPhoto.objdbmlCustomerMasterPhoto }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult RegDocUpload()
+        {
+            if (Session["UserIdTemp"] == null)
+            {
+                return Json(new { Status = "Session Timed Out", StatusId = -99 }, JsonRequestBehavior.AllowGet);
+            }
+            ObservableCollection<dbmlCustomerMasterPhoto> objdbmlCustomerMasterPhotoRet = new ObservableCollection<dbmlCustomerMasterPhoto>();
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            try
+            {
+                if (Session["UserView"] != null)
+                {
+                    dbmlUserView objdbmlUserView = new dbmlUserView();
+                    GeneralColl<dbmlUserView>.CopyObject(Session["UserView"] as dbmlUserView, objdbmlUserView);
+
+                    HttpPostedFileBase file = Request.Files["ImageData"];                   
+                    int intDocType = Convert.ToInt32(Request.Form["DocType"]);
+
+                    if (file.InputStream.Length > 0 && intDocType>0)
+                    {
+                        string strFileExtention = file.ContentType;
+                        if (strFileExtention.ToLower() == "image/jpeg" || strFileExtention.ToLower() == "application/pdf")
+                        {
+                            if ((file.ContentLength / 1024) > 0 && (file.ContentLength / 1024) <= 2048)
+                            {
+                                strFileExtention = strFileExtention.Substring(strFileExtention.IndexOf('/') + 1);
+                                byte[] byteImage = objClassUserFunctions.ConvertToBytes(file.InputStream);
+                                bool blnStatus = false;
+                                string strFTPUserName = System.Configuration.ConfigurationManager.AppSettings["strFTPUserName"];
+                                string strFTPUserPSW = System.Configuration.ConfigurationManager.AppSettings["strFTPUserPassword"];
+                                string strFTPUrl = System.Configuration.ConfigurationManager.AppSettings["strFTPServer"];
+                                string strFTPRoot = System.Configuration.ConfigurationManager.AppSettings["strFTPRoot"];
+
+                                string strBlobAccount = System.Configuration.ConfigurationManager.AppSettings["strBlobAccount"];
+                                string strAccountKey = System.Configuration.ConfigurationManager.AppSettings["strAccountKey"];
+                                string strFileStorage = System.Configuration.ConfigurationManager.AppSettings["strFileStorage"];
+
+                                string strImageName = "CompReg_" + Convert.ToString(intDocType) + "_" + Convert.ToString(objdbmlUserView.CustomerMasterId) + "." + strFileExtention;
+                                string strImageContainerName = "booking";
+                                string strImageURL = "";
+                                string strFTPFilePath = "";
+                                if (strFileStorage == "FTP")
+                                {
+                                    ////////////////////// For FTP /////////////////////////////////////////////                       
+                                    strFTPFilePath = strFTPRoot + strImageName;
+
+                                    blnStatus = objClassUserFunctions.UploadImageToFTPFromWEBCLIENT(strFTPUrl, strFTPUserName, strFTPUserPSW, byteImage, strFTPFilePath);
+                                }
+                                else if (strFileStorage == "AzureBlob")
+                                {
+                                    /////////////////////// For Azure Blob ///////////////////////////////////////////////////                            
+                                    strImageURL = objClassUserFunctions.UploadFileStreamToAzureBlob(strBlobAccount, strAccountKey, strImageContainerName, strImageName, byteImage);
+                                    if (strImageURL != "")
+                                        blnStatus = true;
+                                }
+                                if (blnStatus)
+                                {
+                                    dbmlCustomerMasterPhoto objdbmlCustomerMasterPhoto = new dbmlCustomerMasterPhoto();
+                                    objdbmlCustomerMasterPhoto.CustomerMasterId =(int) objdbmlUserView.CustomerMasterId;
+                                    objdbmlCustomerMasterPhoto.ImageSerialNo = intDocType;
+                                    objdbmlCustomerMasterPhoto.ImageName = strImageName;
+                                    //objdbmlCustomerMasterPhoto.Remark = "";
+                                    objdbmlCustomerMasterPhoto.CreateId = objdbmlUserView.UserId;
+                                    objdbmlCustomerMasterPhoto.CreateDate = DateTime.Now;
+
+                                    returndbmlCustomerMasterPhoto objreturndbmlCustomerMasterPhotoTemp = new returndbmlCustomerMasterPhoto();
+                                    ObservableCollection<dbmlCustomerMasterPhoto> objdbmlCustomerMasterPhotoList = new ObservableCollection<dbmlCustomerMasterPhoto>();
+                                    objdbmlCustomerMasterPhotoList.Add(objdbmlCustomerMasterPhoto);
+                                    objreturndbmlCustomerMasterPhotoTemp.objdbmlCustomerMasterPhoto = objdbmlCustomerMasterPhotoList;
+
+                                    returndbmlCustomerMasterPhoto objreturndbmlCustomerMasterPhoto = objServiceClient.CustomerMasterPhotoInsert(objreturndbmlCustomerMasterPhotoTemp);
+                                    if (objreturndbmlCustomerMasterPhoto != null && objreturndbmlCustomerMasterPhoto.objdbmlStatus.StatusId == 1)
+                                    {
+                                        objdbmlCustomerMasterPhotoRet = objreturndbmlCustomerMasterPhoto.objdbmlCustomerMasterPhoto;
+                                        intStatusId = 1;
+                                        strStatus = "Document Uploaded Successfully";
+                                    }
+                                    else
+                                    {
+                                        if (strFileStorage == "FTP")
+                                        {
+                                            bool delStatus = objClassUserFunctions.DeleteFileFromFTPFromWEBCLIENT(strFTPUrl, strFTPUserName, strFTPUserPSW, strFTPFilePath);
+                                        }
+                                        else if (strFileStorage == "AzureBlob")
+                                        {
+                                            bool delStatus = objClassUserFunctions.DeleteFileFromAzureBlob(strBlobAccount, strAccountKey, strImageContainerName, strImageName);
+                                        }
+
+                                        strStatus = "Document Uploading Process Failed!";
+                                        //strStatus = objreturndbmlBooking.objdbmlStatus.Status;
+                                    }
+                                }
+                                else
+                                {
+                                    strStatus = "Document Uploading Process Failed!";
+                                }
+                            }
+                            else
+                            {
+                                strStatus = "File Size between 1KB to 2 MB can be accepted!";
+                            }
+                        }
+                        else
+                        {
+                            strStatus = "Only (JPEG, PDF) format can be accepted!";
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+
+            return Json(new { StatusId = intStatusId, Status = strStatus,DocList= objdbmlCustomerMasterPhotoRet }, JsonRequestBehavior.AllowGet);
         }
 
         public List<SelectListItem> LoadState()

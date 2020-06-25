@@ -142,6 +142,24 @@
   <wsdl:message name="IService1_DistrictGetAll_OutputMessage">
     <wsdl:part name="parameters" element="tns:DistrictGetAllResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_CustomerMasterPhotoGetByCustomerMasterId_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerMasterPhotoGetByCustomerMasterId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CustomerMasterPhotoGetByCustomerMasterId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerMasterPhotoGetByCustomerMasterIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CustomerMasterPhotoInsert_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerMasterPhotoInsert" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CustomerMasterPhotoInsert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerMasterPhotoInsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CustomerMasterPhotoDelete_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerMasterPhotoDelete" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CustomerMasterPhotoDelete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerMasterPhotoDeleteResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_BookingInsert_InputMessage">
     <wsdl:part name="parameters" element="tns:BookingInsert" />
   </wsdl:message>
@@ -442,6 +460,18 @@
     <wsdl:operation name="DistrictGetAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/DistrictGetAll" message="tns:IService1_DistrictGetAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/DistrictGetAllResponse" message="tns:IService1_DistrictGetAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerMasterPhotoGetByCustomerMasterId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CustomerMasterPhotoGetByCustomerMasterId" message="tns:IService1_CustomerMasterPhotoGetByCustomerMasterId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CustomerMasterPhotoGetByCustomerMasterIdResponse" message="tns:IService1_CustomerMasterPhotoGetByCustomerMasterId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerMasterPhotoInsert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CustomerMasterPhotoInsert" message="tns:IService1_CustomerMasterPhotoInsert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CustomerMasterPhotoInsertResponse" message="tns:IService1_CustomerMasterPhotoInsert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerMasterPhotoDelete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CustomerMasterPhotoDelete" message="tns:IService1_CustomerMasterPhotoDelete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CustomerMasterPhotoDeleteResponse" message="tns:IService1_CustomerMasterPhotoDelete_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="BookingInsert">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/BookingInsert" message="tns:IService1_BookingInsert_InputMessage" />
@@ -773,6 +803,33 @@
     </wsdl:operation>
     <wsdl:operation name="DistrictGetAll">
       <soap12:operation soapAction="http://tempuri.org/IService1/DistrictGetAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerMasterPhotoGetByCustomerMasterId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/CustomerMasterPhotoGetByCustomerMasterId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerMasterPhotoInsert">
+      <soap12:operation soapAction="http://tempuri.org/IService1/CustomerMasterPhotoInsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerMasterPhotoDelete">
+      <soap12:operation soapAction="http://tempuri.org/IService1/CustomerMasterPhotoDelete" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
