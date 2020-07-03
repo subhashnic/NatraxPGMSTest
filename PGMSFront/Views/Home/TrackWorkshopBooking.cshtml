@@ -492,10 +492,13 @@
                     parseInt($("#WorkFlowId").val()) == 38 || parseInt($("#WorkFlowId").val()) == 53) {
                     gridData = gridData + "<td style='text-align:right;display:none'>" + NullHandle(data[i].Rate) + "</td>";
                 }
-                else {
-                    gridData = gridData + "<td style='text-align:right'>" + NullHandle(data[i].Rate) + "</td>";
+                else {                    
                     if (parseInt($("#WorkFlowId").val()) == 59 || parseInt($("#WorkFlowId").val()) == 52 || parseInt($("#WorkFlowId").val()) == 54) {
+                        gridData = gridData + "<td style='text-align:right'>" + NullHandleFloat(parseFloat(data[i].QuotAmount) / parseFloat(data[i].UsageHours)) + "</td>";
                         gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].QuotAmount) + "</td>";
+                    }
+                    else {
+                        gridData = gridData + "<td style='text-align:right'>" + NullHandle(data[i].Rate) + "</td>";
                     }
                 }
                
