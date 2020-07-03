@@ -75,12 +75,16 @@
                                         else
                                         {
                                             <th width="10%" style="text-align:right">Rate</th>
-                                            <th width="10%" style="text-align:right">Amount</th>
+                                            if (Model.WorkFlowId == 59 || Model.WorkFlowId == 52 || Model.WorkFlowId == 54)
+                                            {
+                                                <th class="text-right" width="10%">Quot. Amount</th>
+                                            }
+                                            else
+                                            {
+                                                <th width="10%" style="text-align:right">Amount</th>
+                                            }
                                         }
-                                        @if (Model.WorkFlowId == 59 || Model.WorkFlowId == 52 || Model.WorkFlowId == 54)
-                                        {
-                                            <th class="text-right" width="10%">Quot. Amount</th>
-                                        }
+
                                         <th width="17%">Remark</th>
                                         <th width="12%" class="text-center">Action</th>
                                     </tr>
@@ -513,12 +517,14 @@
                     gridData = gridData + "<td style='text-align:right;display:none'>" + NullHandle(data[i].Amount) + "</td>";
                 }
                 else {
-                    gridData = gridData + "<td style='text-align:right'>" + NullHandle(data[i].Rate) + "</td>";
-                    gridData = gridData + "<td style='text-align:right'>" + NullHandle(data[i].Amount) + "</td>";
-                }
-
-                if (parseInt($("#WorkFlowId").val()) == 59 || parseInt($("#WorkFlowId").val()) == 52 || parseInt($("#WorkFlowId").val()) == 54) {
-                    gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].QuotAmount) + "</td>";
+                    if (parseInt($("#WorkFlowId").val()) == 59 || parseInt($("#WorkFlowId").val()) == 52 || parseInt($("#WorkFlowId").val()) == 54) {
+                        gridData = gridData + "<td style='text-align:right'>" + NullHandleFloat(parseFloat(data[i].QuotAmount) / parseFloat(data[i].Consumption)) + "</td>";
+                        gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].QuotAmount) + "</td>";
+                    }
+                    else {
+                        gridData = gridData + "<td style='text-align:right'>" + NullHandle(data[i].Rate) + "</td>";
+                        gridData = gridData + "<td style='text-align:right'>" + NullHandle(data[i].Amount) + "</td>";
+                    }
                 }
 
                 gridData = gridData + "<td>" + NullHandle(data[i].Remark) + "</td>";

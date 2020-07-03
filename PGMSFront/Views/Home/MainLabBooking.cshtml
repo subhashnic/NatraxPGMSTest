@@ -70,12 +70,16 @@
                                         else
                                         {
                                             <th width="7%" style="text-align:right">Rate</th>
-                                            <th width="7%" style="text-align:right">Amount</th>
+                                            if (Model.WorkFlowId == 59 || Model.WorkFlowId == 52 || Model.WorkFlowId == 54)
+                                            {
+                                                <th class="text-right" width="10%">Quot. Amount</th>
+                                            }
+                                            else
+                                            {
+                                                <th width="10%" style="text-align:right">Amount</th>
+                                            }
                                         }
-                                        @if (Model.WorkFlowId == 59 || Model.WorkFlowId == 52 || Model.WorkFlowId == 54)
-                                        {
-                                            <th class="text-right" width="10%">Quot. Amount</th>
-                                        }
+                                       
                                         <th width="10%">Remark</th>
                                         <th width="8%" class="text-center">Action</th>
                                     </tr>
@@ -546,13 +550,17 @@
                     gridData = gridData + "<td style='text-align:right;display:none'>" + NullHandle(data[i].Rate) + "</td>";
                     gridData = gridData + "<td style='text-align:right;display:none'>" + NullHandle(data[i].Amount) + "</td>";
                 }
-                else {
-                    gridData = gridData + "<td style='text-align:right'>" + NullHandle(data[i].Rate) + "</td>";
-                    gridData = gridData + "<td style='text-align:right'>" + NullHandle(data[i].Amount) + "</td>";
+                else {                    
+                    if (parseInt($("#WorkFlowId").val()) == 59 || parseInt($("#WorkFlowId").val()) == 52 || parseInt($("#WorkFlowId").val()) == 54) {
+                        gridData = gridData + "<td style='text-align:right'>" + NullHandleFloat(parseFloat(data[i].QuotAmount) / parseFloat(data[i].UsageHours)) + "</td>";
+                        gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].QuotAmount) + "</td>";
+                    }
+                    else {
+                        gridData = gridData + "<td style='text-align:right'>" + NullHandle(data[i].Rate) + "</td>";
+                        gridData = gridData + "<td style='text-align:right'>" + NullHandle(data[i].Amount) + "</td>";
+                    }
                 }               
-                if (parseInt($("#WorkFlowId").val()) == 59 || parseInt($("#WorkFlowId").val()) == 52 || parseInt($("#WorkFlowId").val()) == 54) {
-                    gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].QuotAmount) + "</td>";
-                }
+                
                 gridData = gridData + "<td>" + NullHandle(data[i].Remark) + "</td>";
 
                 if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#RFQId").val()) == 0 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {

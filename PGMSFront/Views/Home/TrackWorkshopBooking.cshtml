@@ -83,11 +83,10 @@
                                                 else
                                                 {
                                                     <th width="12%" style="text-align: right">Rate</th>
-                                                }
-
-                                                @if (Model.WorkFlowId == 59 || Model.WorkFlowId == 52 || Model.WorkFlowId == 54)
-                                                {
-                                                    <th class="text-right" width="10%">Quot. Amount</th>
+                                                    if (Model.WorkFlowId == 59 || Model.WorkFlowId == 52 || Model.WorkFlowId == 54)
+                                                    {
+                                                        <th class="text-right" width="10%">Quot. Amount</th>
+                                                    }
                                                 }
 
                                                 <th width="26%">Remark</th>
@@ -495,11 +494,11 @@
                 }
                 else {
                     gridData = gridData + "<td style='text-align:right'>" + NullHandle(data[i].Rate) + "</td>";
+                    if (parseInt($("#WorkFlowId").val()) == 59 || parseInt($("#WorkFlowId").val()) == 52 || parseInt($("#WorkFlowId").val()) == 54) {
+                        gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].QuotAmount) + "</td>";
+                    }
                 }
-
-                if (parseInt($("#WorkFlowId").val()) == 59 || parseInt($("#WorkFlowId").val()) == 52 || parseInt($("#WorkFlowId").val()) == 54) {
-                    gridData = gridData + "<td class='text-right'>" + NullHandle(data[i].QuotAmount) + "</td>";
-                }
+               
                 gridData = gridData + "<td>" + NullHandle(data[i].Remark) + "</td>";
 
                 if (parseInt($("#StatusPropId").val()) == 40 && parseInt($("#RFQId").val()) == 0 && (parseInt($("#WorkFlowId").val()) == 6 || parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 36 || parseInt($("#WorkFlowId").val()) == 38)) {

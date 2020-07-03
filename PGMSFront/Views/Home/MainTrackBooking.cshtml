@@ -339,7 +339,8 @@
                                                 <th class="text-center" width="5%">Unit</th>
                                                 @if (Model.WorkFlowId == 57 || Model.WorkFlowId == 58 ||
                                                    Model.WorkFlowId == 29 || Model.WorkFlowId == 51 ||
-                                                   Model.WorkFlowId == 38 || Model.WorkFlowId == 53)
+                                                   Model.WorkFlowId == 38 || Model.WorkFlowId == 53 ||
+                                                   Model.WorkFlowId == 59 || Model.WorkFlowId == 52 || Model.WorkFlowId == 54)
                                                 {
                                                     <th class="text-right" style="display:none" width="6%">Rate</th>
                                                     <th class="text-right" style="display:none" width="8%">Amount</th>
@@ -516,9 +517,8 @@
                             BindCalculationSummary();
 
                             $("#divVehicleTitle").show();
-                            $("#divVehicle").show();
-
-                            if (parseInt(varTrackGroupId) == 0 && (parseInt($("#StatusPropId").val()) != 40 && parseInt($("#WorkFlowId").val()) != 6 && parseInt($("#WorkFlowId").val()) != 57 && parseInt($("#WorkFlowId").val()) != 29)) {
+                            $("#divVehicle").show();                            
+                            if (parseInt(varTrackGroupId) == 0 && (parseInt($("#WorkFlowId").val()) != 6 && parseInt($("#WorkFlowId").val()) != 57 && parseInt($("#WorkFlowId").val()) != 29)) {
                                 BindServiceLookup(ServicesList, TrackBookingTimeSummaryList);
                             }
                             else if (parseInt(varTrackGroupId) == 0 && parseInt($("#RFQId").val()) > 0) {
@@ -547,7 +547,7 @@
         }
     }
 
-    ///////////////////////////// Bind Vehicle Info  //////////////////////////////////////////////////////
+    ///////////////////////////// Bind Track Info  //////////////////////////////////////////////////////
     function BindServiceLookup(dataService,dataSummary) {
         try {
             //$("#divServiveLookup").html("");
@@ -1321,7 +1321,8 @@
                 gridData = gridData + "<td class='text-center'>" + NullHandle(data[i].ZZUOM) + "</td>";
                 if (parseInt($("#WorkFlowId").val()) == 57 || parseInt($("#WorkFlowId").val()) == 58 ||
                     parseInt($("#WorkFlowId").val()) == 29 || parseInt($("#WorkFlowId").val()) == 51 ||
-                    parseInt($("#WorkFlowId").val()) == 38 || parseInt($("#WorkFlowId").val()) == 53) {
+                    parseInt($("#WorkFlowId").val()) == 38 || parseInt($("#WorkFlowId").val()) == 53 ||
+                    parseInt($("#WorkFlowId").val()) == 59 || parseInt($("#WorkFlowId").val()) == 52 || parseInt($("#WorkFlowId").val()) == 54) {
                     gridData = gridData + "<td class='text-right'style='display:none'>" + NullHandle(data[i].Rate) + "</td>";
                     gridData = gridData + "<td class='text-right'style='display:none'>" + NullHandle(data[i].Amount) + "</td>";
                 }
