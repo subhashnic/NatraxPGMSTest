@@ -80,7 +80,7 @@
         try {
             if ($("#DepartmentId").val() != undefined && parseInt($("#DepartmentId").val()) != 0) {
                 LoaderShow();
-                var data = { 'intDepartmentId': $("#DepartmentId").val(), 'intBookingTypeId': 98, 'intStatusPropId': 57 };
+                var data = { 'intDepartmentId': $("#DepartmentId").val(), 'intBookingTypeId': 98, 'intStatusPropId': 0 };//57
                 var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
                 $.ajax({
                     url: '@Url.Action("BookingSearchViewGetByDepartmentBookinStatus", "Home")',
