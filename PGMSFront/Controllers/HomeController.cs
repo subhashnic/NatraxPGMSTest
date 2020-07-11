@@ -4180,6 +4180,7 @@ namespace PGMSFront.Controllers
                                     objdbmlCustomerMasterPhoto.ImageSerialNo = intDocType;
                                     objdbmlCustomerMasterPhoto.ImageName = strImageName;
                                     //objdbmlCustomerMasterPhoto.Remark = "";
+                                    objdbmlCustomerMasterPhoto.VerifiedBy = 0;
                                     objdbmlCustomerMasterPhoto.CreateId = objdbmlUserView.UserId;
                                     objdbmlCustomerMasterPhoto.CreateDate = DateTime.Now;
 

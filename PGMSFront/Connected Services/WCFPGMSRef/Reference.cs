@@ -2530,6 +2530,9 @@ namespace PGMSFront.WCFPGMSRef {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string RemarkField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> VerifiedByField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -2614,6 +2617,19 @@ namespace PGMSFront.WCFPGMSRef {
                 if ((object.ReferenceEquals(this.RemarkField, value) != true)) {
                     this.RemarkField = value;
                     this.RaisePropertyChanged("Remark");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> VerifiedBy {
+            get {
+                return this.VerifiedByField;
+            }
+            set {
+                if ((this.VerifiedByField.Equals(value) != true)) {
+                    this.VerifiedByField = value;
+                    this.RaisePropertyChanged("VerifiedBy");
                 }
             }
         }
