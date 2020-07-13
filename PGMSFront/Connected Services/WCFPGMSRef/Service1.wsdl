@@ -376,6 +376,12 @@
   <wsdl:message name="IService1_LablinkVorCGetAll_OutputMessage">
     <wsdl:part name="parameters" element="tns:LablinkVorCGetAllResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_TrackGroupMasterGetAllWithImage_InputMessage">
+    <wsdl:part name="parameters" element="tns:TrackGroupMasterGetAllWithImage" />
+  </wsdl:message>
+  <wsdl:message name="IService1_TrackGroupMasterGetAllWithImage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TrackGroupMasterGetAllWithImageResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="UserGetByLoginId">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/UserGetByLoginId" message="tns:IService1_UserGetByLoginId_InputMessage" />
@@ -616,6 +622,10 @@
     <wsdl:operation name="LablinkVorCGetAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/LablinkVorCGetAll" message="tns:IService1_LablinkVorCGetAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/LablinkVorCGetAllResponse" message="tns:IService1_LablinkVorCGetAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TrackGroupMasterGetAllWithImage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/TrackGroupMasterGetAllWithImage" message="tns:IService1_TrackGroupMasterGetAllWithImage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/TrackGroupMasterGetAllWithImageResponse" message="tns:IService1_TrackGroupMasterGetAllWithImage_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IService1" type="tns:IService1">
@@ -1154,6 +1164,15 @@
     </wsdl:operation>
     <wsdl:operation name="LablinkVorCGetAll">
       <soap12:operation soapAction="http://tempuri.org/IService1/LablinkVorCGetAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TrackGroupMasterGetAllWithImage">
+      <soap12:operation soapAction="http://tempuri.org/IService1/TrackGroupMasterGetAllWithImage" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

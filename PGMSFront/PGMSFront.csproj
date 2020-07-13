@@ -215,6 +215,9 @@
     <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlCustomerMasterPhoto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\WCFPGMSRef\PGMSFront.WCFPGMSRef.returndbmlTrackGroupMasterWithImageView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\WCFPGMSRef\Service1.disco" />
     <None Include="Connected Services\WCFPGMSRef\configuration91.svcinfo" />
     <None Include="Connected Services\WCFPGMSRef\configuration.svcinfo" />
@@ -910,6 +913,15 @@
     </Content>
     <Content Include="Views\Home\ForgotPassword.cshtml" />
     <Content Include="Views\Home\PasswordReset.cshtml" />
+    <Content Include="Web_QA.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web_QA.Debug.config">
+      <DependentUpon>Web_QA.config</DependentUpon>
+    </Content>
+    <Content Include="Web_QA.Release.config">
+      <DependentUpon>Web_QA.config</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -185,4 +185,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="returndbmlLablinkVorC" nillable="true" type="tns:returndbmlLablinkVorC" />
+  <xs:complexType name="returndbmlTrackGroupMasterWithImageView">
+    <xs:sequence>
+      <xs:element xmlns:q60="http://schemas.datacontract.org/2004/07/WCFServiceTemplate" minOccurs="0" name="objdbmlStatus" nillable="true" type="q60:dbmlStatus" />
+      <xs:element xmlns:q61="http://schemas.datacontract.org/2004/07/WCFServiceTemplate" minOccurs="0" name="objdbmlTrackGroupMasterWithImageView" nillable="true" type="q61:ArrayOfdbmlTrackGroupMasterWithImageView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="returndbmlTrackGroupMasterWithImageView" nillable="true" type="tns:returndbmlTrackGroupMasterWithImageView" />
 </xs:schema>

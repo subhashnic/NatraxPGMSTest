@@ -10644,6 +10644,272 @@ namespace PGMSFront.WCFPGMSRef {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlTrackGroupMasterWithImageView", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
+    [System.SerializableAttribute()]
+    public partial class returndbmlTrackGroupMasterWithImageView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlTrackGroupMasterWithImageView> objdbmlTrackGroupMasterWithImageViewField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatus {
+            get {
+                return this.objdbmlStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlStatusField, value) != true)) {
+                    this.objdbmlStatusField = value;
+                    this.RaisePropertyChanged("objdbmlStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlTrackGroupMasterWithImageView> objdbmlTrackGroupMasterWithImageView {
+            get {
+                return this.objdbmlTrackGroupMasterWithImageViewField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlTrackGroupMasterWithImageViewField, value) != true)) {
+                    this.objdbmlTrackGroupMasterWithImageViewField = value;
+                    this.RaisePropertyChanged("objdbmlTrackGroupMasterWithImageView");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="dbmlTrackGroupMasterWithImageView", Namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate")]
+    [System.SerializableAttribute()]
+    public partial class dbmlTrackGroupMasterWithImageView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> CreateDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CreateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> SrNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TrackCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TrackGroupField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> TrackGroupIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TrackGroupMasterIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TrackGroupNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> UpdateDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> UpdateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZImageNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> CreateDate {
+            get {
+                return this.CreateDateField;
+            }
+            set {
+                if ((this.CreateDateField.Equals(value) != true)) {
+                    this.CreateDateField = value;
+                    this.RaisePropertyChanged("CreateDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> CreateId {
+            get {
+                return this.CreateIdField;
+            }
+            set {
+                if ((this.CreateIdField.Equals(value) != true)) {
+                    this.CreateIdField = value;
+                    this.RaisePropertyChanged("CreateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> SrNo {
+            get {
+                return this.SrNoField;
+            }
+            set {
+                if ((this.SrNoField.Equals(value) != true)) {
+                    this.SrNoField = value;
+                    this.RaisePropertyChanged("SrNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TrackCode {
+            get {
+                return this.TrackCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TrackCodeField, value) != true)) {
+                    this.TrackCodeField = value;
+                    this.RaisePropertyChanged("TrackCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TrackGroup {
+            get {
+                return this.TrackGroupField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TrackGroupField, value) != true)) {
+                    this.TrackGroupField = value;
+                    this.RaisePropertyChanged("TrackGroup");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> TrackGroupId {
+            get {
+                return this.TrackGroupIdField;
+            }
+            set {
+                if ((this.TrackGroupIdField.Equals(value) != true)) {
+                    this.TrackGroupIdField = value;
+                    this.RaisePropertyChanged("TrackGroupId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TrackGroupMasterId {
+            get {
+                return this.TrackGroupMasterIdField;
+            }
+            set {
+                if ((this.TrackGroupMasterIdField.Equals(value) != true)) {
+                    this.TrackGroupMasterIdField = value;
+                    this.RaisePropertyChanged("TrackGroupMasterId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TrackGroupName {
+            get {
+                return this.TrackGroupNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TrackGroupNameField, value) != true)) {
+                    this.TrackGroupNameField = value;
+                    this.RaisePropertyChanged("TrackGroupName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> UpdateDate {
+            get {
+                return this.UpdateDateField;
+            }
+            set {
+                if ((this.UpdateDateField.Equals(value) != true)) {
+                    this.UpdateDateField = value;
+                    this.RaisePropertyChanged("UpdateDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> UpdateId {
+            get {
+                return this.UpdateIdField;
+            }
+            set {
+                if ((this.UpdateIdField.Equals(value) != true)) {
+                    this.UpdateIdField = value;
+                    this.RaisePropertyChanged("UpdateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZImageName {
+            get {
+                return this.ZZImageNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZImageNameField, value) != true)) {
+                    this.ZZImageNameField = value;
+                    this.RaisePropertyChanged("ZZImageName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="WCFPGMSRef.IService1")]
     public interface IService1 {
@@ -11031,6 +11297,12 @@ namespace PGMSFront.WCFPGMSRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/LablinkVorCGetAll", ReplyAction="http://tempuri.org/IService1/LablinkVorCGetAllResponse")]
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlLablinkVorC> LablinkVorCGetAllAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/TrackGroupMasterGetAllWithImage", ReplyAction="http://tempuri.org/IService1/TrackGroupMasterGetAllWithImageResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlTrackGroupMasterWithImageView TrackGroupMasterGetAllWithImage();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/TrackGroupMasterGetAllWithImage", ReplyAction="http://tempuri.org/IService1/TrackGroupMasterGetAllWithImageResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlTrackGroupMasterWithImageView> TrackGroupMasterGetAllWithImageAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -11538,6 +11810,14 @@ namespace PGMSFront.WCFPGMSRef {
         
         public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlLablinkVorC> LablinkVorCGetAllAsync() {
             return base.Channel.LablinkVorCGetAllAsync();
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlTrackGroupMasterWithImageView TrackGroupMasterGetAllWithImage() {
+            return base.Channel.TrackGroupMasterGetAllWithImage();
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlTrackGroupMasterWithImageView> TrackGroupMasterGetAllWithImageAsync() {
+            return base.Channel.TrackGroupMasterGetAllWithImageAsync();
         }
     }
 }

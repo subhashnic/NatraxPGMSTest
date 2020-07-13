@@ -158,6 +158,45 @@ namespace PGMSFront.Controllers
         #endregion
 
         #region Others - Track/Lab/Storage etc
+
+        public ActionResult TrackGroupMasterGetAllWithImage(int intTrackGroupId)
+        {
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+
+            ObservableCollection<dbmlTrackGroupMasterWithImageView> objdbmlTrackGroupMasterWithImageView = new ObservableCollection<dbmlTrackGroupMasterWithImageView>();
+            try
+            {
+                if (Session["TrackGroupMasterWithImage"] != null)
+                {                  
+                    GeneralColl<dbmlTrackGroupMasterWithImageView>.CopyCollection(Session["TrackGroupMasterWithImage"] as ObservableCollection<dbmlTrackGroupMasterWithImageView>, objdbmlTrackGroupMasterWithImageView);
+                    if(intTrackGroupId>0)
+                    {
+                        objdbmlTrackGroupMasterWithImageView = new ObservableCollection<dbmlTrackGroupMasterWithImageView>(objdbmlTrackGroupMasterWithImageView.Where(itm => Convert.ToInt32(itm.TrackGroupId) == intTrackGroupId));
+                    }
+                }
+                else
+                {
+                    returndbmlTrackGroupMasterWithImageView objreturndbmlTrackGroupMasterWithImageView = objServiceClient.TrackGroupMasterGetAllWithImage();
+                    if (objreturndbmlTrackGroupMasterWithImageView != null && objreturndbmlTrackGroupMasterWithImageView.objdbmlStatus.StatusId == 1)
+                    {
+                        Session["TrackGroupMasterWithImage"] = objreturndbmlTrackGroupMasterWithImageView.objdbmlTrackGroupMasterWithImageView;
+                        objdbmlTrackGroupMasterWithImageView = objreturndbmlTrackGroupMasterWithImageView.objdbmlTrackGroupMasterWithImageView;
+
+                        if (intTrackGroupId > 0)
+                        {
+                            objdbmlTrackGroupMasterWithImageView = new ObservableCollection<dbmlTrackGroupMasterWithImageView>(objdbmlTrackGroupMasterWithImageView.Where(itm => Convert.ToInt32(itm.TrackGroupId) == intTrackGroupId));
+                        }                       
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId,TrackMaster= objdbmlTrackGroupMasterWithImageView }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult BrakingTrack()
         {
             return View();

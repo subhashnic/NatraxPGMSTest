@@ -793,4 +793,26 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlLablinkVorC" nillable="true" type="tns:dbmlLablinkVorC" />
+  <xs:complexType name="ArrayOfdbmlTrackGroupMasterWithImageView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlTrackGroupMasterWithImageView" nillable="true" type="tns:dbmlTrackGroupMasterWithImageView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdbmlTrackGroupMasterWithImageView" nillable="true" type="tns:ArrayOfdbmlTrackGroupMasterWithImageView" />
+  <xs:complexType name="dbmlTrackGroupMasterWithImageView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreateDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SrNo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TrackCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TrackGroup" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TrackGroupId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TrackGroupMasterId" type="xs:int" />
+      <xs:element minOccurs="0" name="TrackGroupName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ZZImageName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dbmlTrackGroupMasterWithImageView" nillable="true" type="tns:dbmlTrackGroupMasterWithImageView" />
 </xs:schema>

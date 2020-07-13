@@ -881,4 +881,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="TrackGroupMasterGetAllWithImage">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TrackGroupMasterGetAllWithImageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q77="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="TrackGroupMasterGetAllWithImageResult" nillable="true" type="q77:returndbmlTrackGroupMasterWithImageView" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
