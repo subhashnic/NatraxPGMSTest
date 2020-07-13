@@ -541,6 +541,9 @@
     </None>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\PGMSFront - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\PGMSFrontQA - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\PGMSFrontQA - ReadOnly - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\PGMSFrontQA - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />
