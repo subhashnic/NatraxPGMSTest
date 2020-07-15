@@ -59,8 +59,8 @@
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 0px;">
-                    <div class="card card-stats" style="background: #fb8c00;">
-                        <div id="divTrackRFQ" style="text-align:left" class="card-header card-header-warning card-header-icon">
+                    <div class="card card-stats" style="        background: #fb8c00;">
+                        <div id="divTrackRFQ" style="        text-align: left" class="card-header card-header-warning card-header-icon">
 
                         </div>
                         <div class="card-footer">
@@ -70,8 +70,8 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 5px;">
-                    <div class="card card-stats" style="background: #d81b60;">
-                        <div id="divTrackBooking" style="text-align:left" class="card-header card-header-rose card-header-icon">
+                    <div class="card card-stats" style="        background: #d81b60;">
+                        <div id="divTrackBooking" style="        text-align: left" class="card-header card-header-rose card-header-icon">
 
                         </div>
                         <div class="card-footer">
@@ -81,8 +81,8 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 5px;">
-                    <div class="card card-stats" style="background: #43a047;">
-                        <div id="divTrackUsage" style="text-align:left" class="card-header card-header-success card-header-icon">
+                    <div class="card card-stats" style="        background: #43a047;">
+                        <div id="divTrackUsage" style="        text-align: left" class="card-header card-header-success card-header-icon">
 
                         </div>
                         <div class="card-footer">
@@ -92,8 +92,8 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 5px;">
-                    <div class="card card-stats" style="background: #8e24aa;">
-                        <div id="divTrackInvoice" style="text-align:left" class="card-header card-header-primary card-header-icon">
+                    <div class="card card-stats" style="        background: #8e24aa;">
+                        <div id="divTrackInvoice" style="        text-align: left" class="card-header card-header-primary card-header-icon">
 
                         </div>
                         <div class="card-footer">
@@ -105,8 +105,8 @@
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 0px;">
-                    <div class="card card-stats" style="background: #fb8c00;">
-                        <div id="divLabRFQ" style="text-align:left" class="card-header card-header-warning card-header-icon">
+                    <div class="card card-stats" style="        background: #fb8c00;">
+                        <div id="divLabRFQ" style="        text-align: left" class="card-header card-header-warning card-header-icon">
 
                         </div>
                         <div class="card-footer">
@@ -116,8 +116,8 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 5px;">
-                    <div class="card card-stats" style="background: #d81b60;">
-                        <div id="divLabBooking" style="text-align:left" class="card-header card-header-rose card-header-icon">
+                    <div class="card card-stats" style="        background: #d81b60;">
+                        <div id="divLabBooking" style="        text-align: left" class="card-header card-header-rose card-header-icon">
 
                         </div>
                         <div class="card-footer">
@@ -127,8 +127,8 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 5px;">
-                    <div class="card card-stats" style="background: #43a047;">
-                        <div id="divLabUsage" style="text-align:left" class="card-header card-header-success card-header-icon">
+                    <div class="card card-stats" style="        background: #43a047;">
+                        <div id="divLabUsage" style="        text-align: left" class="card-header card-header-success card-header-icon">
 
                         </div>
                         <div class="card-footer">
@@ -138,8 +138,8 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-4" style="        padding-right: 0px;
         padding-left: 5px;">
-                    <div class="card card-stats" style="background: #8e24aa;">
-                        <div id="divLabInvoice" style="text-align:left" class="card-header card-header-primary card-header-icon">
+                    <div class="card card-stats" style="        background: #8e24aa;">
+                        <div id="divLabInvoice" style="        text-align: left" class="card-header card-header-primary card-header-icon">
 
                         </div>
                         <div class="card-footer">
@@ -150,7 +150,7 @@
             </div>
         }
       
-        <div id="divDashboard" style="display:none" class="table-responsive">
+        <div id="divDashboard" style="        display: none" class="table-responsive">
             <label id="lblDashboardCaption" class="form-control"></label>
             <table class="table">
                 <thead>
@@ -226,10 +226,10 @@
             for (var i = 0; i < dataList.length; i++) {
 
                 if (parseInt(dataList[i].Counts) > 0) {
-                    gridData = gridData + "<br/><h7 class='card-title'><a href='#' title='Select " + NullHandle(dataList[i].Caption) + " : " + NullHandle(dataList[i].Counts) + "' onclick = 'DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(" + NullHandle(dataList[i].BPId) + "," + '"' + NullHandle(dataList[i].WorkFlowId) + '"' + "," + '"' + NullHandle(dataList[i].StatusPropId) + '"' + "," + '"Track RFQ - ' + NullHandle(dataList[i].Caption) + '"' + ")'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+                    gridData = gridData + "<br/><h7 class='card-title'><a href='#' title='Select " + NullHandle(dataList[i].Caption) + " : " + NullHandle(dataList[i].Counts) + "' onclick = 'DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(" + NullHandle(dataList[i].BPId) + "," + '"' + NullHandle(dataList[i].WorkFlowId) + '"' + "," + '"' + NullHandle(dataList[i].StatusPropId) + '"' + "," + '"Track RFQ - ' + NullHandle(dataList[i].Caption) + '"' + ")'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<div class='timeline-badge info pull-right'>" + NullHandle(dataList[i].Counts) + "</div></h7>";
                 }
                 else {
-                    gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+                    gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<div class='timeline-badge info pull-right'>" + NullHandle(dataList[i].Counts) + "</div></h7>";
                 }
 
             }
@@ -247,10 +247,10 @@
             for (var i = 0; i < dataList.length; i++) {
 
                 if (parseInt(dataList[i].Counts) > 0) {
-                    gridData = gridData + "<br/><h7 class='card-title'><a href='#' title='Select " + NullHandle(dataList[i].Caption) + " : " + NullHandle(dataList[i].Counts) + "' onclick = 'DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(" + NullHandle(dataList[i].BPId) + "," + '"' + NullHandle(dataList[i].WorkFlowId) + '"' + "," + '"' + NullHandle(dataList[i].StatusPropId) + '"' + "," + '"Track Booking - ' + NullHandle(dataList[i].Caption) + '"' + ")'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+                    gridData = gridData + "<br/><h7 class='card-title'><a href='#' title='Select " + NullHandle(dataList[i].Caption) + " : " + NullHandle(dataList[i].Counts) + "' onclick = 'DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(" + NullHandle(dataList[i].BPId) + "," + '"' + NullHandle(dataList[i].WorkFlowId) + '"' + "," + '"' + NullHandle(dataList[i].StatusPropId) + '"' + "," + '"Track Booking - ' + NullHandle(dataList[i].Caption) + '"' + ")'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<div class='timeline-badge info pull-right'>" + NullHandle(dataList[i].Counts) + "</div></h7>";
                 }
                 else {
-                    gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+                    gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<div class='timeline-badge info pull-right'>" + NullHandle(dataList[i].Counts) + "</div></h7>";
                 }
             }
             $("#divTrackBooking").html(gridData);
@@ -266,10 +266,10 @@
             for (var i = 0; i < dataList.length; i++) {
 
                 if (parseInt(dataList[i].Counts) > 0) {
-                    gridData = gridData + "<br/><h7 class='card-title'><a href='#' title='Select " + NullHandle(dataList[i].Caption) + " : " + NullHandle(dataList[i].Counts) + "' onclick = 'DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(" + NullHandle(dataList[i].BPId) + "," + '"' + NullHandle(dataList[i].WorkFlowId) + '"' + "," + '"' + NullHandle(dataList[i].StatusPropId) + '"' + "," + '"Track Usages - ' + NullHandle(dataList[i].Caption) + '"' + ")'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+                    gridData = gridData + "<br/><h7 class='card-title'><a href='#' title='Select " + NullHandle(dataList[i].Caption) + " : " + NullHandle(dataList[i].Counts) + "' onclick = 'DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(" + NullHandle(dataList[i].BPId) + "," + '"' + NullHandle(dataList[i].WorkFlowId) + '"' + "," + '"' + NullHandle(dataList[i].StatusPropId) + '"' + "," + '"Track Usages - ' + NullHandle(dataList[i].Caption) + '"' + ")'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<div class='timeline-badge info pull-right'>" + NullHandle(dataList[i].Counts) + "</div></h7>";
                 }
                 else {
-                    gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+                    gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<div class='timeline-badge info pull-right'>" + NullHandle(dataList[i].Counts) + "</div></h7>";
                 }
             }
             $("#divTrackUsage").html(gridData);
@@ -285,10 +285,10 @@
             for (var i = 0; i < dataList.length; i++) {
 
                 if (parseInt(dataList[i].Counts) > 0) {
-                    gridData = gridData + "<br/><h7 class='card-title'><a href='#' title='Select " + NullHandle(dataList[i].Caption) + " : " + NullHandle(dataList[i].Counts) + "' onclick = 'DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(" + NullHandle(dataList[i].BPId) + "," + '"' + NullHandle(dataList[i].WorkFlowId) + '"' + "," + '"' + NullHandle(dataList[i].StatusPropId) + '"' + "," + '"Track Invoicing - ' + NullHandle(dataList[i].Caption) + '"' + ")'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+                    gridData = gridData + "<br/><h7 class='card-title'><a href='#' title='Select " + NullHandle(dataList[i].Caption) + " : " + NullHandle(dataList[i].Counts) + "' onclick = 'DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(" + NullHandle(dataList[i].BPId) + "," + '"' + NullHandle(dataList[i].WorkFlowId) + '"' + "," + '"' + NullHandle(dataList[i].StatusPropId) + '"' + "," + '"Track Invoicing - ' + NullHandle(dataList[i].Caption) + '"' + ")'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<div class='timeline-badge info pull-right'>" + NullHandle(dataList[i].Counts) + "</div></h7>";
                 }
                 else {
-                    gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+                    gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<div class='timeline-badge info pull-right'>" + NullHandle(dataList[i].Counts) + "</div></h7>";
                 }
             }
             $("#divTrackInvoice").html(gridData);
@@ -307,10 +307,10 @@
             for (var i = 0; i < dataList.length; i++) {
                 debugger;
                 if (parseInt(dataList[i].Counts) > 0) {
-                    gridData = gridData + "<br/><h7 class='card-title'><a href='#' title='Select " + NullHandle(dataList[i].Caption) + " : " + NullHandle(dataList[i].Counts) + "' onclick = 'DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(" + NullHandle(dataList[i].BPId) + "," + '"' + NullHandle(dataList[i].WorkFlowId) + '"' + "," + '"' + NullHandle(dataList[i].StatusPropId) + '"' + "," + '"Lab RFQ - ' + NullHandle(dataList[i].Caption) + '"' + ")'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+                    gridData = gridData + "<br/><h7 class='card-title'><a href='#' title='Select " + NullHandle(dataList[i].Caption) + " : " + NullHandle(dataList[i].Counts) + "' onclick = 'DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(" + NullHandle(dataList[i].BPId) + "," + '"' + NullHandle(dataList[i].WorkFlowId) + '"' + "," + '"' + NullHandle(dataList[i].StatusPropId) + '"' + "," + '"Lab RFQ - ' + NullHandle(dataList[i].Caption) + '"' + ")'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<div class='timeline-badge info pull-right'>" + NullHandle(dataList[i].Counts) + "</div></h7>";
                 }
                 else {
-                    gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+                    gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<div class='timeline-badge info pull-right'>" + NullHandle(dataList[i].Counts) + "</div></h7>";
                 }
             }
             $("#divLabRFQ").html(gridData);
@@ -326,10 +326,10 @@
             for (var i = 0; i < dataList.length; i++) {
 
                 if (parseInt(dataList[i].Counts) > 0) {
-                    gridData = gridData + "<br/><h7 class='card-title'><a href='#' title='Select " + NullHandle(dataList[i].Caption) + " : " + NullHandle(dataList[i].Counts) + "' onclick = 'DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(" + NullHandle(dataList[i].BPId) + "," + '"' + NullHandle(dataList[i].WorkFlowId) + '"' + "," + '"' + NullHandle(dataList[i].StatusPropId) + '"' + "," + '"Lab Booking - ' + NullHandle(dataList[i].Caption) + '"' + ")'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+                    gridData = gridData + "<br/><h7 class='card-title'><a href='#' title='Select " + NullHandle(dataList[i].Caption) + " : " + NullHandle(dataList[i].Counts) + "' onclick = 'DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(" + NullHandle(dataList[i].BPId) + "," + '"' + NullHandle(dataList[i].WorkFlowId) + '"' + "," + '"' + NullHandle(dataList[i].StatusPropId) + '"' + "," + '"Lab Booking - ' + NullHandle(dataList[i].Caption) + '"' + ")'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<div class='timeline-badge info pull-right'>" + NullHandle(dataList[i].Counts) + "</div></h7>";
                 }
                 else {
-                    gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+                    gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<div class='timeline-badge info pull-right'>" + NullHandle(dataList[i].Counts) + "</div></h7>";
                 }
             }
             $("#divLabBooking").html(gridData);
@@ -345,10 +345,10 @@
             for (var i = 0; i < dataList.length; i++) {
 
                 if (parseInt(dataList[i].Counts) > 0) {
-                    gridData = gridData + "<br/><h7 class='card-title'><a href='#' title='Select " + NullHandle(dataList[i].Caption) + " : " + NullHandle(dataList[i].Counts) + "' onclick = 'DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(" + NullHandle(dataList[i].BPId) + "," + '"' + NullHandle(dataList[i].WorkFlowId) + '"' + "," + '"' + NullHandle(dataList[i].StatusPropId) + '"' + "," + '"Lab Usages - ' + NullHandle(dataList[i].Caption) + '"' + ")'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+                    gridData = gridData + "<br/><h7 class='card-title'><a href='#' title='Select " + NullHandle(dataList[i].Caption) + " : " + NullHandle(dataList[i].Counts) + "' onclick = 'DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(" + NullHandle(dataList[i].BPId) + "," + '"' + NullHandle(dataList[i].WorkFlowId) + '"' + "," + '"' + NullHandle(dataList[i].StatusPropId) + '"' + "," + '"Lab Usages - ' + NullHandle(dataList[i].Caption) + '"' + ")'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<div class='timeline-badge info pull-right'>" + NullHandle(dataList[i].Counts) + "</div></h7>";
                 }
                 else {
-                    gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+                    gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<div class='timeline-badge info pull-right'>" + NullHandle(dataList[i].Counts) + "</div></h7>";
                 }
             }
             $("#divLabUsage").html(gridData);
@@ -364,10 +364,10 @@
             for (var i = 0; i < dataList.length; i++) {
 
                 if (parseInt(dataList[i].Counts) > 0) {
-                    gridData = gridData + "<br/><h7 class='card-title'><a href='#' title='Select " + NullHandle(dataList[i].Caption) + " : " + NullHandle(dataList[i].Counts) + "' onclick = 'DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(" + NullHandle(dataList[i].BPId) + "," + '"' + NullHandle(dataList[i].WorkFlowId) + '"' + "," + '"' + NullHandle(dataList[i].StatusPropId) + '"' + "," + '"Lab Invoicing - ' + NullHandle(dataList[i].Caption) + '"' + ")'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+                    gridData = gridData + "<br/><h7 class='card-title'><a href='#' title='Select " + NullHandle(dataList[i].Caption) + " : " + NullHandle(dataList[i].Counts) + "' onclick = 'DashBoardDocumentGetByBPIdWorkFlowIdStatusPropertyId(" + NullHandle(dataList[i].BPId) + "," + '"' + NullHandle(dataList[i].WorkFlowId) + '"' + "," + '"' + NullHandle(dataList[i].StatusPropId) + '"' + "," + '"Lab Invoicing - ' + NullHandle(dataList[i].Caption) + '"' + ")'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<div class='timeline-badge info pull-right'>" + NullHandle(dataList[i].Counts) + "</div></h7>";
                 }
                 else {
-                    gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<span class='badge pull-right'>" + NullHandle(dataList[i].Counts) + "</span></h7>";
+                    gridData = gridData + "<br/><h7 class='card-title'><a href='#'>" + NullHandle(dataList[i].Caption) + "</a>&nbsp;<div class='timeline-badge info pull-right'>" + NullHandle(dataList[i].Counts) + "</div></h7>";
                 }
             }
             $("#divLabInvoice").html(gridData);

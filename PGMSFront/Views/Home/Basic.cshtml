@@ -86,7 +86,11 @@
                                     <label for="exampleEmail" class="bmd-label-floating">Project Manager Mobile No. *</label>
                                     <input type="text" class="form-control" maxlength="10" id="PMMobileNo" onchange="FillCPDetail()">
                                 </div>
-                                <input id="chkFillCP" type="checkbox" onchange="FillCPDetail()" /> &nbsp;Copy Project Manager's Details to Contact Person
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label><input id="chkFillCP" type="checkbox" onchange="FillCPDetail()" />&nbsp;Copy Project Manager's Details to Contact Person</label>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="col-md-4">
@@ -111,7 +115,7 @@
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="exampleEmail" class="bmd-label-floating">Remark </label>
-                                    <textarea class="form-control" id="Remark" style="height: 30px !important;"></textarea>
+                                    <textarea class="form-control" id="Remark" style="height: 50px !important;"></textarea>
                                 </div>
                             </div>
                             @if (ViewBag.WorkflowRemark != null && ViewBag.WorkflowRemark != "")
@@ -123,11 +127,24 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group">
+                                <div class="form-group pull-right">
                                     @*<input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm pull-right" />
-                                        <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" id="btnSubmit" onclick="return BookingSave()">Save</button>*@
-
-                                    <table Style="width:100%">
+        <button type="button" class="btn btn-fill btn-rose btn-sm pull-right" id="btnSubmit" onclick="return BookingSave()">Save</button>*@
+                                    @if (Model.StatusPropId == 40 && Model.RFQId == 0 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 57 || Model.WorkFlowId == 29 || Model.WorkFlowId == 36 || Model.WorkFlowId == 38))
+                                    {
+                                        <button type="button" class="btn btn-fill btn-rose btn-sm " id="btnSubmit" onclick="return BookingSave()">Save</button>
+                                    }
+                                    @if (Model.StatusPropId == 40 && Model.RFQId > 0 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 36))
+                                    {
+                                        if (Model.RFQBPId == 46 || Model.RFQBPId == 91)
+                                        {
+                                            <button type="button" class="btn btn-fill btn-rose btn-sm " id="btnServiceDate" onclick="return OpenServiceDatesDialog()">Set Service Dates</button>
+                                            <label>&nbsp;</label>
+                                        }
+                                        <a href="@Url.Action("Vehicle", "Home")" class="btn btn-fill btn-rose btn-sm " id="btnChangeVehicle" style="padding: 7px 20px;">Change Vehicle Details</a>
+                                    }
+                                    <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm" />
+                                    @*<table Style="width:100%">
                                         <tr>
                                             <td Style="width:50%;text-align:right">
                                                 @if (Model.StatusPropId == 40 && Model.RFQId == 0 && (Model.WorkFlowId == 6 || Model.WorkFlowId == 57 || Model.WorkFlowId == 29 || Model.WorkFlowId == 36 || Model.WorkFlowId == 38))
@@ -148,7 +165,7 @@
                                                 <input type="submit" id="btnNext" name="btnPrevNext" value="Next" style="display:none" class="btn btn-fill btn-rose btn-sm" />
                                             </td>
                                         </tr>
-                                    </table>
+                                    </table>*@
                                 </div>
                             </div>
                         </div>

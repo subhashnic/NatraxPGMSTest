@@ -179,10 +179,23 @@ tr.highlighted td {
         top: 0px !important;
     }
 
+/*.form-control {
+    height: 30px !important;
+    padding: 0px 5px 0px 5px !important;
+    background-image: none !important;
+    border: 1px solid #ddd !important;
+    border-radius: 4px !important;
+}
+
+.form-control:focus {
+    border-color: #9c27b0 !important;
+}*/
+
 .form-control {
     height: 26px !important;
     padding: 0px 0px 2px 0px !important;
 }
+
 
 .table thead tr th {
     font-weight: 400;
@@ -429,7 +442,7 @@ a, a:active {
     position: relative;
 }
 
-.bootstrap-select .btn.dropdown-toggle.select-with-transition{
+.bootstrap-select .btn.dropdown-toggle.select-with-transition {
     padding-right: 0px !important;
 }
 
@@ -455,3 +468,48 @@ a, a:active {
     border-top: 1px solid #EEE;
     padding: 5px;
 }
+
+.custom-select .custom-select-sm .form-control .form-control-sm {
+    padding: 0px 10px 0px 10px !important;
+}
+
+.sidebar .logo .simple-text {
+    margin-left: -10px;
+    padding: 0;
+}
+
+/*.bmd-label-floating {
+    padding: 0px 7px 0px 7px;
+    line-height: 14px !important;
+}*/
+
+.timeline-badge.info {
+    background-color: #000;
+    padding: 0;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    line-height: 21px;
+    font-size: 11px;
+    text-align: center;
+    z-index: 100;
+    border-top-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+
+.radio label, .is-focused .radio label, .radio-inline, .is-focused .radio-inline, .checkbox label, .is-focused .checkbox label, .checkbox-inline, .is-focused .checkbox-inline, .switch label, .is-focused .switch label {
+    color: #000;
+}
+
+.checkbox, .radio {
+    position: relative;
+}
+
+/*select.form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url("https://img.icons8.com/carbon-copy/12/000000/expand-arrow.png") no-repeat 1120px 12px;
+}*/
