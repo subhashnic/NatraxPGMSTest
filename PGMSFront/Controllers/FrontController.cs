@@ -163,7 +163,6 @@ namespace PGMSFront.Controllers
         {
             int intStatusId = 99;
             string strStatus = "Invalid";
-
             ObservableCollection<dbmlTrackGroupMasterWithImageView> objdbmlTrackGroupMasterWithImageView = new ObservableCollection<dbmlTrackGroupMasterWithImageView>();
             try
             {
@@ -182,7 +181,6 @@ namespace PGMSFront.Controllers
                     {
                         Session["TrackGroupMasterWithImage"] = objreturndbmlTrackGroupMasterWithImageView.objdbmlTrackGroupMasterWithImageView;
                         objdbmlTrackGroupMasterWithImageView = objreturndbmlTrackGroupMasterWithImageView.objdbmlTrackGroupMasterWithImageView;
-
                         if (intTrackGroupId > 0)
                         {
                             objdbmlTrackGroupMasterWithImageView = new ObservableCollection<dbmlTrackGroupMasterWithImageView>(objdbmlTrackGroupMasterWithImageView.Where(itm => Convert.ToInt32(itm.TrackGroupId) == intTrackGroupId));

@@ -60,13 +60,13 @@
                                 }
                             </select>
                         </div>
-                        <div class="col-md-6" id="divVehicleTitle" style="display:none">
-                            <h4 class="card-title text-center" style="margin-top: 10px;">Vehicle wise Test Summary</h4>
+                        <div class="col-md-6" id="divVehicleTitle" style="        display: none">
+                            <h4 class="card-title text-center" style="        margin-top: 10px;">Vehicle wise Test Summary</h4>
                         </div>
                     </div>
                 </div>
 
-                <div class="card-body" id="divVehicle" style="display:none">
+                <div class="card-body" id="divVehicle" style="        display: none">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
@@ -129,36 +129,37 @@
 
                         @if (Model.BPId == 46 || Model.BPId == 91)
                         {
-                            <div class="col-md-1" style="max-width: 5% !important;">
+                            <div class="col-md-1" style="        max-width: 5% !important;">
                                 Day
                             </div>
                         }
                         else
                         {
-                            <div class="col-md-1" style="max-width: 5% !important;">
+                            <div class="col-md-1" style="        max-width: 5% !important;">
                                 Date
                             </div>
                         }
 
 
-                        <div class="col-md-2" style="max-width: 12% !important;">
+                        <div class="col-md-2" style="        max-width: 12% !important;">
                             @if (Model.BPId == 46 || Model.BPId == 91)
                             {
-                                <input disabled="disabled" id="Day" type="text" style="text-align: center" onkeypress='return CheckIsNumeric(event,this);' onchange="ResetCategoryTimeSlot()" class="form-control" value="">
-                                <input disabled="disabled" style="display:none" type="text" id="TrackDate">
+                                <input disabled="disabled" id="Day" type="text" style="        text-align: center" onkeypress='return CheckIsNumeric(event,this);' onchange="ResetCategoryTimeSlot()" class="form-control" value="">
+                                <input disabled="disabled" style="        display: none" type="text" id="TrackDate">
                             }
                             else
                             {
-                                <input disabled="disabled" style="display:none" type="text" id="Day">
+                                <input disabled="disabled" style="        display: none" type="text" id="Day">
                                 <input disabled="disabled" type="text" id="TrackDate" onblur="ResetCategoryTimeSlot()" class="form-control datetimepicker" placeholder="DD-MM-YYYY">
                             }
 
 
                         </div>
-                        <div class="col-md-1" id="divCategoryTitle" style='display: none; max-width: 5% !important;'>
+                        <div class="col-md-1" id="divCategoryTitle" style='        display: none;
+        max-width: 5% !important;'>
                             Type
                         </div>
-                        <div class="col-md-2" id="divCategoryValue" style='display: none'>
+                        <div class="col-md-2" id="divCategoryValue" style='        display: none'>
                             <div class="form-check" id="divCategory"></div>
                         </div>
                         <div class="col-md-3" style="        max-width: 18% !important;">
@@ -208,7 +209,7 @@
                     </table>
                 </div>*@
                 </div>
-                <div class="card-body" id="divCardBody" style="display: none">
+                <div class="card-body" id="divCardBody" style="        display: none">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
@@ -220,7 +221,7 @@
                                            Model.WorkFlowId == 29 || Model.WorkFlowId == 51 ||
                                            Model.WorkFlowId == 38 || Model.WorkFlowId == 53)
                                             {
-                                                <th width="5%" class="text-right" style="display:none">Rate</th>
+                                                <th width="5%" class="text-right" style="        display: none">Rate</th>
                                             }
                                             else
                                             {
@@ -275,7 +276,7 @@
                                                    Model.WorkFlowId == 29 || Model.WorkFlowId == 51 ||
                                                    Model.WorkFlowId == 38 || Model.WorkFlowId == 53)
                                                 {
-                                                    <th class="text-right" style="display:none" width="7%">Rate</th>
+                                                    <th class="text-right" style="        display: none" width="7%">Rate</th>
                                                 }
                                                 else
                                                 {
@@ -342,8 +343,8 @@
                                                    Model.WorkFlowId == 38 || Model.WorkFlowId == 53 ||
                                                    Model.WorkFlowId == 59 || Model.WorkFlowId == 52 || Model.WorkFlowId == 54)
                                                 {
-                                                    <th class="text-right" style="display:none" width="6%">Rate</th>
-                                                    <th class="text-right" style="display:none" width="8%">Amount</th>
+                                                    <th class="text-right" style="        display: none" width="6%">Rate</th>
+                                                    <th class="text-right" style="        display: none" width="8%">Amount</th>
                                                 }
                                                 else
                                                 {
@@ -365,12 +366,14 @@
                                 @using (Html.BeginForm(new { @class = "form-horizontal" }))
                                 {
                                     @Html.AntiForgeryToken()
-                                    <table Style="width:100%">
+                                    <table Style="        width: 100%">
                                         <tr>
-                                            <td Style="width:50%;text-align:left">
+                                            <td Style="        width: 50%;
+        text-align: left">
                                                 <input type="submit" id="btnPrev" name="btnPrevNext" value="Prev" class="btn btn-fill btn-rose btn-sm " />
                                             </td>
-                                            <td Style="width:50%;text-align:right">
+                                            <td Style="        width: 50%;
+        text-align: right">
                                                 <input type="submit" id="btnNext" name="btnPrevNext" value="Next" class="btn btn-fill btn-rose btn-sm " />
                                             </td>
                                         </tr>

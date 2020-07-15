@@ -12,6 +12,7 @@
         background: #ffffff;
     }
 </style>
+<input type="hidden" id="HiddenTrackId" />
 <div class="content">
     <div class="container-fluid">
         <div class="home-demo">
@@ -111,4 +112,42 @@
         </div>
     </div>
 </div>
+<script>
+    var TrackList = [];
+    $(document).ready(function () {
+        //$("#HiddenTrackId").val(sessionStorage.getItem("TrackId"));
+        //TrackDetailGetByTrackId();
+    });
 
+    function TrackDetailGetByTrackId() {
+        try {
+            debugger;
+            LoaderShow();
+            var data = { 'intTrackGroupId': $("#HiddenTrackId").val() };
+            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+            $.ajax({
+                url: '@Url.Action("TrackGroupMasterGetAllWithImage","Front")',
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                data: dataWithAntiforgeryToken,
+                success: function (data) {
+                    debugger;
+                    LoaderHide();
+                    //if (data.StatusId != "99" && data.StatusId != "-99") {
+                        TrackList = data.TrackMaster;
+                        BindTrack();
+                    //}
+                },
+                error: function (xhr) {
+                    LoaderHide();
+                    alert(xhr.responseText);
+                }
+            });
+        }
+        catch (e) {
+            LoaderHide();
+            alert(e.message);
+        }
+    }
+</script>

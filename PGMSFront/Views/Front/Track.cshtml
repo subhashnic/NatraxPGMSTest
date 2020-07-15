@@ -2,12 +2,13 @@
 @{
     ViewBag.Title = "Track";
 }
+@Html.AntiForgeryToken()
 <div class="content">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" id="Track">
             <div class="col-md-3">
                 <div class="card card-product">
-                    <div class="card-header card-header-image" data-header-animation="true">
+                    <div class="card-header card-header-image" >
                         <a href="#pablo">
                             <img class="img" src="https://www.natrax.in/wp-content/uploads/2020/04/natrax-high-speed-track.jpg">
                         </a>
@@ -16,9 +17,6 @@
                         <h4 class="card-title">
                             <a href="#pablo">High Speed Track</a>
                         </h4>
-                        @*<div class="card-description">
-                            Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
-                        </div>*@
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -29,7 +27,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card card-product">
-                    <div class="card-header card-header-image" data-header-animation="true">
+                    <div class="card-header card-header-image" >
                         <a href="#pablo">
                             <img class="img" src="~/Templates/Tracks/T2 Dynamic Platform.JPG">
                         </a>
@@ -38,9 +36,6 @@
                         <h4 class="card-title">
                             <a href="#pablo">Dynamic Platform</a>
                         </h4>
-                        @*<div class="card-description">
-                            Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
-                        </div>*@
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -51,7 +46,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card card-product">
-                    <div class="card-header card-header-image" data-header-animation="true">
+                    <div class="card-header card-header-image" >
                         <a href="#pablo">
                             <img class="img" src="~/Templates/Tracks/T3 Braking Track 3.jpg">
                         </a>
@@ -60,9 +55,6 @@
                         <h4 class="card-title">
                             <a href="#pablo">Braking Track</a>
                         </h4>
-                        @*<div class="card-description">
-                            Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
-                        </div>*@
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -73,7 +65,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card card-product">
-                    <div class="card-header card-header-image" data-header-animation="true">
+                    <div class="card-header card-header-image" >
                         <a href="#pablo">
                             <img class="img" src="~/Templates/Tracks/T4 Gradient Track.jpg">
                         </a>
@@ -82,9 +74,6 @@
                         <h4 class="card-title" style="font-size: 17px;">
                             <a href="#pablo">Test Hill / Gradient Track</a>
                         </h4>
-                        @*<div class="card-description">
-                            Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
-                        </div>*@
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -95,7 +84,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card card-product">
-                    <div class="card-header card-header-image" data-header-animation="true">
+                    <div class="card-header card-header-image" >
                         <a href="#pablo">
                             <img class="img" src="~/Templates/Tracks/T5 Fatigue Track.jpg">
                         </a>
@@ -104,9 +93,6 @@
                         <h4 class="card-title">
                             <a href="#pablo">Fatigue Track</a>
                         </h4>
-                        @*<div class="card-description">
-                            Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
-                        </div>*@
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -117,7 +103,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card card-product">
-                    <div class="card-header card-header-image" data-header-animation="true">
+                    <div class="card-header card-header-image" >
                         <a href="#pablo">
                             <img class="img" src="~/Templates/Tracks/Gravel and Off Road Track.jpg">
                         </a>
@@ -126,9 +112,6 @@
                         <h4 class="card-title">
                             <a href="#pablo">Gravel and Off Road</a>
                         </h4>
-                        @*<div class="card-description">
-                            Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
-                        </div>*@
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -139,7 +122,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card card-product">
-                    <div class="card-header card-header-image" data-header-animation="true">
+                    <div class="card-header card-header-image" >
                         <a href="#pablo">
                             <img class="img" src="~/Templates/Tracks/T7 Handling Track 4 Wheeler 2.jpg">
                         </a>
@@ -148,9 +131,6 @@
                         <h4 class="card-title">
                             <a href="#pablo">Handling Track for 4W</a>
                         </h4>
-                        @*<div class="card-description">
-                            Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
-                        </div>*@
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -161,7 +141,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card card-product">
-                    <div class="card-header card-header-image" data-header-animation="true">
+                    <div class="card-header card-header-image" >
                         <a href="#pablo">
                             <img class="img" src="~/Templates/Tracks/T8 Comfort Track.jpg">
                         </a>
@@ -170,9 +150,6 @@
                         <h4 class="card-title">
                             <a href="#pablo">Comfort Track</a>
                         </h4>
-                        @*<div class="card-description">
-                            Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
-                        </div>*@
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -183,7 +160,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card card-product">
-                    <div class="card-header card-header-image" data-header-animation="true">
+                    <div class="card-header card-header-image" >
                         <a href="#pablo">
                             <img class="img" src="~/Templates/Tracks/T9 Handling Track 2-3 Wheeler 2.jpg">
                         </a>
@@ -192,9 +169,6 @@
                         <h4 class="card-title">
                             <a href="#pablo">Handling Track for 2W</a>
                         </h4>
-                        @*<div class="card-description">
-                            Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
-                        </div>*@
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -203,10 +177,9 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-md-3">
                 <div class="card card-product">
-                    <div class="card-header card-header-image" data-header-animation="true">
+                    <div class="card-header card-header-image" >
                         <a href="#pablo">
                             <img class="img" src="~/Templates/Tracks/T10 sustainability Track.jpg">
                         </a>
@@ -215,9 +188,6 @@
                         <h4 class="card-title">
                             <a href="#pablo">Sustainability Track</a>
                         </h4>
-                        @*<div class="card-description">
-                            Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
-                        </div>*@
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -228,7 +198,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card card-product">
-                    <div class="card-header card-header-image" data-header-animation="true">
+                    <div class="card-header card-header-image" >
                         <a href="#pablo">
                             <img class="img" src="~/Templates/Tracks/T-11 Wet Skid Pad.jpg">
                         </a>
@@ -237,9 +207,6 @@
                         <h4 class="card-title">
                             <a href="#pablo">Wet Skid Pad</a>
                         </h4>
-                        @*<div class="card-description">
-                            Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
-                        </div>*@
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -248,10 +215,9 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-md-3">
                 <div class="card card-product">
-                    <div class="card-header card-header-image" data-header-animation="true">
+                    <div class="card-header card-header-image" >
                         <a href="#pablo">
                             <img class="img" src="~/Templates/Tracks/noImage.png">
                         </a>
@@ -260,9 +226,6 @@
                         <h4 class="card-title">
                             <a href="#pablo">Village Road</a>
                         </h4>
-                        @*<div class="card-description">
-                            Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
-                        </div>*@
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -273,7 +236,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card card-product">
-                    <div class="card-header card-header-image" data-header-animation="true">
+                    <div class="card-header card-header-image" >
                         <a href="#pablo">
                             <img class="img" src="~/Templates/Tracks/T13 Noise Track.jpg">
                         </a>
@@ -282,9 +245,6 @@
                         <h4 class="card-title">
                             <a href="#pablo">External Noise Track</a>
                         </h4>
-                        @*<div class="card-description">
-                            Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
-                        </div>*@
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -295,7 +255,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card card-product">
-                    <div class="card-header card-header-image" data-header-animation="true">
+                    <div class="card-header card-header-image" >
                         <a href="#pablo">
                             <img class="img" src="~/Templates/Tracks/noImage.png">
                         </a>
@@ -304,9 +264,6 @@
                         <h4 class="card-title">
                             <a href="#pablo">General Road</a>
                         </h4>
-                        @*<div class="card-description">
-                            Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
-                        </div>*@
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -318,3 +275,82 @@
         </div>
     </div>
 </div>
+<script>
+    var TrackList = [];
+    $(document).ready(function () {
+        //TrackGetAll();
+    });
+
+    function BindTrack() {
+        try {
+            var HTMl = "";
+            $("#Track").empty();
+            $.each(TrackList, function (Index, Object) {
+                HTMl += '<div class="col-md-3">';
+                HTMl += '<div class="card card-product">';
+                HTMl += '<div class="card-header card-header-image">';
+                HTMl += '<a href="#pablo">';
+                if (Object.ZZImageName != null) {
+                    HTMl += '<img class="img" src="https://natraxpgmsstorage.blob.core.windows.net/natraximage/'+ Object.ZZImageName +'">';
+                } else {
+                    HTMl += '<img class="img" src="../Templates/Tracks/noImage.png">';
+                }
+                HTMl += '</a>';
+                HTMl += '</div>';
+                HTMl += '<div class="card-body">';
+                HTMl += '<h4 class="card-title">';
+                HTMl += '<a href="#pablo">' + Object.TrackGroupName + '</a>';
+                HTMl += '</h4>';
+                HTMl += '</div>';
+                HTMl += '<div class="card-footer">';
+                HTMl += '<div class="stats">';
+                HTMl += '<a href="javascript:void(0)" class="card-category" style="cursor: pointer" onclick="TrackDetail(' + Object.TrackGroupId + ')"><i class="material-icons">local_offer</i> View More..</a>';
+                HTMl += '</div>';
+                HTMl += '</div>';
+                HTMl += '</div>';
+                HTMl += '</div>';
+            });
+            $("#Track").append(HTMl);
+        }catch (e) {
+          alert(e.message);
+      }
+    }
+
+    function TrackDetail(TrackId) {
+        debugger;
+        var url = '../Front/TrackDetail/' + TrackId;
+        sessionStorage.setItem("TrackId", TrackId);
+        window.location.href = url;
+    }
+
+    function TrackGetAll() {
+        try {
+            LoaderShow();
+            var data = { 'intTrackGroupId': 0 };
+            var dataWithAntiforgeryToken = $.extend(data, { "__RequestVerificationToken": $("input[name=__RequestVerificationToken]").val() });
+            $.ajax({
+                url: '@Url.Action("TrackGroupMasterGetAllWithImage","Front")',
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                data: dataWithAntiforgeryToken,
+                success: function (data) {
+                    debugger;
+                    LoaderHide();
+                    //if (data.StatusId != "99" && data.StatusId != "-99") {
+                        TrackList = data.TrackMaster;
+                        BindTrack();
+                    //}
+                },
+                error: function (xhr) {
+                    LoaderHide();
+                    alert(xhr.responseText);
+                }
+            });
+        }
+        catch (e) {
+            LoaderHide();
+            alert(e.message);
+        }
+    }
+</script>
