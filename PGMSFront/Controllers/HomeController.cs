@@ -76,6 +76,7 @@ namespace PGMSFront.Controllers
                         Session["ZZUserType"] = objdbmlUserView.ZZUserType;
                         Session["UserCode"] = objdbmlUserView.UserCode;
                         Session["StateId"] = objdbmlUserView.ZZStateId;
+                        Session["ZZCompanyName"] = objdbmlUserView.ZZCompanyName;
 
                         returndbmlProperty objreturndbmlProperty = objServiceClient.PropertiesGetAll();
                         if (objreturndbmlProperty.objdbmlStatus.StatusId == 1 && objreturndbmlProperty.objdbmlProperty.Count > 0)
