@@ -326,9 +326,15 @@
             });
             $("#AddMoreTR").find("input[type='text'][id='MobileNo']").each(function () {
                 model.MobileNo = $(this).val().trim();
+                if ($(this).val().trim() == "") {
+                    strMSG = strMSG + 'Mobile No. \n</br>'
+                }
             });
             $("#AddMoreTR").find("input[type='text'][id='EmailId']").each(function () {
                 model.EmailId = $(this).val().trim();
+                if ($(this).val().trim() == "") {
+                    strMSG = strMSG + 'EMail \n</br>'
+                }
             });
             
             if (strMSG != '') {
