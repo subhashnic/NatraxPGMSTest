@@ -4491,6 +4491,7 @@ namespace PGMSFront.Controllers
             try
             {
                 model.CustomerMasterId = Convert.ToInt32(Session["ZZCompanyId"]);
+                model.UserTypePropId = 81;
                 model.CreateId = Convert.ToInt32(Session["UserId"]);
                 model.CreateDate = DateTime.Now;
                 model.UpdateId = Convert.ToInt32(Session["UserId"]);
