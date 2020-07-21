@@ -815,4 +815,59 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="dbmlTrackGroupMasterWithImageView" nillable="true" type="tns:dbmlTrackGroupMasterWithImageView" />
+  <xs:complexType name="ArrayOfdbmlServiceDocumentView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlServiceDocumentView" nillable="true" type="tns:dbmlServiceDocumentView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdbmlServiceDocumentView" nillable="true" type="tns:ArrayOfdbmlServiceDocumentView" />
+  <xs:complexType name="dbmlServiceDocumentView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DocumentDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocumentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceDocumentId" type="xs:int" />
+      <xs:element minOccurs="0" name="ServiceId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TrackGroupId" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dbmlServiceDocumentView" nillable="true" type="tns:dbmlServiceDocumentView" />
+  <xs:complexType name="ArrayOfdbmlServiceImageView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlServiceImageView" nillable="true" type="tns:dbmlServiceImageView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdbmlServiceImageView" nillable="true" type="tns:ArrayOfdbmlServiceImageView" />
+  <xs:complexType name="dbmlServiceImageView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ImageDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImageName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ServiceImageId" type="xs:int" />
+      <xs:element minOccurs="0" name="TrackGroupId" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dbmlServiceImageView" nillable="true" type="tns:dbmlServiceImageView" />
+  <xs:complexType name="ArrayOfdbmlServicesViewForFront">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dbmlServicesViewForFront" nillable="true" type="tns:dbmlServicesViewForFront" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdbmlServicesViewForFront" nillable="true" type="tns:ArrayOfdbmlServicesViewForFront" />
+  <xs:complexType name="dbmlServicesViewForFront">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BPId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ServiceDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceGroupMCId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ServiceId" type="xs:int" />
+      <xs:element minOccurs="0" name="ServiceName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceSpecification" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TrackGroup" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TrackGroupId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ZZServiceGroupName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZServiceName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZTrackGroup" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZZTrackGroupName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dbmlServicesViewForFront" nillable="true" type="tns:dbmlServicesViewForFront" />
 </xs:schema>

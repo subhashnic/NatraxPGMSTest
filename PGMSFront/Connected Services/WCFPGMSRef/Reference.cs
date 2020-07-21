@@ -10910,6 +10910,538 @@ namespace PGMSFront.WCFPGMSRef {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="returndbmlServiceDetailView", Namespace="http://schemas.datacontract.org/2004/07/WCFPGMSFront")]
+    [System.SerializableAttribute()]
+    public partial class returndbmlServiceDetailView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlServiceDocumentView> objdbmlServiceDocumentViewField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlServiceImageView> objdbmlServiceImageViewField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlServicesViewForFront> objdbmlServicesViewForFrontField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatusField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlServiceDocumentView> objdbmlServiceDocumentView {
+            get {
+                return this.objdbmlServiceDocumentViewField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlServiceDocumentViewField, value) != true)) {
+                    this.objdbmlServiceDocumentViewField = value;
+                    this.RaisePropertyChanged("objdbmlServiceDocumentView");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlServiceImageView> objdbmlServiceImageView {
+            get {
+                return this.objdbmlServiceImageViewField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlServiceImageViewField, value) != true)) {
+                    this.objdbmlServiceImageViewField = value;
+                    this.RaisePropertyChanged("objdbmlServiceImageView");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<PGMSFront.WCFPGMSRef.dbmlServicesViewForFront> objdbmlServicesViewForFront {
+            get {
+                return this.objdbmlServicesViewForFrontField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlServicesViewForFrontField, value) != true)) {
+                    this.objdbmlServicesViewForFrontField = value;
+                    this.RaisePropertyChanged("objdbmlServicesViewForFront");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PGMSFront.WCFPGMSRef.dbmlStatus objdbmlStatus {
+            get {
+                return this.objdbmlStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.objdbmlStatusField, value) != true)) {
+                    this.objdbmlStatusField = value;
+                    this.RaisePropertyChanged("objdbmlStatus");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="dbmlServiceDocumentView", Namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate")]
+    [System.SerializableAttribute()]
+    public partial class dbmlServiceDocumentView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DocumentDescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DocumentNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ServiceDocumentIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ServiceIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> TrackGroupIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DocumentDescription {
+            get {
+                return this.DocumentDescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DocumentDescriptionField, value) != true)) {
+                    this.DocumentDescriptionField = value;
+                    this.RaisePropertyChanged("DocumentDescription");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DocumentName {
+            get {
+                return this.DocumentNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DocumentNameField, value) != true)) {
+                    this.DocumentNameField = value;
+                    this.RaisePropertyChanged("DocumentName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ServiceDocumentId {
+            get {
+                return this.ServiceDocumentIdField;
+            }
+            set {
+                if ((this.ServiceDocumentIdField.Equals(value) != true)) {
+                    this.ServiceDocumentIdField = value;
+                    this.RaisePropertyChanged("ServiceDocumentId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ServiceId {
+            get {
+                return this.ServiceIdField;
+            }
+            set {
+                if ((this.ServiceIdField.Equals(value) != true)) {
+                    this.ServiceIdField = value;
+                    this.RaisePropertyChanged("ServiceId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> TrackGroupId {
+            get {
+                return this.TrackGroupIdField;
+            }
+            set {
+                if ((this.TrackGroupIdField.Equals(value) != true)) {
+                    this.TrackGroupIdField = value;
+                    this.RaisePropertyChanged("TrackGroupId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="dbmlServiceImageView", Namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate")]
+    [System.SerializableAttribute()]
+    public partial class dbmlServiceImageView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ImageDescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ImageNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ServiceIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ServiceImageIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> TrackGroupIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ImageDescription {
+            get {
+                return this.ImageDescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImageDescriptionField, value) != true)) {
+                    this.ImageDescriptionField = value;
+                    this.RaisePropertyChanged("ImageDescription");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ImageName {
+            get {
+                return this.ImageNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImageNameField, value) != true)) {
+                    this.ImageNameField = value;
+                    this.RaisePropertyChanged("ImageName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ServiceId {
+            get {
+                return this.ServiceIdField;
+            }
+            set {
+                if ((this.ServiceIdField.Equals(value) != true)) {
+                    this.ServiceIdField = value;
+                    this.RaisePropertyChanged("ServiceId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ServiceImageId {
+            get {
+                return this.ServiceImageIdField;
+            }
+            set {
+                if ((this.ServiceImageIdField.Equals(value) != true)) {
+                    this.ServiceImageIdField = value;
+                    this.RaisePropertyChanged("ServiceImageId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> TrackGroupId {
+            get {
+                return this.TrackGroupIdField;
+            }
+            set {
+                if ((this.TrackGroupIdField.Equals(value) != true)) {
+                    this.TrackGroupIdField = value;
+                    this.RaisePropertyChanged("TrackGroupId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="dbmlServicesViewForFront", Namespace="http://schemas.datacontract.org/2004/07/WCFServiceTemplate")]
+    [System.SerializableAttribute()]
+    public partial class dbmlServicesViewForFront : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> BPIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ServiceDescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ServiceGroupMCIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ServiceIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ServiceNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ServiceSpecificationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TrackGroupField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> TrackGroupIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZServiceGroupNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZServiceNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZTrackGroupField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZZTrackGroupNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> BPId {
+            get {
+                return this.BPIdField;
+            }
+            set {
+                if ((this.BPIdField.Equals(value) != true)) {
+                    this.BPIdField = value;
+                    this.RaisePropertyChanged("BPId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ServiceDescription {
+            get {
+                return this.ServiceDescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ServiceDescriptionField, value) != true)) {
+                    this.ServiceDescriptionField = value;
+                    this.RaisePropertyChanged("ServiceDescription");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ServiceGroupMCId {
+            get {
+                return this.ServiceGroupMCIdField;
+            }
+            set {
+                if ((this.ServiceGroupMCIdField.Equals(value) != true)) {
+                    this.ServiceGroupMCIdField = value;
+                    this.RaisePropertyChanged("ServiceGroupMCId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ServiceId {
+            get {
+                return this.ServiceIdField;
+            }
+            set {
+                if ((this.ServiceIdField.Equals(value) != true)) {
+                    this.ServiceIdField = value;
+                    this.RaisePropertyChanged("ServiceId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ServiceName {
+            get {
+                return this.ServiceNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ServiceNameField, value) != true)) {
+                    this.ServiceNameField = value;
+                    this.RaisePropertyChanged("ServiceName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ServiceSpecification {
+            get {
+                return this.ServiceSpecificationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ServiceSpecificationField, value) != true)) {
+                    this.ServiceSpecificationField = value;
+                    this.RaisePropertyChanged("ServiceSpecification");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TrackGroup {
+            get {
+                return this.TrackGroupField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TrackGroupField, value) != true)) {
+                    this.TrackGroupField = value;
+                    this.RaisePropertyChanged("TrackGroup");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> TrackGroupId {
+            get {
+                return this.TrackGroupIdField;
+            }
+            set {
+                if ((this.TrackGroupIdField.Equals(value) != true)) {
+                    this.TrackGroupIdField = value;
+                    this.RaisePropertyChanged("TrackGroupId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZServiceGroupName {
+            get {
+                return this.ZZServiceGroupNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZServiceGroupNameField, value) != true)) {
+                    this.ZZServiceGroupNameField = value;
+                    this.RaisePropertyChanged("ZZServiceGroupName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZServiceName {
+            get {
+                return this.ZZServiceNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZServiceNameField, value) != true)) {
+                    this.ZZServiceNameField = value;
+                    this.RaisePropertyChanged("ZZServiceName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZTrackGroup {
+            get {
+                return this.ZZTrackGroupField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZTrackGroupField, value) != true)) {
+                    this.ZZTrackGroupField = value;
+                    this.RaisePropertyChanged("ZZTrackGroup");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZZTrackGroupName {
+            get {
+                return this.ZZTrackGroupNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZZTrackGroupNameField, value) != true)) {
+                    this.ZZTrackGroupNameField = value;
+                    this.RaisePropertyChanged("ZZTrackGroupName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="WCFPGMSRef.IService1")]
     public interface IService1 {
@@ -11303,6 +11835,12 @@ namespace PGMSFront.WCFPGMSRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/TrackGroupMasterGetAllWithImage", ReplyAction="http://tempuri.org/IService1/TrackGroupMasterGetAllWithImageResponse")]
         System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlTrackGroupMasterWithImageView> TrackGroupMasterGetAllWithImageAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ServiceDetailViewGetByTrackGroupId", ReplyAction="http://tempuri.org/IService1/ServiceDetailViewGetByTrackGroupIdResponse")]
+        PGMSFront.WCFPGMSRef.returndbmlServiceDetailView ServiceDetailViewGetByTrackGroupId(int intTrackGroupId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ServiceDetailViewGetByTrackGroupId", ReplyAction="http://tempuri.org/IService1/ServiceDetailViewGetByTrackGroupIdResponse")]
+        System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlServiceDetailView> ServiceDetailViewGetByTrackGroupIdAsync(int intTrackGroupId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -11818,6 +12356,14 @@ namespace PGMSFront.WCFPGMSRef {
         
         public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlTrackGroupMasterWithImageView> TrackGroupMasterGetAllWithImageAsync() {
             return base.Channel.TrackGroupMasterGetAllWithImageAsync();
+        }
+        
+        public PGMSFront.WCFPGMSRef.returndbmlServiceDetailView ServiceDetailViewGetByTrackGroupId(int intTrackGroupId) {
+            return base.Channel.ServiceDetailViewGetByTrackGroupId(intTrackGroupId);
+        }
+        
+        public System.Threading.Tasks.Task<PGMSFront.WCFPGMSRef.returndbmlServiceDetailView> ServiceDetailViewGetByTrackGroupIdAsync(int intTrackGroupId) {
+            return base.Channel.ServiceDetailViewGetByTrackGroupIdAsync(intTrackGroupId);
         }
     }
 }

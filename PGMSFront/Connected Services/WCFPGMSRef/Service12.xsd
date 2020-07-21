@@ -192,4 +192,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="returndbmlTrackGroupMasterWithImageView" nillable="true" type="tns:returndbmlTrackGroupMasterWithImageView" />
+  <xs:complexType name="returndbmlServiceDetailView">
+    <xs:sequence>
+      <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/WCFServiceTemplate" minOccurs="0" name="objdbmlServiceDocumentView" nillable="true" type="q62:ArrayOfdbmlServiceDocumentView" />
+      <xs:element xmlns:q63="http://schemas.datacontract.org/2004/07/WCFServiceTemplate" minOccurs="0" name="objdbmlServiceImageView" nillable="true" type="q63:ArrayOfdbmlServiceImageView" />
+      <xs:element xmlns:q64="http://schemas.datacontract.org/2004/07/WCFServiceTemplate" minOccurs="0" name="objdbmlServicesViewForFront" nillable="true" type="q64:ArrayOfdbmlServicesViewForFront" />
+      <xs:element xmlns:q65="http://schemas.datacontract.org/2004/07/WCFServiceTemplate" minOccurs="0" name="objdbmlStatus" nillable="true" type="q65:dbmlStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="returndbmlServiceDetailView" nillable="true" type="tns:returndbmlServiceDetailView" />
 </xs:schema>

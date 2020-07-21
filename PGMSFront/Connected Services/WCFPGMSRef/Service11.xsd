@@ -893,4 +893,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ServiceDetailViewGetByTrackGroupId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intTrackGroupId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ServiceDetailViewGetByTrackGroupIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q78="http://schemas.datacontract.org/2004/07/WCFPGMSFront" minOccurs="0" name="ServiceDetailViewGetByTrackGroupIdResult" nillable="true" type="q78:returndbmlServiceDetailView" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

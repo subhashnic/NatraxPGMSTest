@@ -382,6 +382,12 @@
   <wsdl:message name="IService1_TrackGroupMasterGetAllWithImage_OutputMessage">
     <wsdl:part name="parameters" element="tns:TrackGroupMasterGetAllWithImageResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_ServiceDetailViewGetByTrackGroupId_InputMessage">
+    <wsdl:part name="parameters" element="tns:ServiceDetailViewGetByTrackGroupId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ServiceDetailViewGetByTrackGroupId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ServiceDetailViewGetByTrackGroupIdResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="UserGetByLoginId">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/UserGetByLoginId" message="tns:IService1_UserGetByLoginId_InputMessage" />
@@ -626,6 +632,10 @@
     <wsdl:operation name="TrackGroupMasterGetAllWithImage">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/TrackGroupMasterGetAllWithImage" message="tns:IService1_TrackGroupMasterGetAllWithImage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/TrackGroupMasterGetAllWithImageResponse" message="tns:IService1_TrackGroupMasterGetAllWithImage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ServiceDetailViewGetByTrackGroupId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/ServiceDetailViewGetByTrackGroupId" message="tns:IService1_ServiceDetailViewGetByTrackGroupId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ServiceDetailViewGetByTrackGroupIdResponse" message="tns:IService1_ServiceDetailViewGetByTrackGroupId_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IService1" type="tns:IService1">
@@ -1173,6 +1183,15 @@
     </wsdl:operation>
     <wsdl:operation name="TrackGroupMasterGetAllWithImage">
       <soap12:operation soapAction="http://tempuri.org/IService1/TrackGroupMasterGetAllWithImage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServiceDetailViewGetByTrackGroupId">
+      <soap12:operation soapAction="http://tempuri.org/IService1/ServiceDetailViewGetByTrackGroupId" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

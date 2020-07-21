@@ -195,6 +195,26 @@ namespace PGMSFront.Controllers
             return Json(new { Status = strStatus, StatusId = intStatusId,TrackMaster= objdbmlTrackGroupMasterWithImageView }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult ServiceDetailViewGetByTrackGroupId(int intTrackGroupId)
+        {
+            int intStatusId = 99;
+            string strStatus = "Invalid";
+            returndbmlServiceDetailView objreturndbmlServiceDetailView = new returndbmlServiceDetailView();
+            try
+            {
+                objreturndbmlServiceDetailView = objServiceClient.ServiceDetailViewGetByTrackGroupId(intTrackGroupId);
+                if (objreturndbmlServiceDetailView != null && objreturndbmlServiceDetailView.objdbmlStatus.StatusId == 1)
+                {
+                    intStatusId = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                strStatus = ex.Message;
+            }
+            return Json(new { Status = strStatus, StatusId = intStatusId, TrackDetail = objreturndbmlServiceDetailView }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult BrakingTrack()
         {
             return View();
