@@ -3,282 +3,284 @@
     ViewBag.Title = "Track";
 }
 @Html.AntiForgeryToken()
+<input type="hidden" id="strImgPath" value="@System.Configuration.ConfigurationManager.AppSettings["strImgPath"]" />
 <div class="content">
     <div class="container-fluid">
         <div class="row" id="Track">
-            <div class="col-md-3">
-                <div class="card card-product">
-                    <div class="card-header card-header-image" >
-                        <a href="#pablo">
-                            <img class="img" src="https://www.natrax.in/wp-content/uploads/2020/04/natrax-high-speed-track.jpg">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#pablo">High Speed Track</a>
-                        </h4>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <a href="@Url.Action("HighSpeedTrackDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+            @*<div class="col-md-3">
+                    <div class="card card-product">
+                        <div class="card-header card-header-image" >
+                            <a href="#pablo">
+                                <img class="img" src="https://www.natrax.in/wp-content/uploads/2020/04/natrax-high-speed-track.jpg">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#pablo">High Speed Track</a>
+                            </h4>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <a href="@Url.Action("HighSpeedTrackDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-product">
-                    <div class="card-header card-header-image" >
-                        <a href="#pablo">
-                            <img class="img" src="~/Templates/Tracks/T2 Dynamic Platform.JPG">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#pablo">Dynamic Platform</a>
-                        </h4>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <a href="@Url.Action("DynamicPlatformDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                <div class="col-md-3">
+                    <div class="card card-product">
+                        <div class="card-header card-header-image" >
+                            <a href="#pablo">
+                                <img class="img" src="~/Templates/Tracks/T2 Dynamic Platform.JPG">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#pablo">Dynamic Platform</a>
+                            </h4>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <a href="@Url.Action("DynamicPlatformDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-product">
-                    <div class="card-header card-header-image" >
-                        <a href="#pablo">
-                            <img class="img" src="~/Templates/Tracks/T3 Braking Track 3.jpg">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#pablo">Braking Track</a>
-                        </h4>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <a href="@Url.Action("BrakingTrackDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                <div class="col-md-3">
+                    <div class="card card-product">
+                        <div class="card-header card-header-image" >
+                            <a href="#pablo">
+                                <img class="img" src="~/Templates/Tracks/T3 Braking Track 3.jpg">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#pablo">Braking Track</a>
+                            </h4>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <a href="@Url.Action("BrakingTrackDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-product">
-                    <div class="card-header card-header-image" >
-                        <a href="#pablo">
-                            <img class="img" src="~/Templates/Tracks/T4 Gradient Track.jpg">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title" style="font-size: 17px;">
-                            <a href="#pablo">Test Hill / Gradient Track</a>
-                        </h4>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <a href="@Url.Action("TestHillDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                <div class="col-md-3">
+                    <div class="card card-product">
+                        <div class="card-header card-header-image" >
+                            <a href="#pablo">
+                                <img class="img" src="~/Templates/Tracks/T4 Gradient Track.jpg">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title" style="font-size: 17px;">
+                                <a href="#pablo">Test Hill / Gradient Track</a>
+                            </h4>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <a href="@Url.Action("TestHillDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-product">
-                    <div class="card-header card-header-image" >
-                        <a href="#pablo">
-                            <img class="img" src="~/Templates/Tracks/T5 Fatigue Track.jpg">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#pablo">Fatigue Track</a>
-                        </h4>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <a href="@Url.Action("FatigueTrackDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                <div class="col-md-3">
+                    <div class="card card-product">
+                        <div class="card-header card-header-image" >
+                            <a href="#pablo">
+                                <img class="img" src="~/Templates/Tracks/T5 Fatigue Track.jpg">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#pablo">Fatigue Track</a>
+                            </h4>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <a href="@Url.Action("FatigueTrackDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-product">
-                    <div class="card-header card-header-image" >
-                        <a href="#pablo">
-                            <img class="img" src="~/Templates/Tracks/Gravel and Off Road Track.jpg">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#pablo">Gravel and Off Road</a>
-                        </h4>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <a href="@Url.Action("GravelDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                <div class="col-md-3">
+                    <div class="card card-product">
+                        <div class="card-header card-header-image" >
+                            <a href="#pablo">
+                                <img class="img" src="~/Templates/Tracks/Gravel and Off Road Track.jpg">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#pablo">Gravel and Off Road</a>
+                            </h4>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <a href="@Url.Action("GravelDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-product">
-                    <div class="card-header card-header-image" >
-                        <a href="#pablo">
-                            <img class="img" src="~/Templates/Tracks/T7 Handling Track 4 Wheeler 2.jpg">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#pablo">Handling Track for 4W</a>
-                        </h4>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <a href="@Url.Action("HandlingTrack4WDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                <div class="col-md-3">
+                    <div class="card card-product">
+                        <div class="card-header card-header-image" >
+                            <a href="#pablo">
+                                <img class="img" src="~/Templates/Tracks/T7 Handling Track 4 Wheeler 2.jpg">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#pablo">Handling Track for 4W</a>
+                            </h4>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <a href="@Url.Action("HandlingTrack4WDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-product">
-                    <div class="card-header card-header-image" >
-                        <a href="#pablo">
-                            <img class="img" src="~/Templates/Tracks/T8 Comfort Track.jpg">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#pablo">Comfort Track</a>
-                        </h4>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <a href="@Url.Action("ComfortTrackDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                <div class="col-md-3">
+                    <div class="card card-product">
+                        <div class="card-header card-header-image" >
+                            <a href="#pablo">
+                                <img class="img" src="~/Templates/Tracks/T8 Comfort Track.jpg">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#pablo">Comfort Track</a>
+                            </h4>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <a href="@Url.Action("ComfortTrackDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-product">
-                    <div class="card-header card-header-image" >
-                        <a href="#pablo">
-                            <img class="img" src="~/Templates/Tracks/T9 Handling Track 2-3 Wheeler 2.jpg">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#pablo">Handling Track for 2W</a>
-                        </h4>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <a href="@Url.Action("HandlingTrack2WDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                <div class="col-md-3">
+                    <div class="card card-product">
+                        <div class="card-header card-header-image" >
+                            <a href="#pablo">
+                                <img class="img" src="~/Templates/Tracks/T9 Handling Track 2-3 Wheeler 2.jpg">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#pablo">Handling Track for 2W</a>
+                            </h4>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <a href="@Url.Action("HandlingTrack2WDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-product">
-                    <div class="card-header card-header-image" >
-                        <a href="#pablo">
-                            <img class="img" src="~/Templates/Tracks/T10 sustainability Track.jpg">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#pablo">Sustainability Track</a>
-                        </h4>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <a href="@Url.Action("SustainabilityTrackDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                <div class="col-md-3">
+                    <div class="card card-product">
+                        <div class="card-header card-header-image" >
+                            <a href="#pablo">
+                                <img class="img" src="~/Templates/Tracks/T10 sustainability Track.jpg">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#pablo">Sustainability Track</a>
+                            </h4>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <a href="@Url.Action("SustainabilityTrackDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-product">
-                    <div class="card-header card-header-image" >
-                        <a href="#pablo">
-                            <img class="img" src="~/Templates/Tracks/T-11 Wet Skid Pad.jpg">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#pablo">Wet Skid Pad</a>
-                        </h4>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <a href="@Url.Action("WetSkidPadDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                <div class="col-md-3">
+                    <div class="card card-product">
+                        <div class="card-header card-header-image" >
+                            <a href="#pablo">
+                                <img class="img" src="~/Templates/Tracks/T-11 Wet Skid Pad.jpg">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#pablo">Wet Skid Pad</a>
+                            </h4>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <a href="@Url.Action("WetSkidPadDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-product">
-                    <div class="card-header card-header-image" >
-                        <a href="#pablo">
-                            <img class="img" src="~/Templates/Tracks/noImage.png">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#pablo">Village Road</a>
-                        </h4>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <a href="@Url.Action("VillageRoadDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                <div class="col-md-3">
+                    <div class="card card-product">
+                        <div class="card-header card-header-image" >
+                            <a href="#pablo">
+                                <img class="img" src="~/Templates/Tracks/noImage.png">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#pablo">Village Road</a>
+                            </h4>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <a href="@Url.Action("VillageRoadDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-product">
-                    <div class="card-header card-header-image" >
-                        <a href="#pablo">
-                            <img class="img" src="~/Templates/Tracks/T13 Noise Track.jpg">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#pablo">External Noise Track</a>
-                        </h4>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <a href="@Url.Action("ExternalNoiseTrackDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                <div class="col-md-3">
+                    <div class="card card-product">
+                        <div class="card-header card-header-image" >
+                            <a href="#pablo">
+                                <img class="img" src="~/Templates/Tracks/T13 Noise Track.jpg">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#pablo">External Noise Track</a>
+                            </h4>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <a href="@Url.Action("ExternalNoiseTrackDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-product">
-                    <div class="card-header card-header-image" >
-                        <a href="#pablo">
-                            <img class="img" src="~/Templates/Tracks/noImage.png">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#pablo">General Road</a>
-                        </h4>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <a href="@Url.Action("GeneralRoadDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                <div class="col-md-3">
+                    <div class="card card-product">
+                        <div class="card-header card-header-image" >
+                            <a href="#pablo">
+                                <img class="img" src="~/Templates/Tracks/noImage.png">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#pablo">General Road</a>
+                            </h4>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <a href="@Url.Action("GeneralRoadDetail", "Front")" class="card-category" style="cursor: pointer"><i class="material-icons">local_offer</i> View More..</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>*@
         </div>
     </div>
 </div>
 <script>
     var TrackList = [];
+    var strImgPath = $("#strImgPath").val();
     $(document).ready(function () {
-        //TrackGetAll();
+        TrackGetAll();
     });
 
     function BindTrack() {
@@ -286,12 +288,13 @@
             var HTMl = "";
             $("#Track").empty();
             $.each(TrackList, function (Index, Object) {
+                debugger
                 HTMl += '<div class="col-md-3">';
                 HTMl += '<div class="card card-product">';
                 HTMl += '<div class="card-header card-header-image">';
                 HTMl += '<a href="#pablo">';
                 if (Object.ZZImageName != null) {
-                    HTMl += '<img class="img" src="https://natraxpgmsstorage.blob.core.windows.net/natraximage/'+ Object.ZZImageName +'">';
+                    HTMl += '<img class="img" src="'+ strImgPath + Object.ZZImageName +'">';
                 } else {
                     HTMl += '<img class="img" src="../Templates/Tracks/noImage.png">';
                 }
@@ -318,8 +321,8 @@
 
     function TrackDetail(TrackId) {
         debugger;
-        var url = '../Front/TrackDetail/' + TrackId;
         sessionStorage.setItem("TrackId", TrackId);
+        var url = '../Front/TrackDetail/';
         window.location.href = url;
     }
 
@@ -337,10 +340,12 @@
                 success: function (data) {
                     debugger;
                     LoaderHide();
-                    //if (data.StatusId != "99" && data.StatusId != "-99") {
+                    if (data.StatusId != "99" && data.StatusId != "-99") {
                         TrackList = data.TrackMaster;
                         BindTrack();
-                    //}
+                    } else {
+                        alert(data.Status);
+                    }
                 },
                 error: function (xhr) {
                     LoaderHide();
