@@ -167,9 +167,10 @@ namespace PGMSFront.Controllers
             try
             {
                 if (Session["TrackGroupMasterWithImage"] != null)
-                {                  
+                {
+                    intStatusId = 1;
                     GeneralColl<dbmlTrackGroupMasterWithImageView>.CopyCollection(Session["TrackGroupMasterWithImage"] as ObservableCollection<dbmlTrackGroupMasterWithImageView>, objdbmlTrackGroupMasterWithImageView);
-                    if(intTrackGroupId>0)
+                    if(intTrackGroupId > 0)
                     {
                         objdbmlTrackGroupMasterWithImageView = new ObservableCollection<dbmlTrackGroupMasterWithImageView>(objdbmlTrackGroupMasterWithImageView.Where(itm => Convert.ToInt32(itm.TrackGroupId) == intTrackGroupId));
                     }
@@ -179,6 +180,7 @@ namespace PGMSFront.Controllers
                     returndbmlTrackGroupMasterWithImageView objreturndbmlTrackGroupMasterWithImageView = objServiceClient.TrackGroupMasterGetAllWithImage();
                     if (objreturndbmlTrackGroupMasterWithImageView != null && objreturndbmlTrackGroupMasterWithImageView.objdbmlStatus.StatusId == 1)
                     {
+                        intStatusId = 1;
                         Session["TrackGroupMasterWithImage"] = objreturndbmlTrackGroupMasterWithImageView.objdbmlTrackGroupMasterWithImageView;
                         objdbmlTrackGroupMasterWithImageView = objreturndbmlTrackGroupMasterWithImageView.objdbmlTrackGroupMasterWithImageView;
                         if (intTrackGroupId > 0)
@@ -282,32 +284,74 @@ namespace PGMSFront.Controllers
 
         public ActionResult Track()
         {
-            return View();
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult Lab()
         {
-            return View();
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult Workshop()
         {
-            return View();
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult Storage()
         {
-            return View();
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult AddOnServices()
         {
-            return View();
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult TrackDetail()
         {
-            return View();
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult BookWorkshop()
