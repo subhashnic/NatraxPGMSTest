@@ -1,0 +1,254 @@
+﻿@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta http-equiv="Page-Enter" content="Alpha(opacity=100)">
+    <meta http-equiv="Page-Enter" content="blendTrans(Duration=0)">
+    <meta http-equiv="Page-Exit" content="blendTrans(Duration=0)">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="~/Templates/img/favicon.png" type="image/png">
+    <title>Services</title>
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="~/Templates/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Templates/vendors/linericon/style.css">
+    <link rel="stylesheet" href="~/Templates/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Templates/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Templates/vendors/lightbox/simpleLightbox.css">
+    <link rel="stylesheet" href="~/Templates/vendors/nice-select/css/nice-select.css">
+    <link rel="stylesheet" href="~/Templates/vendors/animate-css/animate.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="~/Templates/css/style.css">
+    <link href="~/Templates/Alert/jquery-confirm.min.css" rel="stylesheet" />
+    <style>
+        /* Scroll bar css */
+        *::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        *::-webkit-scrollbar-track {
+            /*background: rgb(41,41,41);*/
+            /*background: #ECF0F5;*/
+        }
+
+        ::-webkit-scrollbar-thumb {
+            width: 8px;
+            height: 8px;
+            background: #555;
+        }
+        /* Scroll bar css */
+
+        .home_banner_area .login-box {
+            /*background: rgba(255, 255, 255, 0.50);*/
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+        }
+
+        .ntx-loader {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            background: #fbfbfb;
+        }
+
+        .ntx-loader-box {
+            position: relative;
+        }
+
+        .welcome-txt {
+            background: #555559;
+            opacity: 0.8;
+            padding: 15px 0px 1px 0px;
+            text-align: center;
+        }
+
+        body {
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+        }
+
+        .link {
+            text-decoration: underline;
+            background-color: transparent;
+            color: #9c27b0;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 1.42857;
+        }
+    </style>
+</head>
+<body>
+    <div class="ntx-loader" style="        display: none;">
+        <div class="ntx-loader-box">
+            <img src="~/Templates/img/loader.gif" alt="natrax_loader">
+        </div>
+    </div>
+    <!--================ Start Header Menu Area =================-->
+    <header class="header_area">
+        <div class="header-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-sm-6 col-4 header-top-left">
+                        <a href="tel:+91-11-49215555">
+                            <span class="lnr lnr-phone"></span>
+                            <span class="text">
+                                <span class="text">+ 91-11-49215555</span>
+                            </span>
+                        </a>
+                        <a href="mailto:team@natrip.in">
+                            <span class="lnr lnr-envelope"></span>
+                            <span class="text">
+                                <span class="text">team@natrip.in</span>
+                            </span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="main_menu">
+            <div class="search_input" id="search_input_box">
+                <div class="container">
+                    <form class="d-flex justify-content-between" method="" action="">
+                        <input type="text" class="form-control" id="search_input" placeholder="Search Here">
+                        <button type="submit" class="btn"></button>
+                        <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
+                    </form>
+                </div>
+            </div>
+
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <img src="~/Templates/Tracks/india.png" />
+                    <a class="navbar-brand logo_h" href="javascript:void(0)"><img src="~/Templates/img/logo.png" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav ml-auto">
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("About", "Front")">About</a></li>
+                            <li class="nav-item active"><a class="nav-link" href="@Url.Action("Services", "Front")">Services</a></li>
+                            @*<li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       aria-expanded="false">Services</a>
+                                </li>*@
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("AccomodationTransportation", "Front")">Accomodation & Transportation</a></li>
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Front")">Contact</a></li>
+                            @*<li class="nav-item">
+                                    <div class="">
+                                        <a class="nav-link blink" href=""><span>Ask For Quotation</span></a>
+                                    </div>
+                                </li>*@
+
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="department_area section_gap" style="height: 435px;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="dpmt_right">
+                        <h1 class="text-center">Coming Soon...</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--================ End Department Area =================-->
+    <!--================ Start footer Area  =================-->
+    <footer class="footer-area section_gap">
+        <div class="container">
+            <div class="row footer-bottom d-flex justify-content-between">
+                <p class="col-lg-8 col-sm-12 footer-text m-0 text-white">Copyright &copy; 2020 All rights reserved </p>
+                <div class="col-lg-4 col-sm-12 footer-social">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-youtube"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--================ End footer Area  =================-->
+
+    <div class="modal fade" id="eMailResendModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<h4 class="modal-title" style="text-align:center">eMail Resend</h4>*@
+                    @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="material-icons">clear</i>
+                        </button>*@
+                </div>
+                <div class="modal-body" style="        text-align: center">
+                    <label style="        color: black;
+        text-align: center">@ViewData["MSG"]</label>
+        <br />
+        <br />
+        <button type="button" class="btn btn-fill btn-danger btn-sm" id="btnOk" data-dismiss="modal" style="        margin-left: 5px;
+        margin-top: 5px;
+        text-align: center">
+            OK
+        </button>
+        <button type="button" class="btn btn-fill btn-danger btn-sm" id="btnResend" onclick="ResendVerifyLink()" style="        margin-left: 5px;
+        margin-top: 5px;
+        text-align: center">
+            RESEND
+        </button>
+    </div>
+    @*<div class="modal-footer" >
+            <button type="button" class="btn btn-fill btn-danger btn-sm" data-dismiss="modal" style="margin-left: 5px; margin-top: 5px;">Close</button>
+        </div>*@
+
+</div>
+</div>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="~/Templates/js/jquery-3.2.1.min.js"></script>
+<script src="~/Templates/js/popper.js"></script>
+<script src="~/Templates/js/bootstrap.min.js"></script>
+<script src="~/Templates/js/stellar.js"></script>
+@*<script src="~/Templates/js/countdown.js"></script>*@
+<script src="~/Templates/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+<script src="~/Templates/vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="~/Templates/js/owl-carousel-thumb.min.js"></script>
+<script src="~/Templates/js/jquery.ajaxchimp.min.js"></script>
+<script src="~/Templates/vendors/counter-up/jquery.counterup.js"></script>
+<script src="~/Templates/js/mail-script.js"></script>
+<!--gmaps Js-->
+@*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>*@
+<script src="~/Templates/js/gmaps.min.js"></script>
+<script src="~/Templates/js/theme.js"></script>
+
+@Scripts.Render("~/bundles/MyScripts")
+<script type="text/javascript" src="~/MyScripts/Browser.min.js"></script>
+@*<script src="~/Templates/Alert/jquery-confirm.min.js"></script>*@
+@*<script type="text/javascript" src="~/MyScripts/aes.js"></script>*@
+@*<script type="text/javascript" src="~/MyScripts/MyFunctions.js"></script>*@
+@*<script type="text/javascript" src="~/MyScripts/jquery.alerts.js"></script>*@
+</body>
+</html>

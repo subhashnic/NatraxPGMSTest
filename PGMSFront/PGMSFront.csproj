@@ -928,6 +928,10 @@
     <Content Include="Web_QA.Release.config">
       <DependentUpon>Web_QA.config</DependentUpon>
     </Content>
+    <Content Include="Views\Front\About.cshtml" />
+    <Content Include="Views\Front\Services.cshtml" />
+    <Content Include="Views\Front\AccomodationTransportation.cshtml" />
+    <Content Include="Views\Front\Contact.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

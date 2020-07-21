@@ -147,18 +147,19 @@
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
                             <li class="nav-item active"><a class="nav-link" href="@Url.Action("Index", "Home")">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="javascript:void(0)">About</a></li>
-                            <li class="nav-item submenu dropdown">
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("About", "Front")">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Services", "Front")">Services</a></li>
+                            @*<li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                    aria-expanded="false">Services</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="">Accomodation & Transportation</a></li>
-                            <li class="nav-item"><a class="nav-link" href="">Contact</a></li>
+                            </li>*@
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("AccomodationTransportation", "Front")">Accomodation & Transportation</a></li>
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Front")">Contact</a></li>
                             @*<li class="nav-item">
-                                    <div class="">
-                                        <a class="nav-link blink" href=""><span>Ask For Quotation</span></a>
-                                    </div>
-                                </li>*@
+            <div class="">
+                <a class="nav-link blink" href=""><span>Ask For Quotation</span></a>
+            </div>
+        </li>*@
 
 
                         </ul>
