@@ -376,6 +376,30 @@
             }
             else {
 
+                if (parseInt(model.UOMPropId) == 14) {
+                    if (parseInt(model.Consumption) != 1) {
+                        alert('Services having unit "DAY" Consumption should be 1');
+                        return;
+                    }
+                    if (LoadAddOnServicesList != null && LoadAddOnServicesList.length > 0) {
+                        var varWSTmp = "";
+                        if (parseInt($("#BPId").val()) == 46 || parseInt($("#BPId").val()) == 91) {
+                            varWSTmp = jQuery.grep(LoadAddOnServicesList, function (obj) {
+                                return obj.ServiceId == model.ServiceId && obj.BookingDay == model.BookingDay;
+                            });
+                        }
+                        else {
+                            varWSTmp = jQuery.grep(LoadAddOnServicesList, function (obj) {
+                                return obj.ServiceId == model.ServiceId && ToDate(obj.ZZServiceDate).getTime() == ToDate(model.ZZServiceDate).getTime();
+                            });
+                        }
+                        if (varWSTmp != undefined && varWSTmp != null && ((parseInt(model.BookingAddOnServiceId) == -1 && varWSTmp.length > 0) || (parseInt(model.BookingAddOnServiceId) > 0 && varWSTmp.length > 1))) {
+                            alert('Services having unit "DAY" not allowed multiple for the same day/date');
+                            return;
+                        }
+                    }
+                }
+
                 btnSave.hide();
                 LoaderShow();
                 var data = {'model': model};
@@ -708,6 +732,14 @@
         catch (e) {
 
         }
+    }
+
+    function ToDate(strdate) {
+        var parts = strdate.split("-");
+        if (parts.length < 3) {
+            parts = strdate.split("/");
+        }
+        return new Date(parts[2], parts[1] - 1, parts[0])
     }
 
     $(document).ready(function () {
